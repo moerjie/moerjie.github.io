@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Linux常用命令 | Sawen_Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="系统目录结构 文件与目录管理命令Linux的文件目录是树状结构，最顶级的目录为根目录&#x2F;，其他目录是通过挂载将其添加到文件树上，通过解除挂载将其移除。 首先先了解什么是绝对路径和相对路径  绝对路径：从根目录开始的完整路径描述，通常以 &#x3D;&#x3D;&#x2F;&#x3D;&#x3D; 开头，从根目录root一直到目标目录  相对路径：相对于当前工作目录的路径描述，通常使用以下符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令">
+<meta property="og:url" content="https://moerjie.github.io/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">
+<meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:description" content="系统目录结构 文件与目录管理命令Linux的文件目录是树状结构，最顶级的目录为根目录&#x2F;，其他目录是通过挂载将其添加到文件树上，通过解除挂载将其移除。 首先先了解什么是绝对路径和相对路径  绝对路径：从根目录开始的完整路径描述，通常以 &#x3D;&#x3D;&#x2F;&#x3D;&#x3D; 开头，从根目录root一直到目标目录  相对路径：相对于当前工作目录的路径描述，通常使用以下符">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311201648619.png">
+<meta property="article:published_time" content="2023-11-30T05:51:48.000Z">
+<meta property="article:modified_time" content="2023-12-01T06:06:40.400Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311201648619.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Sawen_Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sawen_Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://moerjie.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Linux常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4" class="article-date">
+  <time class="dt-published" datetime="2023-11-30T05:51:48.000Z" itemprop="datePublished">2023-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Linux常用命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="系统目录结构"><a href="#系统目录结构" class="headerlink" title="系统目录结构"></a>系统目录结构</h2><p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311201648619.png" alt="image-20231120164834933"></p>
+<h2 id="文件与目录管理命令"><a href="#文件与目录管理命令" class="headerlink" title="文件与目录管理命令"></a>文件与目录管理命令</h2><p>Linux的文件目录是树状结构，最顶级的目录为根目录&#x2F;，其他目录是通过挂载将其添加到文件树上，通过解除挂载将其移除。</p>
+<p>首先先了解什么是绝对路径和相对路径</p>
+<ul>
+<li><p>绝对路径：从根目录开始的完整路径描述，通常以 &#x3D;&#x3D;&#x2F;&#x3D;&#x3D; 开头，从根目录root一直到目标目录</p>
+</li>
+<li><p>相对路径：相对于当前工作目录的路径描述，通常使用以下符号：</p>
+</li>
+<li><p>&#x3D;&#x3D;.&#x3D;&#x3D;  ：表示当前目录，如 .&#x2F;test.txt 表示当前目录下的文件</p>
+</li>
+<li><p>&#x3D;&#x3D;..&#x3D;&#x3D;  ：表示父级目录，如 ..&#x2F;dir&#x2F;test.txt 表示父级目录下的文件</p>
+</li>
+</ul>
+<h3 id="处理目录的常用命令"><a href="#处理目录的常用命令" class="headerlink" title="处理目录的常用命令"></a>处理目录的常用命令</h3><h4 id="ls——列出目录"><a href="#ls——列出目录" class="headerlink" title="ls——列出目录"></a>ls——列出目录</h4><h5 id="有用选项"><a href="#有用选项" class="headerlink" title="有用选项"></a>有用选项</h5><pre><code>| 选项 | 作用·                              |
+| ---- | ---------------------------------- |
+| -a   | 列出全部文件                       |
+| -d   | 仅列出目录本身                     |
+| -l   | 长数据串列出，包含文件属性和权限等 |
+</code></pre>
+<h4 id="mkdir——创建目录"><a href="#mkdir——创建目录" class="headerlink" title="mkdir——创建目录"></a>mkdir——创建目录</h4><pre><code>用于创建目录，工作方式如下
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir dir</span><br></pre></td></tr></table></figure>
+
+这样会创建一个名为dir的文件夹，而
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir dir1 dir2 dir3</span><br></pre></td></tr></table></figure>
+会创建3个文件夹
+</code></pre>
+<h4 id="cp——复制文件和目录"><a href="#cp——复制文件和目录" class="headerlink" title="cp——复制文件和目录"></a>cp——复制文件和目录</h4><pre><code>有两种工作方式
+
+1.  ```shell
+    cp item1 item2
+    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    将单个文件或目录“item1”复制到文件或目录”item2“</span><br><span class="line"></span><br><span class="line">2.  ```shell</span><br><span class="line">    cp item... dir</span><br></pre></td></tr></table></figure>
+
+    将多个项目复制到一个目录下
+</code></pre>
+<h5 id="有用的选项"><a href="#有用的选项" class="headerlink" title="有用的选项"></a>有用的选项</h5><pre><code>| 选项              | 作用                                                                                                             |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------- |
+| -a（archive）     | 复制文件和目录，以及他们的属性，包括所有权和权限，通常副本具有用户所操作文件的默认属性。                         |
+| -i（interactive） | 在重写已存在的文件之前，提示用户确认。如果选项不指定，cp命令会默认重写文件。                                     |
+| -r（recursive）   | 递归地复制目录及目录中的内容。                                                                                   |
+| -u（update）      | 当把文件从一个目录复制到另一个目录时，仅复制目标目录中不存在的文件，或者是文件内容新于目标目录中已经存在的文件。 |
+| -v（verbose）     | 显示详实的命令操作信息。                                                                                         |
+</code></pre>
+<h4 id="mv——移动和重命名文件"><a href="#mv——移动和重命名文件" class="headerlink" title="mv——移动和重命名文件"></a>mv——移动和重命名文件</h4><pre><code>mv命令可以执行文件移动和文件命名任务，完成操作后原来的文件名将消失。mv使用方法类似cp：
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv item1 item2</span><br></pre></td></tr></table></figure>
+
+将item1移动或重命名为item2
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv item... dir</span><br></pre></td></tr></table></figure>
+
+将多个对象移动到另一个目录中
+</code></pre>
+<h5 id="有用的选项-1"><a href="#有用的选项-1" class="headerlink" title="有用的选项"></a>有用的选项</h5><pre><code>同cp
+</code></pre>
+<h4 id="rm——删除文件和目录"><a href="#rm——删除文件和目录" class="headerlink" title="rm——删除文件和目录"></a>rm——删除文件和目录</h4><pre><code>rm item
+</code></pre>
+<p>item代表一个或多个文件或目录</p>
+<h5 id="有用的选项-2"><a href="#有用的选项-2" class="headerlink" title="有用的选项"></a>有用的选项</h5><pre><code>| 选项        | 作用                                                             |
+| -i          | 删除文件时提示用户确认信息，**如果不指定的话，rm会默默删除文件** |
+| -r          | 递归的删除文件。删除一个有子文件夹的文件夹时必须指定这个选项     |
+| -f（force） | 忽视不存在的文件                                                 |
+| -v          | 执行rm时显示详实的操作信息                                       |
+</code></pre>
+<blockquote>
+<p>类似于Unix的操作系统，没有复原命令，一旦使用rm删除文件就无法找回。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://moerjie.github.io/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4" data-id="clpm9j5dd0001d8mj4qascfr6" data-title="Linux常用命令" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Cyclone%20III%20%E5%86%85%E9%83%A8%E8%B5%84%E6%BA%90" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Cyclone III 内部资源
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FPGA/" rel="tag">FPGA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/FPGA/" style="font-size: 20px;">FPGA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/vivado%E4%BB%BF%E7%9C%9F%EF%BC%88%E6%97%A0testbench%EF%BC%89">vivado仿真（无testbench）</a>
+          </li>
+        
+          <li>
+            <a href="/Cyclone%20III%20%E5%86%85%E9%83%A8%E8%B5%84%E6%BA%90">Cyclone III 内部资源</a>
+          </li>
+        
+          <li>
+            <a href="/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

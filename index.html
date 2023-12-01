@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Sawen_Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Sawen_Blog">
+<meta property="og:url" content="https://moerjie.github.io/index.html">
+<meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Sawen_Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sawen_Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://moerjie.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-vivado仿真（无需testbench）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/vivado%E4%BB%BF%E7%9C%9F%EF%BC%88%E6%97%A0testbench%EF%BC%89" class="article-date">
+  <time class="dt-published" datetime="2023-11-30T11:51:48.000Z" itemprop="datePublished">2023-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/vivado%E4%BB%BF%E7%9C%9F%EF%BC%88%E6%97%A0testbench%EF%BC%89">vivado仿真（无testbench）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="vivado仿真（无testbench）"><a href="#vivado仿真（无testbench）" class="headerlink" title="vivado仿真（无testbench）"></a>vivado仿真（无testbench）</h1><h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><ol>
+<li>新建一个工程并添加自己编写的Verilog文件</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251100024.png" alt="image-20231125110055893"></p>
+<p>添加后vivado会自动识别文件中的module</p>
+<ol start="2">
+<li>创建block design文件，添加模块</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251105610.png" alt="image-20231125110528510"></p>
+<p>添加前可能会有以下警告，等待一段时间即可。</p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251102375.png" alt="image-20231125110236315"></p>
+<ol start="3">
+<li>再次右键，点击Add IP，添加以下模块</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251108326.png" alt="image-20231125110856237"></p>
+<p>双击此模块可以设定各种参数</p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251109755.png" alt="image-20231125110953701"></p>
+<ol start="4">
+<li>运行自动连线，选择上面添加的时钟源</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251110683.png" alt="image-20231125111057636"></p>
+<img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251111241.png" alt="image-20231125111152197" style="zoom:67%;" />
+
+<ol start="5">
+<li>在悬空的引脚上右键，选中以下选项，创建端口</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251113708.png" alt="image-20231125111342659"></p>
+<ol start="6">
+<li>在左侧source栏中，在1处右键，选择2处选项，将bd文件转化为.v文件</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251117125.png" alt="image-20231125111720073"></p>
+<ol start="7">
+<li>在生成的新文件上右键，将其设置为top文件</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251119438.png" alt="image-20231125111950383"></p>
+<ol start="8">
+<li>运行仿真，可以看到仿真结果</li>
+</ol>
+<img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251138968.png" alt="image-20231125113843876" style="zoom:75%;" />
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>添加simulation clock模块后如果进行RTL分析和综合的话会报错，目测可能是因为该模块只能用来行为级仿真。</p>
+<p>由于本人刚刚入门使用vivado，很多操作不甚熟悉，如有错误欢迎指正。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://moerjie.github.io/vivado%E4%BB%BF%E7%9C%9F%EF%BC%88%E6%97%A0testbench%EF%BC%89" data-id="clpm9j5dk0006d8mjf8sk4saa" data-title="vivado仿真（无testbench）" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FPGA/" rel="tag">FPGA</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Cyclone-III-内部资源" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Cyclone%20III%20%E5%86%85%E9%83%A8%E8%B5%84%E6%BA%90" class="article-date">
+  <time class="dt-published" datetime="2023-11-30T11:27:19.000Z" itemprop="datePublished">2023-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Cyclone%20III%20%E5%86%85%E9%83%A8%E8%B5%84%E6%BA%90">Cyclone III 内部资源</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="CycloneIII内部资源概述"><a href="#CycloneIII内部资源概述" class="headerlink" title="CycloneIII内部资源概述"></a>CycloneIII内部资源概述</h1><p> [toc]</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pitfC2n"><img src="https://z1.ax1x.com/2023/11/17/pitfC2n.png" alt="pitfC2n.png"></a><br>本人使用的Altera DE0使用的主控芯片为EP3C16F484C6，由上图可知包含15408个逻辑单元，56个M9K，56个18×18乘法器，4个PLL等资源。</p>
+<h2 id="Logic-Elements-and-Logic-Array-Blocks（逻辑元件和逻辑阵列块）"><a href="#Logic-Elements-and-Logic-Array-Blocks（逻辑元件和逻辑阵列块）" class="headerlink" title="Logic Elements and Logic Array Blocks（逻辑元件和逻辑阵列块）"></a>Logic Elements and Logic Array Blocks（逻辑元件和逻辑阵列块）</h2><h3 id="LE"><a href="#LE" class="headerlink" title="LE"></a>LE</h3><p>LE是FPGA中最小的逻辑单元，可以提供高效逻辑使用的高级功能。LE的结构如下图所示：<br><a target="_blank" rel="noopener" href="https://imgse.com/i/pitho6I"><img src="https://z1.ax1x.com/2023/11/17/pitho6I.png" alt="pitho6I.png"></a></p>
+<ul>
+<li>LUT：用于完成用户需要的逻辑功能，Cyclone III的查找表是4输入1输出，可以完成任何4输入1输出的组合逻辑</li>
+<li>Programmable Register：可以配置成D触发器、T触发器、JK触发器等，每个寄存器包含4个输入信号，数据信号、时钟信号、时钟使能、复位信号。</li>
+</ul>
+<p>LE有两种工作模式：</p>
+<ul>
+<li>Normal mode：适合于一般的逻辑运算</li>
+<li>Arithmetic mode：适用于实现加法器、计数器、累加器、比较器等</li>
+</ul>
+<h3 id="LAB"><a href="#LAB" class="headerlink" title="LAB"></a>LAB</h3><p>每个LAB都由以下元素组成：</p>
+<ol>
+<li>16个LE</li>
+<li>LAB控制信号</li>
+<li>LE转移链</li>
+<li>寄存器链</li>
+<li>本地互联</li>
+</ol>
+<p>本地互联用于在同一LAB内的LE之间传递信号；寄存器链用于将一个LE的输出传递到相邻的LE中。<br>LAB结构如图所示：<br><a target="_blank" rel="noopener" href="https://imgse.com/i/pit4Ruq"><img src="https://z1.ax1x.com/2023/11/17/pit4Ruq.png" alt="pit4Ruq.png"></a></p>
+<h4 id="LAB-Interconnects"><a href="#LAB-Interconnects" class="headerlink" title="LAB Interconnects"></a>LAB Interconnects</h4><p>LAB本地互连由同一LAB中的列和行互连和LE输出驱动。相邻的LAB、锁相环、M9K RAM块和从左到右的嵌入式乘法器也可以通过直接链路连接驱动LAB的本地互连。直接链接连接功能最大限度地减少了行和列互连的使用，提供更高的性能和灵活性。每个LE可以通过快速本地和直接链路互连驱动多达48个LE。<br>直接连接如下图所示：<br><a target="_blank" rel="noopener" href="https://imgse.com/i/pit5Za8"><img src="https://z1.ax1x.com/2023/11/17/pit5Za8.png" alt="pit5Za8.png"></a></p>
+<h2 id="Memory-Blocks（内存块）"><a href="#Memory-Blocks（内存块）" class="headerlink" title="Memory Blocks（内存块）"></a>Memory Blocks（内存块）</h2><p>嵌入式内存结构由M9K内存块组成，可以配置内存块以提供各种内存功能，例如RAM，移位寄存器，ROM和FIFO等。<br><a target="_blank" rel="noopener" href="https://imgse.com/i/pit50MR"><img src="https://z1.ax1x.com/2023/11/17/pit50MR.png" alt="pit50MR.png"></a></p>
+<blockquote>
+<p>M9K的内存单位是9k &#x3D;&#x3D;bit&#x3D;&#x3D;，并不是9k &#x3D;&#x3D;byte&#x3D;&#x3D;，并且9k中有1k的空间用于校验等功能，实际可用空间为8kbit</p>
+</blockquote>
+<h3 id="Memory-mode"><a href="#Memory-mode" class="headerlink" title="Memory mode"></a>Memory mode</h3><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pitI9oT"><img src="https://z1.ax1x.com/2023/11/17/pitI9oT.png" alt="pitI9oT.png"></a><br>M9K内存块不支持异步内存输入</p>
+<h3 id="Clocking-mode"><a href="#Clocking-mode" class="headerlink" title="Clocking mode"></a>Clocking mode</h3><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pitIcmq"><img src="https://z1.ax1x.com/2023/11/17/pitIcmq.png" alt="pitIcmq.png"></a><br>当使用Read or Write模式，如果对同一个地址进行读写操作，则输出的读数据是未知的。如果要使输出的数据是一个确定的信号，则需要使用single-clock模式或者IO-clock模式并且在 MegaWizard Plug-In Manager中选择合适的读写操作。</p>
+<blockquote>
+<p>读写时违反内存块输入寄存器的建立和保持时间可能会导致内存内容的损坏<br>异步清零只在读地址寄存器、输出寄存器和输出锁存器上可用</p>
+</blockquote>
+<p>Memory mode 和 Clocking mode的关系如下图所示：<br><a target="_blank" rel="noopener" href="https://imgse.com/i/pito84U"><img src="https://z1.ax1x.com/2023/11/17/pito84U.png" alt="pito84U.png"></a></p>
+<h2 id="Embedded-Multipliers-and-Digital-Signal-Processing-Support（嵌入式乘法器和数字信号处理支持）"><a href="#Embedded-Multipliers-and-Digital-Signal-Processing-Support（嵌入式乘法器和数字信号处理支持）" class="headerlink" title="Embedded Multipliers and Digital Signal Processing Support（嵌入式乘法器和数字信号处理支持）"></a>Embedded Multipliers and Digital Signal Processing Support（嵌入式乘法器和数字信号处理支持）</h2><h3 id="乘法器结构"><a href="#乘法器结构" class="headerlink" title="乘法器结构"></a>乘法器结构</h3><p><a target="_blank" rel="noopener" href="https://imgse.com/i/piN8jIg"><img src="https://z1.ax1x.com/2023/11/18/piN8jIg.png" alt="piN8jIg.png"></a></p>
+<ul>
+<li>输入的数据既可以先发送到输入寄存器也可以直接输入到乘法器，两个输入信号相互独立，例如：A信号可以通过寄存器将输入发送到乘法器，同时B信号可以直接发送到乘法器。</li>
+<li>根据乘法器的位宽和操作模式，单个乘法器可以并行的执行一次或两次乘法运算。</li>
+<li>两个输入信号如果都是无符号数，则输出数据也是无符号数；其中任何一个是有符号数的话，输出结果就是有符号数。</li>
+</ul>
+<h2 id="Clock-Networks-and-PLLs（时钟网络和锁相环）"><a href="#Clock-Networks-and-PLLs（时钟网络和锁相环）" class="headerlink" title="Clock Networks and PLLs（时钟网络和锁相环）"></a>Clock Networks and PLLs（时钟网络和锁相环）</h2><p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311211035848.png" alt="image-20231121103548768"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://moerjie.github.io/Cyclone%20III%20%E5%86%85%E9%83%A8%E8%B5%84%E6%BA%90" data-id="clpm9j5da0000d8mjf7gt9inl" data-title="Cyclone III 内部资源" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FPGA/" rel="tag">FPGA</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Linux常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4" class="article-date">
+  <time class="dt-published" datetime="2023-11-30T05:51:48.000Z" itemprop="datePublished">2023-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">Linux常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="系统目录结构"><a href="#系统目录结构" class="headerlink" title="系统目录结构"></a>系统目录结构</h2><p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311201648619.png" alt="image-20231120164834933"></p>
+<h2 id="文件与目录管理命令"><a href="#文件与目录管理命令" class="headerlink" title="文件与目录管理命令"></a>文件与目录管理命令</h2><p>Linux的文件目录是树状结构，最顶级的目录为根目录&#x2F;，其他目录是通过挂载将其添加到文件树上，通过解除挂载将其移除。</p>
+<p>首先先了解什么是绝对路径和相对路径</p>
+<ul>
+<li><p>绝对路径：从根目录开始的完整路径描述，通常以 &#x3D;&#x3D;&#x2F;&#x3D;&#x3D; 开头，从根目录root一直到目标目录</p>
+</li>
+<li><p>相对路径：相对于当前工作目录的路径描述，通常使用以下符号：</p>
+</li>
+<li><p>&#x3D;&#x3D;.&#x3D;&#x3D;  ：表示当前目录，如 .&#x2F;test.txt 表示当前目录下的文件</p>
+</li>
+<li><p>&#x3D;&#x3D;..&#x3D;&#x3D;  ：表示父级目录，如 ..&#x2F;dir&#x2F;test.txt 表示父级目录下的文件</p>
+</li>
+</ul>
+<h3 id="处理目录的常用命令"><a href="#处理目录的常用命令" class="headerlink" title="处理目录的常用命令"></a>处理目录的常用命令</h3><h4 id="ls——列出目录"><a href="#ls——列出目录" class="headerlink" title="ls——列出目录"></a>ls——列出目录</h4><h5 id="有用选项"><a href="#有用选项" class="headerlink" title="有用选项"></a>有用选项</h5><pre><code>| 选项 | 作用·                              |
+| ---- | ---------------------------------- |
+| -a   | 列出全部文件                       |
+| -d   | 仅列出目录本身                     |
+| -l   | 长数据串列出，包含文件属性和权限等 |
+</code></pre>
+<h4 id="mkdir——创建目录"><a href="#mkdir——创建目录" class="headerlink" title="mkdir——创建目录"></a>mkdir——创建目录</h4><pre><code>用于创建目录，工作方式如下
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir dir</span><br></pre></td></tr></table></figure>
+
+这样会创建一个名为dir的文件夹，而
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir dir1 dir2 dir3</span><br></pre></td></tr></table></figure>
+会创建3个文件夹
+</code></pre>
+<h4 id="cp——复制文件和目录"><a href="#cp——复制文件和目录" class="headerlink" title="cp——复制文件和目录"></a>cp——复制文件和目录</h4><pre><code>有两种工作方式
+
+1.  ```shell
+    cp item1 item2
+    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    将单个文件或目录“item1”复制到文件或目录”item2“</span><br><span class="line"></span><br><span class="line">2.  ```shell</span><br><span class="line">    cp item... dir</span><br></pre></td></tr></table></figure>
+
+    将多个项目复制到一个目录下
+</code></pre>
+<h5 id="有用的选项"><a href="#有用的选项" class="headerlink" title="有用的选项"></a>有用的选项</h5><pre><code>| 选项              | 作用                                                                                                             |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------- |
+| -a（archive）     | 复制文件和目录，以及他们的属性，包括所有权和权限，通常副本具有用户所操作文件的默认属性。                         |
+| -i（interactive） | 在重写已存在的文件之前，提示用户确认。如果选项不指定，cp命令会默认重写文件。                                     |
+| -r（recursive）   | 递归地复制目录及目录中的内容。                                                                                   |
+| -u（update）      | 当把文件从一个目录复制到另一个目录时，仅复制目标目录中不存在的文件，或者是文件内容新于目标目录中已经存在的文件。 |
+| -v（verbose）     | 显示详实的命令操作信息。                                                                                         |
+</code></pre>
+<h4 id="mv——移动和重命名文件"><a href="#mv——移动和重命名文件" class="headerlink" title="mv——移动和重命名文件"></a>mv——移动和重命名文件</h4><pre><code>mv命令可以执行文件移动和文件命名任务，完成操作后原来的文件名将消失。mv使用方法类似cp：
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv item1 item2</span><br></pre></td></tr></table></figure>
+
+将item1移动或重命名为item2
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv item... dir</span><br></pre></td></tr></table></figure>
+
+将多个对象移动到另一个目录中
+</code></pre>
+<h5 id="有用的选项-1"><a href="#有用的选项-1" class="headerlink" title="有用的选项"></a>有用的选项</h5><pre><code>同cp
+</code></pre>
+<h4 id="rm——删除文件和目录"><a href="#rm——删除文件和目录" class="headerlink" title="rm——删除文件和目录"></a>rm——删除文件和目录</h4><pre><code>rm item
+</code></pre>
+<p>item代表一个或多个文件或目录</p>
+<h5 id="有用的选项-2"><a href="#有用的选项-2" class="headerlink" title="有用的选项"></a>有用的选项</h5><pre><code>| 选项        | 作用                                                             |
+| -i          | 删除文件时提示用户确认信息，**如果不指定的话，rm会默默删除文件** |
+| -r          | 递归的删除文件。删除一个有子文件夹的文件夹时必须指定这个选项     |
+| -f（force） | 忽视不存在的文件                                                 |
+| -v          | 执行rm时显示详实的操作信息                                       |
+</code></pre>
+<blockquote>
+<p>类似于Unix的操作系统，没有复原命令，一旦使用rm删除文件就无法找回。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://moerjie.github.io/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4" data-id="clpm9j5dd0001d8mj4qascfr6" data-title="Linux常用命令" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FPGA/" rel="tag">FPGA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/FPGA/" style="font-size: 20px;">FPGA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/vivado%E4%BB%BF%E7%9C%9F%EF%BC%88%E6%97%A0testbench%EF%BC%89">vivado仿真（无testbench）</a>
+          </li>
+        
+          <li>
+            <a href="/Cyclone%20III%20%E5%86%85%E9%83%A8%E8%B5%84%E6%BA%90">Cyclone III 内部资源</a>
+          </li>
+        
+          <li>
+            <a href="/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
