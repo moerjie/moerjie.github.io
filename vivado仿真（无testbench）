@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://moerjie.github.io">
   <title>vivado仿真（无testbench） | Sawen_Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="vivado仿真（无testbench）实现步骤 新建一个工程并添加自己编写的Verilog文件   添加后vivado会自动识别文件中的module  创建block design文件，添加模块   添加前可能会有以下警告，等待一段时间即可。   再次右键，点击Add IP，添加以下模块   双击此模块可以设定各种参数   运行自动连线，选择上面添加的时钟源      在悬空的引脚上右键，选中以">
+  <meta name="description" content="vivado仿真（无testbench）实现步骤 新建一个工程并添加自己编写的Verilog文件   添加后vivado会自动识别文件中的module  创建block design文件，添加模块   添加前可能会有以下警告，等待一段时间即可。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vivado仿真（无testbench）">
 <meta property="og:url" content="https://moerjie.github.io/vivado%E4%BB%BF%E7%9C%9F%EF%BC%88%E6%97%A0testbench%EF%BC%89">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="vivado仿真（无testbench）实现步骤 新建一个工程并添加自己编写的Verilog文件   添加后vivado会自动识别文件中的module  创建block design文件，添加模块   添加前可能会有以下警告，等待一段时间即可。   再次右键，点击Add IP，添加以下模块   双击此模块可以设定各种参数   运行自动连线，选择上面添加的时钟源      在悬空的引脚上右键，选中以">
+<meta property="og:description" content="vivado仿真（无testbench）实现步骤 新建一个工程并添加自己编写的Verilog文件   添加后vivado会自动识别文件中的module  创建block design文件，添加模块   添加前可能会有以下警告，等待一段时间即可。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251100024.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251105610.png">
@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251119438.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251138968.png">
 <meta property="article:published_time" content="2023-11-30T11:51:48.000Z">
-<meta property="article:modified_time" content="2023-11-30T13:29:31.568Z">
+<meta property="article:modified_time" content="2023-12-01T08:05:16.916Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta name="twitter:card" content="summary">
@@ -198,6 +198,8 @@
 <p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251105610.png" alt="image-20231125110528510"></p>
 <p>添加前可能会有以下警告，等待一段时间即可。</p>
 <p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251102375.png" alt="image-20231125110236315"></p>
+<span id="more"></span>
+
 <ol start="3">
 <li>再次右键，点击Add IP，添加以下模块</li>
 </ol>
