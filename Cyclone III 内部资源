@@ -73,7 +73,7 @@
 	        
 				<li><a href="/tags">随笔</a></li>
 	        
-				<li><a href="/">分类</a></li>
+				<li><a href="/archives/index.html">归档</a></li>
 	        
 			</ul>
 		</nav>
@@ -145,7 +145,7 @@
 		        
 					<li style="width: 33.333333333333336%"><a href="/tags">随笔</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/">分类</a></li>
+					<li style="width: 33.333333333333336%"><a href="/archives/index.html">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -364,6 +364,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CycloneIII%E5%86%85%E9%83%A8%E8%B5%84%E6%BA%90%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">CycloneIII内部资源概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Logic-Elements-and-Logic-Array-Blocks%EF%BC%88%E9%80%BB%E8%BE%91%E5%85%83%E4%BB%B6%E5%92%8C%E9%80%BB%E8%BE%91%E9%98%B5%E5%88%97%E5%9D%97%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">Logic Elements and Logic Array Blocks（逻辑元件和逻辑阵列块）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LE"><span class="toc-number">1.1.1.</span> <span class="toc-text">LE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LAB"><span class="toc-number">1.1.2.</span> <span class="toc-text">LAB</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LAB-Interconnects"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">LAB Interconnects</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-Blocks%EF%BC%88%E5%86%85%E5%AD%98%E5%9D%97%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">Memory Blocks（内存块）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Memory-mode"><span class="toc-number">1.2.1.</span> <span class="toc-text">Memory mode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Clocking-mode"><span class="toc-number">1.2.2.</span> <span class="toc-text">Clocking mode</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Embedded-Multipliers-and-Digital-Signal-Processing-Support%EF%BC%88%E5%B5%8C%E5%85%A5%E5%BC%8F%E4%B9%98%E6%B3%95%E5%99%A8%E5%92%8C%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86%E6%94%AF%E6%8C%81%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">Embedded Multipliers and Digital Signal Processing Support（嵌入式乘法器和数字信号处理支持）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%98%E6%B3%95%E5%99%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.1.</span> <span class="toc-text">乘法器结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Clock-Networks-and-PLLs%EF%BC%88%E6%97%B6%E9%92%9F%E7%BD%91%E7%BB%9C%E5%92%8C%E9%94%81%E7%9B%B8%E7%8E%AF%EF%BC%89"><span class="toc-number">1.4.</span> <span class="toc-text">Clock Networks and PLLs（时钟网络和锁相环）</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
