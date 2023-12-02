@@ -351,6 +351,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2023/12/02/1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          HexoEditor
+        
+      </div>
+    </a>
+  
   
     <a href="/Cyclone%20III%20%E5%86%85%E9%83%A8%E8%B5%84%E6%BA%90" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Cyclone III 内部资源</div>
@@ -522,6 +531,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FPGA ZYNQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">life</a>
               </li>
             
             <div class="clearfix"></div>
