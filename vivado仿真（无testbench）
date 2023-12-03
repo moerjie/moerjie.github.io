@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
 <head>
   <meta charset="utf-8">
   
@@ -8,12 +9,12 @@
   <link rel="dns-prefetch" href="https://moerjie.github.io">
   <title>vivado仿真（无testbench） | Sawen_Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="vivado仿真（无testbench）实现步骤 新建一个工程并添加自己编写的Verilog文件   添加后vivado会自动识别文件中的module  创建block design文件，添加模块   添加前可能会有以下警告，等待一段时间即可。">
+  <meta name="description" content="vivado仿真（无testbench）  实现步骤  新建一个工程并添加自己编写的Verilog文件   添加后vivado会自动识别文件中的module  创建block design文件，添加模块   添加前可能会有以下警告，等待一段时间即可。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vivado仿真（无testbench）">
 <meta property="og:url" content="https://moerjie.github.io/vivado%E4%BB%BF%E7%9C%9F%EF%BC%88%E6%97%A0testbench%EF%BC%89">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="vivado仿真（无testbench）实现步骤 新建一个工程并添加自己编写的Verilog文件   添加后vivado会自动识别文件中的module  创建block design文件，添加模块   添加前可能会有以下警告，等待一段时间即可。">
+<meta property="og:description" content="vivado仿真（无testbench）  实现步骤  新建一个工程并添加自己编写的Verilog文件   添加后vivado会自动识别文件中的module  创建block design文件，添加模块   添加前可能会有以下警告，等待一段时间即可。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251100024.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251105610.png">
@@ -192,49 +193,49 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="vivado仿真（无testbench）"><a href="#vivado仿真（无testbench）" class="headerlink" title="vivado仿真（无testbench）"></a>vivado仿真（无testbench）</h1><h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><ol>
+        <h1 id="vivado仿真无testbench"><a class="markdownIt-Anchor" href="#vivado仿真无testbench"></a> vivado仿真（无testbench）</h1>
+<h2 id="实现步骤"><a class="markdownIt-Anchor" href="#实现步骤"></a> 实现步骤</h2>
+<ol>
 <li>新建一个工程并添加自己编写的Verilog文件</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251100024.png" alt="image-20231125110055893"></p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251100024.png" alt="image-20231125110055893" /></p>
 <p>添加后vivado会自动识别文件中的module</p>
 <ol start="2">
 <li>创建block design文件，添加模块</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251105610.png" alt="image-20231125110528510"></p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251105610.png" alt="image-20231125110528510" /></p>
 <p>添加前可能会有以下警告，等待一段时间即可。</p>
-<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251102375.png" alt="image-20231125110236315"></p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251102375.png" alt="image-20231125110236315" /></p>
 <span id="more"></span>
-
 <ol start="3">
 <li>再次右键，点击Add IP，添加以下模块</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251108326.png" alt="image-20231125110856237"></p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251108326.png" alt="image-20231125110856237" /></p>
 <p>双击此模块可以设定各种参数</p>
-<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251109755.png" alt="image-20231125110953701"></p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251109755.png" alt="image-20231125110953701" /></p>
 <ol start="4">
 <li>运行自动连线，选择上面添加的时钟源</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251110683.png" alt="image-20231125111057636"></p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251110683.png" alt="image-20231125111057636" /></p>
 <img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251111241.png" alt="image-20231125111152197" style="zoom:67%;" />
-
 <ol start="5">
 <li>在悬空的引脚上右键，选中以下选项，创建端口</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251113708.png" alt="image-20231125111342659"></p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251113708.png" alt="image-20231125111342659" /></p>
 <ol start="6">
 <li>在左侧source栏中，在1处右键，选择2处选项，将bd文件转化为.v文件</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251117125.png" alt="image-20231125111720073"></p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251117125.png" alt="image-20231125111720073" /></p>
 <ol start="7">
 <li>在生成的新文件上右键，将其设置为top文件</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251119438.png" alt="image-20231125111950383"></p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251119438.png" alt="image-20231125111950383" /></p>
 <ol start="8">
 <li>运行仿真，可以看到仿真结果</li>
 </ol>
 <img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311251138968.png" alt="image-20231125113843876" style="zoom:75%;" />
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>添加simulation clock模块后如果进行RTL分析和综合的话会报错，目测可能是因为该模块只能用来行为级仿真。</p>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<p>添加simulation clock模块后如果进行RTL分析和综合的话会报错，目测可能是因为该模块只能用来行为级仿真。</p>
 <p>由于本人刚刚入门使用vivado，很多操作不甚熟悉，如有错误欢迎指正。</p>
 
       
@@ -389,7 +390,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vivado%E4%BB%BF%E7%9C%9F%EF%BC%88%E6%97%A0testbench%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">vivado仿真（无testbench）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.1.</span> <span class="toc-text">实现步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vivado%E4%BB%BF%E7%9C%9F%E6%97%A0testbench"><span class="toc-number">1.</span> <span class="toc-text"> vivado仿真（无testbench）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.1.</span> <span class="toc-text"> 实现步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.</span> <span class="toc-text"> 总结</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -522,11 +523,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FPGA</a>
+                <a href="javascript:void(0)" class="js-tag color5">life</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">FPGA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,7 +535,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">life</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
             
             <div class="clearfix"></div>
