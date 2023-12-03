@@ -212,7 +212,13 @@
 		</ul>
 	</div>
 
-  
+ 
+      <p class="article-more-link">
+        <a class="article-more-a" href="/2023/11/30/vivado%E4%BB%BF%E7%9C%9F%EF%BC%88%E6%97%A0%E9%9C%80testbench%EF%BC%89/"
+          >true >></a
+        >
+      </p>
+       
       <div class="clearfix"></div>
     </div>
   </div>
@@ -343,7 +349,13 @@ M9K内存块不支持异步内存输入</p>
 		</ul>
 	</div>
 
-  
+ 
+      <p class="article-more-link">
+        <a class="article-more-a" href="/2023/11/30/Cyclone-III-%E5%86%85%E9%83%A8%E8%B5%84%E6%BA%90/"
+          >true >></a
+        >
+      </p>
+       
       <div class="clearfix"></div>
     </div>
   </div>
@@ -425,48 +437,64 @@ M9K内存块不支持异步内存输入</p>
 会创建3个文件夹
 </code></pre>
 <h4 id="cp复制文件和目录"><a class="markdownIt-Anchor" href="#cp复制文件和目录"></a> cp——复制文件和目录</h4>
-<pre><code>有两种工作方式
+<p>有两种工作方式</p>
+<ol>
+<li>
+<pre class="highlight"><code class="shell">cp item1 item2
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">将单个文件或目录“item1”复制到文件或目录”item2“</span><br><span class="line">    </span><br><span class="line">2.  ```shell</span><br><span class="line">    cp item... dir</span><br></pre></td></tr></table></figure>
 
-1.  ```shell
-    cp item1 item2
-    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    将单个文件或目录“item1”复制到文件或目录”item2“</span><br><span class="line"></span><br><span class="line">2.  ```shell</span><br><span class="line">    cp item... dir</span><br></pre></td></tr></table></figure>
-
-    将多个项目复制到一个目录下
 </code></pre>
+</li>
+</ol>
+<p>将多个项目复制到一个目录下</p>
 <h5 id="有用的选项"><a class="markdownIt-Anchor" href="#有用的选项"></a> 有用的选项</h5>
-<pre><code>| 选项              | 作用                                                                                                             |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------- |
-| -a（archive）     | 复制文件和目录，以及他们的属性，包括所有权和权限，通常副本具有用户所操作文件的默认属性。                         |
-| -i（interactive） | 在重写已存在的文件之前，提示用户确认。如果选项不指定，cp命令会默认重写文件。                                     |
-| -r（recursive）   | 递归地复制目录及目录中的内容。                                                                                   |
-| -u（update）      | 当把文件从一个目录复制到另一个目录时，仅复制目标目录中不存在的文件，或者是文件内容新于目标目录中已经存在的文件。 |
-| -v（verbose）     | 显示详实的命令操作信息。                                                                                         |
-</code></pre>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a（archive）</td>
+<td>复制文件和目录，以及他们的属性，包括所有权和权限，通常副本具有用户所操作文件的默认属性。</td>
+</tr>
+<tr>
+<td>-i（interactive）</td>
+<td>在重写已存在的文件之前，提示用户确认。如果选项不指定，cp命令会默认重写文件。</td>
+</tr>
+<tr>
+<td>-r（recursive）</td>
+<td>递归地复制目录及目录中的内容。</td>
+</tr>
+<tr>
+<td>-u（update）</td>
+<td>当把文件从一个目录复制到另一个目录时，仅复制目标目录中不存在的文件，或者是文件内容新于目标目录中已经存在的文件。</td>
+</tr>
+<tr>
+<td>-v（verbose）</td>
+<td>显示详实的命令操作信息。</td>
+</tr>
+</tbody>
+</table>
 <h4 id="mv移动和重命名文件"><a class="markdownIt-Anchor" href="#mv移动和重命名文件"></a> mv——移动和重命名文件</h4>
-<pre><code>mv命令可以执行文件移动和文件命名任务，完成操作后原来的文件名将消失。mv使用方法类似cp：
-
+<p>mv命令可以执行文件移动和文件命名任务，完成操作后原来的文件名将消失。mv使用方法类似cp：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv item1 item2</span><br></pre></td></tr></table></figure>
-
-将item1移动或重命名为item2
-
+<p>将item1移动或重命名为item2</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv item... dir</span><br></pre></td></tr></table></figure>
-
-将多个对象移动到另一个目录中
-</code></pre>
+<p>将多个对象移动到另一个目录中</p>
 <h5 id="有用的选项-2"><a class="markdownIt-Anchor" href="#有用的选项-2"></a> 有用的选项</h5>
-<pre><code>同cp
-</code></pre>
+<p>同cp</p>
 <h4 id="rm删除文件和目录"><a class="markdownIt-Anchor" href="#rm删除文件和目录"></a> rm——删除文件和目录</h4>
-<pre><code>rm item
-</code></pre>
+<p>rm item</p>
 <p>item代表一个或多个文件或目录</p>
 <h5 id="有用的选项-3"><a class="markdownIt-Anchor" href="#有用的选项-3"></a> 有用的选项</h5>
-<pre><code>| 选项        | 作用                                                             |
-| -i          | 删除文件时提示用户确认信息，**如果不指定的话，rm会默默删除文件** |
-| -r          | 递归的删除文件。删除一个有子文件夹的文件夹时必须指定这个选项     |
-| -f（force） | 忽视不存在的文件                                                 |
-| -v          | 执行rm时显示详实的操作信息                                       |
-</code></pre>
+<p>| 选项        | 作用                                                         |<br />
+| ----------i | 删----------------------------------------------------------* |<br />
+| -r          | 递归的删除文件。删除一个有子文件夹的文件夹时必须指定这个选项 |<br />
+| -f（force） | 忽视不存在的文件                                             |<br />
+| -v          | 执行rm时显示详实的操作信息                                   |</p>
 <blockquote>
 <p>类似于Unix的操作系统，没有复原命令，一旦使用rm删除文件就无法找回。</p>
 </blockquote>
@@ -486,7 +514,24 @@ M9K内存块不支持异步内存输入</p>
 		</ul>
 	</div>
  
-  
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+ 
+      <p class="article-more-link">
+        <a class="article-more-a" href="/2023/11/30/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+          >true >></a
+        >
+      </p>
+       
       <div class="clearfix"></div>
     </div>
   </div>
