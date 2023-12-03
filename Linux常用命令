@@ -66,6 +66,8 @@
 	        
 				<li><a href="/archives">归档</a></li>
 	        
+				<li><a href="/tags">tags</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -118,6 +120,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -132,11 +136,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/categories">分类</a></li>
+					<li style="width: 25%"><a href="/categories">分类</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/archives">归档</a></li>
+					<li style="width: 25%"><a href="/archives">归档</a></li>
+		        
+					<li style="width: 25%"><a href="/tags">tags</a></li>
 		        
 				</ul>
 			</nav>
@@ -151,26 +157,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Linux常用命令" class="article article-type-post " itemscope itemprop="blogPost">
+            <article
+  id="post-Linux常用命令"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Linux常用命令
     </h1>
   
-
-        
-        <a href="/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4" class="archive-article-date">
+  <a href="/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4" class="archive-article-date">
   	<time datetime="2023-11-30T05:51:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-30</time>
-</a>
-        
-      </header>
+</a> 
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
-      
         <h2 id="系统目录结构"><a class="markdownIt-Anchor" href="#系统目录结构"></a> 系统目录结构</h2>
 <p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311201648619.png" alt="image-20231120164834933" /></p>
 <h2 id="文件与目录管理命令"><a class="markdownIt-Anchor" href="#文件与目录管理命令"></a> 文件与目录管理命令</h2>
@@ -255,35 +262,11 @@
 <blockquote>
 <p>类似于Unix的操作系统，没有复原命令，一旦使用rm删除文件就无法找回。</p>
 </blockquote>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
+  
     </div>
+
     <div class="article-info article-info-index">
-      
-      
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -294,13 +277,8 @@
       		
 		</ul>
 	</div>
-
-      
-
-      
-
-      
-        
+ 
+   
 <div class="share-btn share-icons tooltip-left">
   <div class="tooltip tooltip-east">
     <span class="tooltip-item">
@@ -355,8 +333,7 @@
     </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/Cyclone%20III%20%E5%86%85%E9%83%A8%E8%B5%84%E6%BA%90" id="article-nav-newer" class="article-nav-link-wrap">
@@ -370,9 +347,7 @@
   
   
 </nav>
-
-
-<aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -399,20 +374,7 @@
         </div>
         
     </div>
-</aside>
-
-
-
-  
-  
-  
-
-  
-
-  
-
-  
-
+</aside>       
 
           </div>
         </div>
