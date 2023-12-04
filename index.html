@@ -421,12 +421,28 @@ M9K内存块不支持异步内存输入</p>
 <h3 id="处理目录的常用命令"><a class="markdownIt-Anchor" href="#处理目录的常用命令"></a> 处理目录的常用命令</h3>
 <h4 id="ls列出目录"><a class="markdownIt-Anchor" href="#ls列出目录"></a> ls——列出目录</h4>
 <h5 id="有用选项"><a class="markdownIt-Anchor" href="#有用选项"></a> 有用选项</h5>
-<pre><code>| 选项 | 作用·                              |
-| ---- | ---------------------------------- |
-| -a   | 列出全部文件                       |
-| -d   | 仅列出目录本身                     |
-| -l   | 长数据串列出，包含文件属性和权限等 |
-</code></pre>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>作用·</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td>列出全部文件</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>仅列出目录本身</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>长数据串列出，包含文件属性和权限等</td>
+</tr>
+</tbody>
+</table>
 <h4 id="mkdir创建目录"><a class="markdownIt-Anchor" href="#mkdir创建目录"></a> mkdir——创建目录</h4>
 <p>用于创建目录，工作方式如下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir dir</span><br></pre></td></tr></table></figure>
@@ -436,13 +452,14 @@ M9K内存块不支持异步内存输入</p>
 <h4 id="cp复制文件和目录"><a class="markdownIt-Anchor" href="#cp复制文件和目录"></a> cp——复制文件和目录</h4>
 <p>有两种工作方式</p>
 <ol>
-<li>
-<pre class="highlight"><code class="shell">cp item1 item2
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">将单个文件或目录“item1”复制到文件或目录”item2“</span><br><span class="line">    </span><br><span class="line">2.  ```shell</span><br><span class="line">    cp item... dir</span><br></pre></td></tr></table></figure>
-
-</code></pre>
-</li>
+<li></li>
 </ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp item1 item2</span><br></pre></td></tr></table></figure>
+<p>将单个文件或目录“item1”复制到文件或目录”item2“</p>
+<ol start="2">
+<li></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp item... dir</span><br></pre></td></tr></table></figure>
 <p>将多个项目复制到一个目录下</p>
 <h5 id="有用的选项"><a class="markdownIt-Anchor" href="#有用的选项"></a> 有用的选项</h5>
 <table>
@@ -487,11 +504,32 @@ M9K内存块不支持异步内存输入</p>
 <p>rm item</p>
 <p>item代表一个或多个文件或目录</p>
 <h5 id="有用的选项-3"><a class="markdownIt-Anchor" href="#有用的选项-3"></a> 有用的选项</h5>
-<p>| 选项        | 作用                                                         |<br />
-| ----------i | 删----------------------------------------------------------* |<br />
-| -r          | 递归的删除文件。删除一个有子文件夹的文件夹时必须指定这个选项 |<br />
-| -f（force） | 忽视不存在的文件                                             |<br />
-| -v          | 执行rm时显示详实的操作信息                                   |</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-i</td>
+<td>删</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>递归的删除文件。删除一个有子文件夹的文件夹时必须指定这个选项</td>
+</tr>
+<tr>
+<td>-f（force）</td>
+<td>忽视不存在的文件</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>执行rm时显示详实的操作信息</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>类似于Unix的操作系统，没有复原命令，一旦使用rm删除文件就无法找回。</p>
 </blockquote>
