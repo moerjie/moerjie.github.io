@@ -56,11 +56,11 @@
 			
 				<li><a href="/archives/index.html">主页</a></li>
 	        
-				<li><a href="/archives/index.html">归档</a></li>
-	        
 				<li><a href="/categories/index.html">分类</a></li>
 	        
 				<li><a href="/categories/FPGA/index.html">FPGA</a></li>
+	        
+				<li><a href="/categories/DVB-S/index.html">DVB-S</a></li>
 	        
 			</ul>
 		</nav>
@@ -132,11 +132,11 @@
 				
 					<li style="width: 25%"><a href="/archives/index.html">主页</a></li>
 		        
-					<li style="width: 25%"><a href="/archives/index.html">归档</a></li>
-		        
 					<li style="width: 25%"><a href="/categories/index.html">分类</a></li>
 		        
 					<li style="width: 25%"><a href="/categories/FPGA/index.html">FPGA</a></li>
+		        
+					<li style="width: 25%"><a href="/categories/DVB-S/index.html">DVB-S</a></li>
 		        
 				</ul>
 			</nav>
@@ -154,7 +154,7 @@
             
   
     <article
-  id="post-DVB-S学习记录"
+  id="post-DVB-S学习记录之信道编码"
   class="article article-type-post  article-index"
   itemscope
   itemprop="blogPost"
@@ -165,21 +165,23 @@
       
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/06/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">DVB-S 学习记录</a>
+      <a class="article-title" href="/2023/12/08/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81/">DVB-S学习记录-信道编码</a>
     </h1>
   
-  <a href="/2023/12/06/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="archive-article-date">
-  	<time datetime="2023-12-06T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-06</time>
+  <a href="/2023/12/08/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81/" class="archive-article-date">
+  	<time datetime="2023-12-08T12:04:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-08</time>
 </a> 
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-        <h2 id="dvb-s2基本结构"><a class="markdownIt-Anchor" href="#dvb-s2基本结构"></a> DVB-S2基本结构</h2>
-<h3 id="发射机"><a class="markdownIt-Anchor" href="#发射机"></a> 发射机</h3>
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202312061119834.png" alt="image-20231206111907560" style="zoom:67%;" />
-<h3 id="接收机"><a class="markdownIt-Anchor" href="#接收机"></a> 接收机</h3>
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202312061120655.png" alt="image-20231206112030533" style="zoom:67%;" />
-  
+        <p>经过信源编码和系统复接后生成的节目传送码流，通常需要通过某种传输媒 介才能到达用户接收机。通常情况下，编码码流并不能直接通过信道传输，必须经过信道编码后，使其变成适合在信道中传输的形式后再进行传输。</p>
+<p>DVB-S的信道编码主要包括</p>
+<ul>
+<li>扰码</li>
+<li>R-S编码</li>
+<li>卷积交织</li>
+<li>卷积编码</li>
+</ul>  
     </div>
 
     <div class="article-info article-info-index">
@@ -189,7 +191,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习记录</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">DVB-S</a>
         		</li>
       		
 		</ul>
@@ -208,7 +210,87 @@
 
  
       <p class="article-more-link">
-        <a class="article-more-a" href="/2023/12/06/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+        <a class="article-more-a" href="/2023/12/08/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81/"
+          >more >></a
+        >
+      </p>
+       
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
+  id="post-DVB-S学习记录之基本结构"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/06/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/">DVB-S学习记录-基本结构</a>
+    </h1>
+  
+  <a href="/2023/12/06/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/" class="archive-article-date">
+  	<time datetime="2023-12-06T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-06</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+        <h2 id="dvb-s基本结构"><a class="markdownIt-Anchor" href="#dvb-s基本结构"></a> DVB-S基本结构</h2>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082040098.png" alt="image-20231208204010037" /></p>
+<h3 id="发射机"><a class="markdownIt-Anchor" href="#发射机"></a> 发射机</h3>
+<h3 id="接收机"><a class="markdownIt-Anchor" href="#接收机"></a> 接收机</h3>
+  
+    </div>
+
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">DVB-S</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/DVB-S//" class="article-tag-list-link color1">DVB-S</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+ 
+      <p class="article-more-link">
+        <a class="article-more-a" href="/2023/12/06/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/"
           >more >></a
         >
       </p>
@@ -802,11 +884,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FPGA</a>
+                <a href="javascript:void(0)" class="js-tag color1">DVB-S</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习记录</a>
+                <a href="javascript:void(0)" class="js-tag color5">FPGA</a>
               </li>
              
               <li class="article-tag-list-item">

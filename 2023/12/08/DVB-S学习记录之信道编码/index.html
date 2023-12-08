@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://moerjie.github.io">
-  <title>Tag: 学习记录 | Sawen_Blog</title>
+  <title>DVB-S学习记录-信道编码 | Sawen_Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Sawen_Blog">
-<meta property="og:url" content="https://moerjie.github.io/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+  <meta name="description" content="经过信源编码和系统复接后生成的节目传送码流，通常需要通过某种传输媒 介才能到达用户接收机。通常情况下，编码码流并不能直接通过信道传输，必须经过信道编码后，使其变成适合在信道中传输的形式后再进行传输。 DVB-S的信道编码主要包括  扰码 R-S编码 卷积交织 卷积编码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DVB-S学习记录-信道编码">
+<meta property="og:url" content="https://moerjie.github.io/2023/12/08/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:description" content="经过信源编码和系统复接后生成的节目传送码流，通常需要通过某种传输媒 介才能到达用户接收机。通常情况下，编码码流并不能直接通过信道传输，必须经过信道编码后，使其变成适合在信道中传输的形式后再进行传输。 DVB-S的信道编码主要包括  扰码 R-S编码 卷积交织 卷积编码">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082040856.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082046715.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082047800.png">
+<meta property="article:published_time" content="2023-12-08T12:04:49.000Z">
+<meta property="article:modified_time" content="2023-12-08T12:48:09.606Z">
 <meta property="article:author" content="Sawen Moerjie">
+<meta property="article:tag" content="DVB-S">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082040856.png">
   
     <link rel="alternative" href="/atom.xml" title="Sawen_Blog" type="application/atom+xml">
   
@@ -56,11 +65,11 @@
 			
 				<li><a href="/archives/index.html">主页</a></li>
 	        
-				<li><a href="/archives/index.html">归档</a></li>
-	        
 				<li><a href="/categories/index.html">分类</a></li>
 	        
 				<li><a href="/categories/FPGA/index.html">FPGA</a></li>
+	        
+				<li><a href="/categories/DVB-S/index.html">DVB-S</a></li>
 	        
 			</ul>
 		</nav>
@@ -132,11 +141,11 @@
 				
 					<li style="width: 25%"><a href="/archives/index.html">主页</a></li>
 		        
-					<li style="width: 25%"><a href="/archives/index.html">归档</a></li>
-		        
 					<li style="width: 25%"><a href="/categories/index.html">分类</a></li>
 		        
 					<li style="width: 25%"><a href="/categories/FPGA/index.html">FPGA</a></li>
+		        
+					<li style="width: 25%"><a href="/categories/DVB-S/index.html">DVB-S</a></li>
 		        
 				</ul>
 			</nav>
@@ -151,48 +160,67 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article
+  id="post-DVB-S学习记录之信道编码"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
     
-    
+    <header class="article-header">
       
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/06/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="archive-article-date">
-  	<time datetime="2023-12-06T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-06</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/06/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">DVB-S 学习记录</a>
+    <h1 class="article-title" itemprop="name">
+      DVB-S学习记录-信道编码
     </h1>
   
+  <a href="/2023/12/08/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81/" class="archive-article-date">
+  	<time datetime="2023-12-08T12:04:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-08</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+        <p>经过信源编码和系统复接后生成的节目传送码流，通常需要通过某种传输媒 介才能到达用户接收机。通常情况下，编码码流并不能直接通过信道传输，必须经过信道编码后，使其变成适合在信道中传输的形式后再进行传输。</p>
+<p>DVB-S的信道编码主要包括</p>
+<ul>
+<li>扰码</li>
+<li>R-S编码</li>
+<li>卷积交织</li>
+<li>卷积编码</li>
+</ul>
+<span id="more"></span>
+<h2 id="扰码"><a class="markdownIt-Anchor" href="#扰码"></a> 扰码</h2>
+<p>数字通信理论在设计通信系统时都是假设传输比特流中 0 和 1 的出现概率是等概的，实际中的通信系统的设计指标等首先也是以该假设为前提的。</p>
+<p>但是TS（transport stream）码流经过编码后可能会出现连0或连1的情况，一方面破坏了系统设计的前提，另一方面连0或连1会使得比特时钟的提取变得困难，因此，为保证在任何情况下进入 DVB 传输系统的数据码流中&quot;0&quot;与&quot;1&quot;的概率都能基本相等，系统引入一个伪随机序列对TS码流进行<mark>扰乱处理</mark>，使得 0 和 1 的出现概率接近50%。</p>
+<p>扰乱改变了原 TS 码流，因此在接收端对传输码流纠错解码后，还需 按逆过程对其进行解扰处理，以恢复原 TS 码流。</p>
+<p>在接收端对接收到的码流逆编码后，就可以恢复原TS码流</p>
+<h3 id="原理"><a class="markdownIt-Anchor" href="#原理"></a> 原理</h3>
+<p>传送复用器输出的TS流帧结构如图所示：</p>
+<img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082040856.png" alt="image-20231208204057822" style="zoom:67%;" />
+<p>第一个字节为同步字节，数值为47H。每8个包组成一个超帧，并将第一个包的同步字节反转，变为B8H，后面的7个包的同步字节不变。同步字节不参与扰码，其余字节参与扰码</p>
+<p>伪随机二进制序列（PRBS）生成器的多项式应为：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>+</mo><msup><mi>X</mi><mn>14</mn></msup><mo>+</mo><msup><mi>X</mi><mn>15</mn></msup></mrow><annotation encoding="application/x-tex">P(X)=1+X^{14}+X^{15}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">4</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>其扰码过程如图所示：</p>
+<img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082046715.png" alt="image-20231208204647672" style="zoom:80%;" />
+<p>扰码输出如下图所示：</p>
+<img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082047800.png" alt="image-20231208204732769" style="zoom:67%;" />
+  
+    </div>
 
-        <div class="article-info info-on-right">
-          
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习记录</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">DVB-S</a>
         		</li>
       		
 		</ul>
 	</div>
-
-          
+ 
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -204,19 +232,86 @@
 		</ul>
 	</div>
 
-
+   
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://moerjie.github.io/2023/12/08/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+ 
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2023/12/06/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DVB-S学习记录-基本结构</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
-
-    
-
+</nav>
+  <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>       
 
           </div>
         </div>
@@ -238,9 +333,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
@@ -329,11 +424,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FPGA</a>
+                <a href="javascript:void(0)" class="js-tag color1">DVB-S</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习记录</a>
+                <a href="javascript:void(0)" class="js-tag color5">FPGA</a>
               </li>
              
               <li class="article-tag-list-item">
