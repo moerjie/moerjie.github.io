@@ -8,18 +8,24 @@
   <link rel="dns-prefetch" href="https://moerjie.github.io">
   <title>Linux常用命令 | Sawen_Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="系统目录结构   image-20231120164834933  文件与目录管理命令 Linux的文件目录是树状结构，最顶级的目录为根目录&#x2F;，其他目录是通过挂载将其添加到文件树上，通过解除挂载将其移除。 首先先了解什么是绝对路径和相对路径  绝对路径：从根目录开始的完整路径描述，通常以 &#x3D;&#x3D;&#x2F;&#x3D;&#x3D; 开头，从根目录root一直到目标目录 相对路径：相对于当前工作目录的路径描述">
+  <meta name="description" content="系统目录结构   文件与目录管理命令 Linux的文件目录是树状结构，最顶级的目录为根目录&#x2F;，其他目录是通过挂载将其添加到文件树上，通过解除挂载将其移除。 首先先了解什么是绝对路径和相对路径   绝对路径：从根目录开始的完整路径描述，通常以 &#x2F; 开头，从根目录root一直到目标目录   相对路径：相对于当前工作目录的路径描述，通常使用以下符号：   .  ：表示当前目录，如 .&#x2F;test.txt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux常用命令">
 <meta property="og:url" content="https://moerjie.github.io/2023/11/30/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="系统目录结构   image-20231120164834933  文件与目录管理命令 Linux的文件目录是树状结构，最顶级的目录为根目录&#x2F;，其他目录是通过挂载将其添加到文件树上，通过解除挂载将其移除。 首先先了解什么是绝对路径和相对路径  绝对路径：从根目录开始的完整路径描述，通常以 &#x3D;&#x3D;&#x2F;&#x3D;&#x3D; 开头，从根目录root一直到目标目录 相对路径：相对于当前工作目录的路径描述">
+<meta property="og:description" content="系统目录结构   文件与目录管理命令 Linux的文件目录是树状结构，最顶级的目录为根目录&#x2F;，其他目录是通过挂载将其添加到文件树上，通过解除挂载将其移除。 首先先了解什么是绝对路径和相对路径   绝对路径：从根目录开始的完整路径描述，通常以 &#x2F; 开头，从根目录root一直到目标目录   相对路径：相对于当前工作目录的路径描述，通常使用以下符号：   .  ：表示当前目录，如 .&#x2F;test.txt">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311201648619.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202312052132270.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202312052133924.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202312052135539.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202312052136435.png">
 <meta property="article:published_time" content="2023-11-30T05:51:48.000Z">
 <meta property="article:modified_time" content="2023-12-05T13:39:20.669Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311201648619.png">
   
     <link rel="alternative" href="/atom.xml" title="Sawen_Blog" type="application/atom+xml">
   
@@ -179,137 +185,132 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-        <h2 id="系统目录结构">系统目录结构</h2>
-<figure>
-<img
-src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311201648619.png"
-alt="image-20231120164834933" />
-<figcaption aria-hidden="true">image-20231120164834933</figcaption>
-</figure>
-<h2 id="文件与目录管理命令">文件与目录管理命令</h2>
+        <h2 id="系统目录结构"><a class="markdownIt-Anchor" href="#系统目录结构"></a> 系统目录结构</h2>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311201648619.png" alt="image-20231120164834933" /></p>
+<h2 id="文件与目录管理命令"><a class="markdownIt-Anchor" href="#文件与目录管理命令"></a> 文件与目录管理命令</h2>
 <p>Linux的文件目录是树状结构，最顶级的目录为根目录/，其他目录是通过挂载将其添加到文件树上，通过解除挂载将其移除。</p>
 <p>首先先了解什么是绝对路径和相对路径</p>
 <ul>
-<li><p>绝对路径：从根目录开始的完整路径描述，通常以 ==/==
-开头，从根目录root一直到目标目录</p></li>
-<li><p>相对路径：相对于当前工作目录的路径描述，通常使用以下符号：</p></li>
-<li><p>==.== ：表示当前目录，如 ./test.txt 表示当前目录下的文件</p></li>
-<li><p>==..== ：表示父级目录，如 ../dir/test.txt
-表示父级目录下的文件</p></li>
+<li>
+<p>绝对路径：从根目录开始的完整路径描述，通常以 <mark>/</mark> 开头，从根目录root一直到目标目录</p>
+</li>
+<li>
+<p>相对路径：相对于当前工作目录的路径描述，通常使用以下符号：</p>
+</li>
+<li>
+<p><mark>.</mark>  ：表示当前目录，如 ./test.txt 表示当前目录下的文件</p>
+</li>
+<li>
+<p><mark>…</mark>  ：表示父级目录，如 …/dir/test.txt 表示父级目录下的文件</p>
+</li>
 </ul>
-<h3 id="处理目录的常用命令">处理目录的常用命令</h3>
-<h4 id="ls列出目录">ls——列出目录</h4>
-<h5 id="有用选项">有用选项</h5>
+<h3 id="处理目录的常用命令"><a class="markdownIt-Anchor" href="#处理目录的常用命令"></a> 处理目录的常用命令</h3>
+<h4 id="ls列出目录"><a class="markdownIt-Anchor" href="#ls列出目录"></a> ls——列出目录</h4>
+<h5 id="有用选项"><a class="markdownIt-Anchor" href="#有用选项"></a> 有用选项</h5>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>选项</th>
 <th>作用·</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>-a</td>
 <td>列出全部文件</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-d</td>
 <td>仅列出目录本身</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>-l</td>
 <td>长数据串列出，包含文件属性和权限等</td>
 </tr>
 </tbody>
 </table>
-<h4 id="mkdir创建目录">mkdir——创建目录</h4>
+<h4 id="mkdir创建目录"><a class="markdownIt-Anchor" href="#mkdir创建目录"></a> mkdir——创建目录</h4>
 <p>用于创建目录，工作方式如下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir dir</span><br></pre></td></tr></table></figure>
 <p>这样会创建一个名为dir的文件夹，而</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir dir1 dir2 dir3</span><br></pre></td></tr></table></figure>
 <p>会创建3个文件夹</p>
-<h4 id="cp复制文件和目录">cp——复制文件和目录</h4>
+<h4 id="cp复制文件和目录"><a class="markdownIt-Anchor" href="#cp复制文件和目录"></a> cp——复制文件和目录</h4>
 <p>有两种工作方式</p>
-<ol type="1">
-<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp item1 item2</span><br></pre></td></tr></table></figure></li>
+<ol>
+<li></li>
 </ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp item1 item2</span><br></pre></td></tr></table></figure>
 <p>将单个文件或目录“item1”复制到文件或目录”item2“</p>
-<ol start="2" type="1">
-<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp item... dir</span><br></pre></td></tr></table></figure></li>
+<ol start="2">
+<li></li>
 </ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp item... dir</span><br></pre></td></tr></table></figure>
 <p>将多个项目复制到一个目录下</p>
-<h5 id="有用的选项">有用的选项</h5>
+<h5 id="有用的选项"><a class="markdownIt-Anchor" href="#有用的选项"></a> 有用的选项</h5>
 <table>
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 86%" />
-</colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>选项</th>
 <th>作用</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>-a（archive）</td>
 <td>复制文件和目录，以及他们的属性，包括所有权和权限，通常副本具有用户所操作文件的默认属性。</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-i（interactive）</td>
 <td>在重写已存在的文件之前，提示用户确认。如果选项不指定，cp命令会默认重写文件。</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>-r（recursive）</td>
 <td>递归地复制目录及目录中的内容。</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-u（update）</td>
 <td>当把文件从一个目录复制到另一个目录时，仅复制目标目录中不存在的文件，或者是文件内容新于目标目录中已经存在的文件。</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>-v（verbose）</td>
 <td>显示详实的命令操作信息。</td>
 </tr>
 </tbody>
 </table>
-<h4 id="mv移动和重命名文件">mv——移动和重命名文件</h4>
+<h4 id="mv移动和重命名文件"><a class="markdownIt-Anchor" href="#mv移动和重命名文件"></a> mv——移动和重命名文件</h4>
 <p>mv命令可以执行文件移动和文件命名任务，完成操作后原来的文件名将消失。mv使用方法类似cp：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv item1 item2</span><br></pre></td></tr></table></figure>
 <p>将item1移动或重命名为item2</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv item... dir</span><br></pre></td></tr></table></figure>
 <p>将多个对象移动到另一个目录中</p>
-<h5 id="有用的选项-1">有用的选项</h5>
+<h5 id="有用的选项-2"><a class="markdownIt-Anchor" href="#有用的选项-2"></a> 有用的选项</h5>
 <p>同cp</p>
-<h4 id="rm删除文件和目录">rm——删除文件和目录</h4>
+<h4 id="rm删除文件和目录"><a class="markdownIt-Anchor" href="#rm删除文件和目录"></a> rm——删除文件和目录</h4>
 <p>rm item</p>
 <p>item代表一个或多个文件或目录</p>
-<h5 id="有用的选项-2">有用的选项</h5>
+<h5 id="有用的选项-3"><a class="markdownIt-Anchor" href="#有用的选项-3"></a> 有用的选项</h5>
 <table>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 84%" />
-</colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>选项</th>
 <th>作用</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>-i</td>
 <td>删</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-r</td>
 <td>递归的删除文件。删除一个有子文件夹的文件夹时必须指定这个选项</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>-f（force）</td>
 <td>忽视不存在的文件</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-v</td>
 <td>执行rm时显示详实的操作信息</td>
 </tr>
@@ -318,45 +319,21 @@ alt="image-20231120164834933" />
 <blockquote>
 <p>类似于Unix的操作系统，没有复原命令，一旦使用rm删除文件就无法找回。</p>
 </blockquote>
-<h3 id="文件内容查看">文件内容查看</h3>
-<h4 id="cat-由第一行开始显示文件内容">cat-由第一行开始显示文件内容</h4>
-<figure>
-<img
-src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202312052132270.png"
-alt="image-20231205213205233" />
-<figcaption aria-hidden="true">image-20231205213205233</figcaption>
-</figure>
-<h4
-id="tac-文件内容从最后一行开始显示">tac-文件内容从最后一行开始显示</h4>
-<h4 id="nl-显示行号">nl-显示行号</h4>
-<figure>
-<img
-src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202312052133924.png"
-alt="image-20231205213339892" />
-<figcaption aria-hidden="true">image-20231205213339892</figcaption>
-</figure>
-<h3 id="chmod-改变文件的属性">chmod-改变文件的属性</h3>
-<p>Linux的文件基本权限有九种，<strong>owner/group/others(拥有者/组/其他)</strong>
-三种身份各有自己的 <strong>read/write/execute</strong> 权限</p>
-<h2 id="磁盘管理">磁盘管理</h2>
-<h3
-id="df-列出文件系统的整体磁盘使用量">df-列出文件系统的整体磁盘使用量</h3>
-<figure>
-<img
-src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202312052135539.png"
-alt="image-20231205213519505" />
-<figcaption aria-hidden="true">image-20231205213519505</figcaption>
-</figure>
-<h3
-id="du-对文件和目录磁盘使用空间的查看">du-对文件和目录磁盘使用空间的查看</h3>
-<figure>
-<img
-src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202312052136435.png"
-alt="image-20231205213654402" />
-<figcaption aria-hidden="true">image-20231205213654402</figcaption>
-</figure>
-<h3 id="fdisk-磁盘分区表操作工具">fdisk-磁盘分区表操作工具</h3>
-<h3 id="mountunmount-磁盘挂载和卸除">mount/unmount-磁盘挂载和卸除</h3>
+<h3 id="文件内容查看"><a class="markdownIt-Anchor" href="#文件内容查看"></a> 文件内容查看</h3>
+<h4 id="cat-由第一行开始显示文件内容"><a class="markdownIt-Anchor" href="#cat-由第一行开始显示文件内容"></a> cat-由第一行开始显示文件内容</h4>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202312052132270.png" alt="image-20231205213205233" /></p>
+<h4 id="tac-文件内容从最后一行开始显示"><a class="markdownIt-Anchor" href="#tac-文件内容从最后一行开始显示"></a> tac-文件内容从最后一行开始显示</h4>
+<h4 id="nl-显示行号"><a class="markdownIt-Anchor" href="#nl-显示行号"></a> nl-显示行号</h4>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202312052133924.png" alt="image-20231205213339892" /></p>
+<h3 id="chmod-改变文件的属性"><a class="markdownIt-Anchor" href="#chmod-改变文件的属性"></a> chmod-改变文件的属性</h3>
+<p>Linux的文件基本权限有九种，<strong>owner/group/others(拥有者/组/其他)</strong> 三种身份各有自己的 <strong>read/write/execute</strong> 权限</p>
+<h2 id="磁盘管理"><a class="markdownIt-Anchor" href="#磁盘管理"></a> 磁盘管理</h2>
+<h3 id="df-列出文件系统的整体磁盘使用量"><a class="markdownIt-Anchor" href="#df-列出文件系统的整体磁盘使用量"></a> df-列出文件系统的整体磁盘使用量</h3>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202312052135539.png" alt="image-20231205213519505" /></p>
+<h3 id="du-对文件和目录磁盘使用空间的查看"><a class="markdownIt-Anchor" href="#du-对文件和目录磁盘使用空间的查看"></a> du-对文件和目录磁盘使用空间的查看</h3>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202312052136435.png" alt="image-20231205213654402" /></p>
+<h3 id="fdisk-磁盘分区表操作工具"><a class="markdownIt-Anchor" href="#fdisk-磁盘分区表操作工具"></a> fdisk-磁盘分区表操作工具</h3>
+<h3 id="mountunmount-磁盘挂载和卸除"><a class="markdownIt-Anchor" href="#mountunmount-磁盘挂载和卸除"></a> mount/unmount-磁盘挂载和卸除</h3>
 <p>挂载语法</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount [-t 文件系统] [-L Label名] [-o 额外选项] [-n]  装置文件名  挂载点</span><br></pre></td></tr></table></figure>
 <p>卸除语法</p>
@@ -477,7 +454,7 @@ alt="image-20231205213654402" />
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">系统目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">文件与目录管理命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E7%9B%AE%E5%BD%95%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text">处理目录的常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ls%E5%88%97%E5%87%BA%E7%9B%AE%E5%BD%95"><span class="toc-number">2.1.1.</span> <span class="toc-text">ls——列出目录</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%89%E7%94%A8%E9%80%89%E9%A1%B9"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">有用选项</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mkdir%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="toc-number">2.1.2.</span> <span class="toc-text">mkdir——创建目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cp%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95"><span class="toc-number">2.1.3.</span> <span class="toc-text">cp——复制文件和目录</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%89%E7%94%A8%E7%9A%84%E9%80%89%E9%A1%B9"><span class="toc-number">2.1.3.1.</span> <span class="toc-text">有用的选项</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mv%E7%A7%BB%E5%8A%A8%E5%92%8C%E9%87%8D%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6"><span class="toc-number">2.1.4.</span> <span class="toc-text">mv——移动和重命名文件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%89%E7%94%A8%E7%9A%84%E9%80%89%E9%A1%B9-1"><span class="toc-number">2.1.4.1.</span> <span class="toc-text">有用的选项</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rm%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95"><span class="toc-number">2.1.5.</span> <span class="toc-text">rm——删除文件和目录</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%89%E7%94%A8%E7%9A%84%E9%80%89%E9%A1%B9-2"><span class="toc-number">2.1.5.1.</span> <span class="toc-text">有用的选项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E6%9F%A5%E7%9C%8B"><span class="toc-number">2.2.</span> <span class="toc-text">文件内容查看</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cat-%E7%94%B1%E7%AC%AC%E4%B8%80%E8%A1%8C%E5%BC%80%E5%A7%8B%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-number">2.2.1.</span> <span class="toc-text">cat-由第一行开始显示文件内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tac-%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E4%BB%8E%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%BC%80%E5%A7%8B%E6%98%BE%E7%A4%BA"><span class="toc-number">2.2.2.</span> <span class="toc-text">tac-文件内容从最后一行开始显示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nl-%E6%98%BE%E7%A4%BA%E8%A1%8C%E5%8F%B7"><span class="toc-number">2.2.3.</span> <span class="toc-text">nl-显示行号</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chmod-%E6%94%B9%E5%8F%98%E6%96%87%E4%BB%B6%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">2.3.</span> <span class="toc-text">chmod-改变文件的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">磁盘管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#df-%E5%88%97%E5%87%BA%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%95%B4%E4%BD%93%E7%A3%81%E7%9B%98%E4%BD%BF%E7%94%A8%E9%87%8F"><span class="toc-number">3.1.</span> <span class="toc-text">df-列出文件系统的整体磁盘使用量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#du-%E5%AF%B9%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E7%A3%81%E7%9B%98%E4%BD%BF%E7%94%A8%E7%A9%BA%E9%97%B4%E7%9A%84%E6%9F%A5%E7%9C%8B"><span class="toc-number">3.2.</span> <span class="toc-text">du-对文件和目录磁盘使用空间的查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fdisk-%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E8%A1%A8%E6%93%8D%E4%BD%9C%E5%B7%A5%E5%85%B7"><span class="toc-number">3.3.</span> <span class="toc-text">fdisk-磁盘分区表操作工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mountunmount-%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%92%8C%E5%8D%B8%E9%99%A4"><span class="toc-number">3.4.</span> <span class="toc-text">mount&#x2F;unmount-磁盘挂载和卸除</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text"> 系统目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text"> 文件与目录管理命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E7%9B%AE%E5%BD%95%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text"> 处理目录的常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ls%E5%88%97%E5%87%BA%E7%9B%AE%E5%BD%95"><span class="toc-number">2.1.1.</span> <span class="toc-text"> ls——列出目录</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%89%E7%94%A8%E9%80%89%E9%A1%B9"><span class="toc-number">2.1.1.1.</span> <span class="toc-text"> 有用选项</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mkdir%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="toc-number">2.1.2.</span> <span class="toc-text"> mkdir——创建目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cp%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95"><span class="toc-number">2.1.3.</span> <span class="toc-text"> cp——复制文件和目录</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%89%E7%94%A8%E7%9A%84%E9%80%89%E9%A1%B9"><span class="toc-number">2.1.3.1.</span> <span class="toc-text"> 有用的选项</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mv%E7%A7%BB%E5%8A%A8%E5%92%8C%E9%87%8D%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6"><span class="toc-number">2.1.4.</span> <span class="toc-text"> mv——移动和重命名文件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%89%E7%94%A8%E7%9A%84%E9%80%89%E9%A1%B9-2"><span class="toc-number">2.1.4.1.</span> <span class="toc-text"> 有用的选项</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rm%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95"><span class="toc-number">2.1.5.</span> <span class="toc-text"> rm——删除文件和目录</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%89%E7%94%A8%E7%9A%84%E9%80%89%E9%A1%B9-3"><span class="toc-number">2.1.5.1.</span> <span class="toc-text"> 有用的选项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E6%9F%A5%E7%9C%8B"><span class="toc-number">2.2.</span> <span class="toc-text"> 文件内容查看</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cat-%E7%94%B1%E7%AC%AC%E4%B8%80%E8%A1%8C%E5%BC%80%E5%A7%8B%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-number">2.2.1.</span> <span class="toc-text"> cat-由第一行开始显示文件内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tac-%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E4%BB%8E%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%BC%80%E5%A7%8B%E6%98%BE%E7%A4%BA"><span class="toc-number">2.2.2.</span> <span class="toc-text"> tac-文件内容从最后一行开始显示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nl-%E6%98%BE%E7%A4%BA%E8%A1%8C%E5%8F%B7"><span class="toc-number">2.2.3.</span> <span class="toc-text"> nl-显示行号</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chmod-%E6%94%B9%E5%8F%98%E6%96%87%E4%BB%B6%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">2.3.</span> <span class="toc-text"> chmod-改变文件的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text"> 磁盘管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#df-%E5%88%97%E5%87%BA%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%95%B4%E4%BD%93%E7%A3%81%E7%9B%98%E4%BD%BF%E7%94%A8%E9%87%8F"><span class="toc-number">3.1.</span> <span class="toc-text"> df-列出文件系统的整体磁盘使用量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#du-%E5%AF%B9%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E7%A3%81%E7%9B%98%E4%BD%BF%E7%94%A8%E7%A9%BA%E9%97%B4%E7%9A%84%E6%9F%A5%E7%9C%8B"><span class="toc-number">3.2.</span> <span class="toc-text"> du-对文件和目录磁盘使用空间的查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fdisk-%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E8%A1%A8%E6%93%8D%E4%BD%9C%E5%B7%A5%E5%85%B7"><span class="toc-number">3.3.</span> <span class="toc-text"> fdisk-磁盘分区表操作工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mountunmount-%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%92%8C%E5%8D%B8%E9%99%A4"><span class="toc-number">3.4.</span> <span class="toc-text"> mount&#x2F;unmount-磁盘挂载和卸除</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
