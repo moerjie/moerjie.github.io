@@ -268,6 +268,126 @@ mjx-container[display="true"] + br {
             
   
     <article
+  id="post-AXI-STREAM简介"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/22/AXI-STREAM%E7%AE%80%E4%BB%8B/">AXI-STREAM协议</a>
+    </h1>
+  
+  <a href="/2023/12/22/AXI-STREAM%E7%AE%80%E4%BB%8B/" class="archive-article-date">
+  	<time datetime="2023-12-22T02:49:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-22</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+        <h2 id="axi-stream简介">AXI-STREAM简介</h2>
+<h3 id="概念">概念</h3>
+<p>AXI-Stream总线是一种高效、简单的数据传输协议，主要用于高吞吐量的数据流传输场景。相比于传统的AXI总线，AXI-Stream总线更加简单和轻量级，它通过无需地址的方式，将数据从一个模块传输到另一个模块，适用于需要高速数据传输的应用场景。</p>
+<h3 id="部分术语">部分术语</h3>
+<ul>
+<li>Transfer：基于<strong>TVALID</strong>和<strong>TREADY</strong>握手协议的传输</li>
+<li>Packet：一组通过axi-stream传输的数据</li>
+<li>Frame：最大的Byte组合，包含整数个Packet</li>
+</ul>
+<h3 id="接口信号">接口信号</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">信号</th>
+<th style="text-align: center;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">ACLK</td>
+<td style="text-align: center;">全局时钟信号，上升沿有效</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">ARSTn</td>
+<td style="text-align: center;">全局复位信号，低电平有效</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">TVALID</td>
+<td style="text-align: center;">主机驱动有效数据</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">TREADY</td>
+<td style="text-align: center;">从机可以接收数据</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">TDATA[(8n-1):0]</td>
+<td style="text-align: center;">位宽为整数倍byte</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">TLAST</td>
+<td style="text-align: center;">表示数据包的边界</td>
+</tr>
+</tbody>
+</table>
+  
+    </div>
+
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ZYNQ AXI-STREAM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/FPGA//" class="article-tag-list-link color5">FPGA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+ 
+      <p class="article-more-link">
+        <a class="article-more-a" href="/2023/12/22/AXI-STREAM%E7%AE%80%E4%BB%8B/"
+          >more >></a
+        >
+      </p>
+       
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-期末笔记整理"
   class="article article-type-post  article-index"
   itemscope
@@ -1225,6 +1345,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">成果记录</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ZYNQ AXI-STREAM</a>
               </li>
             
             <div class="clearfix"></div>
