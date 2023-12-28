@@ -11,7 +11,7 @@
   <meta name="description" content="经过信源编码和系统复接后生成的节目传送码流，通常需要通过某种传输媒 介才能到达用户接收机。通常情况下，编码码流并不能直接通过信道传输，必须经过信道编码后，使其变成适合在信道中传输的形式后再进行传输。 DVB-S的信道编码主要包括  扰码 R-S编码 卷积交织 卷积编码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DVB-S学习记录-信道编码">
-<meta property="og:url" content="https://moerjie.github.io/2023/12/08/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81/index.html">
+<meta property="og:url" content="https://moerjie.github.io/2023/12/08/FPGA/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="经过信源编码和系统复接后生成的节目传送码流，通常需要通过某种传输媒 介才能到达用户接收机。通常情况下，编码码流并不能直接通过信道传输，必须经过信道编码后，使其变成适合在信道中传输的形式后再进行传输。 DVB-S的信道编码主要包括  扰码 R-S编码 卷积交织 卷积编码">
 <meta property="og:locale" content="en_US">
@@ -281,7 +281,7 @@ mjx-container[display="true"] + br {
           </div>
           <div id="js-content" class="content-ll">
             <article
-  id="post-DVB-S学习记录之信道编码"
+  id="post-FPGA/DVB-S学习记录之信道编码"
   class="article article-type-post "
   itemscope
   itemprop="blogPost"
@@ -295,7 +295,7 @@ mjx-container[display="true"] + br {
       DVB-S学习记录-信道编码
     </h1>
   
-  <a href="/2023/12/08/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81/" class="archive-article-date">
+  <a href="/2023/12/08/FPGA/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81/" class="archive-article-date">
   	<time datetime="2023-12-08T12:04:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-08</time>
 </a> 
     </header>
@@ -1055,7 +1055,7 @@ Ts，只要通过带宽为π/Ts 的理想滤 波器后，在 <span class="math i
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://moerjie.github.io/2023/12/08/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://moerjie.github.io/2023/12/08/FPGA/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -1068,7 +1068,7 @@ Ts，只要通过带宽为π/Ts 的理想滤 波器后，在 <span class="math i
  
 <nav id="article-nav">
   
-    <a href="/2023/12/10/QPSK%20modulation&demodulation/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/12/10/%E5%AD%A6%E4%B9%A0%E6%88%90%E6%9E%9C/QPSK%20modulation&demodulation/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -1078,7 +1078,7 @@ Ts，只要通过带宽为π/Ts 的理想滤 波器后，在 <span class="math i
     </a>
   
   
-    <a href="/2023/12/06/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/12/06/FPGA/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">DVB-S学习记录-基本结构</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -1190,19 +1190,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ZYNQ AXI-STREAM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FPGA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DVB-S</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">ZYNQ AXI-STREAM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1210,7 +1202,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FPGA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FPGA ZYNQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
             
             <div class="clearfix"></div>
