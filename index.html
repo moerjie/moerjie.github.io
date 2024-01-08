@@ -275,20 +275,30 @@ mjx-container[display="true"] + br {
 >
   <div class="article-inner">
     
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/01/08/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F/QPSK%E8%B0%83%E5%88%B6%E8%A7%A3%E8%B0%83/">QPSK调制解调</a>
+    </h1>
+  
+  <a href="/2024/01/08/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F/QPSK%E8%B0%83%E5%88%B6%E8%A7%A3%E8%B0%83/" class="archive-article-date">
+  	<time datetime="2024-01-08T03:42:15.702Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-08</time>
+</a> 
+    </header>
+    
     <div class="article-entry" itemprop="articleBody">
-        <h2 id="dvb-s-使用-qpsk-的原因">DVB-S 使用 QPSK 的原因</h2>
-<p>选择调制方式的目的是为了传输信号的特性和传输信道相匹配，使得接收端能尽量无失真地接收信号
-DVB-S
-的卫星通信信道是一个带限非线性的恒参信道，对调制方式有以下要求：</p>
-<ol type="1">
+        <h2 id="dvb-s-使用-qpsk-的原因"><a class="markdownIt-Anchor" href="#dvb-s-使用-qpsk-的原因"></a> DVB-S 使用 QPSK 的原因</h2>
+<p>选择调制方式的目的是为了传输信号的特性和传输信道相匹配，使得接收端能尽量无失真地接收信号<br />
+DVB-S 的卫星通信信道是一个带限非线性的恒参信道，对调制方式有以下要求：</p>
+<ol>
 <li>由于卫星信道的非线性和 AM/PM 效应，要求已调波的包络是等幅的</li>
 <li>由于卫星信道的带限特性，要求调制方式尽可能占用射频频带窄且能高效地利用可用频带</li>
-<li>数字通信系统要求尽量使用在 <img
-src="https://cdn.nlark.com/yuque/__latex/3bfee04821eb33f0dd00db51e54088fa.svg#card=math&amp;code=%5Cfrac%7BE_b%7D%7Bn_0%7D&amp;id=FJaJs" />相同的情况下，误信率较低的调制技术，抗干扰能力强，节省卫星转发器的功率</li>
+<li>数字通信系统要求尽量使用在 <img src="https://cdn.nlark.com/yuque/__latex/3bfee04821eb33f0dd00db51e54088fa.svg#card=math&amp;code=%5Cfrac%7BE_b%7D%7Bn_0%7D&amp;id=FJaJs" alt="" />相同的情况下，误信率较低的调制技术，抗干扰能力强，节省卫星转发器的功率</li>
 </ol>
-<p>综上所述，PSK 在频带利用率和抗干扰方面都优于 ASK 和
-FSK，同时为了进一步提高频带利用率，从 BPSK 发展到了 QPSK。 在 DVB-S
-系统中采用传统的绝对映射格雷码 QPSK 调制</p>
+<p>综上所述，PSK 在频带利用率和抗干扰方面都优于 ASK 和 FSK，同时为了进一步提高频带利用率，从 BPSK 发展到了 QPSK。<br />
+在 DVB-S 系统中采用传统的绝对映射格雷码 QPSK 调制</p>
+<p>[[QPSK modulation&amp;demodulation]]</p>
   
     </div>
 
@@ -341,9 +351,21 @@ FSK，同时为了进一步提高频带利用率，从 BPSK 发展到了 QPSK。
 >
   <div class="article-inner">
     
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/01/04/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E6%8E%A5%E6%94%B6%E6%9C%BA%E9%83%A8%E5%88%86%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/">数字通信系统接收机部分关键技术总结</a>
+    </h1>
+  
+  <a href="/2024/01/04/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E6%8E%A5%E6%94%B6%E6%9C%BA%E9%83%A8%E5%88%86%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2024-01-04T09:06:18.666Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-04</time>
+</a> 
+    </header>
+    
     <div class="article-entry" itemprop="articleBody">
-        <h2 id="dvb-s">DVB-S</h2>
-<ol type="1">
+        <h2 id="dvb-s"><a class="markdownIt-Anchor" href="#dvb-s"></a> DVB-S</h2>
+<ol>
 <li>[[QPSK调制解调]]</li>
 <li>前向纠错码解码</li>
 <li>同步和时钟恢复</li>
@@ -355,7 +377,18 @@ FSK，同时为了进一步提高频带利用率，从 BPSK 发展到了 QPSK。
     </div>
 
     <div class="article-info article-info-index">
-        
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Digital Communication</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -1429,6 +1462,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">成果记录</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数字通信系统接收机部分关键技术总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Digital</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Digital Commu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Digital Communica</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Digital Communication</a>
               </li>
             
             <div class="clearfix"></div>
