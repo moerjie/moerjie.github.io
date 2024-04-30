@@ -20,15 +20,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="AXI-STREAM简介概念AXI-Stream总线是一种高效、简单的数据传输协议，主要用于高吞吐量的数据流传输场景。相比于传统的AXI总线，AXI-Stream总线更加简单和轻量级，它通过无需地址的方式，将数据从一个模块传输到另一个模块，适用于需要高速数据传输的应用场景。 部分术语 Transfer：基于TVALID和TREADY握手协议的传输 Packet：一组通过axi-stream传输的数">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Sawen_Blog">
-<meta property="og:url" content="http://example.com/archives/2024/index.html">
+<meta property="og:url" content="http://example.com/2024/04/30/AXI-STREAM%E7%AE%80%E4%BB%8B/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:description" content="AXI-STREAM简介概念AXI-Stream总线是一种高效、简单的数据传输协议，主要用于高吞吐量的数据流传输场景。相比于传统的AXI总线，AXI-Stream总线更加简单和轻量级，它通过无需地址的方式，将数据从一个模块传输到另一个模块，适用于需要高速数据传输的应用场景。 部分术语 Transfer：基于TVALID和TREADY握手协议的传输 Packet：一组通过axi-stream传输的数">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s11.ax1x.com/2023/12/22/pi7uxYV.png">
+<meta property="article:published_time" content="2024-04-30T13:16:10.434Z">
+<meta property="article:modified_time" content="2024-02-10T14:36:55.939Z">
 <meta property="article:author" content="Moerjie">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s11.ax1x.com/2023/12/22/pi7uxYV.png">
 
-<link rel="canonical" href="http://example.com/archives/2024/">
+<link rel="canonical" href="http://example.com/2024/04/30/AXI-STREAM%E7%AE%80%E4%BB%8B/">
 
 
 <script id="page-configurations">
@@ -36,12 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | Sawen_Blog</title>
+  <title> | Sawen_Blog</title>
   
 
 
@@ -139,235 +145,135 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">还行! 目前共计 42 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/30/AXI-STREAM%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Moerjie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sawen_Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-04-30 21:16:10" itemprop="dateCreated datePublished" datetime="2024-04-30T21:16:10+08:00">2024-04-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-02-10 22:36:55" itemprop="dateModified" datetime="2024-02-10T22:36:55+08:00">2024-02-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E8%BD%BD%E6%B3%A2%E5%90%8C%E6%AD%A5%E4%BB%BF%E7%9C%9F/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E8%BD%BD%E6%B3%A2%E5%90%8C%E6%AD%A5/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E5%8F%8B%E9%93%BE/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E5%B0%8F%E5%8F%91%E7%8E%B0/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E6%96%87%E7%AB%A0%E5%88%86%E7%B1%BB/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E5%90%8C%E6%AD%A5%E5%92%8C%E6%97%B6%E9%92%9F%E6%81%A2%E5%A4%8D/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E9%94%81%E7%9B%B8%E7%8E%AF%E5%AD%A6%E4%B9%A0/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E6%90%9C%E7%B4%A2/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        <h2 id="AXI-STREAM简介"><a href="#AXI-STREAM简介" class="headerlink" title="AXI-STREAM简介"></a>AXI-STREAM简介</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>AXI-Stream总线是一种高效、简单的数据传输协议，主要用于高吞吐量的数据流传输场景。相比于传统的AXI总线，AXI-Stream总线更加简单和轻量级，它通过无需地址的方式，将数据从一个模块传输到另一个模块，适用于需要高速数据传输的应用场景。</p>
+<h3 id="部分术语"><a href="#部分术语" class="headerlink" title="部分术语"></a>部分术语</h3><ul>
+<li>Transfer：基于<strong>TVALID</strong>和<strong>TREADY</strong>握手协议的传输</li>
+<li>Packet：一组通过axi-stream传输的数据</li>
+<li>Frame：最大的Byte组合，包含整数个Packet</li>
+</ul>
+<h3 id="接口信号"><a href="#接口信号" class="headerlink" title="接口信号"></a>接口信号</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACLK</td>
+<td>全局时钟信号，上升沿有效</td>
+</tr>
+<tr>
+<td>ARSTn</td>
+<td>全局复位信号，低电平有效</td>
+</tr>
+<tr>
+<td>TVALID</td>
+<td>主机驱动有效数据</td>
+</tr>
+<tr>
+<td>TREADY</td>
+<td>从机可以接收数据</td>
+</tr>
+<tr>
+<td>TDATA[(8n-1):0]</td>
+<td>位宽为整数倍byte</td>
+</tr>
+<tr>
+<td>TLAST</td>
+<td>表示数据包的边界</td>
+</tr>
+<tr>
+<td>TID</td>
+<td>由主机发出，Identity标识符，在存在多个stream数据传输时起作用，用于识别不同的数据流</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://s11.ax1x.com/2023/12/22/pi7uxYV.png" alt="pi7uxYV.png"></p>
+<p>当clk上升沿检测到TVALID和TREADY均为高电平时开始传输数据</p>
+<p>由于AXI-STREAM不需要传输地址，仅进行简单的发送和接收，因此减小了传播时延</p>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/04/30/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/04/30/Cyclone-III-%E5%86%85%E9%83%A8%E8%B5%84%E6%BA%90/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2024/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2024/page/5/">5</a><a class="extend next" rel="next" href="/archives/2024/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  
+  
 
 
 
@@ -419,6 +325,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AXI-STREAM%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">AXI-STREAM简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E6%9C%AF%E8%AF%AD"><span class="nav-number">1.2.</span> <span class="nav-text">部分术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E4%BF%A1%E5%8F%B7"><span class="nav-number">1.3.</span> <span class="nav-text">接口信号</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -22,26 +22,26 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="Sawen_Blog">
-<meta property="og:url" content="http://example.com/archives/2024/index.html">
+<meta property="og:url" content="http://example.com/page/5/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Moerjie">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/archives/2024/">
+<link rel="canonical" href="http://example.com/page/5/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
+    isHome : true,
     isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | Sawen_Blog</title>
+  <title>Sawen_Blog</title>
   
 
 
@@ -139,234 +139,141 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/30/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/">
 
-  
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">还行! 目前共计 42 篇日志。 继续努力。</span>
-      </div>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Moerjie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sawen_Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/30/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-30 21:16:10 / 修改时间：21:23:49" itemprop="dateCreated datePublished" datetime="2024-04-30T21:16:10+08:00">2024-04-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
+          <p>在DVB-S系统中，TS流在经过RS编码后，会变成uint8类型的数据，在后续QPSK星座映射时又需要二进制码流，因此在进行了RS编码后要将8个bit的数据转化成1个bit逐位输出</p>
+<script type="math/tex; mode=display">1_a</script><h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>首先使用BitwiseOperator模块按位与操作，分别将8位二进制数据提取出来，然后使用一个计数器产生0~7的计数信号作为mux模块的使能，在8个时钟周期内分别输出提取出来的8位数据</p>
+<h2 id="结构框图"><a href="#结构框图" class="headerlink" title="结构框图"></a>结构框图</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1713153777444.png" alt="1713153777444.png"></p>
+<h2 id="仿真结果"><a href="#仿真结果" class="headerlink" title="仿真结果"></a>仿真结果</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1713153816902.png" alt="1713153816902.png"></p>
+<p>输入的数据是133，二进制为10000101，可以看到输出的结果符合需求</p>
+
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E8%BD%BD%E6%B3%A2%E5%90%8C%E6%AD%A5%E4%BB%BF%E7%9C%9F/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
+  
+  
+  
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/30/hello-world/">
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Moerjie">
+      <meta itemprop="description" content="">
+    </span>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E8%BD%BD%E6%B3%A2%E5%90%8C%E6%AD%A5/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sawen_Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/30/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
 
-    </header>
-  </article>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+              <time title="创建时间：2024-04-30 20:54:52" itemprop="dateCreated datePublished" datetime="2024-04-30T20:54:52+08:00">2024-04-30</time>
+            </span>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
+          
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
+        </div>
+      </header>
 
-    </header>
-  </article>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E5%8F%8B%E9%93%BE/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E5%B0%8F%E5%8F%91%E7%8E%B0/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E6%96%87%E7%AB%A0%E5%88%86%E7%B1%BB/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E5%90%8C%E6%AD%A5%E5%92%8C%E6%97%B6%E9%92%9F%E6%81%A2%E5%A4%8D/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E9%94%81%E7%9B%B8%E7%8E%AF%E5%AD%A6%E4%B9%A0/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E6%90%9C%E7%B4%A2/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-
+      
     </div>
-  </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
   
   
   
+
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2024/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2024/page/5/">5</a><a class="extend next" rel="next" href="/archives/2024/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav>
 
 

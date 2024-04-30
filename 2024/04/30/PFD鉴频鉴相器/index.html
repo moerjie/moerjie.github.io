@@ -20,15 +20,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="理论基础早期对参考信号和振荡器反馈的信号通常是使用鉴相器进行相位比较的，当两路信号频率相近的时候才能鉴相，但是当输入信号的频率差较大时，单靠鉴相器进行鉴别就比较困难，容易出现环路失锁。因此设计了PFD鉴频鉴相器，如图所示：  当$\omega_{out}和\omega_{ref}$相差较大时，频率检测环先开始工作，将频率差减小到一定程度后，鉴相器开始工作，先检测频率差，再检测相位的不同，减小失锁的">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Sawen_Blog">
-<meta property="og:url" content="http://example.com/archives/2024/index.html">
+<meta property="og:url" content="http://example.com/2024/04/30/PFD%E9%89%B4%E9%A2%91%E9%89%B4%E7%9B%B8%E5%99%A8/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:description" content="理论基础早期对参考信号和振荡器反馈的信号通常是使用鉴相器进行相位比较的，当两路信号频率相近的时候才能鉴相，但是当输入信号的频率差较大时，单靠鉴相器进行鉴别就比较困难，容易出现环路失锁。因此设计了PFD鉴频鉴相器，如图所示：  当$\omega_{out}和\omega_{ref}$相差较大时，频率检测环先开始工作，将频率差减小到一定程度后，鉴相器开始工作，先检测频率差，再检测相位的不同，减小失锁的">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1707746701774.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1707815394229.png">
+<meta property="article:published_time" content="2024-04-30T13:16:10.450Z">
+<meta property="article:modified_time" content="2024-03-11T13:07:04.273Z">
 <meta property="article:author" content="Moerjie">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1707746701774.png">
 
-<link rel="canonical" href="http://example.com/archives/2024/">
+<link rel="canonical" href="http://example.com/2024/04/30/PFD%E9%89%B4%E9%A2%91%E9%89%B4%E7%9B%B8%E5%99%A8/">
 
 
 <script id="page-configurations">
@@ -36,12 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | Sawen_Blog</title>
+  <title> | Sawen_Blog</title>
   
 
 
@@ -139,235 +146,93 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">还行! 目前共计 42 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/30/PFD%E9%89%B4%E9%A2%91%E9%89%B4%E7%9B%B8%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Moerjie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sawen_Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-04-30 21:16:10" itemprop="dateCreated datePublished" datetime="2024-04-30T21:16:10+08:00">2024-04-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-11 21:07:04" itemprop="dateModified" datetime="2024-03-11T21:07:04+08:00">2024-03-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E8%BD%BD%E6%B3%A2%E5%90%8C%E6%AD%A5%E4%BB%BF%E7%9C%9F/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E8%BD%BD%E6%B3%A2%E5%90%8C%E6%AD%A5/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E5%8F%8B%E9%93%BE/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E5%B0%8F%E5%8F%91%E7%8E%B0/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E6%96%87%E7%AB%A0%E5%88%86%E7%B1%BB/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E5%90%8C%E6%AD%A5%E5%92%8C%E6%97%B6%E9%92%9F%E6%81%A2%E5%A4%8D/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E9%94%81%E7%9B%B8%E7%8E%AF%E5%AD%A6%E4%B9%A0/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-04-30T21:16:10+08:00"
-              content="2024-04-30">
-          04-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/04/30/%E6%90%9C%E7%B4%A2/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        <h2 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h2><p>早期对参考信号和振荡器反馈的信号通常是使用鉴相器进行相位比较的，当两路信号频率相近的时候才能鉴相，但是当输入信号的频率差较大时，单靠鉴相器进行鉴别就比较困难，容易出现环路失锁。因此设计了PFD鉴频鉴相器，如图所示：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1707746701774.png" alt="1707746701774.png"></p>
+<p>当$\omega_{out}和\omega_{ref}$相差较大时，频率检测环先开始工作，将频率差减小到一定程度后，鉴相器开始工作，先检测频率差，再检测相位的不同，减小失锁的概率。</p>
+<p>PFD的状态转移图如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1707815394229.png" alt="1707815394229.png"></p>
+<p>初始状态为保持状态，输入的参考信号$V_{ref}$和环路反馈信号$V_{div}$均无上升沿到来时，PFD没有动作，当$V_{ref}$上升沿到来时，鉴频鉴相器的UP端置高，等待$V_{div}$上升沿到来，若此时还是$V_{ref}$上升沿，则UP端始终置高，对后续电荷泵的动作是充电，即环路的反馈信号频率比参考信号低，当检测到$V_{div}$上升沿到来，则PFD的反馈回路将UP端和DN端复位置低电平，但是由于Delay模块的存在，因此会出现UP和DN同时为高电平的状态。</p>
+<p>同理，如果先检测到$V_{div}$的上升沿，则DN端置为高电平，使电荷泵放电，降低NCO的输出频率。</p>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/04/30/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/04/30/QPSK%20simulink%E5%AE%9E%E7%8E%B0/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2024/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2024/page/5/">5</a><a class="extend next" rel="next" href="/archives/2024/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  
+  
 
 
 
@@ -419,6 +284,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">理论基础</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
