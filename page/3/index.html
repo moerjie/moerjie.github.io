@@ -211,507 +211,37 @@
             
 
   
-    <article id="post-QPSK调制解调+载波同步" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% 基本参数M=240;                      % 产生码元数L=100;                      % 每个码元采样次数fc=50e3;                    % 载波频率50kHz% flocal = 50010;           % 接收端的本地载波频率flocal = 50100;             % 模拟接收端载波频率不同步的情况Rb =10e3;                   % 码元速率Ts=1/Rb;                    % 码元的持续时间dt=Ts/L;                    % 采样间隔TotalT=M*Ts;                % 总时间t=0:dt:TotalT-dt;           % 时间Fs=L*Rb;                    % 采样频率C1 = 2^(-4);                % costas环滤波器系数c1C2 = C1 * 2^(-3);           % costas环滤波器系数c2%% 产生信号源wave=randi([0,1],1,M);      % 随机产生信号%帧头oxcc,23时24分25秒的一个数据包，最后一字节为校验和%wave=[1 1 0 0 1 1 0 0 0 0 0 1 0 1 1 1 0 0 0 1 1 0 0 0 0 0 0 1 1 0 0 1 0 0 0 1 0 1 0 0];wave=2*wave-1;              % 单极性变双极性fz=ones(1,L);               % 定义复制的次数L,L为每码元的采样点数x1=wave(fz,:);              % 将原来wave的第一行复制L次，称为L*M的矩阵baseband=reshape(x1,1,L*M); % 产生双极性不归零矩形脉冲波形，将刚得到的L*M矩阵，按列重新排列形成1*(L*M)的矩阵%% I、Q路码元% I路码元是基带码元的奇数位置码元，Q路码元是基带码元的偶数位置码元I=[]; Q=[];for i=1:M    if mod(i, 2)~=0        I = [I, wave(i)];    else        Q = [Q, wave(i)];    endendfz2 = ones(1,2*L);x2 = I(fz2,:);               % 将原来I的第一行复制2L次，成为2L*(M/2)的矩阵I_signal = reshape(x2,1,L*M);% 将刚得到的L*(M/2)矩阵，按列重新排列形成1*(L*M)的矩阵x3 = Q(fz2,:);               % 将原来Q的第一行复制2L次，称为2L*(M/2)的矩阵Q_signal = reshape(x3,1,L*M);% 将刚得到的L*(M/2)矩阵，按列重新排列形成1*(L*M)的矩阵%% 成形滤波% 通过Filter Designer生成了40阶(41个抽头系数)的升余弦平方根滤波器rcosfilter% 采样频率为Fs,截止频率为Rb/2Q_filtered = filter(rcosfilter,Q_signal);   %Q路成形滤波I_filtered = filter(rcosfilter,I_signal);   %I路成形滤波Q_filtered = double(Q_filtered);I_filtered = double(I_filtered);%% QPSK调制carry_cos=cos(2*pi*fc*t);        % 载波1psk1=I_filtered.*carry_cos;        % PSK1的调制carry_sin=sin(2*pi*fc*t);        % 载波2psk2=Q_filtered.*carry_sin;        % PSK1的调制qpsk=psk1+psk2;                 % QPSK的实现%% 信号经过高斯白噪声信道%qpsk_n = qpsk;              %不加噪qpsk_n=awgn(qpsk,20);       % 信号qpsk中加入白噪声，信噪比为SNR=20dB%% 解调部分err_phase = zeros(1,length(t));phase_ctrl= zeros(1,length(t));carry_cos_local = zeros(1, length(t));carry_sin_local = zeros(1, length(t));demo_I = zeros(1, length(t));demo_Q = zeros(1, length(t));filtered_I = zeros(1, length(t));filtered_Q = zeros(1, length(t));pd_I = zeros(1, length(t));pd_Q = zeros(1, length(t));inv_Q = zeros(1, length(t));inv_I = zeros(1, length(t));%% 载波同步与下变频for i = 1:length(t)</span></span><br><span class="line">    carry_cos_local(<span class="built_in">i</span>) = <span class="built_in">cos</span>(<span class="number">2</span>*<span class="built_in">pi</span>*flocal*t(<span class="built_in">i</span>)-err_phase(<span class="built_in">i</span>));  <span class="comment">% 本地载波受相位控制字err_phase调整    carry_sin_local(i) = sin(2*pi*flocal*t(i)-err_phase(i));  % 本地载波受相位控制字err_phase调整    % 利用可调整频率的本地载波与QPSK信号相乘    demo_I(i)=qpsk_n(i)*carry_cos_local(i);         % 相干解调，乘以本地相干载波    demo_Q(i)=qpsk_n(i)*carry_sin_local(i);</span></span><br><span class="line">    <span class="comment">%低通滤波    filtered_Q = double(filter(demo_lowpass,demo_Q));   %Q路低通滤波    filtered_I = double(filter(demo_lowpass,demo_I));   %I路低通滤波    % 低通滤波后进行载波同步鉴相，模拟costas环鉴相器    inv_Q(i) = -1*filtered_Q(i);    inv_I(i) = -1*filtered_I(i);    % 依据I路正负选择I路待相乘的鉴相值    if filtered_I(i)&gt;=0</span></span><br><span class="line">        pd_I(<span class="built_in">i</span>) = filtered_Q(<span class="built_in">i</span>);    <span class="keyword">else</span></span><br><span class="line">        pd_I(<span class="built_in">i</span>) = inv_Q(<span class="built_in">i</span>);    <span class="keyword">end</span><span class="comment">%     ind = find(filtered_I&gt;=0);%     pd_I(ind) = filtered_Q(ind);%     ind = find(filtered_I&lt;0);%     pd_I(ind) = inv_Q(ind);    %依据Q路正负选择Q路待相乘的鉴相值    if filtered_Q(i)&gt;=0</span></span><br><span class="line">        pd_Q(<span class="built_in">i</span>) = filtered_I(<span class="built_in">i</span>);    <span class="keyword">else</span></span><br><span class="line">        pd_Q(<span class="built_in">i</span>) = inv_I(<span class="built_in">i</span>);    <span class="keyword">end</span>    <span class="comment">% 鉴相器原始输出(未滤波)    pd(i) = pd_I(i) - pd_Q(i);    %鉴相器输出环路滤波    if i==1         err_phase(i+1) = C1*pd(i);</span></span><br><span class="line">    <span class="keyword">elseif</span> <span class="built_in">i</span> ~= <span class="built_in">length</span>(t)</span><br><span class="line">         err_phase(<span class="built_in">i</span>+<span class="number">1</span>) = err_phase(<span class="built_in">i</span>) + C1*pd(<span class="built_in">i</span>)+(C2-C1)*pd(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">end</span><span class="comment">%     ind = find(filtered_Q&gt;=0);%     pd_Q(ind) = filtered_I(ind);%     ind = find(filtered_Q&lt;0);%     pd_Q(ind) = inv_I(ind);end% err_phase(1) = C1*pd(1); % 滤波器输入输出第一个数据是一样的% for i=2:length(t)%     err_phase(i) = err_phase(i-1) + C1*pd(i)+(C2-C1)*pd(i-1);% end%% 抽样判决k=0;                        % 设置抽样限值sample_d_I=1*(filtered_I&gt;k);     % 滤波后的向量的每个元素和0进行比较，大于0为1，否则为0sample_d_Q=1*(filtered_Q&gt;k);      % 滤波后的向量的每个元素和0进行比较，大于0为1，否则为0%% I、Q路合并I_comb = [];Q_comb = [];% 取码元的中间位置上的值进行判决for j=L:2*L:(L*M)</span></span><br><span class="line">    <span class="keyword">if</span> sample_d_I(<span class="built_in">j</span>)&gt;<span class="number">0</span>        I_comb=[I_comb,<span class="number">1</span>];    <span class="keyword">else</span>        I_comb=[I_comb,<span class="number">-1</span>];    endend<span class="comment">% 取码元的中间位置上的值进行判决for k=L:2*L:(L*M)</span></span><br><span class="line">    <span class="keyword">if</span> sample_d_Q(k)&gt;<span class="number">0</span>        Q_comb=[Q_comb,<span class="number">1</span>];    <span class="keyword">else</span>        Q_comb=[Q_comb,<span class="number">-1</span>];    endendcode = [];<span class="comment">% 将I路码元为最终输出的奇数位置码元，将Q路码元为最终输出的偶数位置码元for n=1:M    if mod(n, 2)~=0        code = [code, I_comb((n+1)/2)];    else        code = [code, Q_comb(n/2)];    endendx4=code(fz,:);             % 将原来code的第一行复制L次，称为L*M的矩阵dout=reshape(x4,1,L*M);    % 产生单极性不归零矩形脉冲波形，将刚得到的L*M矩阵，按列重新排列形成1*(L*M)的矩阵%% 绘制原始信号figure();</span></span><br><span class="line">subplot(<span class="number">311</span>);                   <span class="comment">% 窗口分割成3*1的，当前是第1个子图plot(t,baseband,&#x27;LineWidth&#x27;,2); % 绘制基带码元波形，线宽为2title(&#x27;基带信号波形&#x27;);</span></span><br><span class="line">xlabel(<span class="string">&#x27;时间/s&#x27;</span>);</span><br><span class="line">ylabel(<span class="string">&#x27;幅度&#x27;</span>);</span><br><span class="line">subplot(<span class="number">312</span>);                   <span class="comment">% 窗口分割成3*1的，当前是第2个子图plot(t,I_signal,&#x27;LineWidth&#x27;,2); % 绘制基带码元波形，线宽为2title(&#x27;I路信号波形&#x27;);</span></span><br><span class="line">xlabel(<span class="string">&#x27;时间/s&#x27;</span>);</span><br><span class="line">ylabel(<span class="string">&#x27;幅度&#x27;</span>);</span><br><span class="line">subplot(<span class="number">313</span>);                   <span class="comment">% 窗口分割成3*1的，当前是第3个子图plot(t,Q_signal,&#x27;LineWidth&#x27;,2); % 绘制基带码元波形，线宽为2title(&#x27;Q路信号波形&#x27;);            % 标题xlabel(&#x27;时间/s&#x27;);                % x轴标签ylabel(&#x27;幅度&#x27;);                   % y轴标签axis([0,TotalT,-1.1,1.1])       % 坐标范围限制%% 绘制成形滤波后信号figure();</span></span><br><span class="line">subplot(<span class="number">211</span>);</span><br><span class="line"><span class="built_in">plot</span>(t,Q_filtered,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>);<span class="comment">% 绘制成形滤波后Q路信号title(&#x27;成形滤波后Q路波形&#x27;);      % 标题xlabel(&#x27;时间/s&#x27;);           % x轴标签ylabel(&#x27;幅度&#x27;);             % y轴标签axis([0,TotalT,-1,1]);      % 设置坐标范围subplot(212);</span></span><br><span class="line"><span class="built_in">plot</span>(t,I_filtered,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>);<span class="comment">% 绘制成形滤波后I路信号title(&#x27;成形滤波后I路波形&#x27;);      % 标题xlabel(&#x27;时间/s&#x27;);           % x轴标签ylabel(&#x27;幅度&#x27;);             % y轴标签axis([0,TotalT,-1,1]);      % 设置坐标范围%% 绘制QPSK调制信号以及加噪后信号figure();</span></span><br><span class="line">subplot(<span class="number">211</span>);</span><br><span class="line"><span class="built_in">plot</span>(t,qpsk,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>); <span class="comment">% 绘制基带码元波形，线宽为2title(&#x27;QPSK信号波形&#x27;);      % 标题xlabel(&#x27;时间/s&#x27;);           % x轴标签ylabel(&#x27;幅度&#x27;);             % y轴标签axis([0,TotalT,-1,1]);      % 设置坐标范围subplot(212);               % 窗口分割成2*1的，当前是第2个子图plot(t,qpsk_n,&#x27;LineWidth&#x27;,2);  % 绘制QPSK信号加入白噪声的波形axis([0,TotalT,-1,1]);      % 设置坐标范围title(&#x27;通过高斯白噪声信道后的信号&#x27;);% 标题xlabel(&#x27;时间/s&#x27;);           % x轴标签ylabel(&#x27;幅度&#x27;);             % y轴标签%% 绘制绘制IQ两路乘以本地相干载波后的信号figure();</span></span><br><span class="line">subplot(<span class="number">211</span>)                             <span class="comment">% 窗口分割成2*1的，当前是第1个子图plot(t,demo_I,&#x27;LineWidth&#x27;,2)             % 绘制I路乘以相干载波后的信号axis([0,TotalT,-1,1]);                   % 设置坐标范围title(&quot;I路乘以相干载波后的信号&quot;)          % 标题xlabel(&#x27;时间/s&#x27;);                        % x轴标签ylabel(&#x27;幅度&#x27;);                          % y轴标签subplot(212)                            % 窗口分割成2*1的，当前是第2个子图plot(t,demo_Q,&#x27;LineWidth&#x27;,2)            % 绘制Q路乘以相干载波后的信号axis([0,TotalT,-1,1]);                  % 设置坐标范围title(&quot;Q路乘以相干载波后的信号&quot;)         % 标题xlabel(&#x27;时间/s&#x27;);                       % x轴标签ylabel(&#x27;幅度&#x27;);                         % y轴标签%% 绘制鉴相器输出figure();</span></span><br><span class="line">subplot(<span class="number">311</span>)</span><br><span class="line"><span class="built_in">plot</span>(t,pd,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>)</span><br><span class="line">title(<span class="string">&quot;鉴相器计算结果&quot;</span>);                 <span class="comment">% 标题xlabel(&#x27;时间/s&#x27;);                        % x轴标签ylabel(&#x27;幅度&#x27;);                          % y轴标签subplot(312)</span></span><br><span class="line"><span class="built_in">plot</span>(t,pd_I,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>)</span><br><span class="line">title(<span class="string">&quot;I路鉴相器输入&quot;</span>);</span><br><span class="line">xlabel(<span class="string">&#x27;时间/s&#x27;</span>);                        <span class="comment">% x轴标签ylabel(&#x27;幅度&#x27;);                          % y轴标签subplot(313)</span></span><br><span class="line"><span class="built_in">plot</span>(t,pd_Q,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>)</span><br><span class="line">title(<span class="string">&quot;I路鉴相器输入&quot;</span>);</span><br><span class="line">xlabel(<span class="string">&#x27;时间/s&#x27;</span>);                        <span class="comment">% x轴标签ylabel(&#x27;幅度&#x27;);                          % y轴标签% %% 载波同步鉴相器结果展示% figure();% subplot(411)% plot(t,filtered_I,&#x27;LineWidth&#x27;,2)     % 绘制I路乘以相干载波后的信号% title(&quot;I路&quot;);                 % 标题% xlabel(&#x27;时间/s&#x27;);                        % x轴标签% ylabel(&#x27;幅度&#x27;);                          % y轴标签%% subplot(413)% plot(t,filtered_Q,&#x27;LineWidth&#x27;,2)          % 绘制载波同步环路滤波器输出% title(&quot;Q路&quot;);% xlabel(&#x27;时间/s&#x27;);                        % x轴标签% ylabel(&#x27;幅度&#x27;);                          % y轴标签%% subplot(414)% plot(t,pd_Q,&#x27;LineWidth&#x27;,2)          % 绘制载波同步环路滤波器输出% title(&quot;鉴相器Q路&quot;);% xlabel(&#x27;时间/s&#x27;);                        % x轴标签% ylabel(&#x27;幅度&#x27;);                          % y轴标签%% subplot(412)% plot(t,pd_I,&#x27;LineWidth&#x27;,2)          % 绘制载波同步环路滤波器输出% title(&quot;鉴相器I路&quot;);% xlabel(&#x27;时间/s&#x27;);                        % x轴标签% ylabel(&#x27;幅度&#x27;);                          % y轴标签%% 载波同步鉴相器结果展示figure();</span></span><br><span class="line">subplot(<span class="number">211</span>)</span><br><span class="line"><span class="built_in">plot</span>(t,pd,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>)     <span class="comment">% 绘制I路乘以相干载波后的信号title(&quot;鉴相器计算结果&quot;);                 % 标题xlabel(&#x27;时间/s&#x27;);                        % x轴标签ylabel(&#x27;幅度&#x27;);                          % y轴标签subplot(212)</span></span><br><span class="line"><span class="built_in">plot</span>(t,err_phase,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>)          <span class="comment">% 绘制载波同步环路滤波器输出title(&quot;载波同步环路滤波器输出&quot;);</span></span><br><span class="line">xlabel(<span class="string">&#x27;时间/s&#x27;</span>);                        <span class="comment">% x轴标签ylabel(&#x27;幅度&#x27;);                          % y轴标签%% 绘图比较本地载波和发送端载波figure()</span></span><br><span class="line">nop=<span class="number">300</span>;     <span class="comment">%由于数据很多，为了便于观察选取前nop点进行绘图start=1000;  %开始观察的点的索引subplot(211) % 窗口分割成2*1的，当前是第1个子图% 绘制正弦载波plot(t(start+1:start+nop),carry_sin(start+1:start+nop),&#x27;LineWidth&#x27;,2)</span></span><br><span class="line"><span class="built_in">hold</span> on<span class="comment">% 绘制接收端正弦载波plot(t(start+1:start+nop),carry_sin_local(start+1:start+nop),&#x27;LineWidth&#x27;,2)</span></span><br><span class="line"><span class="built_in">hold</span> onlegend(<span class="string">&#x27;调制端正弦载波&#x27;</span>,<span class="string">&#x27;接收端本地正弦载波&#x27;</span>);title(<span class="string">&quot;正弦载波&quot;</span>)   <span class="comment">% 标题xlabel(&#x27;时间/s&#x27;);   % x轴标签ylabel(&#x27;幅度&#x27;);     % y轴标签subplot(212) % 窗口分割成2*1的，当前是第1个子图% 绘制余弦载波plot(t(start+1:start+nop),carry_cos(start+1:start+nop),&#x27;LineWidth&#x27;,2)</span></span><br><span class="line"><span class="built_in">hold</span> on<span class="comment">% 绘制本地余弦载波plot(t(start+1:start+nop),carry_cos_local(start+1:start+nop),&#x27;LineWidth&#x27;,2)</span></span><br><span class="line"><span class="built_in">hold</span> onlegend(<span class="string">&#x27;调制端余弦载波&#x27;</span>,<span class="string">&#x27;接收端本地余弦载波&#x27;</span>);title(<span class="string">&quot;余弦载波&quot;</span>)   <span class="comment">% 标题xlabel(&#x27;时间/s&#x27;);   % x轴标签ylabel(&#x27;幅度&#x27;);     % y轴标签%% 绘制加噪信号经过低通滤波器后的信号figure();</span></span><br><span class="line">subplot(<span class="number">211</span>)</span><br><span class="line"><span class="built_in">plot</span>(t,filtered_I,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>); <span class="comment">% 绘制I路经过低通滤波器后的信号axis([0,TotalT,-1.1,1.1]);  % 设置坐标范围title(&quot;I路经过低通滤波器后的信号&quot;);xlabel(&#x27;时间/s&#x27;);</span></span><br><span class="line">ylabel(<span class="string">&#x27;幅度&#x27;</span>);</span><br><span class="line">subplot(<span class="number">212</span>)</span><br><span class="line"><span class="built_in">plot</span>(t,filtered_Q,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>); <span class="comment">% 绘制Q路经过低通滤波器后的信号axis([0,TotalT,-1.1,1.1]);</span></span><br><span class="line">title(<span class="string">&quot;Q路经过低通滤波器后的信号&quot;</span>);xlabel(<span class="string">&#x27;时间/s&#x27;</span>);</span><br><span class="line">ylabel(<span class="string">&#x27;幅度&#x27;</span>);</span><br><span class="line"><span class="comment">%% 绘制抽样判决结果figure();subplot(311)                % 窗口分割成3*1的，当前是第1个子图plot(t,sample_d_I,&#x27;LineWidth&#x27;,2)% 画出经过抽样判决后的信号axis([0,TotalT,-0.1,1.1]); % 设置坐标范围title(&quot;I路经过抽样判决后的信号&quot;);xlabel(&#x27;时间/s&#x27;);</span></span><br><span class="line">ylabel(<span class="string">&#x27;幅度&#x27;</span>);</span><br><span class="line">subplot(<span class="number">312</span>)                <span class="comment">% 窗口分割成3*1的，当前是第2个子图plot(t,sample_d_Q,&#x27;LineWidth&#x27;,2)% 画出经过抽样判决后的信号axis([0,TotalT,-0.1,1.1]); % 设置坐标范用title(&quot;Q路经过抽样判决后的信号&quot;)% 标题xlabel(&#x27;时间/s&#x27;);           % x轴标签ylabel(&#x27;幅度&#x27;);             % y轴标签%% 绘图比较调制解调的信号figure()</span></span><br><span class="line">subplot(<span class="number">411</span>)</span><br><span class="line"><span class="built_in">plot</span>(t,I_signal,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>);<span class="comment">% 绘制基带码元波形，线宽为2title(&#x27;I路信号波形&#x27;);</span></span><br><span class="line">xlabel(<span class="string">&#x27;时间/s&#x27;</span>);</span><br><span class="line">ylabel(<span class="string">&#x27;幅度&#x27;</span>);</span><br><span class="line">subplot(<span class="number">412</span>)</span><br><span class="line"><span class="built_in">plot</span>(t,sample_d_I,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>);title(<span class="string">&quot;I路经过抽样判决后的信号&quot;</span>);subplot(<span class="number">413</span>)</span><br><span class="line"><span class="built_in">plot</span>(t,Q_signal,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>);title(<span class="string">&#x27;Q路信号波形&#x27;</span>);</span><br><span class="line">xlabel(<span class="string">&#x27;时间/s&#x27;</span>);</span><br><span class="line">ylabel(<span class="string">&#x27;幅度&#x27;</span>);</span><br><span class="line">subplot(<span class="number">414</span>)</span><br><span class="line"><span class="built_in">plot</span>(t,sample_d_Q,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>);title(<span class="string">&quot;Q路经过抽样判决后的信号&quot;</span>);<span class="built_in">figure</span>()</span><br><span class="line">subplot(<span class="number">211</span>)</span><br><span class="line"><span class="built_in">plot</span>(t,baseband,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>);<span class="comment">% 绘制基带码元波形，线宽为2title(&#x27;基带信号波形&#x27;);</span></span><br><span class="line">xlabel(<span class="string">&#x27;时间/s&#x27;</span>);</span><br><span class="line">ylabel(<span class="string">&#x27;幅度&#x27;</span>);</span><br><span class="line">subplot(<span class="number">212</span>)</span><br><span class="line"><span class="built_in">plot</span>(t,dout,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>);<span class="comment">% 绘制基带码元波形title(&#x27;QPSK解调判决后信号&#x27;); % 标题xlabel(&#x27;时间/s&#x27;);          % x轴标签ylabel(&#x27;幅度&#x27;);            % y轴标签axis([0,TotalT,-1.1,1.1])  % 坐标范围限制subplot(313);              % 窗口分割成3*1的，当前是第3个子图plot(t,dout,&#x27;LineWidth&#x27;,2);% 绘制基带码元波形title(&#x27;QPSK解调判决后信号&#x27;); % 标题xlabel(&#x27;时间/s&#x27;);          % x轴标签ylabel(&#x27;幅度&#x27;);            % y轴标签axis([0,TotalT,-1.1,1.1])  % 坐标范围限制%% 将仿真波形输出为txt文本作为testbench数据输入Width = 15; %数据位宽I_n=round(filtered_I*(2^(Width)-1));Q_n=round(filtered_Q*(2^(Width)-1));fid=fopen(&#x27;dataI.txt&#x27;,&#x27;w&#x27;);</span></span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(I_n)</span><br><span class="line">    B_s=dec2bin(I_n(k)+((I_n(k))&lt;<span class="number">0</span>)*<span class="number">2</span>^Width,Width);    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:Width        <span class="keyword">if</span> B_s(<span class="built_in">j</span>)==<span class="string">&#x27;1&#x27;</span>            tb=<span class="number">1</span>;        <span class="keyword">else</span>            tb=<span class="number">0</span>;        <span class="keyword">end</span>        fprintf(fid,<span class="string">&#x27;%d&#x27;</span>,tb);    <span class="keyword">end</span>    fprintf(fid,<span class="string">&#x27;\r\n&#x27;</span>);endfprintf(fid,<span class="string">&#x27;;&#x27;</span>);fclose(fid);fid=fopen(<span class="string">&#x27;dataQ.txt&#x27;</span>,<span class="string">&#x27;w&#x27;</span>);</span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Q_n)</span><br><span class="line">    B_s=dec2bin(Q_n(k)+((Q_n(k))&lt;<span class="number">0</span>)*<span class="number">2</span>^Width,Width);    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:Width        <span class="keyword">if</span> B_s(<span class="built_in">j</span>)==<span class="string">&#x27;1&#x27;</span>            tb=<span class="number">1</span>;        <span class="keyword">else</span>            tb=<span class="number">0</span>;        <span class="keyword">end</span>        fprintf(fid,<span class="string">&#x27;%d&#x27;</span>,tb);    <span class="keyword">end</span>    fprintf(fid,<span class="string">&#x27;\r\n&#x27;</span>);endfprintf(fid,<span class="string">&#x27;;&#x27;</span>);fclose(fid);</span><br></pre></td></tr></table></figure>
-<h2 id="波形"><a href="#波形" class="headerlink" title="波形"></a>波形</h2><p><img src="https://cdn.nlark.com/yuque/0/2024/png/39144189/1706352256304-24ac87c4-784d-4cf3-a81e-9dc15b27faea.png#averageHue=%23c3d9e8&amp;clientId=u2c97e0d4-d744-4&amp;from=paste&amp;height=453&amp;id=u96da970f&amp;originHeight=566&amp;originWidth=837&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=27177&amp;status=done&amp;style=none&amp;taskId=u3cbde907-d424-4226-bdef-02dcf80b8d1&amp;title=&amp;width=669.6" alt="image"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39144189/1706352291357-ff168266-3066-45fe-8359-3725c67a587f.png#averageHue=%23f7f7f7&amp;clientId=u2c97e0d4-d744-4&amp;from=paste&amp;height=696&amp;id=ufed4f196&amp;originHeight=870&amp;originWidth=1638&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=39703&amp;status=done&amp;style=none&amp;taskId=ua9bba302-0e51-40c7-937e-ae2466f73e1&amp;title=&amp;width=1310.4" alt="image"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39144189/1706352388360-0f1e9e2e-d6ed-4315-a360-3f7025193f85.png#averageHue=%23f6f3ef&amp;clientId=u2c97e0d4-d744-4&amp;from=paste&amp;height=702&amp;id=ued994289&amp;originHeight=877&amp;originWidth=1629&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=109977&amp;status=done&amp;style=none&amp;taskId=ue4aaedbf-ea5f-472d-8632-9dfe66d7acf&amp;title=&amp;width=1303.2" alt="image"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39144189/1706353997767-4b2c9ffd-6f36-402a-bdd6-c0751f657633.png#averageHue=%23f6f6f6&amp;clientId=u2c97e0d4-d744-4&amp;from=paste&amp;height=692&amp;id=u052b7833&amp;originHeight=865&amp;originWidth=1597&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=103341&amp;status=done&amp;style=none&amp;taskId=u6abea0d6-df03-430e-942c-9c79bcd52c5&amp;title=&amp;width=1277.6" alt="image"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39144189/1706354181040-e804c3c6-e589-4b2d-b6e6-69203e0cfffb.png#averageHue=%23f7f7f7&amp;clientId=u2c97e0d4-d744-4&amp;from=paste&amp;height=690&amp;id=ucc2f82a7&amp;originHeight=863&amp;originWidth=1610&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=72651&amp;status=done&amp;style=none&amp;taskId=uc50a073d-26b4-492f-88d7-1a19c6d8caf&amp;title=&amp;width=1288" alt="image"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39144189/1706354347799-428ff827-2322-4f3a-995e-8b7d80e1772b.png#averageHue=%23eee1db&amp;clientId=u2c97e0d4-d744-4&amp;from=paste&amp;height=405&amp;id=u5b4c84e9&amp;originHeight=506&amp;originWidth=640&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=63402&amp;status=done&amp;style=none&amp;taskId=uc88b2b69-4c62-4270-b0e9-9b2468e0423&amp;title=&amp;width=512" alt="image"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39144189/1706354368782-3492ad69-ec37-44fd-9ff2-166d8ce5a9be.png#averageHue=%23f7f7f7&amp;clientId=u2c97e0d4-d744-4&amp;from=paste&amp;height=703&amp;id=uc9301a67&amp;originHeight=879&amp;originWidth=1649&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=81828&amp;status=done&amp;style=none&amp;taskId=ubc71d105-5d50-43fd-b593-81dae17941c&amp;title=&amp;width=1319.2" alt="image"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39144189/1706354387317-f54591ad-b2e1-41c1-ae06-0c0c62a2fcd3.png#averageHue=%23f6f6f6&amp;clientId=u2c97e0d4-d744-4&amp;from=paste&amp;height=454&amp;id=uf702dbb4&amp;originHeight=568&amp;originWidth=1582&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=33437&amp;status=done&amp;style=none&amp;taskId=u4892ce70-349b-4449-8f81-c53cd1c6058&amp;title=&amp;width=1265.6" alt="image"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39144189/1706354402662-c1102886-3570-40f6-ad39-06a6a95179f7.png#averageHue=%23f6f6f6&amp;clientId=u2c97e0d4-d744-4&amp;from=paste&amp;height=666&amp;id=u7dab49a8&amp;originHeight=833&amp;originWidth=1618&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=47755&amp;status=done&amp;style=none&amp;taskId=ubdaa4236-1826-418f-acb2-acb59a2412f&amp;title=&amp;width=1294.4" alt="image"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39144189/1706354420799-bb962775-7617-49ae-b988-7001ad56d085.png#averageHue=%23f5f5f5&amp;clientId=u2c97e0d4-d744-4&amp;from=paste&amp;height=667&amp;id=ud4d90994&amp;originHeight=834&amp;originWidth=1620&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=33183&amp;status=done&amp;style=none&amp;taskId=u872dbe26-e7d2-486c-a73e-b2f6a6b946a&amp;title=&amp;width=1296" alt="image"></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/project/2024/04/30/QPSK%E8%B0%83%E5%88%B6%E8%A7%A3%E8%B0%83+%E8%BD%BD%E6%B3%A2%E5%90%8C%E6%AD%A5/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-QPSK调制解调" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="DVB-S-使用-QPSK-的原因"><a href="#DVB-S-使用-QPSK-的原因" class="headerlink" title="DVB-S 使用 QPSK 的原因"></a>DVB-S 使用 QPSK 的原因</h2><p>选择调制方式的目的是为了传输信号的特性和传输信道相匹配，使得接收端能尽量无失真地接收信号<br>DVB-S<br>的卫星通信信道是一个带限非线性的恒参信道，对调制方式有以下要求：</p>
-<ol>
-<li>由于卫星信道的非线性和 AM/PM 效应，要求已调波的包络是等幅的</li>
-<li>由于卫星信道的带限特性，要求调制方式尽可能占用射频频带窄且能高效地利用可用频带</li>
-<li>数字通信系统要求尽量使用在 $\frac{E_b}{n_0}$<br>相同的情况下，误信率较低的调制技术，抗干扰能力强，节省卫星转发器的功率</li>
-</ol>
-<p>综上所述，PSK 在频带利用率和抗干扰方面都优于 ASK 和<br>FSK，同时为了进一步提高频带利用率，从 BPSK 发展到了 QPSK。 在 DVB-S<br>系统中采用传统的绝对映射格雷码 QPSK 调制 ## QPSK 调制原理<br>相移键控是用数字基带信号对载波振荡相位的控制来传递数字信息。四相调制是四进制的相移键控，由两个二进制码元组成一个四进制、双比特码元，这样就有<br>00、01、10、11 四种双比特码元,<br>用载波的四种不同相位分别与每一个双比特码元相对应。一般四个相位等间隔，这样造成的平均差错概率将最小<br>DVB-S 中 QPSK 使用的是绝对调相法，框图如下：</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401101233201.png" alt="202401101233201.png"></p>
-<h2 id="QPSK-解调原理-QPSK"><a href="#QPSK-解调原理-QPSK" class="headerlink" title="QPSK 解调原理 QPSK"></a>QPSK 解调原理 QPSK</h2><p>解调主要是==载波同步和位同步==的过程<br>载波同步的目的是在接收端恢复出与发射端同频同相的载波信号，以便实现接收端的解调；位同步是用来在接收端恢复出与发射码率相同的位同步时钟信号，以确保每个数据位只采样一次，并且该位置为最佳采样点的位置。在同步过程前还需要加上一个匹配滤波器来消除码间串扰，使进入同步过程的信号处于信噪比最高的状态</p>
-<p>[[QPSK modulation&amp;demodulation]]</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/project/2024/04/30/QPSK%E8%B0%83%E5%88%B6%E8%A7%A3%E8%B0%83/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-QPSK_NDATED_DDPED学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>该QPSK系统框图如下所示：</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710157559706.png" alt="1710157559706.png"></p>
-<p>首先产生随机的四位整数，经过QPSK Modulator Baseband 进行星座图映射，然后经过脉冲整形和调制后发送到高斯带通信道中，在接收端首先进行解调，将带通信号转化为基带信号，再经过符号同步和载波同步处理后进行处理</p>
-<p>基带QPSK信号波形为</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710158954524.png" alt="1710158954524.png"></p>
-<p>使用格雷码，相位偏移为$\frac{\pi}{4}$</p>
-<h1 id="Up-conversion模块"><a href="#Up-conversion模块" class="headerlink" title="Up-conversion模块"></a>Up-conversion模块</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710248173245.png" alt="1710248173245.png"></p>
-<p>经过4倍符号率采样后，经过Complex to Real-Imag模块后转化为I、Q两路信号，使用滚降系数为0.5的升余弦滚降滤波器进行脉冲整形，升余弦滤波器的幅值响应如图：</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/rcos.png" alt="rcos.png"></p>
-<p>经过升余弦滚降滤波器的信号为</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710159078178.png" alt="1710159078178.png"></p>
-<p>频谱为</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710159396231.png" alt="1710159396231.png"></p>
-<p>由于升余弦滚降滤波器被设置为4 samples per symbol，因此采样率变为16MHz</p>
-<p>然后与高频载波信号相乘，相乘后的信号和频谱为</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710159491301.png" alt="1710159491301.png"></p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710159548326.png" alt="1710159548326.png"></p>
-<p>可以看到频谱的中心频率已经变为载波的频率</p>
-<h1 id="高斯信道"><a href="#高斯信道" class="headerlink" title="高斯信道"></a>高斯信道</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710160013173.png" alt="1710160013173.png"></p>
-<p>信号的频谱为</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710160943272.png" alt="1710160943272.png"></p>
-<h1 id="Down-conversion"><a href="#Down-conversion" class="headerlink" title="Down-conversion"></a>Down-conversion</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710162218645.png" alt="1710162218645.png"></p>
-<p>相乘后的频谱和经过低通滤波后的频谱如下所示</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710162193582.png" alt="1710162193582.png"></p>
-<p>时域上的信号波形为</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710162303325.png" alt="1710162303325.png"></p>
-<h1 id="Digital-baseband-receiver"><a href="#Digital-baseband-receiver" class="headerlink" title="Digital baseband receiver"></a>Digital baseband receiver</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710240417096.png" alt="1710240417096.png"></p>
-<p>首先经过升余弦滚降接收滤波器，然后进行位同步和载波同步，最后输出到解调器中</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710240872667.png" alt="1710240872667.png"></p>
-<p>可以看到经过时间恢复和载波恢复后的眼图张开的更大更规则</p>
-<h2 id="Timing-Recovery"><a href="#Timing-Recovery" class="headerlink" title="Timing Recovery"></a>Timing Recovery</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710243700182.png" alt="1710243700182.png"></p>
-<p>由Farrow结构插值滤波器、定时误差检测、环路滤波器及插值控制器组成</p>
-<p>插值控制器的内部结构为</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710244545012.png" alt="1710244545012.png"></p>
-<p>插值控制器的输出为</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710244070202.png" alt="1710244070202.png"></p>
-<h1 id="载波同步"><a href="#载波同步" class="headerlink" title="载波同步"></a>载波同步</h1><p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/7a8433d6-d88c-4a4c-abc6-61b86f5cce97/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240327%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240327T121944Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=c9a50a66b4228071edb082e9551e5c75df9d73764b452718e5acfdc6fe08c0ab&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject" alt="Untitled.png"></p>
-<p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/4b129d1c-464a-45b9-bd62-f77c1fff0554/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240327%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240327T121944Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=6bdc1f1303916d2c0bc6e0478f507cfdeb72029885e75f63c890fea5b21aea9c&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject" alt="Untitled.png"></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/project/2024/04/30/QPSK_NDATED_DDPED%E5%AD%A6%E4%B9%A0/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-QPSK simulink实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="调制部分"><a href="#调制部分" class="headerlink" title="调制部分"></a>调制部分</h2><h3 id="总体框架"><a href="#总体框架" class="headerlink" title="总体框架"></a>总体框架</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212057092.png#id=LJGlx&amp;originHeight=501&amp;originWidth=1636&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-<h3 id="各模块参数"><a href="#各模块参数" class="headerlink" title="各模块参数"></a>各模块参数</h3><p>升余弦滚降滤波器滚降系数为 1</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401211628053.png#height=385&amp;id=bhKfw&amp;originHeight=599&amp;originWidth=778&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=&amp;width=500" alt="image"></p>
-<p>单双极性变换</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401211629886.png#height=312&amp;id=zaVYy&amp;originHeight=357&amp;originWidth=572&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=&amp;width=500" alt="image"></p>
-<h3 id="各阶段波形"><a href="#各阶段波形" class="headerlink" title="各阶段波形"></a>各阶段波形</h3><h3 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212121669.png#id=OcUth&amp;originHeight=683&amp;originWidth=830&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-<h3 id="Demux"><a href="#Demux" class="headerlink" title="Demux"></a>Demux</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212121971.png#id=nYMmd&amp;originHeight=628&amp;originWidth=702&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-<h3 id="Raised-Cosine-Transmit"><a href="#Raised-Cosine-Transmit" class="headerlink" title="Raised Cosine Transmit"></a>Raised Cosine Transmit</h3><p>Filter</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212127899.png#id=oRiV8&amp;originHeight=628&amp;originWidth=702&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-<h3 id="QPSK-信号功率谱密度"><a href="#QPSK-信号功率谱密度" class="headerlink" title="QPSK 信号功率谱密度"></a>QPSK 信号功率谱密度</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212131255.png#id=zvEIe&amp;originHeight=664&amp;originWidth=1002&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-<h2 id="解调部分"><a href="#解调部分" class="headerlink" title="解调部分"></a>解调部分</h2><p>经过 AWGN 信道后，假设已经进行了载波同步</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212140586.png#id=mIoHF&amp;originHeight=433&amp;originWidth=1257&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-<h3 id="部分模块参数"><a href="#部分模块参数" class="headerlink" title="部分模块参数"></a>部分模块参数</h3><h3 id="载波模块"><a href="#载波模块" class="headerlink" title="载波模块"></a>载波模块</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212141258.png#height=630&amp;id=fwivS&amp;originHeight=759&amp;originWidth=572&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=&amp;width=475" alt="image"></p>
-<h3 id="Pulse-Generator"><a href="#Pulse-Generator" class="headerlink" title="Pulse Generator"></a>Pulse Generator</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212142578.png#height=643&amp;id=jBQqM&amp;originHeight=736&amp;originWidth=572&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=&amp;width=500" alt="image"></p>
-<p>由于经过了串并转换，因此数据率减半</p>
-<h3 id="部分波形"><a href="#部分波形" class="headerlink" title="部分波形"></a>部分波形</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212150099.png#id=wGg2F&amp;originHeight=1021&amp;originWidth=1920&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-<p>将初始信号经过一定时间的延时后，在示波器中和解调输出的信号基本对齐，可以发现基本实现<br>QPSK 调制解调</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212152756.png#id=q8Kha&amp;originHeight=1021&amp;originWidth=1920&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/project/2024/04/30/QPSK%20simulink%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-PFD鉴频鉴相器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h2><p>早期对参考信号和振荡器反馈的信号通常是使用鉴相器进行相位比较的，当两路信号频率相近的时候才能鉴相，但是当输入信号的频率差较大时，单靠鉴相器进行鉴别就比较困难，容易出现环路失锁。因此设计了PFD鉴频鉴相器，如图所示：</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1707746701774.png" alt="1707746701774.png"></p>
-<p>当$\omega_{out}和\omega_{ref}$相差较大时，频率检测环先开始工作，将频率差减小到一定程度后，鉴相器开始工作，先检测频率差，再检测相位的不同，减小失锁的概率。</p>
-<p>PFD的状态转移图如下：</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1707815394229.png" alt="1707815394229.png"></p>
-<p>初始状态为保持状态，输入的参考信号$V_{ref}$和环路反馈信号$V_{div}$均无上升沿到来时，PFD没有动作，当$V_{ref}$上升沿到来时，鉴频鉴相器的UP端置高，等待$V_{div}$上升沿到来，若此时还是$V_{ref}$上升沿，则UP端始终置高，对后续电荷泵的动作是充电，即环路的反馈信号频率比参考信号低，当检测到$V_{div}$上升沿到来，则PFD的反馈回路将UP端和DN端复位置低电平，但是由于Delay模块的存在，因此会出现UP和DN同时为高电平的状态。</p>
-<p>同理，如果先检测到$V_{div}$的上升沿，则DN端置为高电平，使电荷泵放电，降低NCO的输出频率。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/project/2024/04/30/PFD%E9%89%B4%E9%A2%91%E9%89%B4%E7%9B%B8%E5%99%A8/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Matlab生成txt文件导入到Vivado仿真" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="Matlab处理数据并将其写入txt文件"><a href="#Matlab处理数据并将其写入txt文件" class="headerlink" title="Matlab处理数据并将其写入txt文件"></a>Matlab处理数据并将其写入txt文件</h1><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% Txt Generate</span></span><br><span class="line">pre_RS_data=dec2bin(simDataIn,<span class="number">8</span>);       <span class="comment">%将数据转化为8bit的二进制</span></span><br><span class="line">fid=fopen(<span class="string">&quot;F:\FPGA\Xilinx_vivado\project\dvbstestbench\dbvs\matlab\pre_RS_data.txt&quot;</span>,<span class="string">&quot;wt&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:n*nMessages         <span class="comment">%数据长度</span></span><br><span class="line">    fprintf(fid,<span class="string">&quot;%s\n&quot;</span>,pre_RS_data(<span class="built_in">i</span>,<span class="number">1</span>:<span class="number">8</span>));  <span class="comment">%由于二进制数据为8位，因此是1:8</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">fclose(fid);</span><br></pre></td></tr></table></figure>
-<p>使用fopen函数获取文件id，fopen的语法如下</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1714036628457.png" alt="1714036628457.png"></p>
-<p>其中permisson为文件访问类型，有以下几种权限</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th><code>&#39;r&#39;</code></th>
-<th>打开要读取的文件。</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&#39;w&#39;</code></td>
-<td>打开或创建要写入的新文件。放弃现有内容（如果有）。</td>
-</tr>
-<tr>
-<td><code>&#39;a&#39;</code></td>
-<td>打开或创建要写入的新文件。追加数据到文件末尾。</td>
-</tr>
-<tr>
-<td><code>&#39;r+&#39;</code></td>
-<td>打开要读写的文件。</td>
-</tr>
-<tr>
-<td><code>&#39;w+&#39;</code></td>
-<td>打开或创建要读写的新文件。放弃现有内容（如果有）。</td>
-</tr>
-<tr>
-<td><code>&#39;a+&#39;</code></td>
-<td>打开或创建要读写的新文件。追加数据到文件末尾。</td>
-</tr>
-<tr>
-<td><code>&#39;A&#39;</code></td>
-<td>打开文件以追加（但不自动刷新）当前输出缓冲区。</td>
-</tr>
-<tr>
-<td><code>&#39;W&#39;</code></td>
-<td>打开文件以写入（但不自动刷新）当前输出缓冲区。</td>
-</tr>
-</tbody>
-</table>
-</div>
-<blockquote>
-<p>💡 要以文本模式打开的话，要附加’t’</p>
-</blockquote>
-<h1 id="Vivado中testbench写法"><a href="#Vivado中testbench写法" class="headerlink" title="Vivado中testbench写法"></a>Vivado中testbench写法</h1><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">timescale</span> 1ns/1ps</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> top_tb();</span><br><span class="line"></span><br><span class="line"><span class="keyword">reg</span> clk;</span><br><span class="line"><span class="keyword">reg</span> rst_n;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>]SEQ_IN_0;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] data_mem[<span class="number">1</span>:<span class="number">1020</span>];</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>] i;</span><br><span class="line"><span class="keyword">wire</span> BIN_OUT;</span><br><span class="line"><span class="keyword">wire</span> ce_out;</span><br><span class="line"><span class="keyword">wire</span> locked;</span><br><span class="line"></span><br><span class="line"><span class="comment">//clk &amp; rst_n gen</span></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    clk=<span class="number">1&#x27;b0</span>;</span><br><span class="line">    rst_n=<span class="number">1&#x27;b0</span>;</span><br><span class="line">    #<span class="number">100</span></span><br><span class="line">    rst_n=<span class="number">1&#x27;b1</span>;  </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">always</span> #<span class="number">5</span> clk=~clk;</span><br><span class="line"></span><br><span class="line"><span class="comment">//data read</span></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    <span class="built_in">$readmemb</span>(<span class="string">&quot;F:/FPGA/Xilinx_vivado/project/dvbstestbench/dbvs/matlab/pre_RS_data.txt&quot;</span>,data_mem);</span><br><span class="line">  </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    i=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">forever</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(i&lt;<span class="number">1020</span>)  <span class="keyword">begin</span></span><br><span class="line">            i=i+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            i=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">$display</span>(<span class="string">&quot;%s&quot;</span>,data_mem[i]);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    SEQ_IN_0&lt;=data_mem[i];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">top_wrapper top_wrapper_u0(</span><br><span class="line">    <span class="variable">.clk_0</span>    (clk),</span><br><span class="line">    <span class="variable">.rst_n_0</span>  (rst_n),</span><br><span class="line">    <span class="variable">.SEQ_IN_0</span>(SEQ_IN_0),</span><br><span class="line">    <span class="variable">.BIN_OUT_0</span>  (BIN_OUT),</span><br><span class="line">    <span class="variable">.ce_out_0</span>   (ce_out),</span><br><span class="line">    <span class="variable">.locked_0</span>   (locked)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>💡 直接在文件夹内部复制的文件路径是\，但是testbench中要将所有反斜杠改为/，否则无法读取txt文件</p>
-</blockquote>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/project/2024/04/30/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-IP-ROM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="ROM"><a href="#ROM" class="headerlink" title="ROM"></a>ROM</h2><p>read only memory ## .coe文件生成</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% sin-cos wave data write in coe fileclear all ;clc ;N = 4096 ;y = zeros(N , 1) ;for i = 1:1:N</span></span><br><span class="line">    x = <span class="built_in">i</span> ;    y(<span class="built_in">i</span>,<span class="number">1</span>) = <span class="built_in">ceil</span>( <span class="number">127</span>*<span class="built_in">sin</span>(x*<span class="number">2</span>*<span class="built_in">pi</span>/N) ) + <span class="number">127</span> ;    <span class="comment">%y(i,1) = ceil( 127*cos(x*2*pi/N) ) + 127 ;end</span></span><br><span class="line"><span class="built_in">plot</span>(y);<span class="built_in">hold</span> on;fid = fopen(<span class="string">&#x27;cos_4096.coe&#x27;</span>,<span class="string">&#x27;wt&#x27;</span>);</span><br><span class="line"><span class="comment">%- standard formatfprintf( fid, &#x27;MEMORY_INITIALIZATION_RADIX = 10;\n&#x27;);</span></span><br><span class="line">fprintf( fid, <span class="string">&#x27;MEMORY_INITIALIZATION_VECTOR =\n&#x27;</span>);<span class="comment">%- write data in coe filefor i = 1:1:N    fprintf(fid,&#x27;%d,\n&#x27;,y(i,1));</span></span><br><span class="line">endfclose(fid);</span><br></pre></td></tr></table></figure>
-<p>摘取自<a href="%5B【FPGA】：matlab生成coe文件-CSDN博客%5D(https://blog.csdn.net/weixin_43778388/article/details/123605838?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522170653318416800215045743%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=170653318416800215045743&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-2-123605838-null-null.142%5Ev99%5Epc_search_result_base3&amp;utm_term=coe%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90&amp;spm=1018.2226.3001.4187">#【FPGA】：matlab生成coe文件</a>)</p>
-<h2 id="Block-Memory-Generator参数"><a href="#Block-Memory-Generator参数" class="headerlink" title="Block Memory Generator参数"></a>Block Memory Generator参数</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401301745407.png" alt="202401301745407.png"></p>
-<h2 id="产生地址信号"><a href="#产生地址信号" class="headerlink" title="产生地址信号"></a>产生地址信号</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> ADDR_Gen(</span><br><span class="line">    clk,</span><br><span class="line">    rst_n,</span><br><span class="line">    addr,</span><br><span class="line">    ena</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">input</span> clk;</span><br><span class="line">    <span class="keyword">input</span> rst_n;</span><br><span class="line">    <span class="keyword">output</span> [<span class="number">11</span>:<span class="number">0</span>] addr;</span><br><span class="line">    <span class="keyword">output</span> ena;</span><br><span class="line">    <span class="keyword">reg</span> [<span class="number">11</span>:<span class="number">0</span>] addr;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">assign</span> ena=<span class="number">1&#x27;b1</span>;</span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n ) <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(rst_n==<span class="number">1&#x27;b0</span>)</span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            addr&lt;=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(addr==<span class="number">12&#x27;b1111_1111_1111</span>)<span class="keyword">begin</span></span><br><span class="line">            addr&lt;=<span class="number">12&#x27;b000_000_000_000</span>;</span><br><span class="line">        <span class="keyword">end</span>  </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">            addr&lt;=addr+<span class="number">1&#x27;b1</span>;</span><br><span class="line">        <span class="keyword">end</span>  </span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<h2 id="BD图"><a href="#BD图" class="headerlink" title="BD图"></a>BD图</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401301111659.png" alt="202401301111659.png"></p>
-<h2 id="读取数据波形"><a href="#读取数据波形" class="headerlink" title="读取数据波形"></a>读取数据波形</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401301111205.png" alt="202401301111205.png"></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/project/2024/04/30/IP-ROM/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-IP-RAM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/project/2024/04/30/IP-RAM/" target="_blank">IP-RAM</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/project/2024/04/30/IP-RAM/" class="archive-article-date">
+        <time datetime="2024-04-30T13:16:10.445Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/ea89f317-1c71-4999-94a4-baa4d828a15c/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240206%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240206T060646Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=db8f74f90a39755a744c751772c61de5b75913dc85315c5eaae330ea0db2e5f8&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject" alt="Untitled.png"></p>
-<p>Vivado软件自带的Block Memory Genrator IP核可以用来配置生成RAM和ROM，生成的RAM和ROM使用的都是FPGA内部的BRAM资源</p>
-<h2 id="Vivado-IP核配置"><a href="#Vivado-IP核配置" class="headerlink" title="Vivado IP核配置"></a>Vivado IP核配置</h2><p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/7f206b8c-157e-42e0-a023-a22555c5308c/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240206%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240206T060646Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=00699ba12aec69d9b3d1ed62aa7de2339c3ce5a7c59df75ab259307848b571a4&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject" alt="Untitled.png"></p>
-<ol>
+    <p>Vivado软件自带的Block Memory Genrator IP核可以用来配置生成RAM和ROM，生成的RAM和ROM使用的都是FPGA内部的BRAM资源</p>
+<h2 id="Vivado-IP核配置"><a href="#Vivado-IP核配置" class="headerlink" title="Vivado IP核配置"></a>Vivado IP核配置</h2><ol>
 <li>读数据位宽要与写数据位宽成整数倍关系</li>
 <li>Port A Optional Register：用于为RAM的输出端添加寄存器，提高BRAM的运行频率和改善时序，每勾选一个寄存器，输出会延迟一拍</li>
 </ol>
@@ -731,6 +261,21 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FPGA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
@@ -1085,9 +630,454 @@ image-20231209211850906
 
 
   
+    <article id="post-DVB-S学习记录之基本结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="DVB-S发送端基本结构"><a href="#DVB-S发送端基本结构" class="headerlink" title="DVB-S发送端基本结构"></a>DVB-S发送端基本结构</h2><h2 id="接收"><a href="#接收" class="headerlink" title="接收"></a>接收</h2>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/project/2024/04/30/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-DVB-S系统仿真学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>DVB-S系统用于卫星电视信号传输，发送端框图如下所示</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png" alt="1711536126647.png"></p>
+<h1 id="扰码"><a href="#扰码" class="headerlink" title="扰码"></a>扰码</h1><p>实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理</p>
+<p>DVB-S标准中规定扰码的生成多项式为</p>
+<script type="math/tex; mode=display">
+p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0101_0000_000”</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536797434.png" alt="1711536797434.png"></p>
+<h2 id="Matlab代码仿真"><a href="#Matlab代码仿真" class="headerlink" title="Matlab代码仿真"></a>Matlab代码仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">n=<span class="number">500</span>;</span><br><span class="line"><span class="comment">% origin_data=randi([0 1],n,1);</span></span><br><span class="line">origin_cnt_1=nnz(origin_data==<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">scrambling = comm.Scrambler(<span class="string">&quot;CalculationBase&quot;</span>,<span class="number">2</span>,<span class="string">&quot;InitialConditions&quot;</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>], ...</span><br><span class="line">    <span class="string">&quot;Polynomial&quot;</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>]);</span><br><span class="line">scrambling_data=step(scrambling,origin_data);</span><br><span class="line">scrambling_data_cnt_1=nnz(scrambling_data==<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>运行结果如下图所示</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536855542.png" alt="1711536855542.png"></p>
+<p>可以看出初始的500点长度的数据包中有403个“1”，经过扰码处理后“1”的个数接近数据总量的一半</p>
+<h1 id="外码纠错编码（RS编码）"><a href="#外码纠错编码（RS编码）" class="headerlink" title="外码纠错编码（RS编码）"></a>外码纠错编码（RS编码）</h1><p>RS码定义：</p>
+<p>$GF(q)上（q \neq 2, 通常q=2^m），码长n=q-1的本原BCH码$</p>
+<p>能纠正 t 个错误的RS码的参数为</p>
+<pre><code>- 分组长度n=q-1
+- 校验符号数n-k=2t
+- 码的最小距离dmin=2t+1
+</code></pre><p>DVB-S系统中使用的RS(188，204)是由RS(239,255)截断而来的，可以纠正8个字节的错误</p>
+<h2 id="Matlab仿真"><a href="#Matlab仿真" class="headerlink" title="Matlab仿真"></a>Matlab仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">m=<span class="number">8</span>; <span class="comment">%bit per symbol</span></span><br><span class="line">n=<span class="number">204</span>;</span><br><span class="line">k=<span class="number">188</span>;</span><br><span class="line"></span><br><span class="line">data_test=randi([<span class="number">0</span>,n],<span class="number">1</span>,k);</span><br><span class="line">data_gf=gf(data_test,m);</span><br><span class="line"></span><br><span class="line">data_rs_enc=rsenc(data_gf,n,k);</span><br><span class="line">data_enc=data_rs_enc.x;</span><br><span class="line"></span><br><span class="line">data_rs_dec=rsdec(data_rs_enc,n,k);</span><br><span class="line">data_dec=data_rs_dec.x;</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">stem(data_test);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">stem(data_enc);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">stem(data_dec);</span><br></pre></td></tr></table></figure>
+<p>首先生成一个长度为188的序列，将其转换到伽罗华域后，使用rsenc函数进行RS编码，再进行译码，根据对比可以看出译码后的比特和译码前的完全一样</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711538853533.png" alt="1711538853533.png"></p>
+<h1 id="卷积交织"><a href="#卷积交织" class="headerlink" title="卷积交织"></a>卷积交织</h1><p>在实际的传输过程中，由于脉冲干扰、多径效应等因素会带来持续一定时间的突发错误，虽然RS码对突发错误有较好的纠错能力，但是当其持续时间较长时，就会超出RS码的纠错能力，因此在编码过程中引入了卷积交织，将数据的传输顺序按照一定的规律分散开，就可以使得错误的码元也被分散开</p>
+<p>DVB-S中交织深度为12，总共17个FIFO，数据按行写入寄存器，按列读出</p>
+<p>交织后最大可纠错长度为12*8=96</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711539867512.png" alt="1711539867512.png"></p>
+<p>可以看出前一段时间读取到了很多0，说明下面的移位寄存器中的数据还没有移动到末端</p>
+<h1 id="卷积编码"><a href="#卷积编码" class="headerlink" title="卷积编码"></a>卷积编码</h1><p>卷积码是一种有效的前向纠错码记作$(n,k,m)$，将k个信息比特编为n个比特，m为编码存储长度，N=m+1为约束长度，即卷积码的当前码元不仅与当前输入的k的信息码元有关，还与前面m个时刻输入的信息码元有关</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">clc;</span><br><span class="line">close all;</span><br><span class="line">n=<span class="number">500</span>;</span><br><span class="line">tre1=[<span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]; <span class="comment">%oct 171</span></span><br><span class="line">tre2=[<span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>]; <span class="comment">%oct 133</span></span><br><span class="line"></span><br><span class="line">trellis = poly2trellis(<span class="number">7</span>,[<span class="number">171</span> <span class="number">133</span>]);</span><br><span class="line"></span><br><span class="line">convData=convenc(scrambling_data,trellis);</span><br><span class="line"></span><br><span class="line">decData=vitdec(convData,trellis,<span class="number">499</span>,<span class="string">&quot;trunc&quot;</span>,<span class="string">&quot;hard&quot;</span>);</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">stem(scrambling_data);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">stem(convData);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">stem(decData);</span><br><span class="line">biterr(scrambling_data,decData)</span><br></pre></td></tr></table></figure>
+<p>使用poly2trellis将卷积编码多项式转换为网格描述</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711541868504.png" alt="1711541868504.png"></p>
+<p>比对后可以看到解码出的数据和原数据完全相同</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/project/2024/04/30/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Cyclone-III-内部资源" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="CycloneIII内部资源概述"><a href="#CycloneIII内部资源概述" class="headerlink" title="CycloneIII内部资源概述"></a>CycloneIII内部资源概述</h1><p>[toc]</p>
+<p>本人使用的Altera<br>DE0使用的主控芯片为EP3C16F484C6，由上图可知包含15408个逻辑单元，56个M9K，56个18×18乘法器，4个PLL等资源。</p>
+<p><img src="https://z1.ax1x.com/2023/11/17/pitfC2n.png" alt="pitfC2n.png"></p>
+<h2 id="Logic"><a href="#Logic" class="headerlink" title="Logic"></a>Logic</h2><p>Elements and Logic Array Blocks（逻辑元件和逻辑阵列块）</p>
+<h3 id="LE"><a href="#LE" class="headerlink" title="LE"></a>LE</h3><p>LE是FPGA中最小的逻辑单元，可以提供高效逻辑使用的高级功能。LE的结构如下图所示：</p>
+<p><img src="https://z1.ax1x.com/2023/11/17/pitho6I.png" alt="pitho6I.png"></p>
+<ul>
+<li>LUT：用于完成用户需要的逻辑功能，Cyclone<br>III的查找表是4输入1输出，可以完成任何4输入1输出的组合逻辑</li>
+<li>Programmable<br>Register：可以配置成D触发器、T触发器、JK触发器等，每个寄存器包含4个输入信号，数据信号、时钟信号、时钟使能、复位信号。</li>
+</ul>
+<p>LE有两种工作模式： - Normal mode：适合于一般的逻辑运算 - Arithmetic<br>mode：适用于实现加法器、计数器、累加器、比较器等</p>
+<h3 id="LAB"><a href="#LAB" class="headerlink" title="LAB"></a>LAB</h3><p>每个LAB都由以下元素组成： 1. 16个LE 2. LAB控制信号 3. LE转移链 4.<br>寄存器链 5. 本地互联</p>
+<p>本地互联用于在同一LAB内的LE之间传递信号；寄存器链用于将一个LE的输出传递到相邻的LE中。<br>LAB结构如图所示：</p>
+<p><img src="https://z1.ax1x.com/2023/11/17/pit4Ruq.png" alt="pit4Ruq.png"></p>
+<h3 id="LAB-Interconnects"><a href="#LAB-Interconnects" class="headerlink" title="LAB Interconnects"></a>LAB Interconnects</h3><p>LAB本地互连由同一LAB中的列和行互连和LE输出驱动。相邻的LAB、锁相环、M9K<br>RAM块和从左到右的嵌入式乘法器也可以通过直接链路连接驱动LAB的本地互连。直接链接连接功能最大限度地减少了行和列互连的使用，提供更高的性能和灵活性。每个LE可以通过快速本地和直接链路互连驱动多达48个LE。<br>直接连接如下图所示：</p>
+<p><img src="https://z1.ax1x.com/2023/11/17/pit5Za8.png" alt="pit5Za8.png"></p>
+<h2 id="Memory-Blocks（内存块）"><a href="#Memory-Blocks（内存块）" class="headerlink" title="Memory Blocks（内存块）"></a>Memory Blocks（内存块）</h2><p>嵌入式内存结构由M9K内存块组成，可以配置内存块以提供各种内存功能，例如RAM，移位寄存器，ROM和FIFO等。</p>
+<p><img src="https://z1.ax1x.com/2023/11/17/pit50MR.png" alt="pit50MR.png"></p>
+<blockquote>
+<p>M9K的内存单位是9k ==bit==，并不是9k<br>==byte==，并且9k中有1k的空间用于校验等功能，实际可用空间为8kbit</p>
+</blockquote>
+<h3 id="Memory-mode"><a href="#Memory-mode" class="headerlink" title="Memory mode"></a>Memory mode</h3><p>M9K内存块不支持异步内存输入</p>
+<p><img src="https://z1.ax1x.com/2023/11/17/pitI9oT.png" alt="pitI9oT.png"></p>
+<h3 id="Clocking-mode"><a href="#Clocking-mode" class="headerlink" title="Clocking mode"></a>Clocking mode</h3><p>当使用Read or<br>Write模式，如果对同一个地址进行读写操作，则输出的读数据是未知的。如果要使输出的数据是一个确定的信号，则需要使用single-clock模式或者IO-clock模式并且在<br>MegaWizard Plug-In Manager中选择合适的读写操作。</p>
+<blockquote>
+<p>读写时违反内存块输入寄存器的建立和保持时间可能会导致内存内容的损坏<br>异步清零只在读地址寄存器、输出寄存器和输出锁存器上可用</p>
+</blockquote>
+<p><img src="https://z1.ax1x.com/2023/11/17/pitIcmq.png" alt="pitIcmq.png"></p>
+<p>Memory mode 和 Clocking mode的关系如下图所示：</p>
+<p><img src="https://z1.ax1x.com/2023/11/17/pito84U.png" alt="pito84U.png"></p>
+<h2 id="Embedded"><a href="#Embedded" class="headerlink" title="Embedded"></a>Embedded</h2><p>Multipliers and Digital Signal Processing<br>Support（嵌入式乘法器和数字信号处理支持）</p>
+<h3 id="乘法器结构"><a href="#乘法器结构" class="headerlink" title="乘法器结构"></a>乘法器结构</h3><p><img src="https://z1.ax1x.com/2023/11/18/piN8jIg.png" alt="piN8jIg.png"></p>
+<ul>
+<li>输入的数据既可以先发送到输入寄存器也可以直接输入到乘法器，两个输入信号相互独立，例如：A信号可以通过寄存器将输入发送到乘法器，同时B信号可以直接发送到乘法器。</li>
+<li>根据乘法器的位宽和操作模式，单个乘法器可以并行的执行一次或两次乘法运算。</li>
+<li>两个输入信号如果都是无符号数，则输出数据也是无符号数；其中任何一个是有符号数的话，输出结果就是有符号数。</li>
+</ul>
+<h2 id="Clock-Networks-and"><a href="#Clock-Networks-and" class="headerlink" title="Clock Networks and"></a>Clock Networks and</h2><p>PLLs（时钟网络和锁相环）</p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311211035848.png" alt="202311211035848.png"></p>
+<p>image-20231121103548768</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/project/2024/04/30/Cyclone-III-%E5%86%85%E9%83%A8%E8%B5%84%E6%BA%90/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-AXI-STREAM简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/project/2024/04/30/AXI-STREAM%E7%AE%80%E4%BB%8B/" target="_blank">AXI-STREAM简介</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/project/2024/04/30/AXI-STREAM%E7%AE%80%E4%BB%8B/" class="archive-article-date">
+        <time datetime="2024-04-30T13:16:10.434Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="AXI-STREAM简介"><a href="#AXI-STREAM简介" class="headerlink" title="AXI-STREAM简介"></a>AXI-STREAM简介</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>AXI-Stream总线是一种高效、简单的数据传输协议，主要用于高吞吐量的数据流传输场景。相比于传统的AXI总线，AXI-Stream总线更加简单和轻量级，它通过无需地址的方式，将数据从一个模块传输到另一个模块，适用于需要高速数据传输的应用场景。</p>
+<h3 id="部分术语"><a href="#部分术语" class="headerlink" title="部分术语"></a>部分术语</h3><ul>
+<li>Transfer：基于<strong>TVALID</strong>和<strong>TREADY</strong>握手协议的传输</li>
+<li>Packet：一组通过axi-stream传输的数据</li>
+<li>Frame：最大的Byte组合，包含整数个Packet</li>
+</ul>
+<h3 id="接口信号"><a href="#接口信号" class="headerlink" title="接口信号"></a>接口信号</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACLK</td>
+<td>全局时钟信号，上升沿有效</td>
+</tr>
+<tr>
+<td>ARSTn</td>
+<td>全局复位信号，低电平有效</td>
+</tr>
+<tr>
+<td>TVALID</td>
+<td>主机驱动有效数据</td>
+</tr>
+<tr>
+<td>TREADY</td>
+<td>从机可以接收数据</td>
+</tr>
+<tr>
+<td>TDATA[(8n-1):0]</td>
+<td>位宽为整数倍byte</td>
+</tr>
+<tr>
+<td>TLAST</td>
+<td>表示数据包的边界</td>
+</tr>
+<tr>
+<td>TID</td>
+<td>由主机发出，Identity标识符，在存在多个stream数据传输时起作用，用于识别不同的数据流</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://s11.ax1x.com/2023/12/22/pi7uxYV.png" alt="pi7uxYV.png"></p>
+<p>当clk上升沿检测到TVALID和TREADY均为高电平时开始传输数据</p>
+<p>由于AXI-STREAM不需要传输地址，仅进行简单的发送和接收，因此减小了传播时延</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FPGA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/project/2024/04/30/AXI-STREAM%E7%AE%80%E4%BB%8B/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-8bit数据转1bit逐位输出电路仿真" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/project/2024/04/30/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" target="_blank">8bit数据转1bit逐位输出电路仿真</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/project/2024/04/30/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" class="archive-article-date">
+        <time datetime="2024-04-30T13:16:10.421Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>在DVB-S系统中，TS流在经过RS编码后，会变成uint8类型的数据，在后续QPSK星座映射时又需要二进制码流，因此在进行了RS编码后要将8个bit的数据转化成1个bit逐位输出</p>
+<script type="math/tex; mode=display">1_a</script><h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>首先使用BitwiseOperator模块按位与操作，分别将8位二进制数据提取出来，然后使用一个计数器产生0~7的计数信号作为mux模块的使能，在8个时钟周期内分别输出提取出来的8位数据</p>
+<h2 id="结构框图"><a href="#结构框图" class="headerlink" title="结构框图"></a>结构框图</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1713153777444.png" alt="1713153777444.png"></p>
+<h2 id="仿真结果"><a href="#仿真结果" class="headerlink" title="仿真结果"></a>仿真结果</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1713153816902.png" alt="1713153816902.png"></p>
+<p>输入的数据是133，二进制为10000101，可以看到输出的结果符合需求</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FPGA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/project/2024/04/30/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/project/page/2/">&laquo; Prev</a><a class="page-number" href="/project/">1</a><a class="page-number" href="/project/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/project/page/4/">4</a><a class="extend next" rel="next" href="/project/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/project/page/2/">&laquo; Prev</a><a class="page-number" href="/project/">1</a><a class="page-number" href="/project/page/2/">2</a><span class="page-number current">3</span>
     </nav>
   
 
@@ -1243,7 +1233,19 @@ image-20231209211850906
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数字通信</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Vivado</a>
               </li>
             
             <div class="clearfix"></div>
