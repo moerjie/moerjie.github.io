@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://moerjie.github.io/project">
-  <title>Sawen_Blog</title>
+  <title>符号同步 | Sawen_Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="description" content="符号同步通信过程中，在接收机中，信号经过AD采样后，经过处理后，最后需要通过抽样器抽样判决还原出原始的信号，抽样器工作的时钟被称为符号时钟，接收器提取符号时钟的方法称为符号同步或者定时恢复。常用的符号同步方法有三种，传统模拟方法，模数混合方法，全数字方法。其中模拟方法和模数混合方法有多种缺点：  同步的性能受环路滤波器的影响非常大，且理论分析非常困难 采用高阶调制时，锁相环的设计非常困难 锁相环会">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sawen_Blog">
+<meta property="og:title" content="符号同步">
 <meta property="og:url" content="https://moerjie.github.io/project/2024/04/30/%E7%AC%A6%E5%8F%B7%E5%90%8C%E6%AD%A5/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="符号同步通信过程中，在接收机中，信号经过AD采样后，经过处理后，最后需要通过抽样器抽样判决还原出原始的信号，抽样器工作的时钟被称为符号时钟，接收器提取符号时钟的方法称为符号同步或者定时恢复。常用的符号同步方法有三种，传统模拟方法，模数混合方法，全数字方法。其中模拟方法和模数混合方法有多种缺点：  同步的性能受环路滤波器的影响非常大，且理论分析非常困难 采用高阶调制时，锁相环的设计非常困难 锁相环会">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/Untitled.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202402011921008.png">
 <meta property="article:published_time" content="2024-04-30T13:16:10.465Z">
-<meta property="article:modified_time" content="2024-02-05T08:12:10.525Z">
+<meta property="article:modified_time" content="2024-05-01T06:06:15.758Z">
 <meta property="article:author" content="Moerjie">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/Untitled.png">
@@ -214,6 +214,54 @@
             <article id="post-符号同步" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+  
+  
+    <h1 class="article-title" itemprop="name">
+      符号同步
+    </h1>
+  
+
+
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/project/2024/04/30/%E7%AC%A6%E5%8F%B7%E5%90%8C%E6%AD%A5/" class="archive-article-date">
+        <time datetime="2024-04-30T13:16:10.465Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.4k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">5分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
   <div class="article-entry" itemprop="articleBody">
     
     <h1 id="符号同步"><a href="#符号同步" class="headerlink" title="符号同步"></a>符号同步</h1><p>通信过程中，在接收机中，信号经过AD采样后，经过处理后，最后需要通过抽样器抽样判决还原出原始的信号，抽样器工作的时钟被称为符号时钟，接收器提取符号时钟的方法称为符号同步或者定时恢复。<br>常用的符号同步方法有三种，传统模拟方法，模数混合方法，全数字方法。<br>其中模拟方法和模数混合方法有多种缺点：</p>
@@ -309,7 +357,7 @@ y(n)=y(n-1)+c_1[x(n)-x(n-1)]+c_2x(n)</script><p>其中 $c_1=\frac{2\omega_n}{K},
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://moerjie.github.io/project/project/2024/04/30/符号同步/" title="" target="_blank">https://moerjie.github.io/project/project/2024/04/30/符号同步/</a>
+          <a href="https://moerjie.github.io/project/project/2024/04/30/符号同步/" title="符号同步" target="_blank">https://moerjie.github.io/project/project/2024/04/30/符号同步/</a>
         </li>
         
         <li>
@@ -391,7 +439,7 @@ y(n)=y(n-1)+c_1[x(n)-x(n-1)]+c_2x(n)</script><p>其中 $c_1=\frac{2\omega_n}{K},
 
 <nav id="article-nav">
   
-    <a href="/project/2024/04/30/%E5%85%AC%E5%91%8A/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/project/2024/04/30/%E5%9D%87%E8%A1%A1/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -402,7 +450,7 @@ y(n)=y(n-1)+c_1[x(n)-x(n-1)]+c_2x(n)</script><p>其中 $c_1=\frac{2\omega_n}{K},
   
   
     <a href="/project/2024/04/30/%E5%B8%A6%E9%80%9A%E9%87%87%E6%A0%B7%E5%AE%9A%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+      <div class="article-nav-title">带通采样定理</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -586,6 +634,10 @@ y(n)=y(n-1)+c_1[x(n)-x(n-1)]+c_2x(n)</script><p>其中 $c_1=\frac{2\omega_n}{K},
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FPGA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数字通信</a>
               </li>
             
             <div class="clearfix"></div>
