@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://moerjie.github.io">
-  <title>AXI-STREAM简介 | Sawen_Blog</title>
+  <title>DVB-S学习记录之信道编码 | Sawen_Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="description" content="经过信源编码和系统复接后生成的节目传送码流，通常需要通过某种传输媒介才能到达用户接收机。通常情况下，编码码流并不能直接通过信道传输，必须经过信道编码后，使其变成适合在信道中传输的形式后再进行传输。 DVB-S的信道编码主要包括  扰码 R-S编码 卷积交织 卷积编码  扰码数字通信理论在设计通信系统时都是假设传输比特流中 0 和 1的出现概率是等概的，实际中的通信系统的设计指标等首先也是以该假设为">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AXI-STREAM简介">
+<meta property="og:title" content="DVB-S学习记录之信道编码">
 <meta property="og:url" content="https://moerjie.github.io/88cc0ce039c6/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="经过信源编码和系统复接后生成的节目传送码流，通常需要通过某种传输媒介才能到达用户接收机。通常情况下，编码码流并不能直接通过信道传输，必须经过信道编码后，使其变成适合在信道中传输的形式后再进行传输。 DVB-S的信道编码主要包括  扰码 R-S编码 卷积交织 卷积编码  扰码数字通信理论在设计通信系统时都是假设传输比特流中 0 和 1的出现概率是等概的，实际中的通信系统的设计指标等首先也是以该假设为">
@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312101121667.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312101127496.png">
 <meta property="article:published_time" content="2024-04-30T13:16:10.440Z">
-<meta property="article:modified_time" content="2024-05-02T13:42:46.574Z">
+<meta property="article:modified_time" content="2024-05-03T13:13:01.188Z">
 <meta property="article:author" content="Moerjie">
 <meta property="article:tag" content="数字通信">
 <meta name="twitter:card" content="summary">
@@ -82,7 +82,7 @@
 			
 				<li><a href="/tags/FPGA" >FPGA</a></li>
 			
-				<li><a href="/archives/" >archives</a></li>
+				<li><a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1" >数字通信</a></li>
 			
 			</ul>
 		</nav>
@@ -109,68 +109,6 @@
 
     </div>
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
-      
-      
-      <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em;" 
-        href="https://github.com/JoeyBling/hexo-theme-yilia-plus" target="_blank">
-        <img src="/img/forkme.png"
-          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
-      
-      
-<nav id="mobile-nav">
-  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
-	<div class="btnctn js-mobile-btnctn">
-  		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
-	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-				<a href="/">
-					<img src="/img/logo.png_256x256.ico" class="js-avatar">
-				</a>
-			</div>
-			<hgroup>
-			  <h1 class="header-author js-header-author">Moerjie</h1>
-			</hgroup>
-			
-			
-			
-				
-			
-				
-			
-				
-			
-			
-			
-			<nav class="header-nav">
-				<div class="social">
-					
-						
-						<a class="github" target="_blank" 
-							href="https://github.com/moerjie" title="GitHub"><i class="icon-github"></i></a>
-						
-					
-				</div>
-			</nav>
-
-			<nav class="header-menu js-header-menu">
-				<ul style="width: 70%">
-				
-				
-					<li style="width: 33.333333333333336%"><a href="/archives/">主页</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a href="/tags/FPGA">FPGA</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a href="/archives/">archives</a></li>
-		        
-				</ul>
-			</nav>
-		</header>				
-	</div>
-	<div class="mobile-mask" style="display:none" q-show="isShow"></div>
-</nav>
-
       <div id="wrapper" class="body-wrap">
         <div class="menu-l">
           <div class="canvas-wrap">
@@ -185,7 +123,7 @@
   
   
     <h1 class="article-title" itemprop="name">
-      AXI-STREAM简介
+      DVB-S学习记录之信道编码
     </h1>
   
 
@@ -429,7 +367,7 @@ image-20231209211850906
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://moerjie.github.io/88cc0ce039c6/" title="AXI-STREAM简介" target="_blank">https://moerjie.github.io/88cc0ce039c6/</a>
+          <a href="https://moerjie.github.io/88cc0ce039c6/" title="DVB-S学习记录之信道编码" target="_blank">https://moerjie.github.io/88cc0ce039c6/</a>
         </li>
         
         <li>
