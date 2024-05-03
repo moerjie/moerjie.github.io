@@ -6,35 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://moerjie.github.io">
-  <title>QPSK simulink实现 | Sawen_Blog</title>
+  <title>2022 TI F | Sawen_Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="调制部分总体框架 各模块参数升余弦滚降滤波器滚降系数为 1  单双极性变换  各阶段波形Buffer Demux Raised Cosine TransmitFilter  QPSK 信号功率谱密度 解调部分经过 AWGN 信道后，假设已经进行了载波同步  部分模块参数载波模块 Pulse Generator 由于经过了串并转换，因此数据率减半 部分波形 将初始信号经过一定时间的延时后，在示波器中">
-<meta property="og:type" content="article">
-<meta property="og:title" content="QPSK simulink实现">
-<meta property="og:url" content="https://moerjie.github.io/04c0d9947ef7/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="2022 TI F">
+<meta property="og:url" content="https://moerjie.github.io/bec74116d1c6/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="调制部分总体框架 各模块参数升余弦滚降滤波器滚降系数为 1  单双极性变换  各阶段波形Buffer Demux Raised Cosine TransmitFilter  QPSK 信号功率谱密度 解调部分经过 AWGN 信道后，假设已经进行了载波同步  部分模块参数载波模块 Pulse Generator 由于经过了串并转换，因此数据率减半 部分波形 将初始信号经过一定时间的延时后，在示波器中">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212057092.png#id=LJGlx&amp;originHeight=501&amp;originWidth=1636&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401211628053.png#height=385&amp;id=bhKfw&amp;originHeight=599&amp;originWidth=778&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=&amp;width=500">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401211629886.png#height=312&amp;id=zaVYy&amp;originHeight=357&amp;originWidth=572&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=&amp;width=500">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212121669.png#id=OcUth&amp;originHeight=683&amp;originWidth=830&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212121971.png#id=nYMmd&amp;originHeight=628&amp;originWidth=702&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212127899.png#id=oRiV8&amp;originHeight=628&amp;originWidth=702&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212131255.png#id=zvEIe&amp;originHeight=664&amp;originWidth=1002&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212140586.png#id=mIoHF&amp;originHeight=433&amp;originWidth=1257&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212141258.png#height=630&amp;id=fwivS&amp;originHeight=759&amp;originWidth=572&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=&amp;width=475">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212142578.png#height=643&amp;id=jBQqM&amp;originHeight=736&amp;originWidth=572&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=&amp;width=500">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212150099.png#id=wGg2F&amp;originHeight=1021&amp;originWidth=1920&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212152756.png#id=q8Kha&amp;originHeight=1021&amp;originWidth=1920&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=">
-<meta property="article:published_time" content="2024-04-30T13:16:10.452Z">
-<meta property="article:modified_time" content="2024-05-01T06:18:31.667Z">
+<meta property="article:published_time" content="2024-05-03T13:32:42.000Z">
+<meta property="article:modified_time" content="2024-05-03T13:32:42.000Z">
 <meta property="article:author" content="Moerjie">
-<meta property="article:tag" content="数字通信">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212057092.png#id=LJGlx&amp;originHeight=501&amp;originWidth=1636&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=">
   
     <link rel="alternative" href="/atom.xml" title="Sawen_Blog" type="application/atom+xml">
   
@@ -122,14 +106,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-QPSK simulink实现" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2022-TI-F" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      QPSK simulink实现
+      2022 TI F
     </h1>
   
 
@@ -141,8 +125,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/04c0d9947ef7/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.452Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
+<a href="/bec74116d1c6/" class="archive-article-date">
+        <time datetime="2024-05-03T13:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-03</time>
 </a>
 
   
@@ -155,7 +139,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">149字</span>
+      <span class="post-count">0字</span>
     </span>
   </span>
 
@@ -175,25 +159,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="调制部分"><a href="#调制部分" class="headerlink" title="调制部分"></a>调制部分</h2><h3 id="总体框架"><a href="#总体框架" class="headerlink" title="总体框架"></a>总体框架</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212057092.png#id=LJGlx&amp;originHeight=501&amp;originWidth=1636&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-<h3 id="各模块参数"><a href="#各模块参数" class="headerlink" title="各模块参数"></a>各模块参数</h3><p>升余弦滚降滤波器滚降系数为 1</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401211628053.png#height=385&amp;id=bhKfw&amp;originHeight=599&amp;originWidth=778&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=&amp;width=500" alt="image"></p>
-<p>单双极性变换</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401211629886.png#height=312&amp;id=zaVYy&amp;originHeight=357&amp;originWidth=572&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=&amp;width=500" alt="image"></p>
-<h3 id="各阶段波形"><a href="#各阶段波形" class="headerlink" title="各阶段波形"></a>各阶段波形</h3><h3 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212121669.png#id=OcUth&amp;originHeight=683&amp;originWidth=830&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-<h3 id="Demux"><a href="#Demux" class="headerlink" title="Demux"></a>Demux</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212121971.png#id=nYMmd&amp;originHeight=628&amp;originWidth=702&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-<h3 id="Raised-Cosine-Transmit"><a href="#Raised-Cosine-Transmit" class="headerlink" title="Raised Cosine Transmit"></a>Raised Cosine Transmit</h3><p>Filter</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212127899.png#id=oRiV8&amp;originHeight=628&amp;originWidth=702&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-<h3 id="QPSK-信号功率谱密度"><a href="#QPSK-信号功率谱密度" class="headerlink" title="QPSK 信号功率谱密度"></a>QPSK 信号功率谱密度</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212131255.png#id=zvEIe&amp;originHeight=664&amp;originWidth=1002&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-<h2 id="解调部分"><a href="#解调部分" class="headerlink" title="解调部分"></a>解调部分</h2><p>经过 AWGN 信道后，假设已经进行了载波同步</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212140586.png#id=mIoHF&amp;originHeight=433&amp;originWidth=1257&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-<h3 id="部分模块参数"><a href="#部分模块参数" class="headerlink" title="部分模块参数"></a>部分模块参数</h3><h3 id="载波模块"><a href="#载波模块" class="headerlink" title="载波模块"></a>载波模块</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212141258.png#height=630&amp;id=fwivS&amp;originHeight=759&amp;originWidth=572&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=&amp;width=475" alt="image"></p>
-<h3 id="Pulse-Generator"><a href="#Pulse-Generator" class="headerlink" title="Pulse Generator"></a>Pulse Generator</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212142578.png#height=643&amp;id=jBQqM&amp;originHeight=736&amp;originWidth=572&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=&amp;width=500" alt="image"></p>
-<p>由于经过了串并转换，因此数据率减半</p>
-<h3 id="部分波形"><a href="#部分波形" class="headerlink" title="部分波形"></a>部分波形</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212150099.png#id=wGg2F&amp;originHeight=1021&amp;originWidth=1920&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-<p>将初始信号经过一定时间的延时后，在示波器中和解调输出的信号基本对齐，可以发现基本实现<br>QPSK 调制解调</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212152756.png#id=q8Kha&amp;originHeight=1021&amp;originWidth=1920&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="image"></p>
-
+    
     
 
     
@@ -207,7 +173,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://moerjie.github.io/04c0d9947ef7/" title="QPSK simulink实现" target="_blank">https://moerjie.github.io/04c0d9947ef7/</a>
+          <a href="https://moerjie.github.io/bec74116d1c6/" title="2022 TI F" target="_blank">https://moerjie.github.io/bec74116d1c6/</a>
         </li>
         
         <li>
@@ -224,17 +190,6 @@
   <div class="article-info article-info-index">
     
     
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
     
 
     
@@ -285,7 +240,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://moerjie.github.io/04c0d9947ef7/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://moerjie.github.io/bec74116d1c6/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -300,18 +255,9 @@
 
 <nav id="article-nav">
   
-    <a href="/4c1d19eb8ba7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          QPSK_NDATED_DDPED学习
-        
-      </div>
-    </a>
   
-  
-    <a href="/e54d09106bff/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">PFD鉴频鉴相器</div>
+    <a href="/d00190aca576/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">载波同步</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -338,7 +284,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%88%B6%E9%83%A8%E5%88%86"><span class="toc-number">1.</span> <span class="toc-text">调制部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E6%A1%86%E6%9E%B6"><span class="toc-number">1.1.</span> <span class="toc-text">总体框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E6%A8%A1%E5%9D%97%E5%8F%82%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">各模块参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E9%98%B6%E6%AE%B5%E6%B3%A2%E5%BD%A2"><span class="toc-number">1.3.</span> <span class="toc-text">各阶段波形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Buffer"><span class="toc-number">1.4.</span> <span class="toc-text">Buffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demux"><span class="toc-number">1.5.</span> <span class="toc-text">Demux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Raised-Cosine-Transmit"><span class="toc-number">1.6.</span> <span class="toc-text">Raised Cosine Transmit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QPSK-%E4%BF%A1%E5%8F%B7%E5%8A%9F%E7%8E%87%E8%B0%B1%E5%AF%86%E5%BA%A6"><span class="toc-number">1.7.</span> <span class="toc-text">QPSK 信号功率谱密度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E8%B0%83%E9%83%A8%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">解调部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E5%88%86%E6%A8%A1%E5%9D%97%E5%8F%82%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">部分模块参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%BD%E6%B3%A2%E6%A8%A1%E5%9D%97"><span class="toc-number">2.2.</span> <span class="toc-text">载波模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pulse-Generator"><span class="toc-number">2.3.</span> <span class="toc-text">Pulse Generator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E5%88%86%E6%B3%A2%E5%BD%A2"><span class="toc-number">2.4.</span> <span class="toc-text">部分波形</span></a></li></ol></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
