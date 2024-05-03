@@ -6,17 +6,44 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://moerjie.github.io">
-  <title>Archives: 2024 | Sawen_Blog</title>
+  <title>QPSK_NDATED_DDPED学习 | Sawen_Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Sawen_Blog">
-<meta property="og:url" content="https://moerjie.github.io/archives/2024/page/2/index.html">
+  <meta name="description" content="该QPSK系统框图如下所示：  首先产生随机的四位整数，经过QPSK Modulator Baseband 进行星座图映射，然后经过脉冲整形和调制后发送到高斯带通信道中，在接收端首先进行解调，将带通信号转化为基带信号，再经过符号同步和载波同步处理后进行处理 基带QPSK信号波形为  使用格雷码，相位偏移为$\frac{\pi}{4}$ Up-conversion模块 经过4倍符号率采样后，经过Co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QPSK_NDATED_DDPED学习">
+<meta property="og:url" content="https://moerjie.github.io/4c1d19eb8ba7/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:description" content="该QPSK系统框图如下所示：  首先产生随机的四位整数，经过QPSK Modulator Baseband 进行星座图映射，然后经过脉冲整形和调制后发送到高斯带通信道中，在接收端首先进行解调，将带通信号转化为基带信号，再经过符号同步和载波同步处理后进行处理 基带QPSK信号波形为  使用格雷码，相位偏移为$\frac{\pi}{4}$ Up-conversion模块 经过4倍符号率采样后，经过Co">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710157559706.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710158954524.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710248173245.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/rcos.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710159078178.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710159396231.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710159491301.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710159548326.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710160013173.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710160943272.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710162218645.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710162193582.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710162303325.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710240417096.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710240872667.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710243700182.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710244545012.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710244070202.png">
+<meta property="og:image" content="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/7a8433d6-d88c-4a4c-abc6-61b86f5cce97/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240327%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240327T121944Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=c9a50a66b4228071edb082e9551e5c75df9d73764b452718e5acfdc6fe08c0ab&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject">
+<meta property="og:image" content="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/4b129d1c-464a-45b9-bd62-f77c1fff0554/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240327%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240327T121944Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=6bdc1f1303916d2c0bc6e0478f507cfdeb72029885e75f63c890fea5b21aea9c&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject">
+<meta property="article:published_time" content="2024-04-30T13:16:10.453Z">
+<meta property="article:modified_time" content="2024-05-01T06:18:02.149Z">
 <meta property="article:author" content="Moerjie">
+<meta property="article:tag" content="数字通信">
+<meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710157559706.png">
   
     <link rel="alternative" href="/atom.xml" title="Sawen_Blog" type="application/atom+xml">
   
@@ -166,131 +193,128 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-QPSK_NDATED_DDPED学习" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/fb92653ea537/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.456Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/fb92653ea537/">QPSK调制解调+载波同步</a>
-	
+    <h1 class="article-title" itemprop="name">
+      QPSK_NDATED_DDPED学习
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/bd109c70adc3/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.455Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/bd109c70adc3/">QPSK调制解调</a>
-	
-    </h1>
-  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
 
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
 <a href="/4c1d19eb8ba7/" class="archive-article-date">
         <time datetime="2024-04-30T13:16:10.453Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
 </a>
 
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/4c1d19eb8ba7/">QPSK_NDATED_DDPED学习</a>
-	
-    </h1>
   
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">430字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
 
 
-        <div class="article-info info-on-right">
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>该QPSK系统框图如下所示：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710157559706.png" alt="1710157559706.png"></p>
+<p>首先产生随机的四位整数，经过QPSK Modulator Baseband 进行星座图映射，然后经过脉冲整形和调制后发送到高斯带通信道中，在接收端首先进行解调，将带通信号转化为基带信号，再经过符号同步和载波同步处理后进行处理</p>
+<p>基带QPSK信号波形为</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710158954524.png" alt="1710158954524.png"></p>
+<p>使用格雷码，相位偏移为$\frac{\pi}{4}$</p>
+<h1 id="Up-conversion模块"><a href="#Up-conversion模块" class="headerlink" title="Up-conversion模块"></a>Up-conversion模块</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710248173245.png" alt="1710248173245.png"></p>
+<p>经过4倍符号率采样后，经过Complex to Real-Imag模块后转化为I、Q两路信号，使用滚降系数为0.5的升余弦滚降滤波器进行脉冲整形，升余弦滤波器的幅值响应如图：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/rcos.png" alt="rcos.png"></p>
+<p>经过升余弦滚降滤波器的信号为</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710159078178.png" alt="1710159078178.png"></p>
+<p>频谱为</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710159396231.png" alt="1710159396231.png"></p>
+<p>由于升余弦滚降滤波器被设置为4 samples per symbol，因此采样率变为16MHz</p>
+<p>然后与高频载波信号相乘，相乘后的信号和频谱为</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710159491301.png" alt="1710159491301.png"></p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710159548326.png" alt="1710159548326.png"></p>
+<p>可以看到频谱的中心频率已经变为载波的频率</p>
+<h1 id="高斯信道"><a href="#高斯信道" class="headerlink" title="高斯信道"></a>高斯信道</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710160013173.png" alt="1710160013173.png"></p>
+<p>信号的频谱为</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710160943272.png" alt="1710160943272.png"></p>
+<h1 id="Down-conversion"><a href="#Down-conversion" class="headerlink" title="Down-conversion"></a>Down-conversion</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710162218645.png" alt="1710162218645.png"></p>
+<p>相乘后的频谱和经过低通滤波后的频谱如下所示</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710162193582.png" alt="1710162193582.png"></p>
+<p>时域上的信号波形为</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710162303325.png" alt="1710162303325.png"></p>
+<h1 id="Digital-baseband-receiver"><a href="#Digital-baseband-receiver" class="headerlink" title="Digital baseband receiver"></a>Digital baseband receiver</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710240417096.png" alt="1710240417096.png"></p>
+<p>首先经过升余弦滚降接收滤波器，然后进行位同步和载波同步，最后输出到解调器中</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710240872667.png" alt="1710240872667.png"></p>
+<p>可以看到经过时间恢复和载波恢复后的眼图张开的更大更规则</p>
+<h2 id="Timing-Recovery"><a href="#Timing-Recovery" class="headerlink" title="Timing Recovery"></a>Timing Recovery</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710243700182.png" alt="1710243700182.png"></p>
+<p>由Farrow结构插值滤波器、定时误差检测、环路滤波器及插值控制器组成</p>
+<p>插值控制器的内部结构为</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710244545012.png" alt="1710244545012.png"></p>
+<p>插值控制器的输出为</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1710244070202.png" alt="1710244070202.png"></p>
+<h1 id="载波同步"><a href="#载波同步" class="headerlink" title="载波同步"></a>载波同步</h1><p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/7a8433d6-d88c-4a4c-abc6-61b86f5cce97/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240327%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240327T121944Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=c9a50a66b4228071edb082e9551e5c75df9d73764b452718e5acfdc6fe08c0ab&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject" alt="Untitled.png"></p>
+<p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/4b129d1c-464a-45b9-bd62-f77c1fff0554/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240327%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240327T121944Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=6bdc1f1303916d2c0bc6e0478f507cfdeb72029885e75f63c890fea5b21aea9c&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject" alt="Untitled.png"></p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Moerjie
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://moerjie.github.io/4c1d19eb8ba7/" title="QPSK_NDATED_DDPED学习" target="_blank">https://moerjie.github.io/4c1d19eb8ba7/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -306,336 +330,129 @@
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://moerjie.github.io/4c1d19eb8ba7/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/04c0d9947ef7/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.452Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/bd109c70adc3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          QPSK调制解调
+        
+      </div>
+    </a>
+  
+  
+    <a href="/04c0d9947ef7/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">QPSK simulink实现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/04c0d9947ef7/">QPSK simulink实现</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Up-conversion%E6%A8%A1%E5%9D%97"><span class="toc-number">1.</span> <span class="toc-text">Up-conversion模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E6%96%AF%E4%BF%A1%E9%81%93"><span class="toc-number">2.</span> <span class="toc-text">高斯信道</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Down-conversion"><span class="toc-number">3.</span> <span class="toc-text">Down-conversion</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Digital-baseband-receiver"><span class="toc-number">4.</span> <span class="toc-text">Digital baseband receiver</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Timing-Recovery"><span class="toc-number">4.1.</span> <span class="toc-text">Timing Recovery</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%BD%E6%B3%A2%E5%90%8C%E6%AD%A5"><span class="toc-number">5.</span> <span class="toc-text">载波同步</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/e54d09106bff/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.450Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/e54d09106bff/">PFD鉴频鉴相器</a>
-	
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/037e8694af4d/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.448Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/037e8694af4d/">Matlab生成txt文件导入到Vivado仿真</a>
-	
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FPGA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/3c86e5f13373/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.447Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/3c86e5f13373/">IP-ROM</a>
-	
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FPGA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/8ab0744dda61/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.445Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/8ab0744dda61/">IP-RAM</a>
-	
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FPGA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/31cd2dabcad7/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.442Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/31cd2dabcad7/">FIR滤波器</a>
-	
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/88cc0ce039c6/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.440Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/88cc0ce039c6/">AXI-STREAM简介</a>
-	
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2024/">&laquo; Prev</a><a class="page-number" href="/archives/2024/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2024/page/3/">3</a><a class="extend next" rel="next" href="/archives/2024/page/3/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -676,8 +493,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

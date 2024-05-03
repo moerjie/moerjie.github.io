@@ -6,17 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://moerjie.github.io">
-  <title>Archives: 2024 | Sawen_Blog</title>
+  <title>IP-RAM | Sawen_Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Sawen_Blog">
-<meta property="og:url" content="https://moerjie.github.io/archives/2024/page/2/index.html">
+  <meta name="description" content="Vivado软件自带的Block Memory Genrator IP核可以用来配置生成RAM和ROM，生成的RAM和ROM使用的都是FPGA内部的BRAM资源 Vivado IP核配置 读数据位宽要与写数据位宽成整数倍关系 Port A Optional Register：用于为RAM的输出端添加寄存器，提高BRAM的运行频率和改善时序，每勾选一个寄存器，输出会延迟一拍  地址信号和写信号的生成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IP-RAM">
+<meta property="og:url" content="https://moerjie.github.io/8ab0744dda61/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:description" content="Vivado软件自带的Block Memory Genrator IP核可以用来配置生成RAM和ROM，生成的RAM和ROM使用的都是FPGA内部的BRAM资源 Vivado IP核配置 读数据位宽要与写数据位宽成整数倍关系 Port A Optional Register：用于为RAM的输出端添加寄存器，提高BRAM的运行频率和改善时序，每勾选一个寄存器，输出会延迟一拍  地址信号和写信号的生成">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/3bedaea5-7a14-4f2a-8a3f-70d23235289e/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240206%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240206T060646Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=230639c1ad7180ea0094e6eb06c7a73b858ad9b7026740cdb129b6e4c775036a&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject">
+<meta property="og:image" content="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/66f4caaa-6930-442d-8136-3389b6293dca/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240206%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240206T060646Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=670c5d2810d18a1c60207c8ef3e8d8371ee10b5bf7561f1adc1802026c246e5d&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject">
+<meta property="article:published_time" content="2024-04-30T13:16:10.445Z">
+<meta property="article:modified_time" content="2024-05-01T06:12:35.133Z">
 <meta property="article:author" content="Moerjie">
+<meta property="article:tag" content="FPGA">
+<meta property="article:tag" content="IP">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/3bedaea5-7a14-4f2a-8a3f-70d23235289e/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240206%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240206T060646Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=230639c1ad7180ea0094e6eb06c7a73b858ad9b7026740cdb129b6e4c775036a&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject">
   
     <link rel="alternative" href="/atom.xml" title="Sawen_Blog" type="application/atom+xml">
   
@@ -166,354 +175,100 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-IP-RAM" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/fb92653ea537/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.456Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/fb92653ea537/">QPSK调制解调+载波同步</a>
-	
+    <h1 class="article-title" itemprop="name">
+      IP-RAM
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/bd109c70adc3/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.455Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/bd109c70adc3/">QPSK调制解调</a>
-	
-    </h1>
-  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
 
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/4c1d19eb8ba7/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.453Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/4c1d19eb8ba7/">QPSK_NDATED_DDPED学习</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/04c0d9947ef7/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.452Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/04c0d9947ef7/">QPSK simulink实现</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/e54d09106bff/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.450Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/e54d09106bff/">PFD鉴频鉴相器</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/037e8694af4d/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.448Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/037e8694af4d/">Matlab生成txt文件导入到Vivado仿真</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FPGA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/3c86e5f13373/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.447Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/3c86e5f13373/">IP-ROM</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FPGA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
 <a href="/8ab0744dda61/" class="archive-article-date">
         <time datetime="2024-04-30T13:16:10.445Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
 </a>
 
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/8ab0744dda61/">IP-RAM</a>
-	
-    </h1>
   
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">374字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
 
 
-        <div class="article-info info-on-right">
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>Vivado软件自带的Block Memory Genrator IP核可以用来配置生成RAM和ROM，生成的RAM和ROM使用的都是FPGA内部的BRAM资源</p>
+<h2 id="Vivado-IP核配置"><a href="#Vivado-IP核配置" class="headerlink" title="Vivado IP核配置"></a>Vivado IP核配置</h2><ol>
+<li>读数据位宽要与写数据位宽成整数倍关系</li>
+<li>Port A Optional Register：用于为RAM的输出端添加寄存器，提高BRAM的运行频率和改善时序，每勾选一个寄存器，输出会延迟一拍</li>
+</ol>
+<h2 id="地址信号和写信号的生成"><a href="#地址信号和写信号的生成" class="headerlink" title="地址信号和写信号的生成"></a>地址信号和写信号的生成</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> ram_rv (</span><br><span class="line">    clk,</span><br><span class="line">    rst_n,</span><br><span class="line">    ena,</span><br><span class="line">    wea,</span><br><span class="line">    addr,</span><br><span class="line">    din</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">input</span> clk;</span><br><span class="line">    <span class="keyword">input</span> rst_n;</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> ena;</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] din;</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">4</span>:<span class="number">0</span>] addr;</span><br><span class="line">    <span class="keyword">output</span> wea;</span><br><span class="line">    <span class="keyword">reg</span> [<span class="number">5</span>:<span class="number">0</span>] cnt;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">assign</span> wea=(cnt&lt;=<span class="number">6&#x27;d31</span>&amp;&amp;ena==<span class="number">1</span>)?<span class="number">1&#x27;b1</span>:<span class="number">1&#x27;b0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n) <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(rst_n==<span class="number">1&#x27;b0</span>)</span><br><span class="line">            ena&lt;=<span class="number">1&#x27;b0</span>;  </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            ena&lt;=<span class="number">1&#x27;b1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n) <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(rst_n==<span class="number">1&#x27;b0</span>)</span><br><span class="line">            cnt&lt;=<span class="number">6&#x27;b0</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(cnt==<span class="number">63</span>&amp;&amp;ena==<span class="number">1&#x27;b1</span>)</span><br><span class="line">            cnt&lt;=<span class="number">6&#x27;b0</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(ena==<span class="number">1&#x27;b1</span>)</span><br><span class="line">            cnt&lt;=cnt+<span class="number">1&#x27;b1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            cnt&lt;=<span class="number">6&#x27;b0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n) <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(rst_n==<span class="number">1&#x27;b0</span>)</span><br><span class="line">            addr&lt;=<span class="number">5&#x27;b0</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(addr==<span class="number">5&#x27;d31</span>&amp;&amp;ena==<span class="number">1&#x27;b1</span>)</span><br><span class="line">            addr&lt;=<span class="number">5&#x27;b0</span>;       </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(ena==<span class="number">1&#x27;b1</span>)</span><br><span class="line">            addr&lt;=addr+<span class="number">1&#x27;b1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">            addr&lt;=<span class="number">5&#x27;b0</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n) <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span>(rst_n==<span class="number">1&#x27;b0</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        din&lt;=<span class="number">8&#x27;b0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(din&lt;<span class="number">8&#x27;d31</span> &amp;&amp; wea==<span class="number">1&#x27;b1</span>) <span class="keyword">begin</span></span><br><span class="line">        din&lt;=din+<span class="number">1&#x27;b1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">        din&lt;=<span class="number">8&#x27;b0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h2 id="波形"><a href="#波形" class="headerlink" title="波形"></a>波形</h2><p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/3bedaea5-7a14-4f2a-8a3f-70d23235289e/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240206%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240206T060646Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=230639c1ad7180ea0094e6eb06c7a73b858ad9b7026740cdb129b6e4c775036a&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject" alt="Untitled.png"></p>
+<p>当WEA为高电平时，根据地址信号向RAM中写入数据</p>
+<p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/66f4caaa-6930-442d-8136-3389b6293dca/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240206%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240206T060646Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=670c5d2810d18a1c60207c8ef3e8d8371ee10b5bf7561f1adc1802026c246e5d&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject" alt="Untitled.png"></p>
+<p>WEA为低电平时，读出RAM中的信号</p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Moerjie
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://moerjie.github.io/8ab0744dda61/" title="IP-RAM" target="_blank">https://moerjie.github.io/8ab0744dda61/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -529,113 +284,129 @@
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://moerjie.github.io/8ab0744dda61/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/31cd2dabcad7/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.442Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/3c86e5f13373/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          IP-ROM
+        
+      </div>
+    </a>
+  
+  
+    <a href="/31cd2dabcad7/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">FIR滤波器</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/31cd2dabcad7/">FIR滤波器</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vivado-IP%E6%A0%B8%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">Vivado IP核配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E4%BF%A1%E5%8F%B7%E5%92%8C%E5%86%99%E4%BF%A1%E5%8F%B7%E7%9A%84%E7%94%9F%E6%88%90"><span class="toc-number">2.</span> <span class="toc-text">地址信号和写信号的生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A2%E5%BD%A2"><span class="toc-number">3.</span> <span class="toc-text">波形</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/88cc0ce039c6/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.440Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/88cc0ce039c6/">AXI-STREAM简介</a>
-	
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2024/">&laquo; Prev</a><a class="page-number" href="/archives/2024/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2024/page/3/">3</a><a class="extend next" rel="next" href="/archives/2024/page/3/">Next &raquo;</a>
-    </nav>
-  
+
+
+
+
+
+
+
 
 
           </div>
@@ -676,8 +447,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
