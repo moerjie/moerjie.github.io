@@ -6,30 +6,33 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://moerjie.github.io">
-  <title>DVB-S系统仿真学习 | Sawen_Blog</title>
+  <title>Cyclone-III-内部资源 | Sawen_Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="DVB-S系统用于卫星电视信号传输，发送端框图如下所示  扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为  p(x)&#x3D;x^{15}+x^{14}+1同时移位寄存器的初始状态为”1001_010">
+  <meta name="description" content="CycloneIII内部资源概述[toc] 本人使用的AlteraDE0使用的主控芯片为EP3C16F484C6，由上图可知包含15408个逻辑单元，56个M9K，56个18×18乘法器，4个PLL等资源。  LogicElements and Logic Array Blocks（逻辑元件和逻辑阵列块） LELE是FPGA中最小的逻辑单元，可以提供高效逻辑使用的高级功能。LE的结构如下图所示：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DVB-S系统仿真学习">
-<meta property="og:url" content="https://moerjie.github.io/3f63d653fc23/index.html">
+<meta property="og:title" content="Cyclone-III-内部资源">
+<meta property="og:url" content="https://moerjie.github.io/8c9b300954db/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="DVB-S系统用于卫星电视信号传输，发送端框图如下所示  扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为  p(x)&#x3D;x^{15}+x^{14}+1同时移位寄存器的初始状态为”1001_010">
+<meta property="og:description" content="CycloneIII内部资源概述[toc] 本人使用的AlteraDE0使用的主控芯片为EP3C16F484C6，由上图可知包含15408个逻辑单元，56个M9K，56个18×18乘法器，4个PLL等资源。  LogicElements and Logic Array Blocks（逻辑元件和逻辑阵列块） LELE是FPGA中最小的逻辑单元，可以提供高效逻辑使用的高级功能。LE的结构如下图所示：">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536797434.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536855542.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711538853533.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711539867512.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711541868504.png">
-<meta property="article:published_time" content="2024-04-30T13:16:10.437Z">
-<meta property="article:modified_time" content="2024-05-02T13:45:37.601Z">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/17/pitfC2n.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/17/pitho6I.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/17/pit4Ruq.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/17/pit5Za8.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/17/pit50MR.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/17/pitI9oT.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/17/pitIcmq.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/17/pito84U.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/18/piN8jIg.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311211035848.png">
+<meta property="article:published_time" content="2024-04-15T13:32:42.000Z">
+<meta property="article:modified_time" content="2024-05-03T13:34:57.772Z">
 <meta property="article:author" content="Moerjie">
-<meta property="article:tag" content="学习">
-<meta property="article:tag" content="数字通信">
+<meta property="article:tag" content="FPGA">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png">
+<meta name="twitter:image" content="https://z1.ax1x.com/2023/11/17/pitfC2n.png">
   
     <link rel="alternative" href="/atom.xml" title="Sawen_Blog" type="application/atom+xml">
   
@@ -117,14 +120,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-DVB-S系统仿真学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Cyclone-III-内部资源" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      DVB-S系统仿真学习
+      Cyclone-III-内部资源
     </h1>
   
 
@@ -136,8 +139,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/3f63d653fc23/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.437Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
+<a href="/8c9b300954db/" class="archive-article-date">
+        <time datetime="2024-04-15T13:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-15</time>
 </a>
 
   
@@ -150,7 +153,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">889字</span>
+      <span class="post-count">873字</span>
     </span>
   </span>
 
@@ -170,37 +173,46 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>DVB-S系统用于卫星电视信号传输，发送端框图如下所示</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png" alt="1711536126647.png"></p>
-<h1 id="扰码"><a href="#扰码" class="headerlink" title="扰码"></a>扰码</h1><p>实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理</p>
-<p>DVB-S标准中规定扰码的生成多项式为</p>
-<script type="math/tex; mode=display">
-p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0101_0000_000”</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536797434.png" alt="1711536797434.png"></p>
-<h2 id="Matlab代码仿真"><a href="#Matlab代码仿真" class="headerlink" title="Matlab代码仿真"></a>Matlab代码仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">n=<span class="number">500</span>;</span><br><span class="line"><span class="comment">% origin_data=randi([0 1],n,1);</span></span><br><span class="line">origin_cnt_1=nnz(origin_data==<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">scrambling = comm.Scrambler(<span class="string">&quot;CalculationBase&quot;</span>,<span class="number">2</span>,<span class="string">&quot;InitialConditions&quot;</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>], ...</span><br><span class="line">    <span class="string">&quot;Polynomial&quot;</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>]);</span><br><span class="line">scrambling_data=step(scrambling,origin_data);</span><br><span class="line">scrambling_data_cnt_1=nnz(scrambling_data==<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<p>运行结果如下图所示</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536855542.png" alt="1711536855542.png"></p>
-<p>可以看出初始的500点长度的数据包中有403个“1”，经过扰码处理后“1”的个数接近数据总量的一半</p>
-<h1 id="外码纠错编码（RS编码）"><a href="#外码纠错编码（RS编码）" class="headerlink" title="外码纠错编码（RS编码）"></a>外码纠错编码（RS编码）</h1><p>RS码定义：</p>
-<p>$GF(q)上（q \neq 2, 通常q=2^m），码长n=q-1的本原BCH码$</p>
-<p>能纠正 t 个错误的RS码的参数为</p>
-<pre><code>- 分组长度n=q-1
-- 校验符号数n-k=2t
-- 码的最小距离dmin=2t+1
-</code></pre><p>DVB-S系统中使用的RS(188，204)是由RS(239,255)截断而来的，可以纠正8个字节的错误</p>
-<h2 id="Matlab仿真"><a href="#Matlab仿真" class="headerlink" title="Matlab仿真"></a>Matlab仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">m=<span class="number">8</span>; <span class="comment">%bit per symbol</span></span><br><span class="line">n=<span class="number">204</span>;</span><br><span class="line">k=<span class="number">188</span>;</span><br><span class="line"></span><br><span class="line">data_test=randi([<span class="number">0</span>,n],<span class="number">1</span>,k);</span><br><span class="line">data_gf=gf(data_test,m);</span><br><span class="line"></span><br><span class="line">data_rs_enc=rsenc(data_gf,n,k);</span><br><span class="line">data_enc=data_rs_enc.x;</span><br><span class="line"></span><br><span class="line">data_rs_dec=rsdec(data_rs_enc,n,k);</span><br><span class="line">data_dec=data_rs_dec.x;</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">stem(data_test);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">stem(data_enc);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">stem(data_dec);</span><br></pre></td></tr></table></figure>
-<p>首先生成一个长度为188的序列，将其转换到伽罗华域后，使用rsenc函数进行RS编码，再进行译码，根据对比可以看出译码后的比特和译码前的完全一样</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711538853533.png" alt="1711538853533.png"></p>
-<h1 id="卷积交织"><a href="#卷积交织" class="headerlink" title="卷积交织"></a>卷积交织</h1><p>在实际的传输过程中，由于脉冲干扰、多径效应等因素会带来持续一定时间的突发错误，虽然RS码对突发错误有较好的纠错能力，但是当其持续时间较长时，就会超出RS码的纠错能力，因此在编码过程中引入了卷积交织，将数据的传输顺序按照一定的规律分散开，就可以使得错误的码元也被分散开</p>
-<p>DVB-S中交织深度为12，总共17个FIFO，数据按行写入寄存器，按列读出</p>
-<p>交织后最大可纠错长度为12*8=96</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711539867512.png" alt="1711539867512.png"></p>
-<p>可以看出前一段时间读取到了很多0，说明下面的移位寄存器中的数据还没有移动到末端</p>
-<h1 id="卷积编码"><a href="#卷积编码" class="headerlink" title="卷积编码"></a>卷积编码</h1><p>卷积码是一种有效的前向纠错码记作$(n,k,m)$，将k个信息比特编为n个比特，m为编码存储长度，N=m+1为约束长度，即卷积码的当前码元不仅与当前输入的k的信息码元有关，还与前面m个时刻输入的信息码元有关</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">clc;</span><br><span class="line">close all;</span><br><span class="line">n=<span class="number">500</span>;</span><br><span class="line">tre1=[<span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]; <span class="comment">%oct 171</span></span><br><span class="line">tre2=[<span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>]; <span class="comment">%oct 133</span></span><br><span class="line"></span><br><span class="line">trellis = poly2trellis(<span class="number">7</span>,[<span class="number">171</span> <span class="number">133</span>]);</span><br><span class="line"></span><br><span class="line">convData=convenc(scrambling_data,trellis);</span><br><span class="line"></span><br><span class="line">decData=vitdec(convData,trellis,<span class="number">499</span>,<span class="string">&quot;trunc&quot;</span>,<span class="string">&quot;hard&quot;</span>);</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">stem(scrambling_data);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">stem(convData);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">stem(decData);</span><br><span class="line">biterr(scrambling_data,decData)</span><br></pre></td></tr></table></figure>
-<p>使用poly2trellis将卷积编码多项式转换为网格描述</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711541868504.png" alt="1711541868504.png"></p>
-<p>比对后可以看到解码出的数据和原数据完全相同</p>
+    <h1 id="CycloneIII内部资源概述"><a href="#CycloneIII内部资源概述" class="headerlink" title="CycloneIII内部资源概述"></a>CycloneIII内部资源概述</h1><p>[toc]</p>
+<p>本人使用的Altera<br>DE0使用的主控芯片为EP3C16F484C6，由上图可知包含15408个逻辑单元，56个M9K，56个18×18乘法器，4个PLL等资源。</p>
+<p><img src="https://z1.ax1x.com/2023/11/17/pitfC2n.png" alt="pitfC2n.png"></p>
+<h2 id="Logic"><a href="#Logic" class="headerlink" title="Logic"></a>Logic</h2><p>Elements and Logic Array Blocks（逻辑元件和逻辑阵列块）</p>
+<h3 id="LE"><a href="#LE" class="headerlink" title="LE"></a>LE</h3><p>LE是FPGA中最小的逻辑单元，可以提供高效逻辑使用的高级功能。LE的结构如下图所示：</p>
+<p><img src="https://z1.ax1x.com/2023/11/17/pitho6I.png" alt="pitho6I.png"></p>
+<ul>
+<li>LUT：用于完成用户需要的逻辑功能，Cyclone<br>III的查找表是4输入1输出，可以完成任何4输入1输出的组合逻辑</li>
+<li>Programmable<br>Register：可以配置成D触发器、T触发器、JK触发器等，每个寄存器包含4个输入信号，数据信号、时钟信号、时钟使能、复位信号。</li>
+</ul>
+<p>LE有两种工作模式： - Normal mode：适合于一般的逻辑运算 - Arithmetic<br>mode：适用于实现加法器、计数器、累加器、比较器等</p>
+<h3 id="LAB"><a href="#LAB" class="headerlink" title="LAB"></a>LAB</h3><p>每个LAB都由以下元素组成： 1. 16个LE 2. LAB控制信号 3. LE转移链 4.<br>寄存器链 5. 本地互联</p>
+<p>本地互联用于在同一LAB内的LE之间传递信号；寄存器链用于将一个LE的输出传递到相邻的LE中。<br>LAB结构如图所示：</p>
+<p><img src="https://z1.ax1x.com/2023/11/17/pit4Ruq.png" alt="pit4Ruq.png"></p>
+<h3 id="LAB-Interconnects"><a href="#LAB-Interconnects" class="headerlink" title="LAB Interconnects"></a>LAB Interconnects</h3><p>LAB本地互连由同一LAB中的列和行互连和LE输出驱动。相邻的LAB、锁相环、M9K<br>RAM块和从左到右的嵌入式乘法器也可以通过直接链路连接驱动LAB的本地互连。直接链接连接功能最大限度地减少了行和列互连的使用，提供更高的性能和灵活性。每个LE可以通过快速本地和直接链路互连驱动多达48个LE。<br>直接连接如下图所示：</p>
+<p><img src="https://z1.ax1x.com/2023/11/17/pit5Za8.png" alt="pit5Za8.png"></p>
+<h2 id="Memory-Blocks（内存块）"><a href="#Memory-Blocks（内存块）" class="headerlink" title="Memory Blocks（内存块）"></a>Memory Blocks（内存块）</h2><p>嵌入式内存结构由M9K内存块组成，可以配置内存块以提供各种内存功能，例如RAM，移位寄存器，ROM和FIFO等。</p>
+<p><img src="https://z1.ax1x.com/2023/11/17/pit50MR.png" alt="pit50MR.png"></p>
+<blockquote>
+<p>M9K的内存单位是9k ==bit==，并不是9k<br>==byte==，并且9k中有1k的空间用于校验等功能，实际可用空间为8kbit</p>
+</blockquote>
+<h3 id="Memory-mode"><a href="#Memory-mode" class="headerlink" title="Memory mode"></a>Memory mode</h3><p>M9K内存块不支持异步内存输入</p>
+<p><img src="https://z1.ax1x.com/2023/11/17/pitI9oT.png" alt="pitI9oT.png"></p>
+<h3 id="Clocking-mode"><a href="#Clocking-mode" class="headerlink" title="Clocking mode"></a>Clocking mode</h3><p>当使用Read or<br>Write模式，如果对同一个地址进行读写操作，则输出的读数据是未知的。如果要使输出的数据是一个确定的信号，则需要使用single-clock模式或者IO-clock模式并且在<br>MegaWizard Plug-In Manager中选择合适的读写操作。</p>
+<blockquote>
+<p>读写时违反内存块输入寄存器的建立和保持时间可能会导致内存内容的损坏<br>异步清零只在读地址寄存器、输出寄存器和输出锁存器上可用</p>
+</blockquote>
+<p><img src="https://z1.ax1x.com/2023/11/17/pitIcmq.png" alt="pitIcmq.png"></p>
+<p>Memory mode 和 Clocking mode的关系如下图所示：</p>
+<p><img src="https://z1.ax1x.com/2023/11/17/pito84U.png" alt="pito84U.png"></p>
+<h2 id="Embedded"><a href="#Embedded" class="headerlink" title="Embedded"></a>Embedded</h2><p>Multipliers and Digital Signal Processing<br>Support（嵌入式乘法器和数字信号处理支持）</p>
+<h3 id="乘法器结构"><a href="#乘法器结构" class="headerlink" title="乘法器结构"></a>乘法器结构</h3><p><img src="https://z1.ax1x.com/2023/11/18/piN8jIg.png" alt="piN8jIg.png"></p>
+<ul>
+<li>输入的数据既可以先发送到输入寄存器也可以直接输入到乘法器，两个输入信号相互独立，例如：A信号可以通过寄存器将输入发送到乘法器，同时B信号可以直接发送到乘法器。</li>
+<li>根据乘法器的位宽和操作模式，单个乘法器可以并行的执行一次或两次乘法运算。</li>
+<li>两个输入信号如果都是无符号数，则输出数据也是无符号数；其中任何一个是有符号数的话，输出结果就是有符号数。</li>
+</ul>
+<h2 id="Clock-Networks-and"><a href="#Clock-Networks-and" class="headerlink" title="Clock Networks and"></a>Clock Networks and</h2><p>PLLs（时钟网络和锁相环）</p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202311211035848.png" alt="202311211035848.png"></p>
+<p>image-20231121103548768</p>
 
     
 
@@ -215,7 +227,7 @@ p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://moerjie.github.io/3f63d653fc23/" title="DVB-S系统仿真学习" target="_blank">https://moerjie.github.io/3f63d653fc23/</a>
+          <a href="https://moerjie.github.io/8c9b300954db/" title="Cyclone-III-内部资源" target="_blank">https://moerjie.github.io/8c9b300954db/</a>
         </li>
         
         <li>
@@ -237,11 +249,7 @@ p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FPGA</a>
         		</li>
       		
 		</ul>
@@ -297,7 +305,7 @@ p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://moerjie.github.io/3f63d653fc23/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://moerjie.github.io/8c9b300954db/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -312,18 +320,18 @@ p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0
 
 <nav id="article-nav">
   
-    <a href="/8ab0744dda61/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/eb8d85bab10e/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          IP-RAM
+          FIR滤波器
         
       </div>
     </a>
   
   
-    <a href="/5fc949bc10ef/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">8bit数据转1bit逐位输出电路仿真</div>
+    <a href="/5a5039b83327/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">QPSK_NDATED_DDPED学习</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -350,7 +358,7 @@ p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%B0%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">扰码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Matlab%E4%BB%A3%E7%A0%81%E4%BB%BF%E7%9C%9F"><span class="toc-number">1.1.</span> <span class="toc-text">Matlab代码仿真</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%96%E7%A0%81%E7%BA%A0%E9%94%99%E7%BC%96%E7%A0%81%EF%BC%88RS%E7%BC%96%E7%A0%81%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">外码纠错编码（RS编码）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Matlab%E4%BB%BF%E7%9C%9F"><span class="toc-number">2.1.</span> <span class="toc-text">Matlab仿真</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E4%BA%A4%E7%BB%87"><span class="toc-number">3.</span> <span class="toc-text">卷积交织</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">卷积编码</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CycloneIII%E5%86%85%E9%83%A8%E8%B5%84%E6%BA%90%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">CycloneIII内部资源概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Logic"><span class="toc-number">1.1.</span> <span class="toc-text">Logic</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LE"><span class="toc-number">1.1.1.</span> <span class="toc-text">LE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LAB"><span class="toc-number">1.1.2.</span> <span class="toc-text">LAB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LAB-Interconnects"><span class="toc-number">1.1.3.</span> <span class="toc-text">LAB Interconnects</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-Blocks%EF%BC%88%E5%86%85%E5%AD%98%E5%9D%97%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">Memory Blocks（内存块）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Memory-mode"><span class="toc-number">1.2.1.</span> <span class="toc-text">Memory mode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Clocking-mode"><span class="toc-number">1.2.2.</span> <span class="toc-text">Clocking mode</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Embedded"><span class="toc-number">1.3.</span> <span class="toc-text">Embedded</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%98%E6%B3%95%E5%99%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.1.</span> <span class="toc-text">乘法器结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Clock-Networks-and"><span class="toc-number">1.4.</span> <span class="toc-text">Clock Networks and</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

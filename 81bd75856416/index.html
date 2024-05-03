@@ -6,30 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://moerjie.github.io">
-  <title>DVB-S系统仿真学习 | Sawen_Blog</title>
+  <title>符号同步 | Sawen_Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="DVB-S系统用于卫星电视信号传输，发送端框图如下所示  扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为  p(x)&#x3D;x^{15}+x^{14}+1同时移位寄存器的初始状态为”1001_010">
+  <meta name="description" content="符号同步通信过程中，在接收机中，信号经过AD采样后，经过处理后，最后需要通过抽样器抽样判决还原出原始的信号，抽样器工作的时钟被称为符号时钟，接收器提取符号时钟的方法称为符号同步或者定时恢复。常用的符号同步方法有三种，传统模拟方法，模数混合方法，全数字方法。其中模拟方法和模数混合方法有多种缺点：  同步的性能受环路滤波器的影响非常大，且理论分析非常困难 采用高阶调制时，锁相环的设计非常困难 锁相环会">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DVB-S系统仿真学习">
-<meta property="og:url" content="https://moerjie.github.io/3f63d653fc23/index.html">
+<meta property="og:title" content="符号同步">
+<meta property="og:url" content="https://moerjie.github.io/81bd75856416/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="DVB-S系统用于卫星电视信号传输，发送端框图如下所示  扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为  p(x)&#x3D;x^{15}+x^{14}+1同时移位寄存器的初始状态为”1001_010">
+<meta property="og:description" content="符号同步通信过程中，在接收机中，信号经过AD采样后，经过处理后，最后需要通过抽样器抽样判决还原出原始的信号，抽样器工作的时钟被称为符号时钟，接收器提取符号时钟的方法称为符号同步或者定时恢复。常用的符号同步方法有三种，传统模拟方法，模数混合方法，全数字方法。其中模拟方法和模数混合方法有多种缺点：  同步的性能受环路滤波器的影响非常大，且理论分析非常困难 采用高阶调制时，锁相环的设计非常困难 锁相环会">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536797434.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536855542.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711538853533.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711539867512.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711541868504.png">
-<meta property="article:published_time" content="2024-04-30T13:16:10.437Z">
-<meta property="article:modified_time" content="2024-05-02T13:45:37.601Z">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/Untitled.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202402011921008.png">
+<meta property="article:published_time" content="2024-04-15T13:32:42.000Z">
+<meta property="article:modified_time" content="2024-05-03T13:36:54.647Z">
 <meta property="article:author" content="Moerjie">
-<meta property="article:tag" content="学习">
-<meta property="article:tag" content="数字通信">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png">
+<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/Untitled.png">
   
     <link rel="alternative" href="/atom.xml" title="Sawen_Blog" type="application/atom+xml">
   
@@ -117,14 +111,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-DVB-S系统仿真学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-符号同步" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      DVB-S系统仿真学习
+      符号同步
     </h1>
   
 
@@ -136,8 +130,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/3f63d653fc23/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.437Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
+<a href="/81bd75856416/" class="archive-article-date">
+        <time datetime="2024-04-15T13:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-15</time>
 </a>
 
   
@@ -150,7 +144,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">889字</span>
+      <span class="post-count">1.4k字</span>
     </span>
   </span>
 
@@ -159,7 +153,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">3分</span>
+      <span class="post-count">5分</span>
     </span>
   </span>
 </div>
@@ -170,38 +164,54 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>DVB-S系统用于卫星电视信号传输，发送端框图如下所示</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png" alt="1711536126647.png"></p>
-<h1 id="扰码"><a href="#扰码" class="headerlink" title="扰码"></a>扰码</h1><p>实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理</p>
-<p>DVB-S标准中规定扰码的生成多项式为</p>
+    <h1 id="符号同步"><a href="#符号同步" class="headerlink" title="符号同步"></a>符号同步</h1><p>通信过程中，在接收机中，信号经过AD采样后，经过处理后，最后需要通过抽样器抽样判决还原出原始的信号，抽样器工作的时钟被称为符号时钟，接收器提取符号时钟的方法称为符号同步或者定时恢复。<br>常用的符号同步方法有三种，传统模拟方法，模数混合方法，全数字方法。<br>其中模拟方法和模数混合方法有多种缺点：</p>
+<ol>
+<li>同步的性能受环路滤波器的影响非常大，且理论分析非常困难</li>
+<li>采用高阶调制时，锁相环的设计非常困难</li>
+<li>锁相环会存在盲区失锁<br>但是全数字方法不存在以上问题，采用开环方式，具有快速跟踪和收敛的优势</li>
+</ol>
+<h2 id="符号同步实现框图"><a href="#符号同步实现框图" class="headerlink" title="符号同步实现框图"></a>符号同步实现框图</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/Untitled.png" alt="Untitled.png"></p>
+<p>整个解调流程中，由于信道为卫星通信信道，信号传输距离远，载波频偏严重，因此先进行载波同步完成数字解调，再进行符号同步，匹配滤波放在符号同步后进行。</p>
+<h3 id="插值滤波器"><a href="#插值滤波器" class="headerlink" title="插值滤波器"></a>插值滤波器</h3><p>插值滤波器是符号同步的心脏部分，整个符号同步都是依据插值滤波原理设计的</p>
+<h3 id="插值滤波器原理"><a href="#插值滤波器原理" class="headerlink" title="插值滤波器原理"></a>插值滤波器原理</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202402011921008.png" alt="202402011921008.png"></p>
+<p>输入信号经过 D/A 变换和模拟滤波器后，输出信号为：</p>
 <script type="math/tex; mode=display">
-p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0101_0000_000”</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536797434.png" alt="1711536797434.png"></p>
-<h2 id="Matlab代码仿真"><a href="#Matlab代码仿真" class="headerlink" title="Matlab代码仿真"></a>Matlab代码仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">n=<span class="number">500</span>;</span><br><span class="line"><span class="comment">% origin_data=randi([0 1],n,1);</span></span><br><span class="line">origin_cnt_1=nnz(origin_data==<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">scrambling = comm.Scrambler(<span class="string">&quot;CalculationBase&quot;</span>,<span class="number">2</span>,<span class="string">&quot;InitialConditions&quot;</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>], ...</span><br><span class="line">    <span class="string">&quot;Polynomial&quot;</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>]);</span><br><span class="line">scrambling_data=step(scrambling,origin_data);</span><br><span class="line">scrambling_data_cnt_1=nnz(scrambling_data==<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<p>运行结果如下图所示</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536855542.png" alt="1711536855542.png"></p>
-<p>可以看出初始的500点长度的数据包中有403个“1”，经过扰码处理后“1”的个数接近数据总量的一半</p>
-<h1 id="外码纠错编码（RS编码）"><a href="#外码纠错编码（RS编码）" class="headerlink" title="外码纠错编码（RS编码）"></a>外码纠错编码（RS编码）</h1><p>RS码定义：</p>
-<p>$GF(q)上（q \neq 2, 通常q=2^m），码长n=q-1的本原BCH码$</p>
-<p>能纠正 t 个错误的RS码的参数为</p>
-<pre><code>- 分组长度n=q-1
-- 校验符号数n-k=2t
-- 码的最小距离dmin=2t+1
-</code></pre><p>DVB-S系统中使用的RS(188，204)是由RS(239,255)截断而来的，可以纠正8个字节的错误</p>
-<h2 id="Matlab仿真"><a href="#Matlab仿真" class="headerlink" title="Matlab仿真"></a>Matlab仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">m=<span class="number">8</span>; <span class="comment">%bit per symbol</span></span><br><span class="line">n=<span class="number">204</span>;</span><br><span class="line">k=<span class="number">188</span>;</span><br><span class="line"></span><br><span class="line">data_test=randi([<span class="number">0</span>,n],<span class="number">1</span>,k);</span><br><span class="line">data_gf=gf(data_test,m);</span><br><span class="line"></span><br><span class="line">data_rs_enc=rsenc(data_gf,n,k);</span><br><span class="line">data_enc=data_rs_enc.x;</span><br><span class="line"></span><br><span class="line">data_rs_dec=rsdec(data_rs_enc,n,k);</span><br><span class="line">data_dec=data_rs_dec.x;</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">stem(data_test);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">stem(data_enc);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">stem(data_dec);</span><br></pre></td></tr></table></figure>
-<p>首先生成一个长度为188的序列，将其转换到伽罗华域后，使用rsenc函数进行RS编码，再进行译码，根据对比可以看出译码后的比特和译码前的完全一样</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711538853533.png" alt="1711538853533.png"></p>
-<h1 id="卷积交织"><a href="#卷积交织" class="headerlink" title="卷积交织"></a>卷积交织</h1><p>在实际的传输过程中，由于脉冲干扰、多径效应等因素会带来持续一定时间的突发错误，虽然RS码对突发错误有较好的纠错能力，但是当其持续时间较长时，就会超出RS码的纠错能力，因此在编码过程中引入了卷积交织，将数据的传输顺序按照一定的规律分散开，就可以使得错误的码元也被分散开</p>
-<p>DVB-S中交织深度为12，总共17个FIFO，数据按行写入寄存器，按列读出</p>
-<p>交织后最大可纠错长度为12*8=96</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711539867512.png" alt="1711539867512.png"></p>
-<p>可以看出前一段时间读取到了很多0，说明下面的移位寄存器中的数据还没有移动到末端</p>
-<h1 id="卷积编码"><a href="#卷积编码" class="headerlink" title="卷积编码"></a>卷积编码</h1><p>卷积码是一种有效的前向纠错码记作$(n,k,m)$，将k个信息比特编为n个比特，m为编码存储长度，N=m+1为约束长度，即卷积码的当前码元不仅与当前输入的k的信息码元有关，还与前面m个时刻输入的信息码元有关</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">clc;</span><br><span class="line">close all;</span><br><span class="line">n=<span class="number">500</span>;</span><br><span class="line">tre1=[<span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]; <span class="comment">%oct 171</span></span><br><span class="line">tre2=[<span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>]; <span class="comment">%oct 133</span></span><br><span class="line"></span><br><span class="line">trellis = poly2trellis(<span class="number">7</span>,[<span class="number">171</span> <span class="number">133</span>]);</span><br><span class="line"></span><br><span class="line">convData=convenc(scrambling_data,trellis);</span><br><span class="line"></span><br><span class="line">decData=vitdec(convData,trellis,<span class="number">499</span>,<span class="string">&quot;trunc&quot;</span>,<span class="string">&quot;hard&quot;</span>);</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">stem(scrambling_data);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">stem(convData);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">stem(decData);</span><br><span class="line">biterr(scrambling_data,decData)</span><br></pre></td></tr></table></figure>
-<p>使用poly2trellis将卷积编码多项式转换为网格描述</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711541868504.png" alt="1711541868504.png"></p>
-<p>比对后可以看到解码出的数据和原数据完全相同</p>
-
+\begin{aligned}y(t)=\sum_{m}x(mT_{s})h(t-mT_{s})\end{aligned}</script><p>在  时刻重采样后内插输出信号为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}y(kT_i)=\sum_{m}x(mT_{s})h(t-mT_{s})\end{aligned}</script><p>再经过一系列的计算得：</p>
+<script type="math/tex; mode=display">
+Y (kT_i)=y[(m_k+\mu_k) T_s]=\sum_{i=N_1}^{N_2}x[(m_k-i) T_s]h[(i+\mu_k) T_s]</script><p>上式即为数字内插器的基本方程</p>
+<h3 id="工程应用"><a href="#工程应用" class="headerlink" title="工程应用"></a>工程应用</h3><p>常用的插值滤波器有简单的线性内插器和分段抛物线内插器以及拉格朗日内插器。线性内插器有两个样值点参加运算，分段和拉格朗日有多个样值点参与运算。冲激响应函数分别如下：<br>线性插值滤波器：</p>
+<script type="math/tex; mode=display">
+h\:(t)=\begin{cases}1+t\:/\:T_s\:,&\quad-T_s\leq t\leq0\\1-t\:/\:T_s\:,&\quad0_s\leq t\leq T_s\\0,&\quad others\end{cases}</script><p>分段抛物线插值滤波器：</p>
+<script type="math/tex; mode=display">
+h(t)=\begin{cases}\rho(t/T_s)^2+3\beta(t/T_s)+2\beta\:,&\quad-2T_s\leq t\leq-T_s\\-\beta(t/T_s)^2-(\beta-1)(t/T_s)+1,&\quad-T_s\leq t\leq0\\-\beta(t/T_s)^2+(\beta-1)(t/T_s)+1,&\quad0\leq t\leq T_s\\\beta(t/T_s)^2-3\beta(t/T_s)+2\beta,&\quad T_s\leq t\leq2T_s\\0,&\quad others\\\end{cases}</script><p>立方插值滤波器：</p>
+<script type="math/tex; mode=display">
+h(t)=\begin{cases}\frac16(t/T_z)^2+(t/T_z)^2+\frac{11}{6}(t/T_z)+1,&\quad-2T_z\leq t\leq-T_z\\-\frac12(t/T_z)^3-(t/T_z)^2+\frac12(t/T_s)+1,&\quad-T_z\leq t\leq0\\\frac12(t/T_z)^3-(t/T_z)^2-\frac12(t/T_s)+1,&\quad0\leq t\leq T_z\\-\frac16(t/T_z)^3+(t/T_z)^2-\frac{11}6(t/T_s)+1,&\quad T_z\leq t\leq2T_s\\0,&\quad others\\\end{cases}</script><p>三种滤波器的冲激响应都关于零点对称，满足插值滤波器要求；且在样点时刻不为 0，其他整数时刻为 0，满足奈奎斯特无失真抽样定理</p>
+<h3 id="基于多项式的插值滤波器"><a href="#基于多项式的插值滤波器" class="headerlink" title="基于多项式的插值滤波器"></a>基于多项式的插值滤波器</h3><p>上述三种的缺点是参数恒定，无法根据不同的系统要求做出改变。该滤波器使用 Farrow 结构实现<br>多项式基函数为：</p>
+<script type="math/tex; mode=display">
+f_n (t)=\begin{cases}(2 t/T_s-1)^n,&\quad 0\leq t\leq T_s\\0,&\quad others\end{cases}</script><p>n 为多项式阶数，t 为内插点整数间隔<br>冲激响应为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+h(t)& =\sum_{i=0}^{\frac N2-1}\sum_{n=0}^{L}c_n(i)f_n(t-iT_s)  \\
+&=\sum_{i=0}^{\frac N2-1}\sum_{n=0}^{L}c_n(i)g_n(t-iT_s)
+\end{aligned}</script><p>其中的</p>
+<script type="math/tex; mode=display">
+\begin{aligned}g_n(t-iT_s)&=\int_n(t-iT_s)+(-1)^nf_n(t+(i+1)T_s)\\&=\begin{cases}(\frac{2(t-iT_s)}{T_s}-1)^n&iT_s\leq t\leq(i+1)T_s\\\\(-1)n(\frac{2(t+(i+1)T_s)}{T_s}-1)^n&-(i+1)T_s\leq t\leq-iT_s\\\\0&\text{其他}&\end{cases}\\\end{aligned}</script><h3 id="定时误差估计"><a href="#定时误差估计" class="headerlink" title="定时误差估计"></a>定时误差估计</h3><p>Gardner 算法是一种适用于 BPSK/QPSK 的每符号采样两点的算法，具有所需采样点少，易于高速实现，且具有检测性能不受载波相位恢复影响等优点<br>对于 BPSK 信号，Gardner 算法表示为：</p>
+<script type="math/tex; mode=display">
+ \begin{aligned}
+U (n)& =x (\tau+(n-1/2) T)[x (\tau+nT)-x (\tau+(n-1) T)] \\
+&=x (n-1/2)[x (n)-x (n-1)]
+\end{aligned}</script><p>对于 QPSK 信号，Gardner 算法表示为：</p>
+<script type="math/tex; mode=display">
+u(n)=x_I(n-1/2)[x_I(n)-x_I(n-1)]+x_Q(n-1/2)[x_Q(n)-x_Q(n-1)]</script><h3 id="环路滤波器"><a href="#环路滤波器" class="headerlink" title="环路滤波器"></a>环路滤波器</h3><p>工程中，环路滤波器一般使用一阶积分滤波或者卡尔曼滤波<br>一阶积分滤波的冲激响应为：</p>
+<script type="math/tex; mode=display">
+y(n)=y(n-1)+c_1[x(n)-x(n-1)]+c_2x(n)</script><p>其中 $c_1=\frac{2\omega_n}{K}, c_2=\frac{\omega_n^2}{Kf}$</p>
+<h3 id="插值控制器"><a href="#插值控制器" class="headerlink" title="插值控制器"></a>插值控制器</h3><p>插值控制器的作用是控制插值运算，接收定时误差信号，运算后给内插滤波器提供内插运算所需要的控制量参数 $m_k 和\mu_k$<br>控制器由 NCO 和分数间隔计算器组成，NCO 的作用是溢出产生时钟，即确定内插基点 $m_k$，分数间隔计算器主要计算 $\mu_k$，提供给内插器进行内插<br>模 1 的相位递减器，差分方程为：</p>
+<script type="math/tex; mode=display">
+\eta(m+1)=[\eta(m)-W(m)]\mathrm{mod}1</script><p>其中 $\eta(m)$ 为第 m 个工作时钟的 NCO 寄存器内容，$W(m)$ 为 NCO 控制字，即相位递减的步长，由环路滤波器调节，使内插器输出最佳采样点，近似为 $W(m)=\frac{T_s}{T_i}$。<br>分数间隔为：</p>
+<script type="math/tex; mode=display">
+\mu_k=\xi_0\eta(m_k)，其中\xi_0=\frac{1}{W(m)}</script>
     
 
     
@@ -215,7 +225,7 @@ p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://moerjie.github.io/3f63d653fc23/" title="DVB-S系统仿真学习" target="_blank">https://moerjie.github.io/3f63d653fc23/</a>
+          <a href="https://moerjie.github.io/81bd75856416/" title="符号同步" target="_blank">https://moerjie.github.io/81bd75856416/</a>
         </li>
         
         <li>
@@ -232,21 +242,6 @@ p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0
   <div class="article-info article-info-index">
     
     
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
     
 
     
@@ -297,7 +292,7 @@ p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://moerjie.github.io/3f63d653fc23/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://moerjie.github.io/81bd75856416/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -312,18 +307,18 @@ p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0
 
 <nav id="article-nav">
   
-    <a href="/8ab0744dda61/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/d383a689d29a/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          IP-RAM
+          带通采样定理
         
       </div>
     </a>
   
   
-    <a href="/5fc949bc10ef/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">8bit数据转1bit逐位输出电路仿真</div>
+    <a href="/751c56df8069/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">载波同步</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -350,7 +345,7 @@ p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%B0%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">扰码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Matlab%E4%BB%A3%E7%A0%81%E4%BB%BF%E7%9C%9F"><span class="toc-number">1.1.</span> <span class="toc-text">Matlab代码仿真</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%96%E7%A0%81%E7%BA%A0%E9%94%99%E7%BC%96%E7%A0%81%EF%BC%88RS%E7%BC%96%E7%A0%81%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">外码纠错编码（RS编码）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Matlab%E4%BB%BF%E7%9C%9F"><span class="toc-number">2.1.</span> <span class="toc-text">Matlab仿真</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E4%BA%A4%E7%BB%87"><span class="toc-number">3.</span> <span class="toc-text">卷积交织</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">卷积编码</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E5%90%8C%E6%AD%A5"><span class="toc-number">1.</span> <span class="toc-text">符号同步</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E5%90%8C%E6%AD%A5%E5%AE%9E%E7%8E%B0%E6%A1%86%E5%9B%BE"><span class="toc-number">1.1.</span> <span class="toc-text">符号同步实现框图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="toc-number">1.1.1.</span> <span class="toc-text">插值滤波器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.2.</span> <span class="toc-text">插值滤波器原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8"><span class="toc-number">1.1.3.</span> <span class="toc-text">工程应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="toc-number">1.1.4.</span> <span class="toc-text">基于多项式的插值滤波器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1"><span class="toc-number">1.1.5.</span> <span class="toc-text">定时误差估计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E8%B7%AF%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="toc-number">1.1.6.</span> <span class="toc-text">环路滤波器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-number">1.1.7.</span> <span class="toc-text">插值控制器</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>

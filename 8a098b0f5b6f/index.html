@@ -6,30 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://moerjie.github.io">
-  <title>DVB-S系统仿真学习 | Sawen_Blog</title>
+  <title>同步和时钟恢复 | Sawen_Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="DVB-S系统用于卫星电视信号传输，发送端框图如下所示  扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为  p(x)&#x3D;x^{15}+x^{14}+1同时移位寄存器的初始状态为”1001_010">
+  <meta name="description" content="QPSK 解调主要就是载波同步和位同步的过程载波同步和位同步的恢复方式主要有两种，一种是基于前馈的补偿方式，另一种是基于反馈的锁相方式，分别对应全数字接收机中的开环方式和闭环方式闭环同步方案采用反馈控制方案实现，Costas 环于 1956年首次提出，具有一定的频移抑制能力，并且是跟踪低信噪比、抑制载波信号的最佳装置，能够实现信号的跟踪、采集、同步和解调。闭环同步进入稳定状态需要一定的时间，但是锁">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DVB-S系统仿真学习">
-<meta property="og:url" content="https://moerjie.github.io/3f63d653fc23/index.html">
+<meta property="og:title" content="同步和时钟恢复">
+<meta property="og:url" content="https://moerjie.github.io/8a098b0f5b6f/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="DVB-S系统用于卫星电视信号传输，发送端框图如下所示  扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为  p(x)&#x3D;x^{15}+x^{14}+1同时移位寄存器的初始状态为”1001_010">
+<meta property="og:description" content="QPSK 解调主要就是载波同步和位同步的过程载波同步和位同步的恢复方式主要有两种，一种是基于前馈的补偿方式，另一种是基于反馈的锁相方式，分别对应全数字接收机中的开环方式和闭环方式闭环同步方案采用反馈控制方案实现，Costas 环于 1956年首次提出，具有一定的频移抑制能力，并且是跟踪低信噪比、抑制载波信号的最佳装置，能够实现信号的跟踪、采集、同步和解调。闭环同步进入稳定状态需要一定的时间，但是锁">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536797434.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536855542.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711538853533.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711539867512.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711541868504.png">
-<meta property="article:published_time" content="2024-04-30T13:16:10.437Z">
-<meta property="article:modified_time" content="2024-05-02T13:45:37.601Z">
+<meta property="article:published_time" content="2024-04-15T13:32:42.000Z">
+<meta property="article:modified_time" content="2024-05-03T13:36:45.823Z">
 <meta property="article:author" content="Moerjie">
 <meta property="article:tag" content="学习">
 <meta property="article:tag" content="数字通信">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png">
   
     <link rel="alternative" href="/atom.xml" title="Sawen_Blog" type="application/atom+xml">
   
@@ -117,14 +110,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-DVB-S系统仿真学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-同步和时钟恢复" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      DVB-S系统仿真学习
+      同步和时钟恢复
     </h1>
   
 
@@ -136,8 +129,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/3f63d653fc23/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.437Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
+<a href="/8a098b0f5b6f/" class="archive-article-date">
+        <time datetime="2024-04-15T13:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-15</time>
 </a>
 
   
@@ -150,7 +143,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">889字</span>
+      <span class="post-count">700字</span>
     </span>
   </span>
 
@@ -159,7 +152,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">3分</span>
+      <span class="post-count">2分</span>
     </span>
   </span>
 </div>
@@ -170,37 +163,12 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>DVB-S系统用于卫星电视信号传输，发送端框图如下所示</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png" alt="1711536126647.png"></p>
-<h1 id="扰码"><a href="#扰码" class="headerlink" title="扰码"></a>扰码</h1><p>实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理</p>
-<p>DVB-S标准中规定扰码的生成多项式为</p>
-<script type="math/tex; mode=display">
-p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0101_0000_000”</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536797434.png" alt="1711536797434.png"></p>
-<h2 id="Matlab代码仿真"><a href="#Matlab代码仿真" class="headerlink" title="Matlab代码仿真"></a>Matlab代码仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">n=<span class="number">500</span>;</span><br><span class="line"><span class="comment">% origin_data=randi([0 1],n,1);</span></span><br><span class="line">origin_cnt_1=nnz(origin_data==<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">scrambling = comm.Scrambler(<span class="string">&quot;CalculationBase&quot;</span>,<span class="number">2</span>,<span class="string">&quot;InitialConditions&quot;</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>], ...</span><br><span class="line">    <span class="string">&quot;Polynomial&quot;</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>]);</span><br><span class="line">scrambling_data=step(scrambling,origin_data);</span><br><span class="line">scrambling_data_cnt_1=nnz(scrambling_data==<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<p>运行结果如下图所示</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536855542.png" alt="1711536855542.png"></p>
-<p>可以看出初始的500点长度的数据包中有403个“1”，经过扰码处理后“1”的个数接近数据总量的一半</p>
-<h1 id="外码纠错编码（RS编码）"><a href="#外码纠错编码（RS编码）" class="headerlink" title="外码纠错编码（RS编码）"></a>外码纠错编码（RS编码）</h1><p>RS码定义：</p>
-<p>$GF(q)上（q \neq 2, 通常q=2^m），码长n=q-1的本原BCH码$</p>
-<p>能纠正 t 个错误的RS码的参数为</p>
-<pre><code>- 分组长度n=q-1
-- 校验符号数n-k=2t
-- 码的最小距离dmin=2t+1
-</code></pre><p>DVB-S系统中使用的RS(188，204)是由RS(239,255)截断而来的，可以纠正8个字节的错误</p>
-<h2 id="Matlab仿真"><a href="#Matlab仿真" class="headerlink" title="Matlab仿真"></a>Matlab仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">m=<span class="number">8</span>; <span class="comment">%bit per symbol</span></span><br><span class="line">n=<span class="number">204</span>;</span><br><span class="line">k=<span class="number">188</span>;</span><br><span class="line"></span><br><span class="line">data_test=randi([<span class="number">0</span>,n],<span class="number">1</span>,k);</span><br><span class="line">data_gf=gf(data_test,m);</span><br><span class="line"></span><br><span class="line">data_rs_enc=rsenc(data_gf,n,k);</span><br><span class="line">data_enc=data_rs_enc.x;</span><br><span class="line"></span><br><span class="line">data_rs_dec=rsdec(data_rs_enc,n,k);</span><br><span class="line">data_dec=data_rs_dec.x;</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">stem(data_test);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">stem(data_enc);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">stem(data_dec);</span><br></pre></td></tr></table></figure>
-<p>首先生成一个长度为188的序列，将其转换到伽罗华域后，使用rsenc函数进行RS编码，再进行译码，根据对比可以看出译码后的比特和译码前的完全一样</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711538853533.png" alt="1711538853533.png"></p>
-<h1 id="卷积交织"><a href="#卷积交织" class="headerlink" title="卷积交织"></a>卷积交织</h1><p>在实际的传输过程中，由于脉冲干扰、多径效应等因素会带来持续一定时间的突发错误，虽然RS码对突发错误有较好的纠错能力，但是当其持续时间较长时，就会超出RS码的纠错能力，因此在编码过程中引入了卷积交织，将数据的传输顺序按照一定的规律分散开，就可以使得错误的码元也被分散开</p>
-<p>DVB-S中交织深度为12，总共17个FIFO，数据按行写入寄存器，按列读出</p>
-<p>交织后最大可纠错长度为12*8=96</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711539867512.png" alt="1711539867512.png"></p>
-<p>可以看出前一段时间读取到了很多0，说明下面的移位寄存器中的数据还没有移动到末端</p>
-<h1 id="卷积编码"><a href="#卷积编码" class="headerlink" title="卷积编码"></a>卷积编码</h1><p>卷积码是一种有效的前向纠错码记作$(n,k,m)$，将k个信息比特编为n个比特，m为编码存储长度，N=m+1为约束长度，即卷积码的当前码元不仅与当前输入的k的信息码元有关，还与前面m个时刻输入的信息码元有关</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">clc;</span><br><span class="line">close all;</span><br><span class="line">n=<span class="number">500</span>;</span><br><span class="line">tre1=[<span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]; <span class="comment">%oct 171</span></span><br><span class="line">tre2=[<span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>]; <span class="comment">%oct 133</span></span><br><span class="line"></span><br><span class="line">trellis = poly2trellis(<span class="number">7</span>,[<span class="number">171</span> <span class="number">133</span>]);</span><br><span class="line"></span><br><span class="line">convData=convenc(scrambling_data,trellis);</span><br><span class="line"></span><br><span class="line">decData=vitdec(convData,trellis,<span class="number">499</span>,<span class="string">&quot;trunc&quot;</span>,<span class="string">&quot;hard&quot;</span>);</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">stem(scrambling_data);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">stem(convData);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">stem(decData);</span><br><span class="line">biterr(scrambling_data,decData)</span><br></pre></td></tr></table></figure>
-<p>使用poly2trellis将卷积编码多项式转换为网格描述</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711541868504.png" alt="1711541868504.png"></p>
-<p>比对后可以看到解码出的数据和原数据完全相同</p>
+    <p>QPSK 解调主要就是载波同步和位同步的过程<br>载波同步和位同步的恢复方式主要有两种，一种是基于前馈的补偿方式，另一种是基于反馈的锁相方式，分别对应全数字接收机中的开环方式和闭环方式<br>闭环同步方案采用反馈控制方案实现，Costas 环于 1956<br>年首次提出，具有一定的频移抑制能力，并且是跟踪低信噪比、抑制载波信号的最佳装置，能够实现信号的跟踪、采集、同步和解调。闭环同步进入稳定状态需要一定的时间，但是锁定后的误差极小，适用于连续解调方案<br>开环同步方案同步速度快，捕获带宽大，但锁定精度比较差，并且要求解调时准确估计出定时误差的大小适用于突发通信中的快速捕获</p>
+<h2 id="位同步"><a href="#位同步" class="headerlink" title="位同步"></a>位同步</h2><p>又称符号同步、码元同步、定时同步<br>在数字通信系统中，从发射端到接收端的信息实际上是一系列的符号序列，发射端先对数字信号进行整形滤波，然后调制，接收端则通过采样和解调恢复出数字信号。<br>但是由于多普勒频移以及发送端和接收端之间存在时钟频率偏移，会导致接收端采样判决的时刻和数据的最佳采样点存在误差<br>因此想要无误的恢复数据的话，就需要知道每个码元的起止时间，所以接收端就需要一个定时同步脉冲序列作为采样判决的标志，将产生定时同步序列的过程称为位同步</p>
+<h3 id="位同步方法"><a href="#位同步方法" class="headerlink" title="位同步方法"></a>位同步方法</h3><h4 id="数据辅助法-Mueller-Muller算法-过零检测法"><a href="#数据辅助法-Mueller-Muller算法-过零检测法" class="headerlink" title="数据辅助法 - Mueller-Muller算法 - 过零检测法"></a>数据辅助法 - Mueller-Muller算法 - 过零检测法</h4><h3 id=""><a href="#" class="headerlink" title="#"></a>#</h3><p>非数据辅助法 - 相位比较法<br>在接收端产生一个待同步的采样脉冲信号，而且不断检测这个采样脉冲信号与最佳采样时刻的相位误差，通过误差来调节定时采样时刻的频率与相位，使得采样时刻能稳定保持在最佳采样点</p>
+<ul>
+<li>早迟门 - 内插法 - 滤波法 ## 载波同步<br>载波恢复，即在接收设备中产生一个和接收信号的载波同频同相的本地振荡信号，供解调器作相干解调用。根据估计过程中使用观测数据的类型，可以将其分为数据辅助、非数据辅助和编码辅助<br>当接收信号中包含离散的载频分量时，在接收端可以直接从信号中分离出载波作为本地相干载波</li>
+</ul>
 
     
 
@@ -215,7 +183,7 @@ p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://moerjie.github.io/3f63d653fc23/" title="DVB-S系统仿真学习" target="_blank">https://moerjie.github.io/3f63d653fc23/</a>
+          <a href="https://moerjie.github.io/8a098b0f5b6f/" title="同步和时钟恢复" target="_blank">https://moerjie.github.io/8a098b0f5b6f/</a>
         </li>
         
         <li>
@@ -297,7 +265,7 @@ p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://moerjie.github.io/3f63d653fc23/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://moerjie.github.io/8a098b0f5b6f/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -312,18 +280,18 @@ p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0
 
 <nav id="article-nav">
   
-    <a href="/8ab0744dda61/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/88a45fbee763/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          IP-RAM
+          使用stateflow搭建PFD遇到的问题和解决方案
         
       </div>
     </a>
   
   
-    <a href="/5fc949bc10ef/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">8bit数据转1bit逐位输出电路仿真</div>
+    <a href="/067a492a46e2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">均衡</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -350,7 +318,7 @@ p(x)=x^{15}+x^{14}+1</script><p>同时移位寄存器的初始状态为”1001_0
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%B0%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">扰码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Matlab%E4%BB%A3%E7%A0%81%E4%BB%BF%E7%9C%9F"><span class="toc-number">1.1.</span> <span class="toc-text">Matlab代码仿真</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%96%E7%A0%81%E7%BA%A0%E9%94%99%E7%BC%96%E7%A0%81%EF%BC%88RS%E7%BC%96%E7%A0%81%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">外码纠错编码（RS编码）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Matlab%E4%BB%BF%E7%9C%9F"><span class="toc-number">2.1.</span> <span class="toc-text">Matlab仿真</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E4%BA%A4%E7%BB%87"><span class="toc-number">3.</span> <span class="toc-text">卷积交织</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">卷积编码</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E5%90%8C%E6%AD%A5"><span class="toc-number">1.</span> <span class="toc-text">位同步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E5%90%8C%E6%AD%A5%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">位同步方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%BE%85%E5%8A%A9%E6%B3%95-Mueller-Muller%E7%AE%97%E6%B3%95-%E8%BF%87%E9%9B%B6%E6%A3%80%E6%B5%8B%E6%B3%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">数据辅助法 - Mueller-Muller算法 - 过零检测法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.2.</span> <span class="toc-text">#</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
