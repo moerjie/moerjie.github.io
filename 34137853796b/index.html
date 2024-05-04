@@ -10,14 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="理论分析AMAM 信号表达式如下 vm  v_{AM}&#x3D;V_C(1+m_acos\Omega t)cos\omega_ct\\m_a&#x3D;k_a\frac{V_{\Omega}}{V_c}其中 $V_{\Omega}和V_C$ 分别为调制信号和载波的幅度，ka 为常数调制灵敏度 因此可以测量调制信号的最大值和最小值并计算平均值">
+  <meta name="description" content="理论分析AMAM 信号表达式如下 vm  v_{AM}&#x3D;V_C(1+m_acos\Omega t)cos\omega_ct\\m_a&#x3D;k_a\frac{V_{\Omega}}{V_c}其中 $V_{\Omega}和V_C$ 分别为调制信号和载波的幅度，ka 为常数调制灵敏度 因此可以测量调制信号的最大值和最小值并计算平均值 FMFM 的信号表达式如下所示  V_{FM}(t)&#x3D;V_{cm}cos(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2022 TI 杯 7 月 F 题《信号调制度测量装置》">
 <meta property="og:url" content="https://moerjie.github.io/34137853796b/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="理论分析AMAM 信号表达式如下 vm  v_{AM}&#x3D;V_C(1+m_acos\Omega t)cos\omega_ct\\m_a&#x3D;k_a\frac{V_{\Omega}}{V_c}其中 $V_{\Omega}和V_C$ 分别为调制信号和载波的幅度，ka 为常数调制灵敏度 因此可以测量调制信号的最大值和最小值并计算平均值">
+<meta property="og:description" content="理论分析AMAM 信号表达式如下 vm  v_{AM}&#x3D;V_C(1+m_acos\Omega t)cos\omega_ct\\m_a&#x3D;k_a\frac{V_{\Omega}}{V_c}其中 $V_{\Omega}和V_C$ 分别为调制信号和载波的幅度，ka 为常数调制灵敏度 因此可以测量调制信号的最大值和最小值并计算平均值 FMFM 的信号表达式如下所示  V_{FM}(t)&#x3D;V_{cm}cos(">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4Untitled.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405041055383.png">
 <meta property="article:published_time" content="2024-05-03T13:32:42.000Z">
 <meta property="article:modified_time" content="2024-05-03T13:32:42.000Z">
 <meta property="article:author" content="Moerjie">
@@ -144,7 +145,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">80字</span>
+      <span class="post-count">135字</span>
     </span>
   </span>
 
@@ -168,6 +169,11 @@
 <script type="math/tex; mode=display">
 v_{AM}=V_C(1+m_acos\Omega t)cos\omega_ct\\m_a=k_a\frac{V_{\Omega}}{V_c}</script><p>其中 $V_{\Omega}和V_C$ 分别为调制信号和载波的幅度，ka 为常数调制灵敏度<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4Untitled.png" alt="|525"></p>
 <p>因此可以测量调制信号的最大值和最小值并计算平均值</p>
+<h2 id="FM"><a href="#FM" class="headerlink" title="FM"></a>FM</h2><p>FM 的信号表达式如下所示</p>
+<script type="math/tex; mode=display">
+V_{FM}(t)=V_{cm}cos(\omega_c t+ m_f sin\Omega t)</script><p>其中调制度 $m_f$ 的定义为</p>
+<script type="math/tex; mode=display">
+m_f=\frac{\Delta f_m}{f_o},上面为最大频偏，下面为调制信号的频率</script><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405041055383.png" alt=""></p>
 
     
 
@@ -304,7 +310,7 @@ v_{AM}=V_C(1+m_acos\Omega t)cos\omega_ct\\m_a=k_a\frac{V_{\Omega}}{V_c}</script>
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%90%86%E8%AE%BA%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">理论分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AM"><span class="toc-number">1.1.</span> <span class="toc-text">AM</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%90%86%E8%AE%BA%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">理论分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AM"><span class="toc-number">1.1.</span> <span class="toc-text">AM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FM"><span class="toc-number">1.2.</span> <span class="toc-text">FM</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
