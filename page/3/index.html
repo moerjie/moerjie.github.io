@@ -111,6 +111,105 @@
             
 
   
+    <article id="post-带通采样定理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/d383a689d29a/">带通采样定理</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/d383a689d29a/" class="archive-article-date">
+        <time datetime="2024-04-15T13:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-15</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>对信号进行处理时，要通过采样、量化、编码将模拟信号转换为数字信号，其中采样最为关键，只有经过模数转换和数模转换后信号还能保持不变的通信才算完整可靠。采样定理说明了采样频率和信号频谱之间的关系，是模拟信号数字化的基本依据。</p>
+<h2 id="低通采样定理（奈奎斯特采样定理）"><a href="#低通采样定理（奈奎斯特采样定理）" class="headerlink" title="低通采样定理（奈奎斯特采样定理）"></a>低通采样定理（奈奎斯特采样定理）</h2><script type="math/tex; mode=display">
+f_s\geq 2f_h</script><p>该采样定理是万能的，也可以用来对带通信号采样</p>
+<h2 id="带通采样定理"><a href="#带通采样定理" class="headerlink" title="带通采样定理"></a>带通采样定理</h2><p>实际应用中信号带宽可能不会很宽，但是$f_H$可能为几十G，如果还使用奈奎斯特采样定理的话对AD的要求极高，不满足实际中的使用要求，因此催生了带通采样的应用</p>
+<p>设带通信号的带宽$B=f_H-f_L$，则最小采样速率$f_s=2B(1+\frac{k}{n})，其中k为\frac{f_H}{B}的小数部分，n为整数部分$</p>
+<p>信号满足：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}f_s&=\frac{2(f_L+f_H)}{2m-1}=\frac{4f_0}{2m-1}\\f_s&\geq=2(f_H-f_L)=2B\end{aligned}</script><p>此时用$f_s$进行等间隔采样所得到的信号采样值可以无失真的恢复原始信号</p>
+<p>带通采样定理的另一种描述方式为：若信号最高频率为信号带宽的整数倍，采样频率只需大于信号带宽的两倍即可，此时不会发生频谱混叠。</p>
+<h3 id="简单推导"><a href="#简单推导" class="headerlink" title="简单推导"></a>简单推导</h3><p>为了避免频谱混叠，采样后的频谱应满足：</p>
+<script type="math/tex; mode=display">
+\left\{\begin{matrix}{-f_L+mf_s\leq f_L}\\{f_H\leq-f_H+(m+1)f_s}\\\end{matrix}\right.</script><p>解得采样频率的取值范围是：</p>
+<script type="math/tex; mode=display">
+\frac{2f_H}{m+1}\leq f_s \leq \frac{2f_L}{m}</script><p>m为非负整数，即为m次频移</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/d383a689d29a/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-符号同步" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

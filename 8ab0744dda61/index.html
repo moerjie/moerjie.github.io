@@ -6,24 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://moerjie.github.io">
-  <title>IP-RAM | Sawen_Blog</title>
+  <title>Sawen_Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="Vivado软件自带的Block Memory Genrator IP核可以用来配置生成RAM和ROM，生成的RAM和ROM使用的都是FPGA内部的BRAM资源 Vivado IP核配置 读数据位宽要与写数据位宽成整数倍关系 Port A Optional Register：用于为RAM的输出端添加寄存器，提高BRAM的运行频率和改善时序，每勾选一个寄存器，输出会延迟一拍  地址信号和写信号的生成">
+  <meta name="description" content="—- mathjax: truetitle: IP-RAMarchives: FPGAtags:  FPGA IP date: 2024-01-15 21:32:42    Vivado软件自带的Block Memory Genrator IP核可以用来配置生成RAM和ROM，生成的RAM和ROM使用的都是FPGA内部的BRAM资源 Vivado IP核配置 读数据位宽要与写数据位宽成整数倍关系">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IP-RAM">
+<meta property="og:title" content="Sawen_Blog">
 <meta property="og:url" content="https://moerjie.github.io/8ab0744dda61/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="Vivado软件自带的Block Memory Genrator IP核可以用来配置生成RAM和ROM，生成的RAM和ROM使用的都是FPGA内部的BRAM资源 Vivado IP核配置 读数据位宽要与写数据位宽成整数倍关系 Port A Optional Register：用于为RAM的输出端添加寄存器，提高BRAM的运行频率和改善时序，每勾选一个寄存器，输出会延迟一拍  地址信号和写信号的生成">
+<meta property="og:description" content="—- mathjax: truetitle: IP-RAMarchives: FPGAtags:  FPGA IP date: 2024-01-15 21:32:42    Vivado软件自带的Block Memory Genrator IP核可以用来配置生成RAM和ROM，生成的RAM和ROM使用的都是FPGA内部的BRAM资源 Vivado IP核配置 读数据位宽要与写数据位宽成整数倍关系">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/3bedaea5-7a14-4f2a-8a3f-70d23235289e/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240206%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240206T060646Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=230639c1ad7180ea0094e6eb06c7a73b858ad9b7026740cdb129b6e4c775036a&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject">
 <meta property="og:image" content="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/66f4caaa-6930-442d-8136-3389b6293dca/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240206%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240206T060646Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=670c5d2810d18a1c60207c8ef3e8d8371ee10b5bf7561f1adc1802026c246e5d&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject">
 <meta property="article:published_time" content="2024-04-30T13:16:10.445Z">
-<meta property="article:modified_time" content="2024-05-01T06:12:35.133Z">
+<meta property="article:modified_time" content="2024-05-04T07:17:52.944Z">
 <meta property="article:author" content="Moerjie">
-<meta property="article:tag" content="FPGA">
-<meta property="article:tag" content="IP">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://prod-files-secure.s3.us-west-2.amazonaws.com/97f0703f-58fb-46dc-88d6-e883c735ff52/3bedaea5-7a14-4f2a-8a3f-70d23235289e/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240206%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240206T060646Z&amp;X-Amz-Expires=3600&amp;X-Amz-Signature=230639c1ad7180ea0094e6eb06c7a73b858ad9b7026740cdb129b6e4c775036a&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject">
   
@@ -116,57 +114,18 @@
             <article id="post-IP-RAM" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-  
-  
-    <h1 class="article-title" itemprop="name">
-      IP-RAM
-    </h1>
-  
-
-
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/8ab0744dda61/" class="archive-article-date">
-        <time datetime="2024-04-30T13:16:10.445Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-30</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">374字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
   <div class="article-entry" itemprop="articleBody">
     
-    <p>Vivado软件自带的Block Memory Genrator IP核可以用来配置生成RAM和ROM，生成的RAM和ROM使用的都是FPGA内部的BRAM资源</p>
+    <h2 id="—"><a href="#—" class="headerlink" title="—-"></a>—-</h2><hr>
+<p>mathjax: true<br>title: IP-RAM<br>archives: FPGA<br>tags:</p>
+<ul>
+<li>FPGA</li>
+<li><p>IP</p>
+<p>date: 2024-01-15 21:32:42</p>
+</li>
+</ul>
+<hr>
+<p>Vivado软件自带的Block Memory Genrator IP核可以用来配置生成RAM和ROM，生成的RAM和ROM使用的都是FPGA内部的BRAM资源</p>
 <h2 id="Vivado-IP核配置"><a href="#Vivado-IP核配置" class="headerlink" title="Vivado IP核配置"></a>Vivado IP核配置</h2><ol>
 <li>读数据位宽要与写数据位宽成整数倍关系</li>
 <li>Port A Optional Register：用于为RAM的输出端添加寄存器，提高BRAM的运行频率和改善时序，每勾选一个寄存器，输出会延迟一拍</li>
@@ -190,7 +149,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://moerjie.github.io/8ab0744dda61/" title="IP-RAM" target="_blank">https://moerjie.github.io/8ab0744dda61/</a>
+          <a href="https://moerjie.github.io/8ab0744dda61/" title="" target="_blank">https://moerjie.github.io/8ab0744dda61/</a>
         </li>
         
         <li>
@@ -207,21 +166,6 @@
   <div class="article-info article-info-index">
     
     
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FPGA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
     
 
     
@@ -325,7 +269,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vivado-IP%E6%A0%B8%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">Vivado IP核配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E4%BF%A1%E5%8F%B7%E5%92%8C%E5%86%99%E4%BF%A1%E5%8F%B7%E7%9A%84%E7%94%9F%E6%88%90"><span class="toc-number">2.</span> <span class="toc-text">地址信号和写信号的生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A2%E5%BD%A2"><span class="toc-number">3.</span> <span class="toc-text">波形</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94"><span class="toc-number">1.</span> <span class="toc-text">—-</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vivado-IP%E6%A0%B8%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">Vivado IP核配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E4%BF%A1%E5%8F%B7%E5%92%8C%E5%86%99%E4%BF%A1%E5%8F%B7%E7%9A%84%E7%94%9F%E6%88%90"><span class="toc-number">3.</span> <span class="toc-text">地址信号和写信号的生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A2%E5%BD%A2"><span class="toc-number">4.</span> <span class="toc-text">波形</span></a></li></ol>
                     </div>
                 </span>
             </div>

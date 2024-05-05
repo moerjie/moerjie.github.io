@@ -6,17 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://moerjie.github.io">
-  <title>Archives | Sawen_Blog</title>
+  <title>运放的同相与反相放大 | Sawen_Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Sawen_Blog">
-<meta property="og:url" content="https://moerjie.github.io/archives/page/3/index.html">
+  <meta name="description" content="反相放大器同相端接地，电压为 0，反相端和同相端虚短，因此也是 0 V 的电压，同时由于虚断，几乎没有电流注入，所以R 1 和R 2 相当于串联，电阻上的电流相等因此可以求出输入输出关系式为  V_{out}&#x3D;-\frac{R_2}{R_1}\times V_i同相放大器同样根据虚断和虚短可以求得输入输出关系式为  V_{out}&#x3D;\frac{R_1+R_2}{R_2}\times V_i 同相放">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运放的同相与反相放大">
+<meta property="og:url" content="https://moerjie.github.io/d9206bb7a35d/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:description" content="反相放大器同相端接地，电压为 0，反相端和同相端虚短，因此也是 0 V 的电压，同时由于虚断，几乎没有电流注入，所以R 1 和R 2 相当于串联，电阻上的电流相等因此可以求出输入输出关系式为  V_{out}&#x3D;-\frac{R_2}{R_1}\times V_i同相放大器同样根据虚断和虚短可以求得输入输出关系式为  V_{out}&#x3D;\frac{R_1+R_2}{R_2}\times V_i 同相放">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405051202106.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405051206856.png">
+<meta property="article:published_time" content="2024-05-05T04:01:09.000Z">
+<meta property="article:modified_time" content="2024-05-05T04:01:09.000Z">
 <meta property="article:author" content="Moerjie">
+<meta property="article:tag" content="电赛">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405051202106.png">
   
     <link rel="alternative" href="/atom.xml" title="Sawen_Blog" type="application/atom+xml">
   
@@ -104,285 +112,228 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-运放的同相与反相放大" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/d383a689d29a/" class="archive-article-date">
-        <time datetime="2024-04-15T13:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/d383a689d29a/">带通采样定理</a>
-	
+    <h1 class="article-title" itemprop="name">
+      运放的同相与反相放大
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/d9206bb7a35d/" class="archive-article-date">
+        <time datetime="2024-05-05T04:01:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-05</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">351字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="反相放大器"><a href="#反相放大器" class="headerlink" title="反相放大器"></a>反相放大器</h2><p>同相端接地，电压为 0，反相端和同相端虚短，因此也是 0 V 的电压，同时由于虚断，几乎没有电流注入，所以R 1 和R 2 相当于串联，电阻上的电流相等<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405051202106.png" alt=""><br>因此可以求出输入输出关系式为</p>
+<script type="math/tex; mode=display">
+V_{out}=-\frac{R_2}{R_1}\times V_i</script><h2 id="同相放大器"><a href="#同相放大器" class="headerlink" title="同相放大器"></a>同相放大器</h2><p>同样根据虚断和虚短可以求得输入输出关系式为</p>
+<script type="math/tex; mode=display">
+V_{out}=\frac{R_1+R_2}{R_2}\times V_i</script><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405051206856.png" alt=""></p>
+<h2 id="同相放大器和反相放大器的优缺点"><a href="#同相放大器和反相放大器的优缺点" class="headerlink" title="同相放大器和反相放大器的优缺点"></a>同相放大器和反相放大器的优缺点</h2><h3 id="反相放大器-1"><a href="#反相放大器-1" class="headerlink" title="反相放大器"></a>反相放大器</h3><ul>
+<li>优点：两个输入端电位始终近似为 0，只有差模信号，抗干扰能力强</li>
+<li>缺点：输入阻抗小，等于信号到输入端的串联电阻阻值<h3 id="同相放大器-1"><a href="#同相放大器-1" class="headerlink" title="同相放大器"></a>同相放大器</h3></li>
+<li>优点：输入阻抗接近无穷大</li>
+<li>缺点：放大电路没有虚地，有较大共模电压，抗干扰能力差，使用时要求运放有较高的共模抑制比</li>
+</ul>
+<p>如果要求输入阻抗不高且相位无要求时，首选反相放大，因为反相放大只存在差模信号，抗干扰能力强，可以得到更大的输入信号范围</p>
+<p>在设计中要求放大倍数相同的情况下尽量选择数值小的电阻配合，这样可以减小输入偏置电流的影响和分布电容的影响</p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Moerjie
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://moerjie.github.io/d9206bb7a35d/" title="运放的同相与反相放大" target="_blank">https://moerjie.github.io/d9206bb7a35d/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">电赛</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://moerjie.github.io/d9206bb7a35d/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/81bd75856416/" class="archive-article-date">
-        <time datetime="2024-04-15T13:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-15</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/34137853796b/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2022 TI 杯 7 月 F 题《信号调制度测量装置》</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/81bd75856416/">符号同步</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E7%9B%B8%E6%94%BE%E5%A4%A7%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">反相放大器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E7%9B%B8%E6%94%BE%E5%A4%A7%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">同相放大器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E7%9B%B8%E6%94%BE%E5%A4%A7%E5%99%A8%E5%92%8C%E5%8F%8D%E7%9B%B8%E6%94%BE%E5%A4%A7%E5%99%A8%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">3.</span> <span class="toc-text">同相放大器和反相放大器的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E7%9B%B8%E6%94%BE%E5%A4%A7%E5%99%A8-1"><span class="toc-number">3.1.</span> <span class="toc-text">反相放大器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E7%9B%B8%E6%94%BE%E5%A4%A7%E5%99%A8-1"><span class="toc-number">3.2.</span> <span class="toc-text">同相放大器</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/751c56df8069/" class="archive-article-date">
-        <time datetime="2024-04-15T13:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/751c56df8069/">载波同步</a>
-	
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/d3bd9d475d07/" class="archive-article-date">
-        <time datetime="2024-04-15T13:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/d3bd9d475d07/">锁相环学习</a>
-	
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/286e6e3edade/" class="archive-article-date">
-        <time datetime="2024-04-13T13:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-13</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/286e6e3edade/">DVB-S学习记录之信道编码</a>
-	
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/825b675917a3/" class="archive-article-date">
-        <time datetime="2024-01-13T13:32:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-13</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/825b675917a3/">IP-ROM</a>
-	
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FPGA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IP</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
-  
+
 
 
           </div>
@@ -423,8 +374,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
