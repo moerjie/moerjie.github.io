@@ -1,709 +1,700 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="sawen_blog">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="sawen_blog">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
   
   
   
-<link rel="stylesheet" href="/css/style.css">
+  <title>sawen_blog</title>
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
   
 <meta name="generator" content="Hexo 7.3.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          <a class="main-nav-link" href="/">Home</a>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
         
-      </nav>
-      <nav id="sub-nav">
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
         
         
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-阻塞赋值和非阻塞赋值" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/19/%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC/" class="article-date">
-  <time class="dt-published" datetime="2025-01-19T13:11:17.810Z" itemprop="datePublished">2025-01-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="阻塞和非阻塞的区别"><a href="#阻塞和非阻塞的区别" class="headerlink" title="阻塞和非阻塞的区别"></a>阻塞和非阻塞的区别</h1><h2 id="阻塞赋值“-”"><a href="#阻塞赋值“-”" class="headerlink" title="阻塞赋值“&#x3D;”"></a>阻塞赋值“&#x3D;”</h2><p>必须是阻塞赋值完成后，才进行下一条语句的执行；赋值一旦完成，等号左边的变量值立即变化。在同一个块中，阻塞赋值表达式的书写顺序会影响赋值的结果。硬件没有对应的电路。</p>
-<blockquote>
-<p>即串行赋值，语句从上到下顺序执行，立即生效<br>1111</p>
-</blockquote>
-<h2 id="非阻塞赋值“"><a href="#非阻塞赋值“" class="headerlink" title="非阻塞赋值“&lt;&#x3D;”"></a>非阻塞赋值“&lt;&#x3D;”</h2><p>在赋值开始时计算表达式右边的值，在本次仿真周期时钟的下降沿时才更新被赋值变量，即赋值不是立即生效的；非阻塞赋值允许块中其他语句同时执行。在同一个块中，非阻塞赋值表达式的书写顺序不影响赋值的结果。硬件有对应的电路。</p>
-<blockquote>
-<p>并行执行，不是立即生效，语句同时执行</p>
-</blockquote>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>阻塞赋值对应的硬件电路与时钟触发沿没有关系，只和输入的电平变化有关；阻塞赋值对应触发器，只有触发沿才会发生赋值。</p>
-<ol>
-<li>时序电路建模时，用非阻塞赋值</li>
-<li>锁存器建模时，用非阻塞赋值</li>
-<li>在 always 块中建立组合逻辑时，用阻塞赋值</li>
-<li>在同一个 always 块中建立时序和组合逻辑时，用非阻塞</li>
-<li>在同一个 always 块中不能既用阻塞又用非阻塞</li>
-<li>不要在一个以上的always块中为同一个变量赋值</li>
-<li>赋值时不能延时</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/19/%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC/" data-id="cm63o30ff000zggmj9pku25pg" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FPGA/" rel="tag">FPGA</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-脉冲成形滤波器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/19/%E8%84%89%E5%86%B2%E6%88%90%E5%BD%A2%E6%BB%A4%E6%B3%A2%E5%99%A8/" class="article-date">
-  <time class="dt-published" datetime="2025-01-19T13:11:17.806Z" itemprop="datePublished">2025-01-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>数字信号要想在信道中传输，必须在发射机的基带部分进行脉冲成型，将数字信号转化为脉冲信号；脉冲信号到达接收机后，在基带部分进行采样判决后恢复出数字信号。</p>
-<h1 id="脉冲成形"><a href="#脉冲成形" class="headerlink" title="脉冲成形"></a>脉冲成形</h1><h2 id="矩形脉冲"><a href="#矩形脉冲" class="headerlink" title="矩形脉冲"></a>矩形脉冲</h2><p>最容易实现的脉冲波形就是矩形脉冲，以数字信号“00010110”为例，在发射端可以将“0”映射为正脉冲，“1”映射为负脉冲。在接受端采样时刻的信号电平为正电平则为“0”，信号电平为负电平则为“1”。<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182156690.png" alt="|525"><br>但是矩形脉冲信号的频谱为无限宽，所以在带宽有限的信道传输时会发生失真，甚至可能导致采样判决失真，无法恢复出数字信号。</p>
-<h2 id="Sinc-脉冲"><a href="#Sinc-脉冲" class="headerlink" title="Sinc 脉冲"></a>Sinc 脉冲</h2><p>Sinc 脉冲信号有两个优点：</p>
-<ul>
-<li>Sinc 信号的频谱带宽是有限的，经过带宽有限的信道进行传输时不会出现失真。<br>  <img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182201184.png" alt="|500"></li>
-<li>一个码元达到最大幅值时其他码元的幅值刚好为 0，码元之间不会相互影响，实现无码间串扰。<br>以数字信号 00010110 为例，0 映射为正脉冲，1 映射为负脉冲。<br>发射端经过脉冲成形后的波形如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182204636.png" alt="|500"><br>接收端的采样判决如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182204500.png" alt="|500"></li>
-</ul>
-<h1 id="基带滤波器"><a href="#基带滤波器" class="headerlink" title="基带滤波器"></a>基带滤波器</h1><h2 id="理想低通滤波器"><a href="#理想低通滤波器" class="headerlink" title="理想低通滤波器"></a>理想低通滤波器</h2><p>如果要脉冲成形为 sinc 波形，只要将单位冲激信号输入理想 LPF 即可得到 sinc 脉冲信号。<br>如果 LPF 的带宽为 B，则输出的 sinc 脉冲信号波形如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182209002.png" alt="|500"><br>只要 sinc 脉冲信号发送间隔设为 $\frac{1}{B}$，也就是码元传输速率 $R_B&#x3D;2B$，就可以实现无码间串扰。</p>
-<h2 id="升余弦滚降滤波器"><a href="#升余弦滚降滤波器" class="headerlink" title="升余弦滚降滤波器"></a>升余弦滚降滤波器</h2><p>采用理想低通滤波器对单位冲激信号进行滤波得到的 sinc 脉冲信号，拖尾振荡幅度比较大、衰减速度比较慢，当定时出现偏差时，码间串扰会比较大。考虑到实际的系统总是存在一定的定时误差，所以脉冲成形一般不采用理想低通滤波器，而是采用升余弦滚降滤波器，这种滤波器拖尾振幅小、衰减快，对于减小码间串扰和降低对定时的要求都有利。<br>升余弦滚降滤波器的频率响应为：<br>$$<br>\begin{aligned}<br>&amp;\mathrm{H}(f)&#x3D;\begin{cases}\frac{1}{2B},&amp;0\leqslant\left|f\right|&lt;\left(1-\alpha\right)B\\frac{1}{4B}\left{1+\cos\frac{\pi}{2B\alpha}\Big[\left|f\right|-B\left(1-\alpha\right)\right]\Big},&amp;(1-\alpha)B\leqslant|f|&lt;(1+\alpha)B\0,&amp;\left|f\right|\geqslant\left(1+\alpha\right)B \<br>\end{cases}\end{aligned}<br>$$<br>其中，$B&#x3D;\frac{R_B}{2}$<br>升余弦滚降滤波器的频率响应曲线如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182214240.png"><br>升余弦滚降滤波器的单位冲激响应为：<br>$$<br>\mathrm h(t)&#x3D;\mathscr{F}^{-1}\big[\mathrm H(f)\big]&#x3D;\mathrm sinc\big(2Bt\big)\frac{\cos\big(2\pi\alpha Bt\big)}{1-\big(4\alpha Bt\big)^2}<br>$$<br>其中 $\alpha$ 是升余弦滚降滤波器的一个很重要的参数，称为滚降系数。<br>当 $\alpha&#x3D;0$ 时，升余弦滚降滤波器就是一个带宽为 B 的理想低通滤波器。<br>当 $\alpha&#x3D;0.5$ 时，升余弦滚降滤波器的频率响应和单位冲激响应如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182219396.png"><br>此时滤波器的带宽为 $（1+\alpha）B&#x3D;1.5B$。<br>当 $\alpha&#x3D;1$ 时，升余弦滚降滤波器的频率响应和单位冲激响应如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411190916731.png"><br>此时滤波器带宽为 $（1+\alpha）B&#x3D;2B$。<br>在使用升余弦滚降滤波器进行脉冲成形时，要想实现无码间串扰，则脉冲信号之间的时间间隔必须为 $\frac{1}{2B}$，即码元速率为 $R_B&#x3D;2B$。<br>由于升余弦滚降滤波器会展宽带宽，因此在给定码元速率 $R_B$ 的情况下，基带信号的频谱带宽为 $(1+\alpha)\times \frac{R_B}{2}$。</p>
-<h1 id="眼图"><a href="#眼图" class="headerlink" title="眼图"></a>眼图</h1><p>眼图可以用来评估一个系统的码间串扰情况。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/19/%E8%84%89%E5%86%B2%E6%88%90%E5%BD%A2%E6%BB%A4%E6%B3%A2%E5%99%A8/" data-id="cm63o30fe000yggmj1uu2g3bc" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" rel="tag">数字通信</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-多频点上变频器仿真bug" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/19/%E5%A4%9A%E9%A2%91%E7%82%B9%E4%B8%8A%E5%8F%98%E9%A2%91%E5%99%A8%E4%BB%BF%E7%9C%9Fbug/" class="article-date">
-  <time class="dt-published" datetime="2025-01-19T13:11:17.804Z" itemprop="datePublished">2025-01-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="2024-Multi-frequency-DUC-matlab-DUC-Slx-仿真"><a href="#2024-Multi-frequency-DUC-matlab-DUC-Slx-仿真" class="headerlink" title="2024-Multi-frequency-DUC\matlab\DUC. Slx 仿真"></a>2024-Multi-frequency-DUC\matlab\DUC. Slx 仿真</h1><p>在该仿真中，经过插值滤波器后的使能信号并没有按照两倍的速度递增，因此滤波的波形也有问题。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/19/%E5%A4%9A%E9%A2%91%E7%82%B9%E4%B8%8A%E5%8F%98%E9%A2%91%E5%99%A8%E4%BB%BF%E7%9C%9Fbug/" data-id="cm63o30fc000nggmj6n02dl97" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" rel="tag">数字通信</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Testbench仿真脚本编写指北" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/19/Testbench%E4%BB%BF%E7%9C%9F%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99%E6%8C%87%E5%8C%97/" class="article-date">
-  <time class="dt-published" datetime="2025-01-19T13:11:17.795Z" itemprop="datePublished">2025-01-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>[!note]<br>由于 Quartus 的 VWF 仿真只能仿真很短的时间，而且 Vivado 仿真的时候也需要添加激励信号，因此需要编写 testbench 文件进行激励仿真。</p>
-</blockquote>
-<h1 id="Testbench-文件结构"><a href="#Testbench-文件结构" class="headerlink" title="Testbench 文件结构"></a>Testbench 文件结构</h1><p>编写 testbench 的目的是为了测试 module 的功能、性能是否符合设计的预期。验证设计的功能包括以下步骤：</p>
-<ol>
-<li>产生合适的激励波形：该激励通常要覆盖被测 HDL 模块所有可能产生的输入状态；</li>
-<li>将产生的激励信号加入到 DUT 中并观察其响应：即将 DUT 模块例化的 Testbench 中，运行仿真测试；</li>
-<li>将输出的响应与期望值比较。<br>Testbench 的结构一般模块如下：<br>&#96;&#96;</li>
-</ol>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> Test_bench_name();</span><br><span class="line"><span class="comment">// 01:信号或变量声明定义</span></span><br><span class="line"><span class="comment">// --逻辑设计中输入对应 reg 型</span></span><br><span class="line"><span class="comment">// --逻辑设计中输出对应 wire 型</span></span><br><span class="line"><span class="comment">// 02:使用 ini[ti](https://bbs.elecfans.com/group_715)al 或 always 语句产生激励</span></span><br><span class="line"><span class="comment">// 03:例化待测试DUT模块</span></span><br><span class="line"><span class="comment">// 04:监控和比较输出响应</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<h1 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h1><h2 id="时钟激励输入示例"><a href="#时钟激励输入示例" class="headerlink" title="时钟激励输入示例"></a>时钟激励输入示例</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*----------------------------------------------------------------</span></span><br><span class="line"><span class="comment">时钟激励产生方法一：50%占空比时钟</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="keyword">parameter</span> ClockPeriod=<span class="number">10</span>; <span class="comment">//参数化时钟周期</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    clk_i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">forever</span><span class="variable">#(ClockPeriod/2)</span> clk_i = ~clk_i;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*----------------------------------------------------------------</span></span><br><span class="line"><span class="comment">时钟激励产生方法二：50%占空比时钟</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  clk_i=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">always</span> <span class="variable">#(ClockPeriod/2)</span> clk_i=~clk_i;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*----------------------------------------------------------------</span></span><br><span class="line"><span class="comment">时钟激励产生方法三：产生固定数量的时钟脉冲</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="keyword">parameter</span> ClockPeriod=<span class="number">10</span>; <span class="comment">//参数化时钟周期</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  clk_i=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">repeat</span>(<span class="number">6</span>)</span><br><span class="line">  <span class="variable">#(ClockPeriod/2)</span> clk_i=~clk_i;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*----------------------------------------------------------------</span></span><br><span class="line"><span class="comment">时钟激励产生方法四：产生非占空比为 50%的时钟</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="keyword">parameter</span> ClockPeriod=<span class="number">10</span>; <span class="comment">//参数化时钟周期</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">clk_i=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">forever</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="variable">#((ClockPeriod/2)-2)</span> clk_i=<span class="number">0</span>;</span><br><span class="line">    <span class="variable">#((ClockPeriod/2)+2)</span> clk_i=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="复位激励输入示例"><a href="#复位激励输入示例" class="headerlink" title="复位激励输入示例"></a>复位激励输入示例</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*---------------------------------------------------------------- </span></span><br><span class="line"><span class="comment">复位信号产生方法一：异步复位</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  [rs](https:<span class="comment">//www.elecfans.com/tags/rs/)t_n_i=1;</span></span><br><span class="line">  #<span class="number">100</span>; rst_n_i=<span class="number">0</span>;</span><br><span class="line">  #<span class="number">100</span>; rst_n_i=<span class="number">1</span>; </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">/*---------------------------------------------------------------- </span></span><br><span class="line"><span class="comment">复位信号产生方法二：同步复位</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  rst_n_i=<span class="number">1</span>; clk_i = <span class="number">0</span>;</span><br><span class="line">  @（<span class="keyword">negedge</span> clk_i)</span><br><span class="line">  rst_n_i=<span class="number">0</span>;</span><br><span class="line">  #<span class="number">100</span>; <span class="comment">//固定时间复位</span></span><br><span class="line">  <span class="keyword">repeat</span>(<span class="number">10</span>) @（<span class="keyword">negedge</span> clk_i); <span class="comment">//固定周期数复位</span></span><br><span class="line">  @（<span class="keyword">negedge</span> clk_i)</span><br><span class="line">  rst_n_i=<span class="number">1</span>; </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">always</span> #<span class="number">5</span> clk_i=~clk_i;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*---------------------------------------------------------------- </span></span><br><span class="line"><span class="comment">复位信号产生方法三：复位任务封装</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="keyword">task</span> reset;</span><br><span class="line"><span class="keyword">input</span> [<span class="number">31</span>:<span class="number">0</span>] reset_time; <span class="comment">//复位时间可调，输入复位时间</span></span><br><span class="line">  RST_ING=<span class="number">0</span>; <span class="comment">//复位方式可调，低电平或高电平</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    rst_n=RST_ING; <span class="comment">//复位中</span></span><br><span class="line">    #reset_time; <span class="comment">//复位时间</span></span><br><span class="line">    rst_n_i=~RST_ING; <span class="comment">//撤销复位，复位结束</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endtask</span></span><br></pre></td></tr></table></figure>
-<h2 id="仿真控制语句和系统任务描述"><a href="#仿真控制语句和系统任务描述" class="headerlink" title="仿真控制语句和系统任务描述"></a>仿真控制语句和系统任务描述</h2><p>&#96;&#96;</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*---------------------------------------------------------------- </span></span><br><span class="line"><span class="comment">仿真控制语句及系统任务描述</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="built_in">$stop</span>  <span class="comment">// 停止运行仿真，modelsim 中可继续仿真</span></span><br><span class="line"><span class="built_in">$stop</span>(n) <span class="comment">//带参数系统任务，根据参数 0,1或2不同，输出仿真信息</span></span><br><span class="line"><span class="built_in">$finish</span> <span class="comment">//结束运行仿真，不可继续仿真</span></span><br><span class="line"><span class="built_in">$finish</span>(n) <span class="comment">//带参数系统任务，根据参数 0,1或2不同，输出仿真信息</span></span><br><span class="line"><span class="comment">//0:不输出任何信息</span></span><br><span class="line"><span class="comment">//1:输出当前仿真时刻和位置</span></span><br><span class="line"><span class="comment">//2:输出当前仿真时刻、位置和仿真过程中用到的 memory 以及 CPU 时间的统计</span></span><br><span class="line"><span class="built_in">$random</span> <span class="comment">//产生随机数</span></span><br><span class="line"><span class="built_in">$random</span> % n <span class="comment">//产生范围-n 到 n 之间的随机数</span></span><br><span class="line">&#123;<span class="built_in">$random</span>&#125; % n <span class="comment">//产生范围 0 到 n 之间的随机数</span></span><br><span class="line"><span class="comment">/*----------------------------------------------------------------</span></span><br></pre></td></tr></table></figure>
-<h2 id="文本读取"><a href="#文本读取" class="headerlink" title="文本读取"></a>文本读取</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*---------------------------------------------------------------- </span></span><br><span class="line"><span class="comment">文本输入方式：$readmemb/$readmemh</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="built_in">$readmemb</span>/<span class="built_in">$readmemh</span>(<span class="string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;);</span><br><span class="line"><span class="built_in">$readmemb</span>/<span class="built_in">$readmemh</span>(<span class="string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;);</span><br><span class="line"><span class="built_in">$readmemb</span>/<span class="built_in">$readmemh</span>(<span class="string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;,&lt;结束地址&gt;);</span><br><span class="line"><span class="built_in">$readmemb</span>:<span class="comment">/*读取二进制数据，读取文件内容只能包含：空白位置，注释行，二进制数</span></span><br><span class="line"><span class="comment">数据中不能包含位宽说明和格式说明，每个数字必须是二进制数字。*/</span></span><br><span class="line"><span class="built_in">$readmemh</span>:<span class="comment">/*读取十六进制数据，读取文件内容只能包含：空白位置，注释行，十六进制数</span></span><br><span class="line"><span class="comment">数据中不能包含位宽说明和格式说明，每个数字必须是十六进制数字。*/</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/19/Testbench%E4%BB%BF%E7%9C%9F%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99%E6%8C%87%E5%8C%97/" data-id="cm63o30fb000kggmjbpufgv18" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FPGA/" rel="tag">FPGA</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-FPGA中的电平标准" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/19/FPGA%E4%B8%AD%E7%9A%84%E7%94%B5%E5%B9%B3%E6%A0%87%E5%87%86/" class="article-date">
-  <time class="dt-published" datetime="2025-01-19T13:11:17.784Z" itemprop="datePublished">2025-01-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>FPGA 在与外界进行信息交换时，为了确保信息的正确性，发送和接收信息都要对信息有认定的标准。在数字电路中，我们常用电压高低来表示“0”和“1”，那么多高的电压才会被当作“1”呢，这个时候就需要一个标准，这个标准就是电平标准。 </p>
-<h1 id="常见电平标准"><a href="#常见电平标准" class="headerlink" title="常见电平标准"></a>常见电平标准</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411141024162.png"></p>
-<h2 id="TTL"><a href="#TTL" class="headerlink" title="TTL"></a>TTL</h2><p>TTL (Transistor - Transistor Logic，三极管 - 三极管逻辑电平) 是电平标准中的元老级成员。<br>在早期的数字电路中有广泛的应用，但是它有一些缺点，比如高电平的判决门限和供电电压之间的电压空间较大，容易造成信号的不稳定性；而且 5 V 的电压过于耗电。</p>
-<h2 id="LVTTL"><a href="#LVTTL" class="headerlink" title="LVTTL"></a>LVTTL</h2><p>LVTTL（Low Voltage Transistor - Transistor Logic，低压 TTL 电平标准）改进了 TTL 的缺点，将供电电压改为了 $3.3V$，功耗也相应降低了，而且提升了信号稳定性。</p>
-<h2 id="CMOS"><a href="#CMOS" class="headerlink" title="CMOS"></a>CMOS</h2><p>CMOS（Complementary Metal Oxide Semiconductor，互补金属氧化物半导体电平）的特点是功耗较低，可以根据电路的工作状态自动调整功耗。</p>
-<h2 id="LVCMOS"><a href="#LVCMOS" class="headerlink" title="LVCMOS"></a>LVCMOS</h2><p>LVCMOS（Low Voltage Complementary Metal Oxide Semiconductor，低压 CMOS 电平标准）在 CMOS 的基础上进一步降低供电电压，降低功耗。LVCMOS 在低功耗、中低速数字电路中非常受欢迎。</p>
-<h2 id="LVDS"><a href="#LVDS" class="headerlink" title="LVDS"></a>LVDS</h2><p>LVDS，全称是Low Voltage Differential Signaling，是一种利用低压差分信号传输高速信号的电平标准，有低压，低功耗，噪声抑制能力强的特点。LVDS 的输出电压摆幅极小，只有 $\pm 350mV$，电流只有 $3.5mA$ 左右。由于其超低功耗和超快数据传输速率，常用于高速数据传输。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/19/FPGA%E4%B8%AD%E7%9A%84%E7%94%B5%E5%B9%B3%E6%A0%87%E5%87%86/" data-id="cm63o30f40004ggmj0j8i4em8" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FPGA/" rel="tag">FPGA</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Vitis开发过程中遇到的错误" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/15/Vitis%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" class="article-date">
-  <time class="dt-published" datetime="2025-01-14T16:00:00.000Z" itemprop="datePublished">2025-01-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/FPGA/">FPGA</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Error-while-launching-program-Memory-write-error-at-0-x-105000-MMU-section-translation-fault"><a href="#Error-while-launching-program-Memory-write-error-at-0-x-105000-MMU-section-translation-fault" class="headerlink" title="Error while launching program: Memory write error at 0 x 105000. MMU section translation fault"></a>Error while launching program: Memory write error at 0 x 105000. MMU section translation fault</h1><p>没找到具体原因。<br>先生成 boot. Bin 文件烧录到内存卡后再启动 zynq 就不会出现这个报错。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/15/Vitis%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="cm63o30f50005ggmj6oh21kf6" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FPGA/" rel="tag">FPGA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bug/" rel="tag">bug</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-ZYNQ中的GPIO" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/10/ZYNQ%E4%B8%AD%E7%9A%84GPIO/" class="article-date">
-  <time class="dt-published" datetime="2025-01-09T16:00:00.000Z" itemprop="datePublished">2025-01-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/FPGA/">FPGA</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="GPIO-原理"><a href="#GPIO-原理" class="headerlink" title="GPIO 原理"></a>GPIO 原理</h1><p>GPIO 通过 MIO 提供 54 路接口，其中 16 路位于 bank 500，剩余位于 bank 501。还通过 EMIO 接口提供从 PL 来的 64 路输入和 128 路输出。GPIO 控制和状态寄存器内存映射在基址 $0xE000_A000$。<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1736500884874.png" alt="500"></p>
-<h2 id="GPIO-内部结构"><a href="#GPIO-内部结构" class="headerlink" title="GPIO 内部结构"></a>GPIO 内部结构</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501101733911.png" alt="|400"></p>
-<h3 id="器件引脚的-GPIO-控制"><a href="#器件引脚的-GPIO-控制" class="headerlink" title="器件引脚的 GPIO 控制"></a>器件引脚的 GPIO 控制</h3><ol>
-<li>DATA_RO：总是读取 GPIO 引脚的状态，不考虑 GPIO 是输入还是输出，忽略对该寄存器的写操作。<blockquote>
-<p>[!note]+<br>如果没有将 MIO 配置为 GPIO，则 DATA_RO 的内容不可读。</p>
-</blockquote>
-</li>
-<li>DATA：当把 GPIO 配置为输出时，该寄存器用于控制给输出的值，一次性对这 32 位寄存器进行写操作。当读取该寄存器时，返回上次写到 DATA 或 MASK_DATA_[LSW, MSW]的值，不返回当前引脚的值。</li>
-<li>DIRM：方向模式，控制 I&#x2F;O 引脚是输入还是输出，$DIRM&#x3D;&#x3D;0$ 时禁止输出驱动器。</li>
-<li>OEN：输出使能，当 I&#x2F;O 配置为输出时，控制使能&#x2F;禁止输出。当 $OEN&#x3D;&#x3D;0$ 时禁用输出驱动器，禁止时引脚为三态。</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/10/ZYNQ%E4%B8%AD%E7%9A%84GPIO/" data-id="cm63o30fb000lggmj1q0jf025" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FPGA/" rel="tag">FPGA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ZYNQ/" rel="tag">ZYNQ</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-FIR滤波器的架构" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/12/29/FIR%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E6%9E%B6%E6%9E%84/" class="article-date">
-  <time class="dt-published" datetime="2024-12-28T16:00:00.000Z" itemprop="datePublished">2024-12-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/FPGA/">FPGA</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Fully-Parallel-Systolic-Architecture（全并行脉动结构）"><a href="#Fully-Parallel-Systolic-Architecture（全并行脉动结构）" class="headerlink" title="Fully Parallel Systolic Architecture（全并行脉动结构）"></a>Fully Parallel Systolic Architecture（全并行脉动结构）</h1><p>全并行脉动滤波器对对称系数、反对称系数和零值系数进行了优化。滤波器的时延受到滤波器系数的对称性影响。<br>当对称系数绝对相等时，它们共享同一个 DSP block。这种配对共享允许在实现的过程中使用 Xilinx 和 Altera 的 dsp block 中的 pre-adder。<br>对称的滤波器如果不适用对称系数优化架构的话，结构如下图的上半部分，优化后为下半部分：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292142810.png" alt="fir_arch_systolic_sym.png|500"></p>
-<h1 id="Fully-Parallel-Transposed-Architecture（全并行转置结构）"><a href="#Fully-Parallel-Transposed-Architecture（全并行转置结构）" class="headerlink" title="Fully Parallel Transposed Architecture（全并行转置结构）"></a>Fully Parallel Transposed Architecture（全并行转置结构）</h1><p>Fully Parallel Transposed Architecture 通过为任意的绝对相等的系数共享乘法器，同时移除零值系数所需的乘法器。此结构的滤波器时延为固定的 6 个 clk。<br>下图的上半部分是没有优化的部分对称滤波器，下半部分为优化后的结构：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292146523.png" alt="fir_arch_transposed_sym.png|500"></p>
-<h1 id="Partly-Serial-Systolic-Architecture-1"><a href="#Partly-Serial-Systolic-Architecture-1" class="headerlink" title="Partly Serial Systolic Architecture (1 &lt; N &lt; L)"></a>Partly Serial Systolic Architecture (1 &lt; N &lt; L)</h1><p>其中 N 为延时长度，L 为滤波器阶数。<br>部分串行滤波器需要 <code>M=ceil(L/N)</code> 个脉动单元，结构如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292149737.png" alt="fir_arch_systolic_partly_serial.png|500"><br>滤波器的时延为 <code>M+ceil(L/M)+5</code>。<br>如果一个乘法器对应的查找表里面的系数为 0 或者 2 的幂次，则实现过程不包含乘法器，通过移位来实现幂次的变化。</p>
-<h1 id="Fully-Serial-Systolic-Architecture-N-≥-L"><a href="#Fully-Serial-Systolic-Architecture-N-≥-L" class="headerlink" title="Fully Serial Systolic Architecture (N ≥ L)"></a>Fully Serial Systolic Architecture (N ≥ L)</h1><p>如果延时的长度大于滤波器的阶数，此时滤波器为全串行结构。滤波器延时为 $L+5$。<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292156578.png" alt="fir_arch_systolic_fully_serial.png|500"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/12/29/FIR%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E6%9E%B6%E6%9E%84/" data-id="cm63o30ew0000ggmj35dog06p" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FPGA/" rel="tag">FPGA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" rel="tag">数字通信</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Quartus报错记录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time class="dt-published" datetime="2024-12-27T16:00:00.000Z" itemprop="datePublished">2024-12-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/FPGA/">FPGA</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Error-176310-Can’t-place-multiple-pins-assigned-to-pin-location-Pin-F-16-IOPAD-X-34-Y-18-N-21"><a href="#Error-176310-Can’t-place-multiple-pins-assigned-to-pin-location-Pin-F-16-IOPAD-X-34-Y-18-N-21" class="headerlink" title="Error (176310): Can’t place multiple pins assigned to pin location Pin_F 16 (IOPAD_X 34_Y 18_N 21)"></a>Error (176310): Can’t place multiple pins assigned to pin location Pin_F 16 (IOPAD_X 34_Y 18_N 21)</h1><p>报错如下<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412282018135.png"><br>可以看到 Pin_F 16 既被用于 DAC_DATA，又被用于 nCEO 引脚，因此才会报错不能将多个引脚赋到 Pin_F 16 上。</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412282020011.png"><br>将nCEO 的 value 设置为 Use as regual I&#x2F;O 即可解决问题。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" data-id="cm63o30f10001ggmj1gq1bqqs" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FPGA/" rel="tag">FPGA</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-git学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/12/11/git%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time class="dt-published" datetime="2024-12-10T16:00:00.000Z" itemprop="datePublished">2024-12-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%9D%82%E7%B1%BB/">杂类</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Git-基础概念"><a href="#Git-基础概念" class="headerlink" title="Git 基础概念"></a>Git 基础概念</h1><h2 id="Git-概念汇总"><a href="#Git-概念汇总" class="headerlink" title="Git 概念汇总"></a>Git 概念汇总</h2><table>
-<thead>
-<tr>
-<th>概念</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>工作区</strong>（Workspace）</td>
-<td>在本地的代码库，新增和修改的文件会提交到暂存区</td>
-</tr>
-<tr>
-<td><strong>暂存区</strong>（stage）</td>
-<td>用于临时存放文件的修改，实际上是一个文件（. Git&#x2F;index），保存待提交的文件列表</td>
-</tr>
-<tr>
-<td><strong>仓库</strong>（repository）</td>
-<td>Git 的管理仓库，记录文件状态的地方，所有的代码版本都在里面</td>
-</tr>
-<tr>
-<td><strong>远程仓库</strong>（origin&#x2F;remote）</td>
-<td>专用的 git 服务器，为多人提供共享服务。本地的仓库通过 &#x3D;&#x3D;push&#x3D;&#x3D;命令将代码推送到远程仓库里</td>
-</tr>
-<tr>
-<td><strong>本地仓库</strong></td>
-<td>本地电脑内直接使用的版本库</td>
-</tr>
-<tr>
-<td><strong>分支</strong>（Branch）</td>
-<td>分支是从主线分离出的副本，可以独立操作而不干扰主线，仓库初始化后会有一个默认主分支“master”或“main”</td>
-</tr>
-<tr>
-<td><strong>头</strong>（HEAD）</td>
-<td>HEAD 类似指针，指向当前活动分支的最新版本</td>
-</tr>
-<tr>
-<td><strong>提交</strong>（Commit）</td>
-<td>将 stage 中的所有变更提交到当前仓库的活动分支</td>
-</tr>
-<tr>
-<td><strong>推送</strong>（Push）</td>
-<td>将本地仓库的版本推送到远程仓库</td>
-</tr>
-<tr>
-<td><strong>拉取</strong>（Pull）</td>
-<td>从远程仓库获取更新到本地仓库</td>
-</tr>
-<tr>
-<td><strong>获取</strong>（Fetch）</td>
-<td>从远程仓库更新，作用同 pull，但是不会自动合并</td>
-</tr>
-<tr>
-<td><strong>冲突</strong>（Conflict）</td>
-<td>多人对同一个文件进行修改后在远程仓库合并时会面临冲突，需要人工合并处理</td>
-</tr>
-<tr>
-<td><strong>合并</strong>（Merge）</td>
-<td>对有 conflict 的文件进行合并操作，git 可以自动合并变更内容，无法自动处理的文件需要人工处理</td>
-</tr>
-<tr>
-<td><strong>标签</strong>（Tag）</td>
-<td>标签指的是某个分支某个特定时间点的状态，可以理解为提交记录的别名，常用来标记版本。</td>
-</tr>
-<tr>
-<td><strong>main&#x2F;master</strong></td>
-<td>仓库的默认主分支</td>
-</tr>
-<tr>
-<td><strong>origin&#x2F;main</strong></td>
-<td>表示远程仓库的 main 分支</td>
-</tr>
-</tbody></table>
-<h2 id="工作区-暂存区-仓库"><a href="#工作区-暂存区-仓库" class="headerlink" title="工作区&#x2F;暂存区&#x2F;仓库"></a>工作区&#x2F;暂存区&#x2F;仓库</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412082111865.png"></p>
-<ul>
-<li>图中的 objects 标识的区域为 git 的对象库，实际的位置是“. Git&#x2F;objects”目录中，里面包含了创建的各种对象和内容</li>
-<li>当对工作区的修改&#x2F;新增文件执行 <em>git add</em>命令后，暂存区的目录树被更新，同时工作区修改&#x2F;新增文件的内容被写入 objects 的一个新的对象中，而该对象的 ID 被记录在 stage 的文件索引中</li>
-<li>当执行 <em>git commit</em>时，stage 的目录树写入 objects 中，main 分支做出更新</li>
-<li>当执行 git reset HEAD 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。</li>
-<li>当执行 git rm –cached “file” 命令时，会直接从暂存区删除文件，工作区则不做出改变</li>
-</ul>
-<h3 id="工作区"><a href="#工作区" class="headerlink" title="工作区"></a>工作区</h3><p>本地计算机内的项目文件</p>
-<h3 id="暂存区（stage）"><a href="#暂存区（stage）" class="headerlink" title="暂存区（stage）"></a>暂存区（stage）</h3><p>暂存区是一个临时存储区域，包含即将提交到版本库中的文件快照<br>常用命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add filename       # 将单个文件添加到暂存区</span><br><span class="line">git add .              # 将工作区中的所有修改添加到暂存区</span><br><span class="line">git status             # 查看哪些文件在暂存区中</span><br></pre></td></tr></table></figure>
-<h3 id="版本库（Repository）"><a href="#版本库（Repository）" class="headerlink" title="版本库（Repository）"></a>版本库（Repository）</h3><p>版本库包含项目的所有版本历史记录，每次提交都会在版本库中创建一个新的快照，这些快照不可变，确保了项目的完整历史记录<br>常用命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;Commit message&quot;   # 将暂存区的更改提交到本地版本库</span><br><span class="line">git log                          # 查看提交历史</span><br><span class="line">git diff                         # 查看工作区和暂存区之间的差异</span><br><span class="line">git diff --cached                # 查看暂存区和最后一次提交之间的差异</span><br></pre></td></tr></table></figure>
-<h3 id="三者之间的关系"><a href="#三者之间的关系" class="headerlink" title="三者之间的关系"></a>三者之间的关系</h3><ul>
-<li>工作区-&gt;暂存区</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add</span><br></pre></td></tr></table></figure>
-<ul>
-<li>暂存区-&gt;版本库</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;Commit message&quot;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>版本库-&gt;远程仓库</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin branch-name</span><br></pre></td></tr></table></figure>
-<ul>
-<li>远程仓库-&gt;本地版本库</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git pull origin branch-name</span><br><span class="line"># 或者</span><br><span class="line">git fetch origin branch-name</span><br><span class="line">git merge origin/branch-name</span><br></pre></td></tr></table></figure>
-<h2 id="Git-工作流程"><a href="#Git-工作流程" class="headerlink" title="Git 工作流程"></a>Git 工作流程</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412111054384.png" alt="|420"></p>
-<h3 id="1、克隆仓库"><a href="#1、克隆仓库" class="headerlink" title="1、克隆仓库"></a>1、克隆仓库</h3><p>如果你要参与一个已有的项目，首先需要将远程仓库克隆到本地：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/username/repo.git</span><br><span class="line">cd repo</span><br></pre></td></tr></table></figure>
-<h3 id="2、创建新分支"><a href="#2、创建新分支" class="headerlink" title="2、创建新分支"></a>2、创建新分支</h3><p>为了避免直接在 main 或 master 分支上进行开发，通常会创建一个新的分支：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b new-feature</span><br></pre></td></tr></table></figure>
-<h3 id="3、工作目录"><a href="#3、工作目录" class="headerlink" title="3、工作目录"></a>3、工作目录</h3><p>在工作目录中进行代码编辑、添加新文件或删除不需要的文件。</p>
-<h3 id="4、暂存文件"><a href="#4、暂存文件" class="headerlink" title="4、暂存文件"></a>4、暂存文件</h3><p>将修改过的文件添加到暂存区，以便进行下一步的提交操作：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add filename</span><br></pre></td></tr></table></figure>
-<p>或者添加所有修改的文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
-<h3 id="5、提交更改"><a href="#5、提交更改" class="headerlink" title="5、提交更改"></a>5、提交更改</h3><p>将暂存区的更改提交到本地仓库，并添加提交信息：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;Add new feature&quot;</span><br></pre></td></tr></table></figure>
-<p>连接远程仓库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin [git@github.com]</span><br></pre></td></tr></table></figure>
-<h3 id="6、拉取最新更改"><a href="#6、拉取最新更改" class="headerlink" title="6、拉取最新更改"></a>6、拉取最新更改</h3><p>在推送本地更改之前，最好从远程仓库拉取最新的更改，以避免冲突：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin main</span><br></pre></td></tr></table></figure>
-<p>或者如果在新的分支上工作</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin new-feature</span><br></pre></td></tr></table></figure>
-<h3 id="7、推送更改"><a href="#7、推送更改" class="headerlink" title="7、推送更改"></a>7、推送更改</h3><p>将本地的提交推送到远程仓库：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin new-feature</span><br></pre></td></tr></table></figure>
-<h3 id="8、删除分支"><a href="#8、删除分支" class="headerlink" title="8、删除分支"></a>8、删除分支</h3><p>如果不再需要新功能分支，可以将其删除：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d new-feature</span><br></pre></td></tr></table></figure>
-<p>或者从远程仓库删除分支：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin --delete new-feature</span><br></pre></td></tr></table></figure>
-<h1 id="Git-指令"><a href="#Git-指令" class="headerlink" title="Git 指令"></a>Git 指令</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412102151126.png"></p>
-<h1 id="Git-分支"><a href="#Git-分支" class="headerlink" title="Git 分支"></a>Git 分支</h1><p>Git 仓库在 fork 中打开后界面如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412172133789.png" alt="|405"><br>可以看到每一个分支相互平行，只有完成某些项目的开发时才会合并到主分支。<br>那么分支有什么用呢？当计划开发一个新的功能时，第一天完成了百分之 50，如果直接提交到 master 分支，则可能导致别人无法开发，如果全部写完再提交的话又可能因为意外丢失之前的进度。此时就体现出来分支的优越性了。我们可能创建一个属于自己的别人不可见的分支，在这个分支上开发提交代码不会影响他人，可以随意操作，等到开发结束了再一次性合并到 master 分支。</p>
-<h2 id="Git-分支常用命令"><a href="#Git-分支常用命令" class="headerlink" title="Git 分支常用命令"></a>Git 分支常用命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">git branch # 列出所有本地分支</span><br><span class="line"></span><br><span class="line">git branch -r #列出所有远程分支</span><br><span class="line"></span><br><span class="line">git branch -a #列出所有本地和远程的分支</span><br><span class="line"></span><br><span class="line">git branch [new-branch-name] #创建一个新的分支，但停留在当前分支</span><br><span class="line"></span><br><span class="line">git checkout -b [new-branch-name] #创建一个新的分支，并切换到该分支</span><br><span class="line"></span><br><span class="line">git branch --track [branch] [remote-branch] #创建一个新分支，并与指定的远程分支建立追踪关系</span><br><span class="line"></span><br><span class="line">git checkout [new-branch-name] #切换到指定分支，并更新工作区</span><br><span class="line"></span><br><span class="line">git merge [branch] #合并指定分支到当前分支</span><br><span class="line"></span><br><span class="line">git branch -d [branch] #删除分支</span><br><span class="line"></span><br><span class="line">git push origin --delete [branch] #删除远程分支</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/12/11/git%E5%AD%A6%E4%B9%A0/" data-id="cm63o30fd000pggmjbjsf9s7g" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coding/" rel="tag">coding</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/FPGA/">FPGA</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E7%B1%BB/">杂类</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FPGA/" rel="tag">FPGA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZYNQ/" rel="tag">ZYNQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/" rel="tag">bug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding/" rel="tag">coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" rel="tag">数字通信</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/FPGA/" style="font-size: 20px;">FPGA</a> <a href="/tags/ZYNQ/" style="font-size: 10px;">ZYNQ</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/coding/" style="font-size: 10px;">coding</a> <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" style="font-size: 15px;">数字通信</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2025/01/19/%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC/">(no title)</a>
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
           </li>
+          
         
-          <li>
-            <a href="/2025/01/19/%E8%84%89%E5%86%B2%E6%88%90%E5%BD%A2%E6%BB%A4%E6%B3%A2%E5%99%A8/">(no title)</a>
-          </li>
         
-          <li>
-            <a href="/2025/01/19/%E5%A4%9A%E9%A2%91%E7%82%B9%E4%B8%8A%E5%8F%98%E9%A2%91%E5%99%A8%E4%BB%BF%E7%9C%9Fbug/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2025/01/19/Testbench%E4%BB%BF%E7%9C%9F%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99%E6%8C%87%E5%8C%97/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2025/01/19/FPGA%E4%B8%AD%E7%9A%84%E7%94%B5%E5%B9%B3%E6%A0%87%E5%87%86/">(no title)</a>
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
     </div>
   </div>
+</nav>
 
   
-</aside>
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
+          
+        </div>
+
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+
       
-      &copy; 2025 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
   </div>
-</footer>
+</div>
 
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/19/template/diary/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/template/diary/" target="_self">
+        <div>
+          本周目标及完成情况今日工作完成情况遇到的问题及解决方案今日收获与总结
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-19 21:52" pubdate>
+              2025-01-19
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/diary/">#diary</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/19/template/blog_template/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/template/blog_template/" target="_self">
+        <div>
+          
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-19 21:52" pubdate>
+              2025-01-19
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/19/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E6%8F%92%E5%80%BC%E5%92%8C%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E6%8F%92%E5%80%BC%E5%92%8C%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/" target="_self">
+        <div>
+          插值意味着提高采样率，故而被称为上采样（Up Sample）。设原始序列为$x(n)$，采样率为$f_x$，插值因子为$L$，则插值的过程为原始序列每相邻两个样点之间插入$L-1$个$0$构成一个新序列，数学表达式为 $$y(m)&#x3D;\begin{cases}x(m&#x2F;L)&amp;m&#x3D;0,\pm L,\pm2L,\cdots\0&amp;\text{其他}\end{ca
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-19 21:49" pubdate>
+              2025-01-19
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/19/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-Nobel%E6%81%92%E7%AD%89%E5%BC%8F/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-Nobel%E6%81%92%E7%AD%89%E5%BC%8F/" target="_self">
+        <div>
+          典型的插值器的结构，滤波器位于插值操作后，意味着滤波器工作在较高的采样率下，对滤波器的设计带来压力。可以通过恒等变换将插值操作后置，滤波器前置，简化系统的设计。 第一恒等式表明抽取操作位于乘加操作之后和抽取操作位于乘加之前是等效的。  第二恒等式M个延迟之后再进行M抽取和M抽取之后再进行1个延迟是等效的。  第三恒等式信号通过滤波器H（zM ）并经M抽取后与信号通过M抽取并经滤波器H（z）是等效的
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-19 21:49" pubdate>
+              2025-01-19
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/19/Xilinx%20FPGA%E4%B8%AD%E7%9A%84BUFFER/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/Xilinx%20FPGA%E4%B8%AD%E7%9A%84BUFFER/" target="_self">
+        <div>
+          FPGA大型设计中推荐使用同步时序电路，同步时序电路基于时钟触发沿设计，对时钟的周期、占空比、延时和抖动有更高的要求。为满足时序的要求，一般采用全局时钟资源驱动设计的主时钟，FPGA的主时钟一般使用全铜层工艺实现，并设计了专用时钟缓冲与驱动结构。 缓冲和驱动缓冲输入输出缓冲，主要用于片外输入时钟或者片外差分输入的信号。 差分信号和差分时钟进入片内后如果不经过IBUFGDS、IBUFDS缓冲就无法直
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-19 21:49" pubdate>
+              2025-01-19
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/19/QPSK%20simulink%E5%AE%9E%E7%8E%B0/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/QPSK%20simulink%E5%AE%9E%E7%8E%B0/" target="_self">
+        <div>
+          调制部分总体框架 各模块参数升余弦滚降滤波器滚降系数为 1  单双极性变换  各阶段波形Buffer Demux Raised Cosine TransmitFilter  QPSK 信号功率谱密度 解调部分经过 AWGN 信道后，假设已经进行了载波同步  部分模块参数载波模块 Pulse Generator 由于经过了串并转换，因此数据率减半 部分波形 将初始信号经过一定时间的延时后，在示波器中
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-19 21:49" pubdate>
+              2025-01-19
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/19/PCIe&amp;DVB-S%E8%B0%83%E8%AF%95%E4%BB%BF%E7%9C%9F%E8%AE%B0%E5%BD%95/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/PCIe&amp;DVB-S%E8%B0%83%E8%AF%95%E4%BB%BF%E7%9C%9F%E8%AE%B0%E5%BD%95/" target="_self">
+        <div>
+          pcie_system.pdf 工程的总体结构如上所示，数据通过XDMA的M_AXIS_H2C接口写入数据。由于写入数据的位宽为128bit，工程中信号处理部分的输入位宽为8bit，因此加入AXISDataWidthConverter模块将位宽从16BYTE转为1BYTE，并写入FIFO，使用AXIGPIO模块读取FIFO的almost full信号，如果FIFO被写满，almost full被拉
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-19 21:49" pubdate>
+              2025-01-19
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/19/NCO%E6%A8%A1%E5%9D%97%E7%9A%84%E5%90%84%E9%A1%B9%E5%8F%82%E6%95%B0/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/NCO%E6%A8%A1%E5%9D%97%E7%9A%84%E5%90%84%E9%A1%B9%E5%8F%82%E6%95%B0/" target="_self">
+        <div>
+          NCO模块可以生成实数或者复数正弦信号，同时提供硬件友好的控制信号 Accumulator累加器位数正弦波的频率分辨率取决于累加器的位数的大小，根据频率分辨率可以计算出累加器的位数，根据此位数设置累加器的数据类型字长 计算公式为 $$N&#x3D;ceil(log_2(\frac{F_s}{\Delta f}))$$ 量化位数量化累加器的输出可以在不增加查找表的大小的情况下提高频率分辨率 要根据无
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-19 21:49" pubdate>
+              2025-01-19
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/19/Modelsim%E4%B8%AD%E4%BD%BF%E7%94%A8tcl%E5%91%BD%E4%BB%A4%E5%AF%BC%E5%87%BA%E4%BB%BF%E7%9C%9F%E6%95%B0%E6%8D%AE%E5%88%B0txt%E6%96%87%E4%BB%B6/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/Modelsim%E4%B8%AD%E4%BD%BF%E7%94%A8tcl%E5%91%BD%E4%BB%A4%E5%AF%BC%E5%87%BA%E4%BB%BF%E7%9C%9F%E6%95%B0%E6%8D%AE%E5%88%B0txt%E6%96%87%E4%BB%B6/" target="_self">
+        <div>
+          参考下面的CSDN博客 bookmark Tcl命令12345678910proc write_sim_data &#123;env name radix cycle file&#125; &#123;    set fid [open $file w]    for &#123;set i 0&#125; &#123;$i &lt;= $::now&#125; &#123;incr i [exp
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-19 21:49" pubdate>
+              2025-01-19
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/19/MATLAB%E4%B8%AD%E4%BD%BF%E7%94%A8HDL%20Coder%E7%94%9F%E6%88%90HDL%E4%BB%A3%E7%A0%81%E6%97%B6%E7%9A%84%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/MATLAB%E4%B8%AD%E4%BD%BF%E7%94%A8HDL%20Coder%E7%94%9F%E6%88%90HDL%E4%BB%A3%E7%A0%81%E6%97%B6%E7%9A%84%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" target="_self">
+        <div>
+          Delay balancing unsuccessful because an extra 4 cycles of latency introduced by optimizations in the feedback loop cannot be offset using design delays for the loop latency budget.产生原因 由于时序考虑，在每个模块的输出
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-19 21:49" pubdate>
+              2025-01-19
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="/js/jquery-3.6.4.min.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<script src="/js/script.js"></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-  </div>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
 </body>
 </html>

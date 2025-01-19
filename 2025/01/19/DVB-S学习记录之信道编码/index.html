@@ -1,0 +1,1244 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="经过信源编码和系统复接后生成的节目传送码流，通常需要通过某种传输媒介才能到达用户接收机。通常情况下，编码码流并不能直接通过信道传输，必须经过信道编码后，使其变成适合在信道中传输的形式后再进行传输。 DVB-S的信道编码主要包括  扰码 R-S编码 卷积交织 卷积编码  扰码数字通信理论在设计通信系统时都是假设传输比特流中 0 和 1的出现概率是等概的，实际中的通信系统的设计指标等首先也是以该假设为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sawen_blog">
+<meta property="og:url" content="http://example.com/2025/01/19/DVB-S%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81/index.html">
+<meta property="og:site_name" content="sawen_blog">
+<meta property="og:description" content="经过信源编码和系统复接后生成的节目传送码流，通常需要通过某种传输媒介才能到达用户接收机。通常情况下，编码码流并不能直接通过信道传输，必须经过信道编码后，使其变成适合在信道中传输的形式后再进行传输。 DVB-S的信道编码主要包括  扰码 R-S编码 卷积交织 卷积编码  扰码数字通信理论在设计通信系统时都是假设传输比特流中 0 和 1的出现概率是等概的，实际中的通信系统的设计指标等首先也是以该假设为">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082040856.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082046715.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082047800.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312091940295.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312091956671.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312092118981.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312092118943.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312101121667.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312101127496.png">
+<meta property="article:published_time" content="2025-01-19T13:49:54.348Z">
+<meta property="article:modified_time" content="2024-11-18T06:57:26.049Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082040856.png">
+  
+  
+  
+  <title>sawen_blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-19 21:49" pubdate>
+          January 19, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>经过信源编码和系统复接后生成的节目传送码流，通常需要通过某种传输媒介才能到达用户接收机。通常情况下，编码码流并不能直接通过信道传输，必须经过信道编码后，使其变成适合在信道中传输的形式后再进行传输。</p>
+<p>DVB-S的信道编码主要包括</p>
+<ul>
+<li>扰码</li>
+<li>R-S编码</li>
+<li>卷积交织</li>
+<li>卷积编码</li>
+</ul>
+<h2 id="扰码"><a href="#扰码" class="headerlink" title="扰码"></a>扰码</h2><p>数字通信理论在设计通信系统时都是假设传输比特流中 0 和 1的出现概率是等概的，实际中的通信系统的设计指标等首先也是以该假设为前提的。但是TS（transport stream）码流经过编码后可能会出现连0或连1的情况，一方面破坏了系统设计的前提，另一方面连0或连1会使得比特时钟的提取变得困难，因此，为保证在任何情况下进入DVB传输系统的数据码流中”0”与”1”的概率都能基本相等，系统引入一个伪随机序列对TS码流进行扰乱处理，使得 0 和 1 的出现概率接近50%。</p>
+<p>扰乱改变了原 TS 码流，因此在接收端对传输码流纠错解码后，还需按逆过程对其进行解扰处理，以恢复原 TS 码流。</p>
+<p>在接收端对接收到的码流逆编码后，就可以恢复原TS码流</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>传送复用器输出的TS流帧结构如图所示：</p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082040856.png" srcset="/img/loading.gif" lazyload alt="202312082040856.png"></p>
+<p>第一个字节为同步字节，数值为47H。每8个包组成一个超帧，并将第一个包的同步字节反转，变为B8H，后面的7个包的同步字节不变。同步字节不参与扰码，其余字节参与扰码</p>
+<p>伪随机二进制序列（PRBS）生成器的多项式应为：</p>
+<p><em>P</em>(<em>X</em>) &#x3D; 1 + _X_14 + _X_15</p>
+<p>其扰码过程如图所示：</p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082046715.png" srcset="/img/loading.gif" lazyload alt="202312082046715.png"></p>
+<p>扰码输出如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312082047800.png" srcset="/img/loading.gif" lazyload alt="202312082047800.png"></p>
+<h2 id="R-S编码"><a href="#R-S编码" class="headerlink" title="R-S编码"></a>R-S编码</h2><p>DVB-S中使用的外层纠错编码为R-S（204，188）码，编码效率$R_c&#x3D;&#x3D;0.92$, 码字长度为8。</p>
+<p>每个TS包独立进行R-S编码保护，生成一个R-S码字，R-S同步头就采用TS的包头，如此设计有以下好处：</p>
+<ol>
+<li>当某个 R-S 码字在接 收端解码时出现无法纠正的错误时，误码集中在一个TS 包中，不会影响到其它的TS 包，便于分接器进行差错指示</li>
+<li>便于分接器提取 TS 包的同步，简化了 TS 包同步提取系统结构</li>
+</ol>
+<h3 id="R-S码字结构"><a href="#R-S码字结构" class="headerlink" title="R-S码字结构"></a>R-S码字结构</h3><p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312091940295.png" srcset="/img/loading.gif" lazyload alt="202312091940295.png"></p>
+<h3 id="编码原理"><a href="#编码原理" class="headerlink" title="编码原理"></a>编码原理</h3><p>对于定义在_GF_(2_m_)的RS(n,k)码，<em>n</em> &#x3D; 2_m_ − 1，生成多项式取</p>
+<p>$$</p>
+<p>g(x)&#x3D;\prod_{i&#x3D;1}^{i&#x3D;n-k}(x+\alpha^{i})&#x3D;<br>x^{2t}+g_{2t-1}x^{2t-1}+\cdots+g_{2}x^{2}+g_{1}x+g_{0}</p>
+<p>$$</p>
+<p>记$n-k&#x3D;2t $，纠错能力为_t_，就是说如果编码后的一组数据里面出现了错误的数据个数不大于<br>t，那么可以通过 n-k 个监督数据达到对错误数据纠正的目的。</p>
+<p><em>g</em>(<em>x</em>)的系数属于_GF_(2_m_)，生成矩阵 G 可表示为:</p>
+<p>$$<br>G&#x3D;\begin{bmatrix}\mathrm{g_{2t}}&amp;\mathrm{g_{2t-1}}&amp;\cdots&amp;\mathrm{g_{1}}&amp;\mathrm{g_{0}}&amp;0&amp;\cdots&amp;0\0&amp;\mathrm{g_{2t}}&amp;\cdots&amp;\mathrm{g_{2}}&amp;\mathrm{g_{1}}&amp;\mathrm{g_{0}}&amp;\cdots&amp;0\\vdots&amp;\vdots&amp;\ddots&amp;\vdots&amp;\vdots&amp;\vdots&amp;\ddots&amp;\vdots\0&amp;0&amp;\cdots&amp;\mathrm{g_{2t}}&amp;\mathrm{g_{2t-1}<br>}&amp;\mathrm{g_{2t-2}}&amp;\cdots&amp;\mathrm{g_{0} }\end{bmatrix}</p>
+<p>$$</p>
+<p>对矩阵 G 进行变换得到与其等价的矩阵 $G_1$ ，该矩阵由 k阶单位矩阵$I$和 $k*(n-k)$ 阶的矩阵 $A$ 组成 ，满足 </p>
+<p>编码结果可以表示为</p>
+<p><em>C</em> &#x3D; <em>U</em> ⋅ _G_1 &#x3D; [<em>U</em>|<em>U</em>⋅<em>A</em>] &#x3D; [<em>U</em>|<em>R</em>]</p>
+<p>其中矩阵 $R$ 有_n_ − _k_个监督符号，多项式表示为</p>
+<p><em>r</em>(<em>x</em>) &#x3D; <em>rn</em> − <em>k</em> − 1_xn_ − <em>k</em> − 1 + ⋯ + _r_2_x_2 + <em>r_1_x</em> + _r_0</p>
+<p>因此经过R-S编码后的码多项式为</p>
+<p><em>c</em>(<em>x</em>) &#x3D; <em>u</em>(<em>x</em>)<em>xn</em> − <em>k</em> + <em>r</em>(<em>x</em>)</p>
+<p>DVB-S使用的R-S生成多项式为 </p>
+<p>$$<br>G(X)&#x3D;\overset{15}{\operatorname*{\coprod}}(X+\lambda^i)<br>$$</p>
+<p>其中 $ &#x3D;02H $ ，为本原元，域生成多项式为 <em>P</em>(<em>X</em>) &#x3D; _X_8 + _X_4 + _X_3 + _X_2 + 1<br>最小码距为17字节</p>
+<p>将_G_(<em>x</em>)展开可得</p>
+<p>$$<br>g(x)&#x3D;x^{16}+59x^{15}+13x^{14}+104x^{13}+189x^{12}\+68x^{11}+209x^{10}+30x^{9}+8x^{8}+163x^{7}+65x^{6}\+41x^{5}+229x^{4}+98x^{3}+50x^{2}+36x+59<br>$$</p>
+<p>假设信息多项式为 <em>m</em>(<em>x</em>) &#x3D; _m_187_x_187 + _m_186_x_186 + ⋯ + _m_1_x_1 + _m_0<br>则使用_x_16 × <em>m</em>(<em>x</em>)&#x2F;<em>g</em>(<em>x</em>)所得余式的16个系数即为生成的16个校验字节，将这16个字节添加到188个数据后就完成了R-S编码</p>
+<h3 id="R-S-204，188，T-8-码帧结构"><a href="#R-S-204，188，T-8-码帧结构" class="headerlink" title="R-S(204，188，T&#x3D;8)码帧结构"></a>R-S(204，188，T&#x3D;8)码帧结构</h3><p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312091956671.png" srcset="/img/loading.gif" lazyload alt="202312091956671.png"></p>
+<h2 id="卷积交织"><a href="#卷积交织" class="headerlink" title="卷积交织"></a>卷积交织</h2><p>在编码后加上卷积交织，使得数据的传送顺序按照一定的规律分散开，这样可以使信道中突发性干扰造成的错误字符也被分散开来。</p>
+<p>DVB-S 中交织采用卷积交织的方式，其交织深度为 204&#x2F;17&#x3D;12<br>，下图为交织和解码的原理图</p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312092118981.png" srcset="/img/loading.gif" lazyload alt="202312092118981.png"></p>
+<p>它由FIFO组成，数据按行写入寄存器，按列读出。</p>
+<p>交织过程如下：R-S 编码码字向第 0 到第 11<br>支路依次循环输入数据，每条支路每次输入一个字节，交织后的数据按相同的顺序从各支路中输出，每条支路每次输出一个字节。R-S<br>码字的同步头永远从第 0 支路，即无延时支路传送。这样交<br>织后的数据流依然保持了 R-S 码字的同步和长度</p>
+<p>假设输入的数据为从小到大的自然数，输入的数据如下</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>13</td>
+<td>14</td>
+<td>15</td>
+<td>16</td>
+<td>17</td>
+<td>18</td>
+<td>19</td>
+<td>20</td>
+<td>21</td>
+<td>22</td>
+<td>23</td>
+<td>24</td>
+</tr>
+<tr>
+<td>25</td>
+<td>26</td>
+<td>27</td>
+<td>28</td>
+<td>29</td>
+<td>30</td>
+<td>31</td>
+<td>32</td>
+<td>33</td>
+<td>34</td>
+<td>35</td>
+<td>36</td>
+</tr>
+<tr>
+<td>37</td>
+<td>38</td>
+<td>39</td>
+<td>40</td>
+<td>41</td>
+<td>42</td>
+<td>43</td>
+<td>44</td>
+<td>45</td>
+<td>46</td>
+<td>47</td>
+<td>48</td>
+</tr>
+<tr>
+<td>49</td>
+<td>50</td>
+<td>51</td>
+<td>52</td>
+<td>53</td>
+<td>54</td>
+<td>55</td>
+<td>56</td>
+<td>57</td>
+<td>58</td>
+<td>59</td>
+<td>60</td>
+</tr>
+<tr>
+<td>61</td>
+<td>62</td>
+<td>63</td>
+<td>64</td>
+<td>65</td>
+<td>66</td>
+<td>67</td>
+<td>68</td>
+<td>69</td>
+<td>70</td>
+<td>71</td>
+<td>72</td>
+</tr>
+<tr>
+<td>73</td>
+<td>74</td>
+<td>75</td>
+<td>76</td>
+<td>77</td>
+<td>78</td>
+<td>79</td>
+<td>80</td>
+<td>81</td>
+<td>82</td>
+<td>83</td>
+<td>84</td>
+</tr>
+<tr>
+<td>85</td>
+<td>86</td>
+<td>87</td>
+<td>88</td>
+<td>89</td>
+<td>90</td>
+<td>91</td>
+<td>92</td>
+<td>93</td>
+<td>94</td>
+<td>95</td>
+<td>96</td>
+</tr>
+<tr>
+<td>97</td>
+<td>98</td>
+<td>99</td>
+<td>100</td>
+<td>101</td>
+<td>102</td>
+<td>103</td>
+<td>104</td>
+<td>105</td>
+<td>106</td>
+<td>107</td>
+<td>108</td>
+</tr>
+<tr>
+<td>109</td>
+<td>110</td>
+<td>111</td>
+<td>112</td>
+<td>113</td>
+<td>114</td>
+<td>115</td>
+<td>116</td>
+<td>117</td>
+<td>118</td>
+<td>119</td>
+<td>120</td>
+</tr>
+<tr>
+<td>121</td>
+<td>122</td>
+<td>123</td>
+<td>124</td>
+<td>125</td>
+<td>126</td>
+<td>127</td>
+<td>128</td>
+<td>129</td>
+<td>130</td>
+<td>131</td>
+<td>132</td>
+</tr>
+<tr>
+<td>133</td>
+<td>134</td>
+<td>135</td>
+<td>136</td>
+<td>137</td>
+<td>138</td>
+<td>139</td>
+<td>140</td>
+<td>141</td>
+<td>142</td>
+<td>143</td>
+<td>144</td>
+</tr>
+<tr>
+<td>145</td>
+<td>146</td>
+<td>147</td>
+<td>148</td>
+<td>149</td>
+<td>150</td>
+<td>151</td>
+<td>152</td>
+<td>153</td>
+<td>154</td>
+<td>155</td>
+<td>156</td>
+</tr>
+<tr>
+<td>157</td>
+<td>158</td>
+<td>159</td>
+<td>160</td>
+<td>161</td>
+<td>162</td>
+<td>163</td>
+<td>164</td>
+<td>165</td>
+<td>166</td>
+<td>167</td>
+<td>168</td>
+</tr>
+<tr>
+<td>169</td>
+<td>170</td>
+<td>171</td>
+<td>172</td>
+<td>173</td>
+<td>174</td>
+<td>175</td>
+<td>176</td>
+<td>177</td>
+<td>178</td>
+<td>179</td>
+<td>180</td>
+</tr>
+<tr>
+<td>181</td>
+<td>182</td>
+<td>183</td>
+<td>184</td>
+<td>185</td>
+<td>186</td>
+<td>187</td>
+<td>188</td>
+<td>189</td>
+<td>190</td>
+<td>191</td>
+<td>192</td>
+</tr>
+<tr>
+<td>193</td>
+<td>194</td>
+<td>195</td>
+<td>196</td>
+<td>197</td>
+<td>198</td>
+<td>199</td>
+<td>200</td>
+<td>201</td>
+<td>202</td>
+<td>203</td>
+<td>204</td>
+</tr>
+<tr>
+<td>205</td>
+<td>206</td>
+<td>207</td>
+<td>208</td>
+<td>209</td>
+<td>210</td>
+<td>211</td>
+<td>212</td>
+<td>213</td>
+<td>214</td>
+<td>215</td>
+<td>216</td>
+</tr>
+<tr>
+<td>217</td>
+<td>218</td>
+<td>219</td>
+<td>220</td>
+<td>221</td>
+<td>222</td>
+<td>223</td>
+<td>224</td>
+<td>225</td>
+<td>226</td>
+<td>227</td>
+<td>228</td>
+</tr>
+</tbody></table>
+<p>经过交织模块后可以得到如下输出：</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>13</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>25</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>37</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>49</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>61</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>73</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>85</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>97</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>109</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>121</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>133</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>145</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>157</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>169</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>181</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>193</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>205</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>217</td>
+<td>14</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>因此，在卷积交织的输出序列中，同一个误码包的任意两个字节的最小距离为12字节，所以，R-S(204,188,T&#x3D;8)编码加上卷积交织后纠错的最大字节长度为<br>$ 8&#x3D;96 $ ，大大提高系统的纠错能力。</p>
+<h2 id="卷积编码"><a href="#卷积编码" class="headerlink" title="卷积编码"></a>卷积编码</h2><p>DVB-S的内码编码采用收缩卷积编码，系统框图如下</p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312092118943.png" srcset="/img/loading.gif" lazyload alt="202312092118943.png"></p>
+<p>image-20231209211850906</p>
+<p>中间的方框代表一个7位的移位寄存器，两个输出X、Y的生成多项式分别为<br>$$<br>\begin{aligned}G_1&amp;&#x3D;1+X+X^2+X^3+X^6\\G_2&amp;&#x3D;1+X^2+X^3+X^5+X^6\end{aligned}<br>$$<br>该系统每个clk输入1bit信息，有两个模2加法器输出2bit信息，且输出的信息和移位寄存器内的当前信息和前6个信息都有关系，因此常用(2，1，7)来表示该卷积码</p>
+<h2 id="QPSK"><a href="#QPSK" class="headerlink" title="QPSK"></a>QPSK</h2><p>数字信号理论频谱带宽无限宽，要想无失真的传输数字信号，要在无限带宽信道中传输，而卫星系统的信道是带限信道，因此需要对卷积编码模块输出的信号进行成型滤波，使其与卫星信道匹配。</p>
+<p>基带成型滤波器一方面要降低传输中需要的带宽，另一方面使码间串扰降至最低。理论上来说，如果随机数字码元流的重复周期为<br>Ts，只要通过带宽为π&#x2F;Ts 的理想滤 波器后，在 <em>nTs</em><br>时刻抽样，无码间干扰。由于理想LPF难以实现，因此选用升余弦滚降滤波器，传输函数为</p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312101121667.png" srcset="/img/loading.gif" lazyload alt="202312101121667.png"></p>
+<p>image-20231210112143612</p>
+<p>的升余弦滚降滤波器满足要求</p>
+<p>$f_N&#x3D;\frac{1}{2T_s}&#x3D;\frac{R_s}{2}$为奈奎斯特频率</p>
+<p>传输带宽$B_r&#x3D;\frac{1&#x3D;\alpha}{2T_s}Hz$</p>
+<p>频带利用率$\eta&#x3D;\frac{R_s}{B_r}&#x3D;\frac{2}{1+\alpha}bit&#x2F;Hz$</p>
+<p>在DVB-S系统中滚降系数_α_ &#x3D; 0.35</p>
+<p>下图为QPSK调制框图：</p>
+<p><img src="https://raw.githubusercontent.com/moerjie/myPic/img/img/202312101127496.png" srcset="/img/loading.gif" lazyload alt="202312101127496.png"></p>
+<p>image-20231210112752444</p>
+<p>$$</p>
+<p>G_1&#x3D;[I|A]&#x3D;\begin{bmatrix}1&amp;0&amp;\cdots&amp;0&amp;a_{1,1}&amp;a_{1,2}&amp;\cdots&amp;a_{1,n-k}\0&amp;1&amp;\cdots&amp;0&amp;a_{2,1}&amp;a_{2,2}&amp;\cdots&amp;a_{2,n-k}\\vdots&amp;\vdots&amp;\ddots&amp;\vdots&amp;\vdots&amp;\vdots&amp;\ddots&amp;\vdots\0&amp;0&amp;\cdots&amp;1&amp;a_{k,1}&amp;g_{k,2}&amp;\cdots&amp;a_{k,n-k}\end{bmatrix}</p>
+<p>$$</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2025/01/19/DVB-S学习记录之信道编码/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 19, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/01/19/FIR%E6%BB%A4%E6%B3%A2%E5%99%A8/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/01/19/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,721 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ZYNQ体系结构Zynq的总体架构包含两个部分：PS（处理器系统）和PL（可编程逻辑）。这两部分的供电电路上相互独立的，因此PS和PL可以单独使用，不被使用的部分可以断电以降低功耗。不过Zynq最有价值的模式上两个组成部分结合起来使用。 PS（处理器系统）作为处理器系统的基础，所有芯片都包含一颗双核的ARM Cortex- A9芯片。这是一颗硬处理器，是芯片上专门且优化过的硅片元件。 除了“硬”处">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZYNQ">
+<meta property="og:url" content="http://example.com/2024/09/27/ZYNQ/index.html">
+<meta property="og:site_name" content="sawen_blog">
+<meta property="og:description" content="ZYNQ体系结构Zynq的总体架构包含两个部分：PS（处理器系统）和PL（可编程逻辑）。这两部分的供电电路上相互独立的，因此PS和PL可以单独使用，不被使用的部分可以断电以降低功耗。不过Zynq最有价值的模式上两个组成部分结合起来使用。 PS（处理器系统）作为处理器系统的基础，所有芯片都包含一颗双核的ARM Cortex- A9芯片。这是一颗硬处理器，是芯片上专门且优化过的硅片元件。 除了“硬”处">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2024/10/15/b5KAyTow21a3NXv.png">
+<meta property="og:image" content="https://s2.loli.net/2024/10/15/U2hAxkw1QgKJD7t.png">
+<meta property="og:image" content="https://s2.loli.net/2024/10/15/yNq72JCTcwIVxbX.png">
+<meta property="og:image" content="https://s2.loli.net/2024/10/15/EaAknYzH7fUXWRl.png">
+<meta property="og:image" content="https://s2.loli.net/2024/10/15/4rAX3bdykQPplz1.png">
+<meta property="og:image" content="https://s2.loli.net/2024/10/15/vCgbeN8i9Xtq7Eo.png">
+<meta property="og:image" content="https://s2.loli.net/2024/10/15/s318l2SCX6zYIqE.png">
+<meta property="article:published_time" content="2024-09-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-01-19T14:17:54.494Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="FPGA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2024/10/15/b5KAyTow21a3NXv.png">
+  
+  
+  
+  <title>ZYNQ - sawen_blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ZYNQ"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-27 00:00" pubdate>
+          September 27, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ZYNQ</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="ZYNQ体系结构"><a href="#ZYNQ体系结构" class="headerlink" title="ZYNQ体系结构"></a>ZYNQ体系结构</h1><p>Zynq的总体架构包含两个部分：PS（处理器系统）和PL（可编程逻辑）。这两部分的供电电路上相互独立的，因此PS和PL可以单独使用，不被使用的部分可以断电以降低功耗。不过Zynq最有价值的模式上两个组成部分结合起来使用。</p>
+<h1 id="PS（处理器系统）"><a href="#PS（处理器系统）" class="headerlink" title="PS（处理器系统）"></a>PS（处理器系统）</h1><p>作为处理器系统的基础，所有芯片都包含一颗双核的ARM Cortex- A9芯片。这是一颗硬处理器，是芯片上专门且优化过的硅片元件。</p>
+<p>除了“硬”处理器，还有另外一种方案，像是MicroBlaze这样的“软”处理器，这是由PL端端单元组合成的，即和PL端的IP是等价的。相比之下，“硬”处理器可以获得相对较高的性能，“软”处理器的数量和精确实现是灵活的。</p>
+<p>值得一提的是，可以在zynq的PL端分配一个或多个MicroBlaze软处理器，用于和硬核协同工作。比如可以让软核负责协调特定的底层功能和系统之间的配合，将要求不高的任务从硬核上脱离出来，提高整体性能。</p>
+<p><img src="https://s2.loli.net/2024/10/15/b5KAyTow21a3NXv.png" srcset="/img/loading.gif" lazyload alt="b5KAyTow21a3NXv.png"></p>
+<p>zynq的PS端里面并非只有ARM处理器，还有一组相关的处理资源，构成一个应用处理器单元（Application Processing Uint，APU），另外还有扩展外设接口、cache存储器、存储器接口、互联接口和时钟发生电路。</p>
+<p><img src="https://s2.loli.net/2024/10/15/U2hAxkw1QgKJD7t.png" srcset="/img/loading.gif" lazyload alt="U2hAxkw1QgKJD7t.png"></p>
+<h1 id="PL（可编程逻辑）"><a href="#PL（可编程逻辑）" class="headerlink" title="PL（可编程逻辑）"></a>PL（可编程逻辑）</h1><p>zynq中的逻辑部分是基于Artix7和Kintex7的fpga组件。</p>
+<h1 id="逻辑部分"><a href="#逻辑部分" class="headerlink" title="逻辑部分"></a>逻辑部分</h1><p><img src="https://s2.loli.net/2024/10/15/yNq72JCTcwIVxbX.png" srcset="/img/loading.gif" lazyload alt="yNq72JCTcwIVxbX.png"></p>
+<ul>
+<li>可配置逻辑块（CLB）—— CLB是逻辑单元的小规模、普通编组，在PL中排列为一个二维阵列，通过可编程互联连接到其他类似的资源。每个CLB内都含有两个逻辑片，并紧邻一个开关矩阵。</li>
+<li>片（Slice）—— CLB里的子单元，里面有实现组合和时序逻辑电路的资源。</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/10/15/EaAknYzH7fUXWRl.png" srcset="/img/loading.gif" lazyload alt="EaAknYzH7fUXWRl.png"></p>
+<ul>
+<li><p>查找表（Lookup Table，LUT）—— 一个灵活的资源，可以实现</p>
+<ol>
+<li>至多6个输入的逻辑函数</li>
+<li>一小片只读存储器（ROM）</li>
+<li>一小片随机访问存储器（RAM）</li>
+<li>一个移位寄存器</li>
+</ol>
+<p>  LUT可以按需组合形成一个更大的逻辑函数、存储器或移位寄存器。</p>
+</li>
+<li><p>触发器（Flip-flop，FF）—— 一个实现一位寄存的时序电路，带有复位功能。其中一个用处是实现锁存。</p>
+</li>
+<li><p>开关矩阵（Switch Matrix）—— 每个CLB旁边都有一个开关矩阵，实现灵活的布线功能来连接CLB内的单元，或把CLB与PL内的其他资源连接起来。</p>
+</li>
+<li><p>进位逻辑（Carry Logic）—— 算术电路需要在相邻的片之间传递信号，这就是通过进位逻辑来实现的。</p>
+</li>
+<li><p>输入&#x2F;输出块（IOB）—— IOB实现了PL逻辑资源之间的对接，并提供物理设备“焊盘”来连接外部电路。每个IOB可以处理一位的输入或输出信号，IOB一般位于芯片的周边。</p>
+</li>
+</ul>
+<h1 id="特殊资源：DSP48E1和BRAM"><a href="#特殊资源：DSP48E1和BRAM" class="headerlink" title="特殊资源：DSP48E1和BRAM"></a>特殊资源：DSP48E1和BRAM</h1><p>这两个资源都按列排列集成在逻辑阵列中，嵌入在逻辑部分中，而且彼此靠近，原因是密集计算和给内存中存储数据往往是紧密联系的运算。</p>
+<p><img src="https://s2.loli.net/2024/10/15/4rAX3bdykQPplz1.png" srcset="/img/loading.gif" lazyload alt="4rAX3bdykQPplz1.png"></p>
+<h2 id="BRAM"><a href="#BRAM" class="headerlink" title="BRAM"></a>BRAM</h2><p>zynq-7000的BRAM和其他Xilinx 7系列FPGA里的BRAM是相同的，都可以实现RAM、ROM、FIFO，同时还支持纠错编码。</p>
+<p>每个BRAM里最多可以存储36KB的信息，可以被配置为一个36KB的RAM或者两个独立的18KB的RAM。还可以被“重塑”来包含更多的更小的单元，或者组合起来组成更大容量大RAM。</p>
+<p>使用BRAM意味着能在芯片内部优化的专用存储单元内，用很小的物理空间存储大量的数据。另一种方法是分布式RAM（Distributed RAM），DRAM是用逻辑部分里的LUT来搭建的，想要构成和BRAM大小相当的的存储器，需要用到大量的LUT，而且实现的结果还受到剧增的逻辑和布线延迟所造成的时序性能受限的影响。另一方面，用DRAM实现小存储器是有优势的，这样资源利用率高，并且布局更灵活。BRAM往往能工作在芯片支持的最高时钟频率下。</p>
+<h2 id="DSP48E1"><a href="#DSP48E1" class="headerlink" title="DSP48E1"></a>DSP48E1</h2><p>逻辑部分的LUT可以用来实现任意长度的算术运算，但由于长字长的算术电路会在逻辑片内占据较大的空间，这样的布局和布线会导致时钟频率是次优的，因此最好拿LUT做短字长的运算。</p>
+<p>DSP48E1是专门用于实现对长字长信号的高速算术运算的逻辑片，是专用的硅片资源，并且在逻辑单元内部包含了预加法器&#x2F;减法器、乘法器和后加法器&#x2F;减法器。</p>
+<p><img src="https://s2.loli.net/2024/10/15/vCgbeN8i9Xtq7Eo.png" srcset="/img/loading.gif" lazyload alt="vCgbeN8i9Xtq7Eo.png"></p>
+<p>后加法器还可以用作逻辑单元，此时它可以做逻辑运算，支持所有的基础布尔运算。</p>
+<p>如果需要更大字长的运算，可以将多个DSP组合起来做扩展。</p>
+<h1 id="通用输入-输出"><a href="#通用输入-输出" class="headerlink" title="通用输入&#x2F;输出"></a>通用输入&#x2F;输出</h1><p>zynq上的通用输入&#x2F;输出功能合起来被成为SelectIO资源，它们被组成50个IOB一组，每个IOB都有一个焊盘，与外部世界连接。</p>
+<p>I&#x2F;O组分为高性能（High Preformance，HP）或高范围（High Range，HR）。HP接口的电压最高为1.8V，通常用作连接存储器和其他芯片的高速接口；HR接口允许3.3V的电压，适合做各种IO标准的连接。两种接口都支持单端和差分信号。</p>
+<p>每个IOB还包含一个IOSERDES资源，可以做并行和串行的可编程转换，数据位宽是2～8位。</p>
+<h1 id="通信接口"><a href="#通信接口" class="headerlink" title="通信接口"></a>通信接口</h1><p>zynq内部含有嵌入在逻辑部分里的GTX收发器和高速通信接口块。</p>
+<h1 id="其他可编程逻辑扩展接口"><a href="#其他可编程逻辑扩展接口" class="headerlink" title="其他可编程逻辑扩展接口"></a>其他可编程逻辑扩展接口</h1><ul>
+<li>ADC—— XADC，具有两个独立的12位ADC，每个采样率为1Msps。</li>
+<li>时钟—— PL接收来自PS的四个独立的时钟输入，另外还能产生和分发它自己的与PS无关的时钟。</li>
+<li>JTAG调试接口</li>
+</ul>
+<h1 id="PS与PL之间的接口"><a href="#PS与PL之间的接口" class="headerlink" title="PS与PL之间的接口"></a>PS与PL之间的接口</h1><p>如前所述，Zynq 的表现不仅仅依赖于它的两个组成部分 PS 和 PL 的特性，还在于能把两者协同起来形成完整、集成的系统的能力。这其中起关键作用的，是一组高度定制的 AXI 互联和接口用来在两个部分之间形成桥梁。另外，在 PS 和 PL 之间还有一些其他类型的连接，特别是 EMIO。</p>
+<h2 id="AXI"><a href="#AXI" class="headerlink" title="AXI"></a>AXI</h2><p>高级可扩展接口（Advanced eXtensible Interface）。当前版本为第四代AXI4 。</p>
+<h3 id="AXI4"><a href="#AXI4" class="headerlink" title="AXI4"></a>AXI4</h3><p>用于存储映射连接，支持最高的性能，通过一簇高达256个数据字的传输来给定一个地址。</p>
+<h3 id="AXI4-Lite"><a href="#AXI4-Lite" class="headerlink" title="AXI4-Lite"></a>AXI4-Lite</h3><p>简化的连接，只支持每次传输一个数据。AXI4Lite也是存储映射的，每次传输一个地址和单个数据。</p>
+<h3 id="AXI4-Stream"><a href="#AXI4-Stream" class="headerlink" title="AXI4-Stream"></a>AXI4-Stream</h3><p>用于高速流式数据，支持批量传输无线大小的数据。没有地址机制，适合源与目的之间的直接数据流。</p>
+<h2 id="EMIO接口"><a href="#EMIO接口" class="headerlink" title="EMIO接口"></a>EMIO接口</h2><p>EMIO涉及两个域之间的传输，是由一组简单的导线连接实现的。</p>
+<p><img src="https://s2.loli.net/2024/10/15/s318l2SCX6zYIqE.png" srcset="/img/loading.gif" lazyload alt="s318l2SCX6zYIqE.png"></p>
+<h2 id="EBAZ4205矿板资料汇总"><a href="#EBAZ4205矿板资料汇总" class="headerlink" title="EBAZ4205矿板资料汇总"></a>EBAZ4205矿板资料汇总</h2><h1 id="扩展版"><a href="#扩展版" class="headerlink" title="扩展版"></a>扩展版</h1><p><a target="_blank" rel="noopener" href="https://oshwhub.com/zefff/ebaz4205-ta-zhan-ban">ebaz4205拓展板 - 立创开源硬件平台 (oshwhub.com)</a></p>
+<h1 id="开发板补全"><a href="#开发板补全" class="headerlink" title="开发板补全"></a>开发板补全</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Turix/article/details/109738107">从零开始的ZYNQ学习（基于矿卡EBAZ4205）（一）-CSDN博客</a></p>
+<h1 id="原理图相关"><a href="#原理图相关" class="headerlink" title="原理图相关"></a>原理图相关</h1><p>矿板原理图</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Elrori/EBAZ4205">Elrori&#x2F;EBAZ4205: EBAZ4205 BOARD (github.com)</a></p>
+<p>PCB</p>
+<p><a target="_blank" rel="noopener" href="https://prod-files-secure.s3.us-west-2.amazonaws.com/628159ee-386f-4c0d-9380-ce0eb31c8e54/3fc2ec3c-dfeb-4b1b-92ac-f2f7b591cefe/EBAZ4205-master.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45GO43JXI4/20241118/us-west-2/s3/aws4_request&X-Amz-Date=20241118T065723Z&X-Amz-Expires=3600&X-Amz-Signature=77cdf20c2d653988a00ad61644e5762dc52cebbc934cf509509ae43b5ad7c2fc&X-Amz-SignedHeaders=host&x-id=GetObject">EBAZ4205-master.zip</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627427014">bookmark</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/FPGA/" class="print-no-link">#FPGA</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ZYNQ</div>
+      <div>http://example.com/2024/09/27/ZYNQ/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 27, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/20/DVB-S%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A/" title="DVB-S系统设计报告">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">DVB-S系统设计报告</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/21/HDL%20coder%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" title="HDL coder使用手册">
+                        <span class="hidden-mobile">HDL coder使用手册</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
