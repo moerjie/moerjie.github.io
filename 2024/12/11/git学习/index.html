@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="ZH-CN" data-default-color-scheme=auto>
 
 
 
@@ -9,11 +9,13 @@
   <meta charset="UTF-8">
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="icon" href="/img/favicon.png">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="John Doe">
@@ -23,9 +25,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="git学习">
 <meta property="og:url" content="http://example.com/2024/12/11/git%E5%AD%A6%E4%B9%A0/index.html">
-<meta property="og:site_name" content="sawen_blog">
+<meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="Git 基础概念Git 概念汇总   概念 描述    工作区（Workspace） 在本地的代码库，新增和修改的文件会提交到暂存区   暂存区（stage） 用于临时存放文件的修改，实际上是一个文件（. Git&#x2F;index），保存待提交的文件列表   仓库（repository） Git 的管理仓库，记录文件状态的地方，所有的代码版本都在里面   远程仓库（origin&#x2F;re">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412082111865.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412111054384.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412102151126.png">
@@ -38,8 +40,10 @@
 <meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412082111865.png">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
-  <title>git学习 - sawen_blog</title>
+  
+  <title>git学习 - Sawen_Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -73,11 +77,17 @@
 
 
 
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_3846514_kabxni94auf.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -87,6 +97,17 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
   
@@ -103,7 +124,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>Sawen_Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -123,7 +144,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -133,9 +154,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+              <a class="nav-link" href="/archives" target="_self">
+                <i class="iconfont icon-books"></i>
+                <span>归档</span>
               </a>
             </li>
           
@@ -145,9 +166,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
+              <a class="nav-link" href="/categories" target="_self">
+                <i class="iconfont icon-th-large"></i>
+                <span>分类</span>
               </a>
             </li>
           
@@ -159,7 +180,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -171,8 +192,48 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-book"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
             </li>
           
         
@@ -213,11 +274,16 @@
           
   <div class="mt-3">
     
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        John Doe
+      </span>
+    
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2024-12-11 00:00" pubdate>
-          December 11, 2024 am
+           2024 年 12 月 11 日 , 凌晨 12:00 , 星期三
         </time>
       </span>
     
@@ -228,7 +294,8 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k words
+          <!-- compatible with older versions-->
+          1.6k 字
         
       </span>
     
@@ -239,7 +306,8 @@
         
         
         
-          14 mins
+          <!-- compatible with older versions-->
+          14 分钟
         
       </span>
     
@@ -353,7 +421,7 @@
 <td>表示远程仓库的 main 分支</td>
 </tr>
 </tbody></table>
-<h2 id="工作区-暂存区-仓库"><a href="#工作区-暂存区-仓库" class="headerlink" title="工作区&#x2F;暂存区&#x2F;仓库"></a>工作区&#x2F;暂存区&#x2F;仓库</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412082111865.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="工作区-暂存区-仓库"><a href="#工作区-暂存区-仓库" class="headerlink" title="工作区&#x2F;暂存区&#x2F;仓库"></a>工作区&#x2F;暂存区&#x2F;仓库</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412082111865.png" srcset="/img/banner.png" lazyload></p>
 <ul>
 <li>图中的 objects 标识的区域为 git 的对象库，实际的位置是“. Git&#x2F;objects”目录中，里面包含了创建的各种对象和内容</li>
 <li>当对工作区的修改&#x2F;新增文件执行 <em>git add</em>命令后，暂存区的目录树被更新，同时工作区修改&#x2F;新增文件的内容被写入 objects 的一个新的对象中，而该对象的 ID 被记录在 stage 的文件索引中</li>
@@ -382,7 +450,7 @@
 <li>远程仓库-&gt;本地版本库</li>
 </ul>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">git pull <span class="hljs-keyword">origin </span><span class="hljs-keyword">branch-name</span><br><span class="hljs-keyword"></span><span class="hljs-comment"># 或者</span><br>git fetch <span class="hljs-keyword">origin </span><span class="hljs-keyword">branch-name</span><br><span class="hljs-keyword"></span>git merge <span class="hljs-keyword">origin/branch-name</span><br></code></pre></td></tr></table></figure>
-<h2 id="Git-工作流程"><a href="#Git-工作流程" class="headerlink" title="Git 工作流程"></a>Git 工作流程</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412111054384.png" srcset="/img/loading.gif" lazyload alt="|420"></p>
+<h2 id="Git-工作流程"><a href="#Git-工作流程" class="headerlink" title="Git 工作流程"></a>Git 工作流程</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412111054384.png" srcset="/img/banner.png" lazyload alt="|420"></p>
 <h3 id="1、克隆仓库"><a href="#1、克隆仓库" class="headerlink" title="1、克隆仓库"></a>1、克隆仓库</h3><p>如果你要参与一个已有的项目，首先需要将远程仓库克隆到本地：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/username/repo.git<br><span class="hljs-built_in">cd</span> repo<br></code></pre></td></tr></table></figure>
 <h3 id="2、创建新分支"><a href="#2、创建新分支" class="headerlink" title="2、创建新分支"></a>2、创建新分支</h3><p>为了避免直接在 main 或 master 分支上进行开发，通常会创建一个新的分支：</p>
@@ -406,8 +474,8 @@
 <figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">git branch -d <span class="hljs-keyword">new</span>-<span class="hljs-built_in">feature</span><br></code></pre></td></tr></table></figure>
 <p>或者从远程仓库删除分支：</p>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima">git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> --<span class="hljs-built_in">delete</span> <span class="hljs-built_in">new</span>-<span class="hljs-built_in">feature</span><br></code></pre></td></tr></table></figure>
-<h1 id="Git-指令"><a href="#Git-指令" class="headerlink" title="Git 指令"></a>Git 指令</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412102151126.png" srcset="/img/loading.gif" lazyload></p>
-<h1 id="Git-分支"><a href="#Git-分支" class="headerlink" title="Git 分支"></a>Git 分支</h1><p>Git 仓库在 fork 中打开后界面如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412172133789.png" srcset="/img/loading.gif" lazyload alt="|405"><br>可以看到每一个分支相互平行，只有完成某些项目的开发时才会合并到主分支。<br>那么分支有什么用呢？当计划开发一个新的功能时，第一天完成了百分之 50，如果直接提交到 master 分支，则可能导致别人无法开发，如果全部写完再提交的话又可能因为意外丢失之前的进度。此时就体现出来分支的优越性了。我们可能创建一个属于自己的别人不可见的分支，在这个分支上开发提交代码不会影响他人，可以随意操作，等到开发结束了再一次性合并到 master 分支。</p>
+<h1 id="Git-指令"><a href="#Git-指令" class="headerlink" title="Git 指令"></a>Git 指令</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412102151126.png" srcset="/img/banner.png" lazyload></p>
+<h1 id="Git-分支"><a href="#Git-分支" class="headerlink" title="Git 分支"></a>Git 分支</h1><p>Git 仓库在 fork 中打开后界面如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412172133789.png" srcset="/img/banner.png" lazyload alt="|405"><br>可以看到每一个分支相互平行，只有完成某些项目的开发时才会合并到主分支。<br>那么分支有什么用呢？当计划开发一个新的功能时，第一天完成了百分之 50，如果直接提交到 master 分支，则可能导致别人无法开发，如果全部写完再提交的话又可能因为意外丢失之前的进度。此时就体现出来分支的优越性了。我们可能创建一个属于自己的别人不可见的分支，在这个分支上开发提交代码不会影响他人，可以随意操作，等到开发结束了再一次性合并到 master 分支。</p>
 <h2 id="Git-分支常用命令"><a href="#Git-分支常用命令" class="headerlink" title="Git 分支常用命令"></a>Git 分支常用命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs git">git branch # 列出所有本地分支<br><br>git branch -r #列出所有远程分支<br><br>git branch -a #列出所有本地和远程的分支<br><br>git branch [new-branch-name] #创建一个新的分支，但停留在当前分支<br><br>git checkout -b [new-branch-name] #创建一个新的分支，并切换到该分支<br><br>git branch --track [branch] [remote-branch] #创建一个新分支，并与指定的远程分支建立追踪关系<br><br>git checkout [new-branch-name] #切换到指定分支，并更新工作区<br><br>git merge [branch] #合并指定分支到当前分支<br><br>git branch -d [branch] #删除分支<br><br>git push origin --delete [branch] #删除远程分支<br></code></pre></td></tr></table></figure>
 
 
@@ -461,20 +529,20 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>Beitragsautor</div>
           <div>John Doe</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>December 11, 2024</div>
+          <div>Veröffentlicht am</div>
+          <div>2024年12月11日</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Licensed under</div>
+          <div>Urheberrechtshinweis</div>
           <div>
             
               
@@ -500,19 +568,19 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" title="">
+                      <a href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" title="Quartus报错记录">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="hidden-mobile">Quartus报错记录</span>
+                        <span class="visible-mobile">Vorheriger</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/16/%E7%94%B5%E8%B7%AF%E4%B8%AD%E7%9A%84%E7%94%B5%E5%B9%B3%E6%A0%87%E5%87%86/" title="电路中的电平标准">
-                        <span class="hidden-mobile">电路中的电平标准</span>
-                        <span class="visible-mobile">Next</span>
+                      <a href="/2024/11/21/%E8%84%89%E5%86%B2%E6%88%90%E5%BD%A2%E6%BB%A4%E6%B3%A2%E5%99%A8/" title="脉冲成形滤波器">
+                        <span class="hidden-mobile">脉冲成形滤波器</span>
+                        <span class="visible-mobile">Nächster</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -522,6 +590,37 @@
             </div>
 
             
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"你的appId","appKey":"你的appKey","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"你的serverURLs","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
           </article>
         </div>
       </div>
@@ -533,7 +632,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
+    <span>Inhaltsverzeichnis</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -589,7 +688,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -597,7 +696,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -617,6 +716,32 @@
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
   
   
 </div>
@@ -662,7 +787,9 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
   
 
 
@@ -763,7 +890,15 @@
 
   <script  src="/js/local-search.js" ></script>
 
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxingxing.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
 
 
 
@@ -775,7 +910,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
   </noscript>
 </body>
 </html>

@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="ZH-CN" data-default-color-scheme=auto>
 
 
 
@@ -9,29 +9,31 @@
   <meta charset="UTF-8">
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="icon" href="/img/favicon.png">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Fully Parallel Systolic Architecture（全并行脉动结构）全并行脉动滤波器对对称系数、反对称系数和零值系数进行了优化。滤波器的时延受到滤波器系数的对称性影响。当对称系数绝对相等时，它们共享同一个 DSP block。这种配对共享允许在实现的过程中使用 Xilinx 和 Altera 的 dsp block 中的 pre-adder。对称的滤波器如果不适用对称系数优化">
+    <meta name="description" content="数学基础有限脉冲响应滤波器，其突出特点为单位取样响应 $h(n)$ 是一个 N 点长的有限序列，滤波器的输出 $y(n)$ 表示为输入序列 $x(n)$ 和 $h(n)$ 的线性卷积$$y(n)&#x3D;\sum_{k&#x3D;0}^{N-1}x(k)h(n-k)&#x3D;x(n)*h(n)$$系统函数为$$H(z)&#x3D;\sum_{n&#x3D;0}^{N-1}h(n)z^{-n}&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FIR滤波器的架构">
 <meta property="og:url" content="http://example.com/2024/12/29/FIR%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E6%9E%B6%E6%9E%84/index.html">
-<meta property="og:site_name" content="sawen_blog">
-<meta property="og:description" content="Fully Parallel Systolic Architecture（全并行脉动结构）全并行脉动滤波器对对称系数、反对称系数和零值系数进行了优化。滤波器的时延受到滤波器系数的对称性影响。当对称系数绝对相等时，它们共享同一个 DSP block。这种配对共享允许在实现的过程中使用 Xilinx 和 Altera 的 dsp block 中的 pre-adder。对称的滤波器如果不适用对称系数优化">
-<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:description" content="数学基础有限脉冲响应滤波器，其突出特点为单位取样响应 $h(n)$ 是一个 N 点长的有限序列，滤波器的输出 $y(n)$ 表示为输入序列 $x(n)$ 和 $h(n)$ 的线性卷积$$y(n)&#x3D;\sum_{k&#x3D;0}^{N-1}x(k)h(n-k)&#x3D;x(n)*h(n)$$系统函数为$$H(z)&#x3D;\sum_{n&#x3D;0}^{N-1}h(n)z^{-n}&amp;">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292142810.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292146523.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292149737.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292156578.png">
 <meta property="article:published_time" content="2024-12-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-01-19T14:17:18.828Z">
+<meta property="article:modified_time" content="2025-01-20T02:46:48.748Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="FPGA">
 <meta property="article:tag" content="数字通信">
@@ -39,8 +41,10 @@
 <meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292142810.png">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
-  <title>FIR滤波器的架构 - sawen_blog</title>
+  
+  <title>FIR滤波器的架构 - Sawen_Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -74,11 +78,17 @@
 
 
 
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_3846514_kabxni94auf.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -88,6 +98,17 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
   
@@ -104,7 +125,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>Sawen_Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -124,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -134,9 +155,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+              <a class="nav-link" href="/archives" target="_self">
+                <i class="iconfont icon-books"></i>
+                <span>归档</span>
               </a>
             </li>
           
@@ -146,9 +167,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
+              <a class="nav-link" href="/categories" target="_self">
+                <i class="iconfont icon-th-large"></i>
+                <span>分类</span>
               </a>
             </li>
           
@@ -160,7 +181,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -172,8 +193,48 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-book"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
             </li>
           
         
@@ -214,11 +275,16 @@
           
   <div class="mt-3">
     
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        John Doe
+      </span>
+    
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2024-12-29 00:00" pubdate>
-          December 29, 2024 am
+           2024 年 12 月 29 日 , 凌晨 12:00 , 星期日
         </time>
       </span>
     
@@ -229,7 +295,8 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          362 words
+          <!-- compatible with older versions-->
+          651 字
         
       </span>
     
@@ -240,7 +307,8 @@
         
         
         
-          4 mins
+          <!-- compatible with older versions-->
+          6 分钟
         
       </span>
     
@@ -282,10 +350,37 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Fully-Parallel-Systolic-Architecture（全并行脉动结构）"><a href="#Fully-Parallel-Systolic-Architecture（全并行脉动结构）" class="headerlink" title="Fully Parallel Systolic Architecture（全并行脉动结构）"></a>Fully Parallel Systolic Architecture（全并行脉动结构）</h1><p>全并行脉动滤波器对对称系数、反对称系数和零值系数进行了优化。滤波器的时延受到滤波器系数的对称性影响。<br>当对称系数绝对相等时，它们共享同一个 DSP block。这种配对共享允许在实现的过程中使用 Xilinx 和 Altera 的 dsp block 中的 pre-adder。<br>对称的滤波器如果不适用对称系数优化架构的话，结构如下图的上半部分，优化后为下半部分：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292142810.png" srcset="/img/loading.gif" lazyload alt="fir_arch_systolic_sym.png|500"></p>
-<h1 id="Fully-Parallel-Transposed-Architecture（全并行转置结构）"><a href="#Fully-Parallel-Transposed-Architecture（全并行转置结构）" class="headerlink" title="Fully Parallel Transposed Architecture（全并行转置结构）"></a>Fully Parallel Transposed Architecture（全并行转置结构）</h1><p>Fully Parallel Transposed Architecture 通过为任意的绝对相等的系数共享乘法器，同时移除零值系数所需的乘法器。此结构的滤波器时延为固定的 6 个 clk。<br>下图的上半部分是没有优化的部分对称滤波器，下半部分为优化后的结构：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292146523.png" srcset="/img/loading.gif" lazyload alt="fir_arch_transposed_sym.png|500"></p>
-<h1 id="Partly-Serial-Systolic-Architecture-1"><a href="#Partly-Serial-Systolic-Architecture-1" class="headerlink" title="Partly Serial Systolic Architecture (1 &lt; N &lt; L)"></a>Partly Serial Systolic Architecture (1 &lt; N &lt; L)</h1><p>其中 N 为延时长度，L 为滤波器阶数。<br>部分串行滤波器需要 <code>M=ceil(L/N)</code> 个脉动单元，结构如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292149737.png" srcset="/img/loading.gif" lazyload alt="fir_arch_systolic_partly_serial.png|500"><br>滤波器的时延为 <code>M+ceil(L/M)+5</code>。<br>如果一个乘法器对应的查找表里面的系数为 0 或者 2 的幂次，则实现过程不包含乘法器，通过移位来实现幂次的变化。</p>
-<h1 id="Fully-Serial-Systolic-Architecture-N-≥-L"><a href="#Fully-Serial-Systolic-Architecture-N-≥-L" class="headerlink" title="Fully Serial Systolic Architecture (N ≥ L)"></a>Fully Serial Systolic Architecture (N ≥ L)</h1><p>如果延时的长度大于滤波器的阶数，此时滤波器为全串行结构。滤波器延时为 $L+5$。<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292156578.png" srcset="/img/loading.gif" lazyload alt="fir_arch_systolic_fully_serial.png|500"></p>
+                <h1 id="数学基础"><a href="#数学基础" class="headerlink" title="数学基础"></a>数学基础</h1><p>有限脉冲响应滤波器，其突出特点为单位取样响应 $h(n)$ 是一个 N 点长的有限序列，滤波器的输出 $y(n)$ 表示为输入序列 $x(n)$ 和 $h(n)$ 的线性卷积<br>$$<br>y(n)&#x3D;\sum_{k&#x3D;0}^{N-1}x(k)h(n-k)&#x3D;x(n)*h(n)<br>$$<br>系统函数为<br>$$<br>H(z)&#x3D;\sum_{n&#x3D;0}^{N-1}h(n)z^{-n}&#x3D;h(0)+h(1)z^{-1}+\cdots+h(N-1)z^{-(N-1)}<br>$$<br>由此可见 FIR 只在原点上存在极点，具有全局稳定性<br>不同阶数的 FIR 滤波器特性</p>
+<table>
+<thead>
+<tr>
+<th>单位取样响应特征</th>
+<th>滤波器种类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>系数偶对称，阶数为偶数</td>
+<td>适合各种滤波器</td>
+</tr>
+<tr>
+<td>系数偶对称，阶数为奇数</td>
+<td>不适合高通和带阻滤波器</td>
+</tr>
+<tr>
+<td>系数奇对称，阶数为偶数</td>
+<td>只适合带通滤波器</td>
+</tr>
+<tr>
+<td>系数奇对称，阶数为奇数</td>
+<td>适合高通和带通滤波器</td>
+</tr>
+</tbody></table>
+<h2 id="系数量化"><a href="#系数量化" class="headerlink" title="系数量化"></a>系数量化</h2><p>将一组数据先进行归一化处理，再乘上一个整数因子，最后进行四舍五入截尾处理即可</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">h = <span class="hljs-built_in">round</span>(h/<span class="hljs-built_in">max</span>(<span class="hljs-built_in">abs</span>(h))*(<span class="hljs-number">2</span>^N<span class="hljs-number">-1</span>)) //N为量化位数<br></code></pre></td></tr></table></figure>
+<h1 id="Fully-Parallel-Systolic-Architecture（全并行脉动结构）"><a href="#Fully-Parallel-Systolic-Architecture（全并行脉动结构）" class="headerlink" title="Fully Parallel Systolic Architecture（全并行脉动结构）"></a>Fully Parallel Systolic Architecture（全并行脉动结构）</h1><p>全并行脉动滤波器对对称系数、反对称系数和零值系数进行了优化。滤波器的时延受到滤波器系数的对称性影响。<br>当对称系数绝对相等时，它们共享同一个 DSP block。这种配对共享允许在实现的过程中使用 Xilinx 和 Altera 的 dsp block 中的 pre-adder。<br>对称的滤波器如果不适用对称系数优化架构的话，结构如下图的上半部分，优化后为下半部分：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292142810.png" srcset="/img/banner.png" lazyload alt="fir_arch_systolic_sym.png|500"></p>
+<h1 id="Fully-Parallel-Transposed-Architecture（全并行转置结构）"><a href="#Fully-Parallel-Transposed-Architecture（全并行转置结构）" class="headerlink" title="Fully Parallel Transposed Architecture（全并行转置结构）"></a>Fully Parallel Transposed Architecture（全并行转置结构）</h1><p>Fully Parallel Transposed Architecture 通过为任意的绝对相等的系数共享乘法器，同时移除零值系数所需的乘法器。此结构的滤波器时延为固定的 6 个 clk。<br>下图的上半部分是没有优化的部分对称滤波器，下半部分为优化后的结构：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292146523.png" srcset="/img/banner.png" lazyload alt="fir_arch_transposed_sym.png|500"></p>
+<h1 id="Partly-Serial-Systolic-Architecture-1"><a href="#Partly-Serial-Systolic-Architecture-1" class="headerlink" title="Partly Serial Systolic Architecture (1 &lt; N &lt; L)"></a>Partly Serial Systolic Architecture (1 &lt; N &lt; L)</h1><p>其中 N 为延时长度，L 为滤波器阶数。<br>部分串行滤波器需要 <code>M=ceil(L/N)</code> 个脉动单元，结构如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292149737.png" srcset="/img/banner.png" lazyload alt="fir_arch_systolic_partly_serial.png|500"><br>滤波器的时延为 <code>M+ceil(L/M)+5</code>。<br>如果一个乘法器对应的查找表里面的系数为 0 或者 2 的幂次，则实现过程不包含乘法器，通过移位来实现幂次的变化。</p>
+<h1 id="Fully-Serial-Systolic-Architecture-N-≥-L"><a href="#Fully-Serial-Systolic-Architecture-N-≥-L" class="headerlink" title="Fully Serial Systolic Architecture (N ≥ L)"></a>Fully Serial Systolic Architecture (N ≥ L)</h1><p>如果延时的长度大于滤波器的阶数，此时滤波器为全串行结构。滤波器延时为 $L+5$。<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292156578.png" srcset="/img/banner.png" lazyload alt="fir_arch_systolic_fully_serial.png|500"></p>
 
                 
               </div>
@@ -339,20 +434,20 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>Beitragsautor</div>
           <div>John Doe</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>December 29, 2024</div>
+          <div>Veröffentlicht am</div>
+          <div>2024年12月29日</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Licensed under</div>
+          <div>Urheberrechtshinweis</div>
           <div>
             
               
@@ -381,16 +476,16 @@
                       <a href="/2025/01/10/ZYNQ%E4%B8%AD%E7%9A%84GPIO/" title="ZYNQ中的GPIO">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">ZYNQ中的GPIO</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">Vorheriger</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" title="">
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">Next</span>
+                      <a href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" title="Quartus报错记录">
+                        <span class="hidden-mobile">Quartus报错记录</span>
+                        <span class="visible-mobile">Nächster</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -400,6 +495,37 @@
             </div>
 
             
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"你的appId","appKey":"你的appKey","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"你的serverURLs","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
           </article>
         </div>
       </div>
@@ -411,7 +537,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
+    <span>Inhaltsverzeichnis</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -467,7 +593,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -475,7 +601,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -495,6 +621,32 @@
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
   
   
 </div>
@@ -540,7 +692,9 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
   
 
 
@@ -641,7 +795,15 @@
 
   <script  src="/js/local-search.js" ></script>
 
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxingxing.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
 
 
 
@@ -653,7 +815,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
   </noscript>
 </body>
 </html>

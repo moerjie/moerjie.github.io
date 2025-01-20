@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="ZH-CN" data-default-color-scheme=auto>
 
 
 
@@ -9,11 +9,13 @@
   <meta charset="UTF-8">
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="icon" href="/img/favicon.png">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="John Doe">
@@ -21,20 +23,22 @@
   
     <meta name="description" content="[!note]由于 Quartus 的 VWF 仿真只能仿真很短的时间，而且 Vivado 仿真的时候也需要添加激励信号，因此需要编写 testbench 文件进行激励仿真。  Testbench 文件结构编写 testbench 的目的是为了测试 module 的功能、性能是否符合设计的预期。验证设计的功能包括以下步骤：  产生合适的激励波形：该激励通常要覆盖被测 HDL 模块所有可能产生的输">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sawen_blog">
+<meta property="og:title" content="Testbench仿真脚本编写指北">
 <meta property="og:url" content="http://example.com/2025/01/19/Testbench%E4%BB%BF%E7%9C%9F%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99%E6%8C%87%E5%8C%97/index.html">
-<meta property="og:site_name" content="sawen_blog">
+<meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="[!note]由于 Quartus 的 VWF 仿真只能仿真很短的时间，而且 Vivado 仿真的时候也需要添加激励信号，因此需要编写 testbench 文件进行激励仿真。  Testbench 文件结构编写 testbench 的目的是为了测试 module 的功能、性能是否符合设计的预期。验证设计的功能包括以下步骤：  产生合适的激励波形：该激励通常要覆盖被测 HDL 模块所有可能产生的输">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-19T13:11:17.795Z">
-<meta property="article:modified_time" content="2024-11-22T13:31:04.042Z">
+<meta property="article:modified_time" content="2025-01-20T02:38:40.272Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="FPGA">
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
-  <title>sawen_blog</title>
+  
+  <title>Testbench仿真脚本编写指北 - Sawen_Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -68,11 +72,17 @@
 
 
 
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_3846514_kabxni94auf.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -82,6 +92,17 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
   
@@ -98,7 +119,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>Sawen_Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -118,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -128,9 +149,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+              <a class="nav-link" href="/archives" target="_self">
+                <i class="iconfont icon-books"></i>
+                <span>归档</span>
               </a>
             </li>
           
@@ -140,9 +161,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
+              <a class="nav-link" href="/categories" target="_self">
+                <i class="iconfont icon-th-large"></i>
+                <span>分类</span>
               </a>
             </li>
           
@@ -154,7 +175,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -166,8 +187,48 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-book"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
             </li>
           
         
@@ -200,7 +261,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="Testbench仿真脚本编写指北"></span>
           
         </div>
 
@@ -208,11 +269,16 @@
           
   <div class="mt-3">
     
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        John Doe
+      </span>
+    
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2025-01-19 21:11" pubdate>
-          January 19, 2025 pm
+           2025 年 01 月 19 日 , 晚上 09:11 , 星期日
         </time>
       </span>
     
@@ -223,7 +289,8 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          935 words
+          <!-- compatible with older versions-->
+          935 字
         
       </span>
     
@@ -234,7 +301,8 @@
         
         
         
-          8 mins
+          <!-- compatible with older versions-->
+          8 分钟
         
       </span>
     
@@ -271,7 +339,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">Testbench仿真脚本编写指北</h1>
             
             
               <div class="markdown-body">
@@ -285,12 +353,12 @@
 <li>将产生的激励信号加入到 DUT 中并观察其响应：即将 DUT 模块例化的 Testbench 中，运行仿真测试；</li>
 <li>将输出的响应与期望值比较。<br>Testbench 的结构一般模块如下：<br>&#96;&#96;</li>
 </ol>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> Test_bench_name();</span><br><span class="line"><span class="comment">// 01:信号或变量声明定义</span></span><br><span class="line"><span class="comment">// --逻辑设计中输入对应 reg 型</span></span><br><span class="line"><span class="comment">// --逻辑设计中输出对应 wire 型</span></span><br><span class="line"><span class="comment">// 02:使用 ini[ti](https://bbs.elecfans.com/group_715)al 或 always 语句产生激励</span></span><br><span class="line"><span class="comment">// 03:例化待测试DUT模块</span></span><br><span class="line"><span class="comment">// 04:监控和比较输出响应</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<h1 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h1><h2 id="时钟激励输入示例"><a href="#时钟激励输入示例" class="headerlink" title="时钟激励输入示例"></a>时钟激励输入示例</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*----------------------------------------------------------------</span></span><br><span class="line"><span class="comment">时钟激励产生方法一：50%占空比时钟</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="keyword">parameter</span> ClockPeriod=<span class="number">10</span>; <span class="comment">//参数化时钟周期</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    clk_i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">forever</span><span class="variable">#(ClockPeriod/2)</span> clk_i = ~clk_i;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*----------------------------------------------------------------</span></span><br><span class="line"><span class="comment">时钟激励产生方法二：50%占空比时钟</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  clk_i=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">always</span> <span class="variable">#(ClockPeriod/2)</span> clk_i=~clk_i;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*----------------------------------------------------------------</span></span><br><span class="line"><span class="comment">时钟激励产生方法三：产生固定数量的时钟脉冲</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="keyword">parameter</span> ClockPeriod=<span class="number">10</span>; <span class="comment">//参数化时钟周期</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  clk_i=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">repeat</span>(<span class="number">6</span>)</span><br><span class="line">  <span class="variable">#(ClockPeriod/2)</span> clk_i=~clk_i;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*----------------------------------------------------------------</span></span><br><span class="line"><span class="comment">时钟激励产生方法四：产生非占空比为 50%的时钟</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="keyword">parameter</span> ClockPeriod=<span class="number">10</span>; <span class="comment">//参数化时钟周期</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">clk_i=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">forever</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="variable">#((ClockPeriod/2)-2)</span> clk_i=<span class="number">0</span>;</span><br><span class="line">    <span class="variable">#((ClockPeriod/2)+2)</span> clk_i=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="复位激励输入示例"><a href="#复位激励输入示例" class="headerlink" title="复位激励输入示例"></a>复位激励输入示例</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*---------------------------------------------------------------- </span></span><br><span class="line"><span class="comment">复位信号产生方法一：异步复位</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  [rs](https:<span class="comment">//www.elecfans.com/tags/rs/)t_n_i=1;</span></span><br><span class="line">  #<span class="number">100</span>; rst_n_i=<span class="number">0</span>;</span><br><span class="line">  #<span class="number">100</span>; rst_n_i=<span class="number">1</span>; </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">/*---------------------------------------------------------------- </span></span><br><span class="line"><span class="comment">复位信号产生方法二：同步复位</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="keyword">initial</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  rst_n_i=<span class="number">1</span>; clk_i = <span class="number">0</span>;</span><br><span class="line">  @（<span class="keyword">negedge</span> clk_i)</span><br><span class="line">  rst_n_i=<span class="number">0</span>;</span><br><span class="line">  #<span class="number">100</span>; <span class="comment">//固定时间复位</span></span><br><span class="line">  <span class="keyword">repeat</span>(<span class="number">10</span>) @（<span class="keyword">negedge</span> clk_i); <span class="comment">//固定周期数复位</span></span><br><span class="line">  @（<span class="keyword">negedge</span> clk_i)</span><br><span class="line">  rst_n_i=<span class="number">1</span>; </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">always</span> #<span class="number">5</span> clk_i=~clk_i;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*---------------------------------------------------------------- </span></span><br><span class="line"><span class="comment">复位信号产生方法三：复位任务封装</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="keyword">task</span> reset;</span><br><span class="line"><span class="keyword">input</span> [<span class="number">31</span>:<span class="number">0</span>] reset_time; <span class="comment">//复位时间可调，输入复位时间</span></span><br><span class="line">  RST_ING=<span class="number">0</span>; <span class="comment">//复位方式可调，低电平或高电平</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    rst_n=RST_ING; <span class="comment">//复位中</span></span><br><span class="line">    #reset_time; <span class="comment">//复位时间</span></span><br><span class="line">    rst_n_i=~RST_ING; <span class="comment">//撤销复位，复位结束</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endtask</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs Verilog"><span class="hljs-keyword">module</span> Test_bench_name();<br><span class="hljs-comment">// 01:信号或变量声明定义</span><br><span class="hljs-comment">// --逻辑设计中输入对应 reg 型</span><br><span class="hljs-comment">// --逻辑设计中输出对应 wire 型</span><br><span class="hljs-comment">// 02:使用 ini[ti](https://bbs.elecfans.com/group_715)al 或 always 语句产生激励</span><br><span class="hljs-comment">// 03:例化待测试DUT模块</span><br><span class="hljs-comment">// 04:监控和比较输出响应</span><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
+<h1 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h1><h2 id="时钟激励输入示例"><a href="#时钟激励输入示例" class="headerlink" title="时钟激励输入示例"></a>时钟激励输入示例</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs Verilog"><span class="hljs-comment">/*----------------------------------------------------------------</span><br><span class="hljs-comment">时钟激励产生方法一：50%占空比时钟</span><br><span class="hljs-comment">----------------------------------------------------------------*/</span><br><span class="hljs-keyword">parameter</span> ClockPeriod=<span class="hljs-number">10</span>; <span class="hljs-comment">//参数化时钟周期</span><br><span class="hljs-keyword">initial</span><br>  <span class="hljs-keyword">begin</span><br>    clk_i=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">forever</span><span class="hljs-variable">#(ClockPeriod/2)</span> clk_i = ~clk_i;<br><span class="hljs-keyword">end</span><br><br><br><span class="hljs-comment">/*----------------------------------------------------------------</span><br><span class="hljs-comment">时钟激励产生方法二：50%占空比时钟</span><br><span class="hljs-comment">----------------------------------------------------------------*/</span><br><span class="hljs-keyword">initial</span><br><span class="hljs-keyword">begin</span><br>  clk_i=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">end</span><br><span class="hljs-keyword">always</span> <span class="hljs-variable">#(ClockPeriod/2)</span> clk_i=~clk_i;<br><br><br><span class="hljs-comment">/*----------------------------------------------------------------</span><br><span class="hljs-comment">时钟激励产生方法三：产生固定数量的时钟脉冲</span><br><span class="hljs-comment">----------------------------------------------------------------*/</span><br><span class="hljs-keyword">parameter</span> ClockPeriod=<span class="hljs-number">10</span>; <span class="hljs-comment">//参数化时钟周期</span><br><span class="hljs-keyword">initial</span><br><span class="hljs-keyword">begin</span><br>  clk_i=<span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">repeat</span>(<span class="hljs-number">6</span>)<br>  <span class="hljs-variable">#(ClockPeriod/2)</span> clk_i=~clk_i;<br><span class="hljs-keyword">end</span><br><br><br><span class="hljs-comment">/*----------------------------------------------------------------</span><br><span class="hljs-comment">时钟激励产生方法四：产生非占空比为 50%的时钟</span><br><span class="hljs-comment">----------------------------------------------------------------*/</span><br><span class="hljs-keyword">parameter</span> ClockPeriod=<span class="hljs-number">10</span>; <span class="hljs-comment">//参数化时钟周期</span><br><span class="hljs-keyword">initial</span><br><span class="hljs-keyword">begin</span><br>clk_i=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">forever</span><br>  <span class="hljs-keyword">begin</span><br>    <span class="hljs-variable">#((ClockPeriod/2)-2)</span> clk_i=<span class="hljs-number">0</span>;<br>    <span class="hljs-variable">#((ClockPeriod/2)+2)</span> clk_i=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br><br></code></pre></td></tr></table></figure>
+<h2 id="复位激励输入示例"><a href="#复位激励输入示例" class="headerlink" title="复位激励输入示例"></a>复位激励输入示例</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">/*---------------------------------------------------------------- </span><br><span class="hljs-comment">复位信号产生方法一：异步复位</span><br><span class="hljs-comment">----------------------------------------------------------------*/</span><br><span class="hljs-keyword">initial</span><br><span class="hljs-keyword">begin</span><br>  [rs](https:<span class="hljs-comment">//www.elecfans.com/tags/rs/)t_n_i=1;</span><br>  #<span class="hljs-number">100</span>; rst_n_i=<span class="hljs-number">0</span>;<br>  #<span class="hljs-number">100</span>; rst_n_i=<span class="hljs-number">1</span>; <br><span class="hljs-keyword">end</span><br><span class="hljs-comment">/*---------------------------------------------------------------- </span><br><span class="hljs-comment">复位信号产生方法二：同步复位</span><br><span class="hljs-comment">----------------------------------------------------------------*/</span><br><span class="hljs-keyword">initial</span><br><span class="hljs-keyword">begin</span><br>  rst_n_i=<span class="hljs-number">1</span>; clk_i = <span class="hljs-number">0</span>;<br>  @（<span class="hljs-keyword">negedge</span> clk_i)<br>  rst_n_i=<span class="hljs-number">0</span>;<br>  #<span class="hljs-number">100</span>; <span class="hljs-comment">//固定时间复位</span><br>  <span class="hljs-keyword">repeat</span>(<span class="hljs-number">10</span>) @（<span class="hljs-keyword">negedge</span> clk_i); <span class="hljs-comment">//固定周期数复位</span><br>  @（<span class="hljs-keyword">negedge</span> clk_i)<br>  rst_n_i=<span class="hljs-number">1</span>; <br><span class="hljs-keyword">end</span><br><span class="hljs-keyword">always</span> #<span class="hljs-number">5</span> clk_i=~clk_i;<br><br><br><span class="hljs-comment">/*---------------------------------------------------------------- </span><br><span class="hljs-comment">复位信号产生方法三：复位任务封装</span><br><span class="hljs-comment">----------------------------------------------------------------*/</span><br><span class="hljs-keyword">task</span> reset;<br><span class="hljs-keyword">input</span> [<span class="hljs-number">31</span>:<span class="hljs-number">0</span>] reset_time; <span class="hljs-comment">//复位时间可调，输入复位时间</span><br>  RST_ING=<span class="hljs-number">0</span>; <span class="hljs-comment">//复位方式可调，低电平或高电平</span><br>  <span class="hljs-keyword">begin</span><br>    rst_n=RST_ING; <span class="hljs-comment">//复位中</span><br>    #reset_time; <span class="hljs-comment">//复位时间</span><br>    rst_n_i=~RST_ING; <span class="hljs-comment">//撤销复位，复位结束</span><br>  <span class="hljs-keyword">end</span><br><span class="hljs-keyword">endtask</span><br></code></pre></td></tr></table></figure>
 <h2 id="仿真控制语句和系统任务描述"><a href="#仿真控制语句和系统任务描述" class="headerlink" title="仿真控制语句和系统任务描述"></a>仿真控制语句和系统任务描述</h2><p>&#96;&#96;</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*---------------------------------------------------------------- </span></span><br><span class="line"><span class="comment">仿真控制语句及系统任务描述</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="built_in">$stop</span>  <span class="comment">// 停止运行仿真，modelsim 中可继续仿真</span></span><br><span class="line"><span class="built_in">$stop</span>(n) <span class="comment">//带参数系统任务，根据参数 0,1或2不同，输出仿真信息</span></span><br><span class="line"><span class="built_in">$finish</span> <span class="comment">//结束运行仿真，不可继续仿真</span></span><br><span class="line"><span class="built_in">$finish</span>(n) <span class="comment">//带参数系统任务，根据参数 0,1或2不同，输出仿真信息</span></span><br><span class="line"><span class="comment">//0:不输出任何信息</span></span><br><span class="line"><span class="comment">//1:输出当前仿真时刻和位置</span></span><br><span class="line"><span class="comment">//2:输出当前仿真时刻、位置和仿真过程中用到的 memory 以及 CPU 时间的统计</span></span><br><span class="line"><span class="built_in">$random</span> <span class="comment">//产生随机数</span></span><br><span class="line"><span class="built_in">$random</span> % n <span class="comment">//产生范围-n 到 n 之间的随机数</span></span><br><span class="line">&#123;<span class="built_in">$random</span>&#125; % n <span class="comment">//产生范围 0 到 n 之间的随机数</span></span><br><span class="line"><span class="comment">/*----------------------------------------------------------------</span></span><br></pre></td></tr></table></figure>
-<h2 id="文本读取"><a href="#文本读取" class="headerlink" title="文本读取"></a>文本读取</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*---------------------------------------------------------------- </span></span><br><span class="line"><span class="comment">文本输入方式：$readmemb/$readmemh</span></span><br><span class="line"><span class="comment">----------------------------------------------------------------*/</span></span><br><span class="line"><span class="built_in">$readmemb</span>/<span class="built_in">$readmemh</span>(<span class="string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;);</span><br><span class="line"><span class="built_in">$readmemb</span>/<span class="built_in">$readmemh</span>(<span class="string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;);</span><br><span class="line"><span class="built_in">$readmemb</span>/<span class="built_in">$readmemh</span>(<span class="string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;,&lt;结束地址&gt;);</span><br><span class="line"><span class="built_in">$readmemb</span>:<span class="comment">/*读取二进制数据，读取文件内容只能包含：空白位置，注释行，二进制数</span></span><br><span class="line"><span class="comment">数据中不能包含位宽说明和格式说明，每个数字必须是二进制数字。*/</span></span><br><span class="line"><span class="built_in">$readmemh</span>:<span class="comment">/*读取十六进制数据，读取文件内容只能包含：空白位置，注释行，十六进制数</span></span><br><span class="line"><span class="comment">数据中不能包含位宽说明和格式说明，每个数字必须是十六进制数字。*/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs Verilog"><span class="hljs-comment">/*---------------------------------------------------------------- </span><br><span class="hljs-comment">仿真控制语句及系统任务描述</span><br><span class="hljs-comment">----------------------------------------------------------------*/</span><br><span class="hljs-built_in">$stop</span>  <span class="hljs-comment">// 停止运行仿真，modelsim 中可继续仿真</span><br><span class="hljs-built_in">$stop</span>(n) <span class="hljs-comment">//带参数系统任务，根据参数 0,1或2不同，输出仿真信息</span><br><span class="hljs-built_in">$finish</span> <span class="hljs-comment">//结束运行仿真，不可继续仿真</span><br><span class="hljs-built_in">$finish</span>(n) <span class="hljs-comment">//带参数系统任务，根据参数 0,1或2不同，输出仿真信息</span><br><span class="hljs-comment">//0:不输出任何信息</span><br><span class="hljs-comment">//1:输出当前仿真时刻和位置</span><br><span class="hljs-comment">//2:输出当前仿真时刻、位置和仿真过程中用到的 memory 以及 CPU 时间的统计</span><br><span class="hljs-built_in">$random</span> <span class="hljs-comment">//产生随机数</span><br><span class="hljs-built_in">$random</span> % n <span class="hljs-comment">//产生范围-n 到 n 之间的随机数</span><br>&#123;<span class="hljs-built_in">$random</span>&#125; % n <span class="hljs-comment">//产生范围 0 到 n 之间的随机数</span><br><span class="hljs-comment">/*----------------------------------------------------------------</span><br></code></pre></td></tr></table></figure>
+<h2 id="文本读取"><a href="#文本读取" class="headerlink" title="文本读取"></a>文本读取</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs Verilog"><span class="hljs-comment">/*---------------------------------------------------------------- </span><br><span class="hljs-comment">文本输入方式：$readmemb/$readmemh</span><br><span class="hljs-comment">----------------------------------------------------------------*/</span><br><span class="hljs-built_in">$readmemb</span>/<span class="hljs-built_in">$readmemh</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;);<br><span class="hljs-built_in">$readmemb</span>/<span class="hljs-built_in">$readmemh</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;);<br><span class="hljs-built_in">$readmemb</span>/<span class="hljs-built_in">$readmemh</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;,&lt;结束地址&gt;);<br><span class="hljs-built_in">$readmemb</span>:<span class="hljs-comment">/*读取二进制数据，读取文件内容只能包含：空白位置，注释行，二进制数</span><br><span class="hljs-comment">数据中不能包含位宽说明和格式说明，每个数字必须是二进制数字。*/</span><br><span class="hljs-built_in">$readmemh</span>:<span class="hljs-comment">/*读取十六进制数据，读取文件内容只能包含：空白位置，注释行，十六进制数</span><br><span class="hljs-comment">数据中不能包含位宽说明和格式说明，每个数字必须是十六进制数字。*/</span><br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -315,26 +383,26 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>Testbench仿真脚本编写指北</div>
       <div>http://example.com/2025/01/19/Testbench仿真脚本编写指北/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>Beitragsautor</div>
           <div>John Doe</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>January 19, 2025</div>
+          <div>Veröffentlicht am</div>
+          <div>2025年1月19日</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Licensed under</div>
+          <div>Urheberrechtshinweis</div>
           <div>
             
               
@@ -360,19 +428,19 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/19/%E8%84%89%E5%86%B2%E6%88%90%E5%BD%A2%E6%BB%A4%E6%B3%A2%E5%99%A8/" title="">
+                      <a href="/2025/01/19/%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC/" title="阻塞赋值和非阻塞赋值">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="hidden-mobile">阻塞赋值和非阻塞赋值</span>
+                        <span class="visible-mobile">Vorheriger</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/01/19/FPGA%E4%B8%AD%E7%9A%84%E7%94%B5%E5%B9%B3%E6%A0%87%E5%87%86/" title="">
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">Next</span>
+                      <a href="/2025/01/19/%E9%BB%91%E9%87%91Alinx%20xc7z020%20%E5%8E%9F%E7%90%86%E5%9B%BE/" title="黑金Alinx xc7z020 原理图">
+                        <span class="hidden-mobile">黑金Alinx xc7z020 原理图</span>
+                        <span class="visible-mobile">Nächster</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -382,6 +450,37 @@
             </div>
 
             
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"你的appId","appKey":"你的appKey","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"你的serverURLs","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
           </article>
         </div>
       </div>
@@ -393,7 +492,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
+    <span>Inhaltsverzeichnis</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -449,7 +548,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -457,7 +556,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -477,6 +576,32 @@
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
   
   
 </div>
@@ -522,7 +647,9 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
   
 
 
@@ -623,7 +750,15 @@
 
   <script  src="/js/local-search.js" ></script>
 
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxingxing.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
 
 
 
@@ -635,7 +770,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
   </noscript>
 </body>
 </html>

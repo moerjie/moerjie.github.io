@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="ZH-CN" data-default-color-scheme=auto>
 
 
 
@@ -9,27 +9,31 @@
   <meta charset="UTF-8">
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="icon" href="/img/favicon.png">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
     <meta property="og:type" content="website">
-<meta property="og:title" content="Categories - FPGA">
+<meta property="og:title" content="Kategorien - FPGA">
 <meta property="og:url" content="http://example.com/categories/FPGA/index.html">
-<meta property="og:site_name" content="sawen_blog">
-<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
-  <title>Categories - FPGA - sawen_blog</title>
+  
+  <title>Kategorien - FPGA - Sawen_Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -57,11 +61,17 @@
 
 
 
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_3846514_kabxni94auf.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -71,6 +81,17 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
   
@@ -87,7 +108,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>Sawen_Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -107,7 +128,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -117,9 +138,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+              <a class="nav-link" href="/archives" target="_self">
+                <i class="iconfont icon-books"></i>
+                <span>归档</span>
               </a>
             </li>
           
@@ -129,9 +150,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
+              <a class="nav-link" href="/categories" target="_self">
+                <i class="iconfont icon-th-large"></i>
+                <span>分类</span>
               </a>
             </li>
           
@@ -143,7 +164,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -155,8 +176,48 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-book"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
             </li>
           
         
@@ -183,13 +244,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/%E4%BD%A0%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/%E9%93%BE%E6%8E%A5') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Categories - FPGA"></span>
+            <span id="subtitle" data-typed-text="Kategorien - FPGA"></span>
           
         </div>
 
@@ -217,19 +278,13 @@
                 
 
 <div class="list-group">
-  <p class="h4">8 posts in total</p>
+  <p class="h4">Insgesamt 14 Artikel</p>
   <hr>
   
   
     
       
       <p class="h5">2025</p>
-    
-    <a href="/2025/01/19/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" class="list-group-item list-group-item-action">
-      <time>01-19</time>
-      <div class="list-group-item-title">8bit数据转1bit逐位输出电路仿真</div>
-    </a>
-  
     
     <a href="/2025/01/19/%E9%BB%91%E9%87%91Alinx%20xc7z020%20%E5%8E%9F%E7%90%86%E5%9B%BE/" class="list-group-item list-group-item-action">
       <time>01-19</time>
@@ -239,7 +294,7 @@
     
     <a href="/2025/01/15/Vitis%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" class="list-group-item list-group-item-action">
       <time>01-15</time>
-      <div class="list-group-item-title"></div>
+      <div class="list-group-item-title">Vitis开发过程中遇到的错误</div>
     </a>
   
     
@@ -260,7 +315,7 @@
     
     <a href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" class="list-group-item list-group-item-action">
       <time>12-28</time>
-      <div class="list-group-item-title"></div>
+      <div class="list-group-item-title">Quartus报错记录</div>
     </a>
   
     
@@ -273,6 +328,48 @@
     <a href="/2024/09/21/HDL%20coder%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" class="list-group-item list-group-item-action">
       <time>09-21</time>
       <div class="list-group-item-title">HDL coder使用手册</div>
+    </a>
+  
+    
+    <a href="/2024/06/13/MATLAB%E4%B8%AD%E4%BD%BF%E7%94%A8HDL%20Coder%E7%94%9F%E6%88%90HDL%E4%BB%A3%E7%A0%81%E6%97%B6%E7%9A%84%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" class="list-group-item list-group-item-action">
+      <time>06-13</time>
+      <div class="list-group-item-title">MATLAB中使用HDL Coder生成HDL代码时的报错集合</div>
+    </a>
+  
+    
+    <a href="/2024/06/09/Modelsim%E4%B8%AD%E4%BD%BF%E7%94%A8tcl%E5%91%BD%E4%BB%A4%E5%AF%BC%E5%87%BA%E4%BB%BF%E7%9C%9F%E6%95%B0%E6%8D%AE%E5%88%B0txt%E6%96%87%E4%BB%B6/" class="list-group-item list-group-item-action">
+      <time>06-09</time>
+      <div class="list-group-item-title">Modelsim中使用tcl命令导出仿真数据到txt文件</div>
+    </a>
+  
+    
+    <a href="/2024/05/29/Xilinx%20FPGA%E4%B8%AD%E7%9A%84BUFFER/" class="list-group-item list-group-item-action">
+      <time>05-29</time>
+      <div class="list-group-item-title">Xilinx FPGA中的BUFFER</div>
+    </a>
+  
+    
+    <a href="/2024/05/01/Vivado%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" class="list-group-item list-group-item-action">
+      <time>05-01</time>
+      <div class="list-group-item-title">Vivado报错集合</div>
+    </a>
+  
+    
+    <a href="/2024/04/25/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/" class="list-group-item list-group-item-action">
+      <time>04-25</time>
+      <div class="list-group-item-title">Matlab生成txt文件导入到Vivado仿真</div>
+    </a>
+  
+    
+    <a href="/2024/03/23/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" class="list-group-item list-group-item-action">
+      <time>03-23</time>
+      <div class="list-group-item-title">8bit数据转1bit逐位输出电路仿真</div>
+    </a>
+  
+    
+    <a href="/2024/03/20/AXI-STREAM%E7%AE%80%E4%BB%8B/" class="list-group-item list-group-item-action">
+      <time>03-20</time>
+      <div class="list-group-item-title">AXI-STREAM简介</div>
     </a>
   
 </div>
@@ -300,7 +397,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -308,7 +405,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -328,6 +425,32 @@
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
   
   
 </div>
@@ -373,7 +496,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    
   
 
 
@@ -381,7 +504,15 @@
 
   <script  src="/js/local-search.js" ></script>
 
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxingxing.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
 
 
 
@@ -393,7 +524,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
   </noscript>
 </body>
 </html>

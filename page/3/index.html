@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="ZH-CN" data-default-color-scheme=auto>
 
 
 
@@ -9,27 +9,31 @@
   <meta charset="UTF-8">
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="icon" href="/img/favicon.png">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
     <meta property="og:type" content="website">
-<meta property="og:title" content="sawen_blog">
+<meta property="og:title" content="Sawen_Blog">
 <meta property="og:url" content="http://example.com/page/3/index.html">
-<meta property="og:site_name" content="sawen_blog">
-<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
-  <title>sawen_blog</title>
+  
+  <title>Sawen_Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -57,11 +61,17 @@
 
 
 
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_3846514_kabxni94auf.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -71,6 +81,17 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
   
@@ -87,7 +108,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>Sawen_Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -107,7 +128,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -117,9 +138,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+              <a class="nav-link" href="/archives" target="_self">
+                <i class="iconfont icon-books"></i>
+                <span>归档</span>
               </a>
             </li>
           
@@ -129,9 +150,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
+              <a class="nav-link" href="/categories" target="_self">
+                <i class="iconfont icon-th-large"></i>
+                <span>分类</span>
               </a>
             </li>
           
@@ -143,7 +164,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -155,8 +176,48 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-book"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
             </li>
           
         
@@ -189,7 +250,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
+            <span id="subtitle" data-typed-text="一起学习，一起进步"></span>
           
         </div>
 
@@ -224,16 +285,22 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2024/05/01/Vivado%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" target="_self">
+          <img src="/%E4%BD%A0%E7%9A%84%E9%93%BE%E6%8E%A5" alt="Vivado报错集合">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/01/19/Vivado%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" target="_self">
-          
+        <a href="/2024/05/01/Vivado%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" target="_self">
+          Vivado报错集合
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/Vivado%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" target="_self">
+      <a class="index-excerpt " href="/2024/05/01/Vivado%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" target="_self">
         <div>
           Synth 8-5535报错代码 12345[Synth 8-5535] port &lt;clk_0&gt; has illegal connections. It is illegal to have a port connected to an input buffer and other components. The following are the port connections
         </div>
@@ -243,333 +310,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-19 21:49" pubdate>
-              2025-01-19
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/01/19/Matlab%20R2024b%E5%AE%89%E8%A3%85%E6%9C%AC%E5%9C%B0%E6%96%87%E6%A1%A3/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/Matlab%20R2024b%E5%AE%89%E8%A3%85%E6%9C%AC%E5%9C%B0%E6%96%87%E6%A1%A3/" target="_self">
-        <div>
-          安装包  通过网盘分享的文件：MATLAB R2024b链接: https://pan.baidu.com/s/1T8-V_guBJhSD-Yze0wEVmQ?pwd&#x3D;9h5c 提取码: 9h5c–来自百度网盘超级会员v2的分享    挂载后导航到镜像中的安装包文件夹1cd &lt;mountedDocImage&gt;/bin/&lt;arch&gt;   &lt;mountedDo
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-19 21:49" pubdate>
-              2025-01-19
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/01/19/C%E6%A0%87%E5%87%86%E5%BA%93%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/C%E6%A0%87%E5%87%86%E5%BA%93%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" target="_self">
-        <div>
-          函数介绍库变量   变量 描述    size_t 无符号整数类型，是sizeof关键字的结果，表示对象大小   FILE 文件流类型，适合存储文件流信息的对象类型   库宏   宏 描述    NULL 空指针常量   EOF 表示已经到达文件结束的负整数   stderr、stdin、stdout 指向FILE类型的指针，分别对应标准错误、标准输入和标准输出流   库函数fopen12FILE
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-19 21:49" pubdate>
-              2025-01-19
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/01/19/%E8%BF%90%E6%94%BE%E9%80%89%E5%9E%8B/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/%E8%BF%90%E6%94%BE%E9%80%89%E5%9E%8B/" target="_self">
-        <div>
-          在使用OP07设计单路运放时，设计目标为将100K到1M的1V峰峰值的正弦波放大2倍，但是测试过程中发现100K频率下输出的波形类似三角波，数据手册说OP07的增益带宽积为0.5MHz，正常来说100K的频率下2倍增益是没问题的。 但是数据手册又说OP07的压摆率Slew Rate为0.3V&#x2F;us，那么根据设计目标可以计算得出运放的压摆率至少要到6.28V&#x2F;us，可以看到OP0
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-19 21:49" pubdate>
-              2025-01-19
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/01/19/%E8%BF%90%E6%94%BE%E7%9A%84%E5%90%8C%E7%9B%B8%E4%B8%8E%E5%8F%8D%E7%9B%B8%E6%94%BE%E5%A4%A7/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/%E8%BF%90%E6%94%BE%E7%9A%84%E5%90%8C%E7%9B%B8%E4%B8%8E%E5%8F%8D%E7%9B%B8%E6%94%BE%E5%A4%A7/" target="_self">
-        <div>
-          反相放大器同相端接地，电压为 0，反相端和同相端虚短，因此也是 0 V 的电压，同时由于虚断，几乎没有电流注入，所以R 1 和R 2 相当于串联，电阻上的电流相等  因此可以求出输入输出关系式为 $$V_{out}&#x3D;-\frac{R_2}{R_1}\times V_i$$ 同相放大器同样根据虚断和虚短可以求得输入输出关系式为 $$V_{out}&#x3D;\frac{R_1+R_2}{R
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-19 21:49" pubdate>
-              2025-01-19
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/01/19/%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC/" target="_self">
-        <div>
-          阻塞和非阻塞的区别阻塞赋值“&#x3D;”必须是阻塞赋值完成后，才进行下一条语句的执行；赋值一旦完成，等号左边的变量值立即变化。在同一个块中，阻塞赋值表达式的书写顺序会影响赋值的结果。硬件没有对应的电路。  即串行赋值，语句从上到下顺序执行，立即生效1111  非阻塞赋值“&lt;&#x3D;”在赋值开始时计算表达式右边的值，在本次仿真周期时钟的下降沿时才更新被赋值变量，即赋值不是立即生效的；非阻
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-19 21:11" pubdate>
-              2025-01-19
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/FPGA/">#FPGA</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/01/19/%E8%84%89%E5%86%B2%E6%88%90%E5%BD%A2%E6%BB%A4%E6%B3%A2%E5%99%A8/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/%E8%84%89%E5%86%B2%E6%88%90%E5%BD%A2%E6%BB%A4%E6%B3%A2%E5%99%A8/" target="_self">
-        <div>
-          数字信号要想在信道中传输，必须在发射机的基带部分进行脉冲成型，将数字信号转化为脉冲信号；脉冲信号到达接收机后，在基带部分进行采样判决后恢复出数字信号。 脉冲成形矩形脉冲最容易实现的脉冲波形就是矩形脉冲，以数字信号“00010110”为例，在发射端可以将“0”映射为正脉冲，“1”映射为负脉冲。在接受端采样时刻的信号电平为正电平则为“0”，信号电平为负电平则为“1”。但是矩形脉冲信号的频谱为无限宽，所
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-19 21:11" pubdate>
-              2025-01-19
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/01/19/Testbench%E4%BB%BF%E7%9C%9F%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99%E6%8C%87%E5%8C%97/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/Testbench%E4%BB%BF%E7%9C%9F%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99%E6%8C%87%E5%8C%97/" target="_self">
-        <div>
-          [!note]由于 Quartus 的 VWF 仿真只能仿真很短的时间，而且 Vivado 仿真的时候也需要添加激励信号，因此需要编写 testbench 文件进行激励仿真。  Testbench 文件结构编写 testbench 的目的是为了测试 module 的功能、性能是否符合设计的预期。验证设计的功能包括以下步骤：  产生合适的激励波形：该激励通常要覆盖被测 HDL 模块所有可能产生的输
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-19 21:11" pubdate>
-              2025-01-19
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/FPGA/">#FPGA</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/01/19/FPGA%E4%B8%AD%E7%9A%84%E7%94%B5%E5%B9%B3%E6%A0%87%E5%87%86/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/FPGA%E4%B8%AD%E7%9A%84%E7%94%B5%E5%B9%B3%E6%A0%87%E5%87%86/" target="_self">
-        <div>
-          FPGA 在与外界进行信息交换时，为了确保信息的正确性，发送和接收信息都要对信息有认定的标准。在数字电路中，我们常用电压高低来表示“0”和“1”，那么多高的电压才会被当作“1”呢，这个时候就需要一个标准，这个标准就是电平标准。  常见电平标准 TTLTTL (Transistor - Transistor Logic，三极管 - 三极管逻辑电平) 是电平标准中的元老级成员。在早期的数字电路中有广泛
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-19 21:11" pubdate>
-              2025-01-19
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/FPGA/">#FPGA</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/01/19/%E9%BB%91%E9%87%91Alinx%20xc7z020%20%E5%8E%9F%E7%90%86%E5%9B%BE/" target="_self">
-          黑金Alinx xc7z020 原理图
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/19/%E9%BB%91%E9%87%91Alinx%20xc7z020%20%E5%8E%9F%E7%90%86%E5%9B%BE/" target="_self">
-        <div>
-          时钟引脚CLK：U18复位RST：N15扩展接口J10   J11   PL LED  PL KEY
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-19 00:00" pubdate>
-              2025-01-19
+            <time datetime="2024-05-01 00:00" pubdate>
+              2024-05-01
             </time>
           </div>
         
@@ -601,7 +343,344 @@
             
               <a href="/tags/FPGA/">#FPGA</a>
             
-              <a href="/tags/%E7%94%B5%E8%B7%AF/">#电路</a>
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2024/04/25/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/" target="_self">
+          <img src="/%E4%BD%A0%E7%9A%84%E9%93%BE%E6%8E%A5" alt="Matlab生成txt文件导入到Vivado仿真">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/04/25/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/" target="_self">
+          Matlab生成txt文件导入到Vivado仿真
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2024/04/25/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/" target="_self">
+        <div>
+          Matlab处理数据并将其写入txt文件1234567%% Txt Generatepre_RS_data=dec2bin(simDataIn,8);       %将数据转化为8bit的二进制fid=fopen(&quot;F:\FPGA\Xilinx_vivado\project\dvbstestbench\dbvs\matlab\pre_RS_data.txt&quot;,&quot;wt&
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-04-25 00:00" pubdate>
+              2024-04-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+              <a href="/tags/MATLAB/">#MATLAB</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/" target="_self">
+          <img src="/%E4%BD%A0%E7%9A%84%E9%93%BE%E6%8E%A5" alt="DVB-S系统仿真学习">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/" target="_self">
+          DVB-S系统仿真学习
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/" target="_self">
+        <div>
+          DVB-S系统用于卫星电视信号传输，发送端框图如下所示  扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为 $$p(x)&#x3D;x^{15}+x^{14}+1$$ 同时移位寄存器的初始状态为
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-27 00:00" pubdate>
+              2024-03-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2024/03/24/QPSK%20simulink%E5%AE%9E%E7%8E%B0/" target="_self">
+          <img src="/%E4%BD%A0%E7%9A%84%E9%93%BE%E6%8E%A5" alt="QPSK simulink实现">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/24/QPSK%20simulink%E5%AE%9E%E7%8E%B0/" target="_self">
+          QPSK simulink实现
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2024/03/24/QPSK%20simulink%E5%AE%9E%E7%8E%B0/" target="_self">
+        <div>
+          调制部分总体框架 各模块参数升余弦滚降滤波器滚降系数为 1  单双极性变换  各阶段波形Buffer Demux Raised Cosine TransmitFilter  QPSK 信号功率谱密度 解调部分经过 AWGN 信道后，假设已经进行了载波同步  部分模块参数载波模块 Pulse Generator 由于经过了串并转换，因此数据率减半 部分波形 将初始信号经过一定时间的延时后，在示波器中
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-24 00:00" pubdate>
+              2024-03-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
+            
+              <a href="/tags/MATLAB/">#MATLAB</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2024/03/23/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" target="_self">
+          <img src="/%E4%BD%A0%E7%9A%84%E9%93%BE%E6%8E%A5" alt="8bit数据转1bit逐位输出电路仿真">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/23/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" target="_self">
+          8bit数据转1bit逐位输出电路仿真
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2024/03/23/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" target="_self">
+        <div>
+          在DVB-S系统中，TS流在经过RS编码后，会变成uint8类型的数据，在后续QPSK星座映射时又需要二进制码流，因此在进行了RS编码后要将8个bit的数据转化成1个bit逐位输出 实现思路首先使用BitwiseOperator模块按位与操作，分别将8位二进制数据提取出来，然后使用一个计数器产生0~7的计数信号作为mux模块的使能，在8个时钟周期内分别输出提取出来的8位数据 结构框图 仿真结果 输
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-23 00:00" pubdate>
+              2024-03-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2024/03/20/AXI-STREAM%E7%AE%80%E4%BB%8B/" target="_self">
+          <img src="/%E4%BD%A0%E7%9A%84%E9%93%BE%E6%8E%A5" alt="AXI-STREAM简介">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/20/AXI-STREAM%E7%AE%80%E4%BB%8B/" target="_self">
+          AXI-STREAM简介
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2024/03/20/AXI-STREAM%E7%AE%80%E4%BB%8B/" target="_self">
+        <div>
+          AXI-STREAM简介概念AXI-Stream总线是一种高效、简单的数据传输协议，主要用于高吞吐量的数据流传输场景。相比于传统的AXI总线，AXI-Stream总线更加简单和轻量级，它通过无需地址的方式，将数据从一个模块传输到另一个模块，适用于需要高速数据传输的应用场景。 部分术语 Transfer：基于TVALID和TREADY握手协议的传输 Packet：一组通过axi-stream传输的数
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-20 00:00" pubdate>
+              2024-03-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
             
           </div>
         
@@ -613,7 +692,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/4/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><span class="page-number current">3</span>
     </span>
   </nav>
 
@@ -638,7 +717,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -646,7 +725,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -666,6 +745,32 @@
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
   
   
 </div>
@@ -711,7 +816,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    
   
 
 
@@ -719,7 +824,15 @@
 
   <script  src="/js/local-search.js" ></script>
 
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxingxing.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
 
 
 
@@ -731,7 +844,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
   </noscript>
 </body>
 </html>
