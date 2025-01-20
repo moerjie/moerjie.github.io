@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+<html lang="zh" data-default-color-scheme=auto>
 
 
 
@@ -19,7 +19,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="Sawen Moerjie">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
     <meta name="description" content="DVB-S系统用于卫星电视信号传输，发送端框图如下所示  扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为 $$p(x)&#x3D;x^{15}+x^{14}+1$$ 同时移位寄存器的初始状态为">
 <meta property="og:type" content="article">
@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://moerjie.github.io/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="DVB-S系统用于卫星电视信号传输，发送端框图如下所示  扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为 $$p(x)&#x3D;x^{15}+x^{14}+1$$ 同时移位寄存器的初始状态为">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:locale">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536797434.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536855542.png">
@@ -285,7 +285,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2024-03-27 00:00" pubdate>
-           2024 年 03 月 27 日 , 凌晨 12:00 , 星期三
+           2024 年 03 月 27 日 , am 12:00 , Wednesday
         </time>
       </span>
     
@@ -440,26 +440,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>作者</div>
+          <div>Beitragsautor</div>
           <div>Sawen Moerjie</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2024年3月27日</div>
+          <div>Veröffentlicht am</div>
+          <div>March 27, 2024</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>许可协议</div>
+          <div>Urheberrechtshinweis</div>
           <div>
             
               
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
                     <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
@@ -482,7 +482,7 @@
                       <a href="/2024/04/25/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/" title="Matlab生成txt文件导入到Vivado仿真">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Matlab生成txt文件导入到Vivado仿真</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Vorheriger</span>
                       </a>
                     
                   </article>
@@ -491,7 +491,7 @@
                     
                       <a href="/2024/03/24/QPSK%20simulink%E5%AE%9E%E7%8E%B0/" title="QPSK simulink实现">
                         <span class="hidden-mobile">QPSK simulink实现</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Nächster</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -543,7 +543,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>目录</span>
+    <span>Inhaltsverzeichnis</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -599,7 +599,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -607,7 +607,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -821,7 +821,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
   </noscript>
 </body>
 </html>

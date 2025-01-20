@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+<html lang="zh" data-default-color-scheme=auto>
 
 
 
@@ -19,7 +19,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="Sawen Moerjie">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
     <meta name="description" content="Git 基础概念Git 概念汇总   概念 描述    工作区（Workspace） 在本地的代码库，新增和修改的文件会提交到暂存区   暂存区（stage） 用于临时存放文件的修改，实际上是一个文件（. Git&#x2F;index），保存待提交的文件列表   仓库（repository） Git 的管理仓库，记录文件状态的地方，所有的代码版本都在里面   远程仓库（origin&#x2F;re">
 <meta property="og:type" content="article">
@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://moerjie.github.io/2024/12/11/git%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="Git 基础概念Git 概念汇总   概念 描述    工作区（Workspace） 在本地的代码库，新增和修改的文件会提交到暂存区   暂存区（stage） 用于临时存放文件的修改，实际上是一个文件（. Git&#x2F;index），保存待提交的文件列表   仓库（repository） Git 的管理仓库，记录文件状态的地方，所有的代码版本都在里面   远程仓库（origin&#x2F;re">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:locale">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412082111865.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412111054384.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412102151126.png">
@@ -283,7 +283,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2024-12-11 00:00" pubdate>
-           2024 年 12 月 11 日 , 凌晨 12:00 , 星期三
+           2024 年 12 月 11 日 , am 12:00 , Wednesday
         </time>
       </span>
     
@@ -529,26 +529,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>作者</div>
+          <div>Beitragsautor</div>
           <div>Sawen Moerjie</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2024年12月11日</div>
+          <div>Veröffentlicht am</div>
+          <div>December 11, 2024</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>许可协议</div>
+          <div>Urheberrechtshinweis</div>
           <div>
             
               
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
                     <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
@@ -571,7 +571,7 @@
                       <a href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" title="Quartus报错记录">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Quartus报错记录</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Vorheriger</span>
                       </a>
                     
                   </article>
@@ -580,7 +580,7 @@
                     
                       <a href="/2024/11/21/%E8%84%89%E5%86%B2%E6%88%90%E5%BD%A2%E6%BB%A4%E6%B3%A2%E5%99%A8/" title="脉冲成形滤波器">
                         <span class="hidden-mobile">脉冲成形滤波器</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Nächster</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -632,7 +632,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>目录</span>
+    <span>Inhaltsverzeichnis</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -688,7 +688,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -696,7 +696,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -910,7 +910,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
   </noscript>
 </body>
 </html>

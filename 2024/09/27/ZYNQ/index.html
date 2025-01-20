@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+<html lang="zh" data-default-color-scheme=auto>
 
 
 
@@ -19,7 +19,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="Sawen Moerjie">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
     <meta name="description" content="ZYNQ体系结构Zynq的总体架构包含两个部分：PS（处理器系统）和PL（可编程逻辑）。这两部分的供电电路上相互独立的，因此PS和PL可以单独使用，不被使用的部分可以断电以降低功耗。不过Zynq最有价值的模式上两个组成部分结合起来使用。 PS（处理器系统）作为处理器系统的基础，所有芯片都包含一颗双核的ARM Cortex- A9芯片。这是一颗硬处理器，是芯片上专门且优化过的硅片元件。 除了“硬”处">
 <meta property="og:type" content="article">
@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://moerjie.github.io/2024/09/27/ZYNQ/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="ZYNQ体系结构Zynq的总体架构包含两个部分：PS（处理器系统）和PL（可编程逻辑）。这两部分的供电电路上相互独立的，因此PS和PL可以单独使用，不被使用的部分可以断电以降低功耗。不过Zynq最有价值的模式上两个组成部分结合起来使用。 PS（处理器系统）作为处理器系统的基础，所有芯片都包含一颗双核的ARM Cortex- A9芯片。这是一颗硬处理器，是芯片上专门且优化过的硅片元件。 除了“硬”处">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:locale">
 <meta property="og:image" content="https://s2.loli.net/2024/10/15/b5KAyTow21a3NXv.png">
 <meta property="og:image" content="https://s2.loli.net/2024/10/15/U2hAxkw1QgKJD7t.png">
 <meta property="og:image" content="https://s2.loli.net/2024/10/15/yNq72JCTcwIVxbX.png">
@@ -286,7 +286,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2024-09-27 00:00" pubdate>
-           2024 年 09 月 27 日 , 凌晨 12:00 , 星期五
+           2024 年 09 月 27 日 , am 12:00 , Friday
         </time>
       </span>
     
@@ -469,26 +469,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>作者</div>
+          <div>Beitragsautor</div>
           <div>Sawen Moerjie</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2024年9月27日</div>
+          <div>Veröffentlicht am</div>
+          <div>September 27, 2024</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>许可协议</div>
+          <div>Urheberrechtshinweis</div>
           <div>
             
               
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
                     <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
@@ -511,7 +511,7 @@
                       <a href="/2024/10/20/DVB-S%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A/" title="DVB-S系统设计报告">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">DVB-S系统设计报告</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Vorheriger</span>
                       </a>
                     
                   </article>
@@ -520,7 +520,7 @@
                     
                       <a href="/2024/09/21/HDL%20coder%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" title="HDL coder使用手册">
                         <span class="hidden-mobile">HDL coder使用手册</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Nächster</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -572,7 +572,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>目录</span>
+    <span>Inhaltsverzeichnis</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -628,7 +628,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -636,7 +636,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -850,7 +850,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
   </noscript>
 </body>
 </html>

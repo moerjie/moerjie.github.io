@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+<html lang="zh" data-default-color-scheme=auto>
 
 
 
@@ -19,7 +19,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="Sawen Moerjie">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
     <meta name="description" content="数字信号要想在信道中传输，必须在发射机的基带部分进行脉冲成型，将数字信号转化为脉冲信号；脉冲信号到达接收机后，在基带部分进行采样判决后恢复出数字信号。 脉冲成形矩形脉冲最容易实现的脉冲波形就是矩形脉冲，以数字信号“00010110”为例，在发射端可以将“0”映射为正脉冲，“1”映射为负脉冲。在接受端采样时刻的信号电平为正电平则为“0”，信号电平为负电平则为“1”。但是矩形脉冲信号的频谱为无限宽，所">
 <meta property="og:type" content="article">
@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://moerjie.github.io/2024/11/21/%E8%84%89%E5%86%B2%E6%88%90%E5%BD%A2%E6%BB%A4%E6%B3%A2%E5%99%A8/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="数字信号要想在信道中传输，必须在发射机的基带部分进行脉冲成型，将数字信号转化为脉冲信号；脉冲信号到达接收机后，在基带部分进行采样判决后恢复出数字信号。 脉冲成形矩形脉冲最容易实现的脉冲波形就是矩形脉冲，以数字信号“00010110”为例，在发射端可以将“0”映射为正脉冲，“1”映射为负脉冲。在接受端采样时刻的信号电平为正电平则为“0”，信号电平为负电平则为“1”。但是矩形脉冲信号的频谱为无限宽，所">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:locale">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182156690.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182201184.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182204636.png">
@@ -287,7 +287,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2024-11-21 00:00" pubdate>
-           2024 年 11 月 21 日 , 凌晨 12:00 , 星期四
+           2024 年 11 月 21 日 , am 12:00 , Thursday
         </time>
       </span>
     
@@ -393,26 +393,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>作者</div>
+          <div>Beitragsautor</div>
           <div>Sawen Moerjie</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2024年11月21日</div>
+          <div>Veröffentlicht am</div>
+          <div>November 21, 2024</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>许可协议</div>
+          <div>Urheberrechtshinweis</div>
           <div>
             
               
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
                     <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
@@ -435,7 +435,7 @@
                       <a href="/2024/12/11/git%E5%AD%A6%E4%B9%A0/" title="git学习">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">git学习</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Vorheriger</span>
                       </a>
                     
                   </article>
@@ -444,7 +444,7 @@
                     
                       <a href="/2024/11/16/FPGA%E4%B8%AD%E7%9A%84%E7%94%B5%E5%B9%B3%E6%A0%87%E5%87%86/" title="FPGA中的电平标准">
                         <span class="hidden-mobile">FPGA中的电平标准</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Nächster</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -496,7 +496,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>目录</span>
+    <span>Inhaltsverzeichnis</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -552,7 +552,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -560,7 +560,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -774,7 +774,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
   </noscript>
 </body>
 </html>
