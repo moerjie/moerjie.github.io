@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="ZH-CN" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -24,7 +24,7 @@
     <meta name="description" content="Round舍入至最近的小数或整数 Y &#x3D; round(X) 将 X 的每个元素四舍五入为最近的整数。在舍入机会均等的情况下，即有元素的十进制小数部分为 0.5（在舍入误差内）时，round 函数会偏离零四舍五入到最接近的具有更大幅值的整数。 示例 Y &#x3D; round(X,N) 四舍五入到 N 位数：  N &gt; 0：舍入到小数点_右侧_的第 N 位数。 N &#x3D; 0：四舍五入到最接近的整数。 N">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Matlab的4个取整函数">
-<meta property="og:url" content="http://example.com/2024/09/03/Matlab%E7%9A%844%E4%B8%AA%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:url" content="https://moerjie.github.io/2024/09/03/Matlab%E7%9A%844%E4%B8%AA%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="Round舍入至最近的小数或整数 Y &#x3D; round(X) 将 X 的每个元素四舍五入为最近的整数。在舍入机会均等的情况下，即有元素的十进制小数部分为 0.5（在舍入误差内）时，round 函数会偏离零四舍五入到最接近的具有更大幅值的整数。 示例 Y &#x3D; round(X,N) 四舍五入到 N 位数：  N &gt; 0：舍入到小数点_右侧_的第 N 位数。 N &#x3D; 0：四舍五入到最接近的整数。 N">
 <meta property="og:locale" content="zh_CN">
@@ -82,7 +82,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"moerjie.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -425,31 +425,31 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Matlab的4个取整函数</div>
-      <div>http://example.com/2024/09/03/Matlab的4个取整函数/</div>
+      <div>https://moerjie.github.io/2024/09/03/Matlab的4个取整函数/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>作者</div>
           <div>John Doe</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>发布于</div>
           <div>2024年9月3日</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>许可协议</div>
           <div>
             
               
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
                     <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
@@ -472,7 +472,7 @@
                       <a href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/" title="多速率信号处理">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">多速率信号处理</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
@@ -481,7 +481,7 @@
                     
                       <a href="/2024/08/19/2023%E5%B9%B4%E5%85%A8%E5%9B%BD%E8%B5%9BC%E9%A2%98%E3%80%8A%20%E7%94%B5%E5%AE%B9%E7%94%B5%E6%84%9F%E6%B5%8B%E9%87%8F%E8%A3%85%E7%BD%AE%E3%80%8B%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A/" title="2023年全国赛C题《 电容电感测量装置》设计报告">
                         <span class="hidden-mobile">2023年全国赛C题《 电容电感测量装置》设计报告</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -533,7 +533,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>目录</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -589,7 +589,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -597,7 +597,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -811,7 +811,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
 </body>
 </html>

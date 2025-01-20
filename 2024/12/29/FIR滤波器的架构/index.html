@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="ZH-CN" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -24,7 +24,7 @@
     <meta name="description" content="数学基础有限脉冲响应滤波器，其突出特点为单位取样响应 $h(n)$ 是一个 N 点长的有限序列，滤波器的输出 $y(n)$ 表示为输入序列 $x(n)$ 和 $h(n)$ 的线性卷积$$y(n)&#x3D;\sum_{k&#x3D;0}^{N-1}x(k)h(n-k)&#x3D;x(n)*h(n)$$系统函数为$$H(z)&#x3D;\sum_{n&#x3D;0}^{N-1}h(n)z^{-n}&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FIR滤波器的架构">
-<meta property="og:url" content="http://example.com/2024/12/29/FIR%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E6%9E%B6%E6%9E%84/index.html">
+<meta property="og:url" content="https://moerjie.github.io/2024/12/29/FIR%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E6%9E%B6%E6%9E%84/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="数学基础有限脉冲响应滤波器，其突出特点为单位取样响应 $h(n)$ 是一个 N 点长的有限序列，滤波器的输出 $y(n)$ 表示为输入序列 $x(n)$ 和 $h(n)$ 的线性卷积$$y(n)&#x3D;\sum_{k&#x3D;0}^{N-1}x(k)h(n-k)&#x3D;x(n)*h(n)$$系统函数为$$H(z)&#x3D;\sum_{n&#x3D;0}^{N-1}h(n)z^{-n}&amp;">
 <meta property="og:locale" content="zh_CN">
@@ -88,7 +88,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"moerjie.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -429,31 +429,31 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>FIR滤波器的架构</div>
-      <div>http://example.com/2024/12/29/FIR滤波器的架构/</div>
+      <div>https://moerjie.github.io/2024/12/29/FIR滤波器的架构/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>作者</div>
           <div>John Doe</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>发布于</div>
           <div>2024年12月29日</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>许可协议</div>
           <div>
             
               
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
                     <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
@@ -476,7 +476,7 @@
                       <a href="/2025/01/10/ZYNQ%E4%B8%AD%E7%9A%84GPIO/" title="ZYNQ中的GPIO">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">ZYNQ中的GPIO</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
@@ -485,7 +485,7 @@
                     
                       <a href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" title="Quartus报错记录">
                         <span class="hidden-mobile">Quartus报错记录</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -537,7 +537,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>目录</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -593,7 +593,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -601,7 +601,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -815,7 +815,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
 </body>
 </html>
