@@ -1,395 +1,271 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>Category: 杂类 - Sawen_Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Sawen_Blog"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Sawen_Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Sawen_Blog"><meta property="og:url" content="https://moerjie.github.io/"><meta property="og:site_name" content="Sawen_Blog"><meta property="og:locale" content="zh"><meta property="og:image" content="https://moerjie.github.io/img/og_image.png"><meta property="article:author" content="Sawen Moerjie"><meta property="article:tag" content="FPGA Verilog MATLAB Coding"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://moerjie.github.io/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://moerjie.github.io"},"headline":"Sawen_Blog","image":["https://moerjie.github.io/img/og_image.png"],"author":{"@type":"Person","name":"Sawen Moerjie"},"publisher":{"@type":"Organization","name":"Sawen_Blog","logo":{"@type":"ImageObject","url":"https://moerjie.github.io/img/favicon.png"}},"description":""}</script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
-
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
-
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
-
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
-      }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/favicon.png" alt="Sawen_Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/categories/">Categories</a></li><li class="is-active"><a href="#" aria-current="page">杂类</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-12-10T16:00:00.000Z" title="2024/12/11 00:00:00">2024-12-11</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-01-19T14:18:45.913Z" title="2025/1/19 22:18:45">2025-01-19</time></span><span class="level-item"><a class="link-muted" href="/categories/%E6%9D%82%E7%B1%BB/">杂类</a></span><span class="level-item">12 minutes read (About 1805 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/12/11/git%E5%AD%A6%E4%B9%A0/">git学习</a></p><div class="content"><h1 id="Git-基础概念"><a href="#Git-基础概念" class="headerlink" title="Git 基础概念"></a>Git 基础概念</h1><h2 id="Git-概念汇总"><a href="#Git-概念汇总" class="headerlink" title="Git 概念汇总"></a>Git 概念汇总</h2><table>
-<thead>
-<tr>
-<th>概念</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>工作区</strong>（Workspace）</td>
-<td>在本地的代码库，新增和修改的文件会提交到暂存区</td>
-</tr>
-<tr>
-<td><strong>暂存区</strong>（stage）</td>
-<td>用于临时存放文件的修改，实际上是一个文件（. Git&#x2F;index），保存待提交的文件列表</td>
-</tr>
-<tr>
-<td><strong>仓库</strong>（repository）</td>
-<td>Git 的管理仓库，记录文件状态的地方，所有的代码版本都在里面</td>
-</tr>
-<tr>
-<td><strong>远程仓库</strong>（origin&#x2F;remote）</td>
-<td>专用的 git 服务器，为多人提供共享服务。本地的仓库通过 &#x3D;&#x3D;push&#x3D;&#x3D;命令将代码推送到远程仓库里</td>
-</tr>
-<tr>
-<td><strong>本地仓库</strong></td>
-<td>本地电脑内直接使用的版本库</td>
-</tr>
-<tr>
-<td><strong>分支</strong>（Branch）</td>
-<td>分支是从主线分离出的副本，可以独立操作而不干扰主线，仓库初始化后会有一个默认主分支“master”或“main”</td>
-</tr>
-<tr>
-<td><strong>头</strong>（HEAD）</td>
-<td>HEAD 类似指针，指向当前活动分支的最新版本</td>
-</tr>
-<tr>
-<td><strong>提交</strong>（Commit）</td>
-<td>将 stage 中的所有变更提交到当前仓库的活动分支</td>
-</tr>
-<tr>
-<td><strong>推送</strong>（Push）</td>
-<td>将本地仓库的版本推送到远程仓库</td>
-</tr>
-<tr>
-<td><strong>拉取</strong>（Pull）</td>
-<td>从远程仓库获取更新到本地仓库</td>
-</tr>
-<tr>
-<td><strong>获取</strong>（Fetch）</td>
-<td>从远程仓库更新，作用同 pull，但是不会自动合并</td>
-</tr>
-<tr>
-<td><strong>冲突</strong>（Conflict）</td>
-<td>多人对同一个文件进行修改后在远程仓库合并时会面临冲突，需要人工合并处理</td>
-</tr>
-<tr>
-<td><strong>合并</strong>（Merge）</td>
-<td>对有 conflict 的文件进行合并操作，git 可以自动合并变更内容，无法自动处理的文件需要人工处理</td>
-</tr>
-<tr>
-<td><strong>标签</strong>（Tag）</td>
-<td>标签指的是某个分支某个特定时间点的状态，可以理解为提交记录的别名，常用来标记版本。</td>
-</tr>
-<tr>
-<td><strong>main&#x2F;master</strong></td>
-<td>仓库的默认主分支</td>
-</tr>
-<tr>
-<td><strong>origin&#x2F;main</strong></td>
-<td>表示远程仓库的 main 分支</td>
-</tr>
-</tbody></table>
-<h2 id="工作区-暂存区-仓库"><a href="#工作区-暂存区-仓库" class="headerlink" title="工作区&#x2F;暂存区&#x2F;仓库"></a>工作区&#x2F;暂存区&#x2F;仓库</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412082111865.png"></p>
-<ul>
-<li>图中的 objects 标识的区域为 git 的对象库，实际的位置是“. Git&#x2F;objects”目录中，里面包含了创建的各种对象和内容</li>
-<li>当对工作区的修改&#x2F;新增文件执行 <em>git add</em>命令后，暂存区的目录树被更新，同时工作区修改&#x2F;新增文件的内容被写入 objects 的一个新的对象中，而该对象的 ID 被记录在 stage 的文件索引中</li>
-<li>当执行 <em>git commit</em>时，stage 的目录树写入 objects 中，main 分支做出更新</li>
-<li>当执行 git reset HEAD 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。</li>
-<li>当执行 git rm –cached “file” 命令时，会直接从暂存区删除文件，工作区则不做出改变</li>
-</ul>
-<h3 id="工作区"><a href="#工作区" class="headerlink" title="工作区"></a>工作区</h3><p>本地计算机内的项目文件</p>
-<h3 id="暂存区（stage）"><a href="#暂存区（stage）" class="headerlink" title="暂存区（stage）"></a>暂存区（stage）</h3><p>暂存区是一个临时存储区域，包含即将提交到版本库中的文件快照<br>常用命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add filename       # 将单个文件添加到暂存区</span><br><span class="line">git add .              # 将工作区中的所有修改添加到暂存区</span><br><span class="line">git status             # 查看哪些文件在暂存区中</span><br></pre></td></tr></table></figure>
-<h3 id="版本库（Repository）"><a href="#版本库（Repository）" class="headerlink" title="版本库（Repository）"></a>版本库（Repository）</h3><p>版本库包含项目的所有版本历史记录，每次提交都会在版本库中创建一个新的快照，这些快照不可变，确保了项目的完整历史记录<br>常用命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;Commit message&quot;   # 将暂存区的更改提交到本地版本库</span><br><span class="line">git log                          # 查看提交历史</span><br><span class="line">git diff                         # 查看工作区和暂存区之间的差异</span><br><span class="line">git diff --cached                # 查看暂存区和最后一次提交之间的差异</span><br></pre></td></tr></table></figure>
-<h3 id="三者之间的关系"><a href="#三者之间的关系" class="headerlink" title="三者之间的关系"></a>三者之间的关系</h3><ul>
-<li>工作区-&gt;暂存区</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add</span><br></pre></td></tr></table></figure>
-<ul>
-<li>暂存区-&gt;版本库</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;Commit message&quot;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>版本库-&gt;远程仓库</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin branch-name</span><br></pre></td></tr></table></figure>
-<ul>
-<li>远程仓库-&gt;本地版本库</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git pull origin branch-name</span><br><span class="line"># 或者</span><br><span class="line">git fetch origin branch-name</span><br><span class="line">git merge origin/branch-name</span><br></pre></td></tr></table></figure>
-<h2 id="Git-工作流程"><a href="#Git-工作流程" class="headerlink" title="Git 工作流程"></a>Git 工作流程</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412111054384.png" alt="|420"></p>
-<h3 id="1、克隆仓库"><a href="#1、克隆仓库" class="headerlink" title="1、克隆仓库"></a>1、克隆仓库</h3><p>如果你要参与一个已有的项目，首先需要将远程仓库克隆到本地：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/username/repo.git</span><br><span class="line">cd repo</span><br></pre></td></tr></table></figure>
-<h3 id="2、创建新分支"><a href="#2、创建新分支" class="headerlink" title="2、创建新分支"></a>2、创建新分支</h3><p>为了避免直接在 main 或 master 分支上进行开发，通常会创建一个新的分支：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b new-feature</span><br></pre></td></tr></table></figure>
-<h3 id="3、工作目录"><a href="#3、工作目录" class="headerlink" title="3、工作目录"></a>3、工作目录</h3><p>在工作目录中进行代码编辑、添加新文件或删除不需要的文件。</p>
-<h3 id="4、暂存文件"><a href="#4、暂存文件" class="headerlink" title="4、暂存文件"></a>4、暂存文件</h3><p>将修改过的文件添加到暂存区，以便进行下一步的提交操作：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add filename</span><br></pre></td></tr></table></figure>
-<p>或者添加所有修改的文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
-<h3 id="5、提交更改"><a href="#5、提交更改" class="headerlink" title="5、提交更改"></a>5、提交更改</h3><p>将暂存区的更改提交到本地仓库，并添加提交信息：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;Add new feature&quot;</span><br></pre></td></tr></table></figure>
-<p>连接远程仓库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin [git@github.com]</span><br></pre></td></tr></table></figure>
-<h3 id="6、拉取最新更改"><a href="#6、拉取最新更改" class="headerlink" title="6、拉取最新更改"></a>6、拉取最新更改</h3><p>在推送本地更改之前，最好从远程仓库拉取最新的更改，以避免冲突：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin main</span><br></pre></td></tr></table></figure>
-<p>或者如果在新的分支上工作</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin new-feature</span><br></pre></td></tr></table></figure>
-<h3 id="7、推送更改"><a href="#7、推送更改" class="headerlink" title="7、推送更改"></a>7、推送更改</h3><p>将本地的提交推送到远程仓库：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin new-feature</span><br></pre></td></tr></table></figure>
-<h3 id="8、删除分支"><a href="#8、删除分支" class="headerlink" title="8、删除分支"></a>8、删除分支</h3><p>如果不再需要新功能分支，可以将其删除：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d new-feature</span><br></pre></td></tr></table></figure>
-<p>或者从远程仓库删除分支：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin --delete new-feature</span><br></pre></td></tr></table></figure>
-<h1 id="Git-指令"><a href="#Git-指令" class="headerlink" title="Git 指令"></a>Git 指令</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412102151126.png"></p>
-<h1 id="Git-分支"><a href="#Git-分支" class="headerlink" title="Git 分支"></a>Git 分支</h1><p>Git 仓库在 fork 中打开后界面如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412172133789.png" alt="|405"><br>可以看到每一个分支相互平行，只有完成某些项目的开发时才会合并到主分支。<br>那么分支有什么用呢？当计划开发一个新的功能时，第一天完成了百分之 50，如果直接提交到 master 分支，则可能导致别人无法开发，如果全部写完再提交的话又可能因为意外丢失之前的进度。此时就体现出来分支的优越性了。我们可能创建一个属于自己的别人不可见的分支，在这个分支上开发提交代码不会影响他人，可以随意操作，等到开发结束了再一次性合并到 master 分支。</p>
-<h2 id="Git-分支常用命令"><a href="#Git-分支常用命令" class="headerlink" title="Git 分支常用命令"></a>Git 分支常用命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">git branch # 列出所有本地分支</span><br><span class="line"></span><br><span class="line">git branch -r #列出所有远程分支</span><br><span class="line"></span><br><span class="line">git branch -a #列出所有本地和远程的分支</span><br><span class="line"></span><br><span class="line">git branch [new-branch-name] #创建一个新的分支，但停留在当前分支</span><br><span class="line"></span><br><span class="line">git checkout -b [new-branch-name] #创建一个新的分支，并切换到该分支</span><br><span class="line"></span><br><span class="line">git branch --track [branch] [remote-branch] #创建一个新分支，并与指定的远程分支建立追踪关系</span><br><span class="line"></span><br><span class="line">git checkout [new-branch-name] #切换到指定分支，并更新工作区</span><br><span class="line"></span><br><span class="line">git merge [branch] #合并指定分支到当前分支</span><br><span class="line"></span><br><span class="line">git branch -d [branch] #删除分支</span><br><span class="line"></span><br><span class="line">git push origin --delete [branch] #删除远程分支</span><br></pre></td></tr></table></figure>
-
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-10-27T16:00:00.000Z" title="2024/10/28 00:00:00">2024-10-28</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-01-20T02:44:42.787Z" title="2025/1/20 10:44:42">2025-01-20</time></span><span class="level-item"><a class="link-muted" href="/categories/%E6%9D%82%E7%B1%BB/">杂类</a></span><span class="level-item">3 minutes read (About 415 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/10/28/Matlab%20R2024b%E5%AE%89%E8%A3%85%E6%9C%AC%E5%9C%B0%E6%96%87%E6%A1%A3/">Matlab R2024b安装本地文档</a></p><div class="content"><details>
-<summary>安装包</summary>
-
-<p>通过网盘分享的文件：MATLAB R2024b<br>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1T8-V_guBJhSD-Yze0wEVmQ?pwd=9h5c">https://pan.baidu.com/s/1T8-V_guBJhSD-Yze0wEVmQ?pwd&#x3D;9h5c</a> 提取码: 9h5c<br>–来自百度网盘超级会员v2的分享</p>
-</details>
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Sawen_Blog">
+<meta property="og:url" content="https://moerjie.github.io/categories/%E6%9D%82%E7%B1%BB/index.html">
+<meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:locale">
+<meta property="article:author" content="Sawen Moerjie">
+<meta property="article:tag" content="FPGA Verilog MATLAB Coding">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Category: 杂类</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
 
 
-<h1 id="挂载后导航到镜像中的安装包文件夹"><a href="#挂载后导航到镜像中的安装包文件夹" class="headerlink" title="挂载后导航到镜像中的安装包文件夹"></a>挂载后导航到镜像中的安装包文件夹</h1><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;mountedDocImage&gt;/bin/&lt;arch&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>&lt;mountedDocImage&gt;</code> 是装载的文档 ISO 或 DMG 镜像的根目录。</li>
-<li><code>&lt;arch&gt;</code> 是 ISO 或 DMG 镜像的操作系统架构文件夹，例如 <code>win64</code>、<code>glnxa64</code>、<code>maci64</code> 或 <code>maca64</code></li>
-</ul>
-<h1 id="使用mpm-install-doc命令运行文档安装程序"><a href="#使用mpm-install-doc命令运行文档安装程序" class="headerlink" title="使用mpm install-doc命令运行文档安装程序"></a>使用mpm install-doc命令运行文档安装程序</h1><p>为了将文档安装到指定的位置，要使用**—destination<strong>命令，用</strong>—source**命令指定安装程序文件路径</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.\mpm install-doc --matlabroot=&lt;matlabrootfolder&gt; --source=&lt;docinstallfolder&gt; </span><br><span class="line">--destination=&lt;destinationfolder&gt;</span><br></pre></td></tr></table></figure>
+    <!-- Umami Analytics -->
 
 
-<h1 id="配置MATLAB"><a href="#配置MATLAB" class="headerlink" title="配置MATLAB"></a>配置MATLAB</h1><ol>
-<li>预设项中，将<strong>帮助</strong>中的文档位置选为<strong>本地</strong></li>
-<li>在<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/userpath.html">userpath</a>中创建startup.m文件，使用<strong>docroot命令</strong> 指定帮助文档的路径</li>
-</ol>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202410281935483.png" alt="2024after4202410281935483.png"></p>
-<h1 id="验证本地安装"><a href="#验证本地安装" class="headerlink" title="验证本地安装"></a><strong>验证本地安装</strong></h1><p>验证文档是否在本地打开。在 MATLAB 命令提示符下，输入：<code>doc</code></p>
-<p>在打开的浏览器页面中，检查 URL 的地址。</p>
-<ul>
-<li>如果 URL 指向本地 IP 地址和端口号（例如 <code>http://127.0.0.1:12345</code>），则 MATLAB 访问的是本地安装的文档。</li>
-<li>如果 URL 指向 Web 地址（例如 <code>https://www.mathworks.com/help/...</code>），则 MATLAB 访问的仍然是 Web 文档。更新 MATLAB 以指向本地安装的文档，如<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/install/ug/install-documentation-on-offline-machines.html#mw_41ca579b-3dfa-4d19-a041-9c6e95920ac6">配置 MATLAB 以使用安装的文档</a>中所述。</li>
-</ul>
-<p>$$</p>
-<p>$$</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-09-02T16:00:00.000Z" title="2024/9/3 00:00:00">2024-09-03</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-01-20T02:44:10.695Z" title="2025/1/20 10:44:10">2025-01-20</time></span><span class="level-item"><a class="link-muted" href="/categories/%E6%9D%82%E7%B1%BB/">杂类</a></span><span class="level-item">6 minutes read (About 909 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/09/03/Matlab%E7%9A%844%E4%B8%AA%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0/">Matlab的4个取整函数</a></p><div class="content"><h1 id="Round"><a href="#Round" class="headerlink" title="Round"></a>Round</h1><p>舍入至最近的小数或整数</p>
-<p><code>Y = round(</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#buftmpz-X"><code>X</code></a><code>)</code> 将 <code>X</code> 的每个元素四舍五入为最近的整数。在舍入机会均等的情况下，即有元素的十进制小数部分为 <code>0.5</code>（在舍入误差内）时，<code>round</code> 函数会偏离零四舍五入到最接近的具有更大幅值的整数。</p>
-<p><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#buftps_-1">示例</a></p>
-<p><code>Y = round(</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#buftmpz-X"><code>X</code></a><code>,</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#buftmpz-N"><code>N</code></a><code>)</code> 四舍五入到 <code>N</code> 位数：</p>
-<ul>
-<li><code>N &gt; 0</code>：舍入到小数点_右侧_的第 <code>N</code> 位数。</li>
-<li><code>N = 0</code>：四舍五入到最接近的整数。</li>
-<li><code>N &lt; 0</code>：舍入到小数点_左侧_的第 <code>N</code> 位数。</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#buftptb-1">示例</a></p>
-<p><code>Y = round(</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#buftmpz-X"><code>X</code></a><code>,</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#buftmpz-N"><code>N</code></a><code>,</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#buftmpz-type"><code>type</code></a><code>)</code> 指定四舍五入的类型。指定 <code>&quot;significant&quot;</code> 以四舍五入为 <code>N</code> 位有效数（从最左位数开始计数）。在此情况下，<code>N</code> 必须为正整数。</p>
-<p><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#mw_738f260a-a713-40d4-930e-ffe155a9db88">示例</a></p>
-<p><code>Y = round(</code><strong><code>___</code></strong><code>,TieBreaker=</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#mw_e51282fd-7461-4bab-9f38-6106551bb8b2"><code>direction</code></a><code>)</code> 按照 <code>direction</code> 指定的方向对结值进行舍入。在上述语法中的任何输入参数组合后使用此参数。</p>
-<p><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#bug2v_r-6">示例</a></p>
-<p><code>Y = round(</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#buftmpz-t"><code>t</code></a><code>)</code> 将 <code>duration</code> 数组 <code>t</code> 的每个元素四舍五入到最接近的秒数。</p>
-<p><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#bug2v_r-6">示例</a></p>
-<p><code>Y = round(</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#buftmpz-t"><code>t</code></a><code>,</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/round.html#buftmpz-unit"><code>unit</code></a><code>)</code> 将 <code>t</code> 的每个元素四舍五入到指定单位时间的最接近的数。</p>
-<h1 id="Ceil"><a href="#Ceil" class="headerlink" title="Ceil"></a>Ceil</h1><p>向正无穷舍入</p>
-<p><code>Y = ceil(</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/ceil.html#bug2ukg-1-X"><code>X</code></a><code>)</code> 将 <code>X</code> 的每个元素四舍五入到大于或等于该元素的最接近整数。</p>
-<p><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/ceil.html#bug2um5-1">示例</a></p>
-<p><code>Y = ceil(</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/ceil.html#bug2ukg-1-t"><code>t</code></a><code>)</code> 将 <code>duration</code> 数组 <code>t</code> 的每个元素四舍五入到大于或等于此元素的最接近的秒数。</p>
-<p><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/ceil.html#bug2um5-1">示例</a></p>
-<p><code>Y = ceil(</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/ceil.html#bug2ukg-1-t"><code>t</code></a><code>,</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/ceil.html#bug2ukg-1-unit"><code>unit</code></a><code>)</code> 将 <code>t</code> 的每个元素四舍五入到大于或等于此元素的最接近的数（使用指定的时间单位）。</p>
-<h1 id="Floor"><a href="#Floor" class="headerlink" title="Floor"></a>Floor</h1><p>向负无穷舍入</p>
-<p><code>Y = floor(</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/floor.html#bug_5mn-1-X"><code>X</code></a><code>)</code> 将 <code>X</code> 的每个元素四舍五入到小于或等于该元素的最接近整数。</p>
-<p><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/floor.html#bug_5mn-8">示例</a></p>
-<p><code>Y = floor(</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/floor.html#bug_5mn-1-t"><code>t</code></a><code>)</code> 将 <code>duration</code> 数组 <code>t</code> 的每个元素四舍五入到小于或等于此元素的最接近的秒数。</p>
-<p><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/floor.html#bug_5mn-8">示例</a></p>
-<p><code>Y = floor(</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/floor.html#bug_5mn-1-t"><code>t</code></a><code>,</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/floor.html#bug_5mn-1-unit"><code>unit</code></a><code>)</code> 将 <code>t</code> 的每个元素四舍五入到小于或等于该元素的最接近数（使用指定的时间单位）。</p>
-<h1 id="Fix"><a href="#Fix" class="headerlink" title="Fix"></a>Fix</h1><p>向零舍入</p>
-<p><code>Y = fix(</code><a target="_blank" rel="noopener" href="https://127.0.0.1:31516/static/help/matlab/ref/fix.html#bul3slv-X"><code>X</code></a><code>)</code> 将 <code>X</code> 的每个元素朝零方向四舍五入为最近的整数。此操作实际上是通过删除 <code>X</code> 中每个数的小数部分，将它们截断为整数：</p>
-<ul>
-<li>对于正数，<code>fix</code> 的行为与 <code>floor</code> 相同。</li>
-<li>对于负数，<code>fix</code> 的行为与 <code>ceil</code> 相同。</li>
-</ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-06-19T16:00:00.000Z" title="2024/6/20 00:00:00">2024-06-20</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-01-20T02:49:59.392Z" title="2025/1/20 10:49:59">2025-01-20</time></span><span class="level-item"><a class="link-muted" href="/categories/%E6%9D%82%E7%B1%BB/">杂类</a></span><span class="level-item">6 minutes read (About 878 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/06/20/C%E6%A0%87%E5%87%86%E5%BA%93%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/">C标准库读写文件</a></p><div class="content"><h1 id="函数介绍"><a href="#函数介绍" class="headerlink" title="函数介绍"></a>函数介绍</h1><h2 id="库变量"><a href="#库变量" class="headerlink" title="库变量"></a>库变量</h2><table>
-<thead>
-<tr>
-<th>变量</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>size_t</td>
-<td>无符号整数类型，是sizeof关键字的结果，表示对象大小</td>
-</tr>
-<tr>
-<td>FILE</td>
-<td>文件流类型，适合存储文件流信息的对象类型</td>
-</tr>
-</tbody></table>
-<h2 id="库宏"><a href="#库宏" class="headerlink" title="库宏"></a>库宏</h2><table>
-<thead>
-<tr>
-<th>宏</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>NULL</td>
-<td>空指针常量</td>
-</tr>
-<tr>
-<td>EOF</td>
-<td>表示已经到达文件结束的负整数</td>
-</tr>
-<tr>
-<td>stderr、stdin、stdout</td>
-<td>指向FILE类型的指针，分别对应标准错误、标准输入和标准输出流</td>
-</tr>
-</tbody></table>
-<h2 id="库函数"><a href="#库函数" class="headerlink" title="库函数"></a>库函数</h2><h3 id="fopen"><a href="#fopen" class="headerlink" title="fopen"></a>fopen</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FILE *<span class="title function_">fopen</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *filename, <span class="type">const</span> <span class="type">char</span> *mode)</span> </span><br><span class="line"><span class="comment">//以给定的模式mode打开filename指向的文件</span></span><br></pre></td></tr></table></figure>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 ">
+        
+          <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/banner.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">Sawen_Blog</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+   --><!--
+     --><li><a href="/archives/">Writing</a></li><!--
+   --><!--
+     --><li><a href="/categories">categories</a></li><!--
+   --><!--
+     --><li><a href="/about/">About</a></li><!--
+   --><!--
+     --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+        
+        <div id="archive">
+  <ul class="post-list">
+    
+    
+    
+    
+      
+      
+      
+      
+        <li class="post-year"><h2>2025</h2></li>
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2024-06-19T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-06-20</time>
+        
+      
+    </div>
 
 
-<table>
-<thead>
-<tr>
-<th>mode</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>“r“</td>
-<td>打开一个用于读取的文件，文件必须存在</td>
-</tr>
-<tr>
-<td>”w“</td>
-<td>创建一个用于写入的空文件。若存在同名文件，则删除旧文件的内容</td>
-</tr>
-<tr>
-<td>”a“</td>
-<td>追加到一个文件，写操作向文件末尾追加数据，文件不存在就创建文件</td>
-</tr>
-<tr>
-<td>”r+“</td>
-<td>打开一个用于更新的文件，可读取也可写入。该文件必须存在</td>
-</tr>
-<tr>
-<td>”w+“</td>
-<td>创建一个用于读写的空文件</td>
-</tr>
-<tr>
-<td>“a+”</td>
-<td>打开一个用于读取和追加的文件</td>
-</tr>
-</tbody></table>
-<p>函数返回一个FILE指针，否则返回NULL</p>
-<h3 id="fread"><a href="#fread" class="headerlink" title="fread"></a>fread</h3><p>声明：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> <span class="title function_">fread</span><span class="params">(<span class="type">void</span> *ptr, <span class="type">size_t</span> size, <span class="type">size_t</span> nmemb, FILE *stream)</span></span><br><span class="line"><span class="comment">//ptr：指向带有最小尺寸 size*nmemb 字节的内存块的指针</span></span><br><span class="line"><span class="comment">//size：读取的每个元素的大小，以字节为单位</span></span><br><span class="line"><span class="comment">//nmemb：元素的个数</span></span><br><span class="line"><span class="comment">//stream：指向FILE对象的指针，指定了一个输入流</span></span><br></pre></td></tr></table></figure>
+        <span>
+    
+        <a class="" href="/2024/06/20/C%E6%A0%87%E5%87%86%E5%BA%93%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/">C标准库读写文件</a>
+    
 
 
-<p>成功读取的元素会以size_t对象返回</p>
-<h3 id="fwrite"><a href="#fwrite" class="headerlink" title="fwrite"></a>fwrite</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> <span class="title function_">fwrite</span><span class="params">(<span class="type">const</span> <span class="type">void</span> *ptr, <span class="type">size_t</span> size, <span class="type">size_t</span> nmemb, FILE *stream)</span></span><br><span class="line"><span class="comment">//ptr：指向被写入元素数组的指针</span></span><br><span class="line"><span class="comment">//size：读取的每个元素的大小，以字节为单位</span></span><br><span class="line"><span class="comment">//nmemb：元素的个数</span></span><br><span class="line"><span class="comment">//stream：指向FILE对象的指针，指定了一个输出流</span></span><br></pre></td></tr></table></figure>
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2024-10-27T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-10-28</time>
+        
+      
+    </div>
 
 
-<h3 id="fseek"><a href="#fseek" class="headerlink" title="fseek"></a>fseek</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">fseek</span><span class="params">(FILE *stream, <span class="type">long</span> <span class="type">int</span> offset, <span class="type">int</span> whence)</span></span><br><span class="line"><span class="comment">//stream：指向FILE对象的指针</span></span><br><span class="line"><span class="comment">//offset：相对whence的偏移量，以字节为单位</span></span><br><span class="line"><span class="comment">//whence：表示开始添加偏移的位置</span></span><br></pre></td></tr></table></figure>
+        <span>
+    
+        <a class="" href="/2024/10/28/Matlab%20R2024b%E5%AE%89%E8%A3%85%E6%9C%AC%E5%9C%B0%E6%96%87%E6%A1%A3/">Matlab R2024b安装本地文档</a>
+    
 
 
-<p>whence一般为下面三个常量</p>
-<table>
-<thead>
-<tr>
-<th>常量</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>SEEK_SET</td>
-<td>文件开头</td>
-</tr>
-<tr>
-<td>SEEK_CUR</td>
-<td>文件指针的当前位置</td>
-</tr>
-<tr>
-<td>SEEK_END</td>
-<td>文件的末尾</td>
-</tr>
-</tbody></table>
-<p>返回从whence位置开始查找的字节数</p>
-<h3 id="ftell"><a href="#ftell" class="headerlink" title="ftell"></a>ftell</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="type">int</span> <span class="title function_">ftell</span><span class="params">(FILE *stream)</span></span><br></pre></td></tr></table></figure>
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2024-09-02T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-09-03</time>
+        
+      
+    </div>
 
 
-<p>返回位置标识符的当前值</p>
-<h1 id="使用C标准库读取TS文件并写入txt"><a href="#使用C标准库读取TS文件并写入txt" class="headerlink" title="使用C标准库读取TS文件并写入txt"></a>使用C标准库读取TS文件并写入txt</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    FILE *fileInput, *fileOutput;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> buffer[<span class="number">188</span>];  <span class="comment">// TS流的标准包大小为188字节</span></span><br><span class="line">    <span class="type">size_t</span> bytesRead;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打开TS文件</span></span><br><span class="line">    fileInput = fopen(<span class="string">&quot;/home/sawen/my_test_pcie/test.ts&quot;</span>, <span class="string">&quot;rb&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!fileInput) &#123;</span><br><span class="line">        perror(<span class="string">&quot;Failed to open input file&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Input file opened successfully.\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查文件大小</span></span><br><span class="line">    fseek(fileInput, <span class="number">0</span>, SEEK_END);</span><br><span class="line">    <span class="type">long</span> fileSize = ftell(fileInput);</span><br><span class="line">    rewind(fileInput);</span><br><span class="line">    <span class="keyword">if</span> (fileSize == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Input file is empty.\n&quot;</span>);</span><br><span class="line">        fclose(fileInput);</span><br><span class="line">        <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Input file size: %ld bytes.\n&quot;</span>, fileSize);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打开TXT文件</span></span><br><span class="line">    fileOutput = fopen(<span class="string">&quot;output.txt&quot;</span>, <span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!fileOutput) &#123;</span><br><span class="line">        perror(<span class="string">&quot;Failed to open output file&quot;</span>);</span><br><span class="line">        fclose(fileInput);</span><br><span class="line">        <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Output file opened successfully.\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 读取数据并写入到TXT文件</span></span><br><span class="line">    <span class="type">int</span> packetCount = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> ((bytesRead = fread(buffer, <span class="number">1</span>, <span class="keyword">sizeof</span>(buffer), fileInput)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; bytesRead; ++i) &#123;</span><br><span class="line">            <span class="built_in">fprintf</span>(fileOutput, <span class="string">&quot;%02x &quot;</span>, buffer[i]); <span class="comment">// 将字节以十六进制格式写入</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">fprintf</span>(fileOutput, <span class="string">&quot;\n&quot;</span>);  <span class="comment">// 每个TS包后换行</span></span><br><span class="line">        packetCount++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查是否有数据被读取</span></span><br><span class="line">    <span class="keyword">if</span> (packetCount == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;No data read from file.\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Processed %d TS packets.\n&quot;</span>, packetCount);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭文件</span></span><br><span class="line">    fclose(fileInput);</span><br><span class="line">    fclose(fileOutput);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Data transfer complete.\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <span>
+    
+        <a class="" href="/2024/09/03/Matlab%E7%9A%844%E4%B8%AA%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0/">Matlab的4个取整函数</a>
+    
 
 
-<p>运行结果如下</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1718891286912.png" alt="1718891286912.png"></p>
-<p>可以看到以188个字节为一行写入txt</p>
-</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/banner.png" alt="Sawen_Blog"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Sawen_Blog</p><p class="is-size-6 is-block">一个路过的工科牲</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Beijing, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">38</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">4</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">8</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/moerjie" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/moerjie"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="CSDN" href="https://blog.csdn.net/qq_66439282?type=blog"><i class="fa-brands fa-cuttlefish"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Xlog" href="https://moerjielovecookie-4735.xlog.app/"><i class="fa-brands fa-mixer"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/FPGA/"><span class="level-start"><span class="level-item">FPGA</span></span><span class="level-end"><span class="level-item tag">15</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/"><span class="level-start"><span class="level-item">数字通信</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%9D%82%E7%B1%BB/"><span class="level-start"><span class="level-item">杂类</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%94%B5%E8%B7%AF/"><span class="level-start"><span class="level-item">电路</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-01-20T16:00:00.000Z">2025-01-21</time></p><p class="title"><a href="/2025/01/21/Verilog%E4%B8%ADif%E8%AF%AD%E5%8F%A5%E5%92%8Ccase%E8%AF%AD%E5%8F%A5%E7%BB%BC%E5%90%88%E5%87%BA%E7%9A%84%E7%94%B5%E8%B7%AF%E5%8C%BA%E5%88%AB/">Verilog中if语句和case语句综合出的电路区别</a></p><p class="categories"><a href="/categories/FPGA/">FPGA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-01-19T16:00:00.000Z">2025-01-20</time></p><p class="title"><a href="/2025/01/20/ZYNQ-IP-AXI-GPIO/">ZYNQ-IP-AXI-GPIO</a></p><p class="categories"><a href="/categories/FPGA/">FPGA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-01-19T16:00:00.000Z">2025-01-20</time></p><p class="title"><a href="/2025/01/20/ZYNQ%E4%B8%AD%E7%9A%84IO/">ZYNQ中的GPIO</a></p><p class="categories"><a href="/categories/FPGA/">FPGA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-01-19T13:52:42.408Z">2025-01-19</time></p><p class="title"><a href="/2025/01/19/template/blog_template/"> </a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-01-19T13:49:54.376Z">2025-01-19</time></p><p class="title"><a href="/2025/01/19/ZYNQ/"> </a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2025/01/"><span class="level-start"><span class="level-item">January 2025</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/12/"><span class="level-start"><span class="level-item">December 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/11/"><span class="level-start"><span class="level-item">November 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/10/"><span class="level-start"><span class="level-item">October 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">September 2024</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/08/"><span class="level-start"><span class="level-item">August 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/07/"><span class="level-start"><span class="level-item">July 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/06/"><span class="level-start"><span class="level-item">June 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">May 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/04/"><span class="level-start"><span class="level-item">April 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">March 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/FPGA/"><span class="tag">FPGA</span><span class="tag">18</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MATLAB/"><span class="tag">MATLAB</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Report/"><span class="tag">Report</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ZYNQ/"><span class="tag">ZYNQ</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/bug/"><span class="tag">bug</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/coding/"><span class="tag">coding</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/"><span class="tag">数字通信</span><span class="tag">11</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%94%B5%E8%B7%AF/"><span class="tag">电路</span><span class="tag">5</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/favicon.png" alt="Sawen_Blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Sawen Moerjie</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2023</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "This website uses cookies to improve your experience.",
-          dismiss: "Got it!",
-          allow: "Allow cookies",
-          deny: "Decline",
-          link: "Learn more",
-          policy: "Cookie Policy",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-      },
-      svg: {
-        fontCache: 'global'
-      },
-      chtml: {
-        matchFontHeight: false
-      }
-    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
-        });</script></body></html>
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2024-12-10T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-12-11</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2024/12/11/git%E5%AD%A6%E4%B9%A0/">git学习</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+  
+
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023-2025
+    Sawen Moerjie
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/categories">categories</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
