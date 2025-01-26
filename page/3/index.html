@@ -1,1050 +1,327 @@
-
-
-<!DOCTYPE html>
-<html lang="zh" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/favicon.png">
-  
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Sawen Moerjie">
-  <meta name="keywords" content="FPGA Verilog MATLAB Coding">
-  
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Sawen_Blog">
-<meta property="og:url" content="https://moerjie.github.io/page/3/index.html">
-<meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:locale">
-<meta property="article:author" content="Sawen Moerjie">
-<meta property="article:tag" content="FPGA Verilog MATLAB Coding">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>Sawen_Blog</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-  
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_3846514_kabxni94auf.css">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"moerjie.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-  
-<meta name="generator" content="Hexo 7.3.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 100vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Sawen_Blog</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives" target="_self">
-                <i class="iconfont icon-books"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories" target="_self">
-                <i class="iconfont icon-th-large"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
-                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="iconfont icon-book"></i>
-                <span>文档</span>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                
-                  
-                  
-                  
-                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/" target="_self">
-                    
-                    <span>主题博客</span>
-                  </a>
-                
-                  
-                  
-                  
-                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/guide/" target="_self">
-                    
-                    <span>配置指南</span>
-                  </a>
-                
-                  
-                  
-                  
-                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/icon/" target="_self">
-                    
-                    <span>图标用法</span>
-                  </a>
-                
-              </div>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="欢迎来到Sawen的博客"></span>
-          
-        </div>
-
-        
-      </div>
-
-      
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-x-md">
-        <div id="board"
-          style="margin-top: 0">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2024/05/29/Xilinx%20FPGA%E4%B8%AD%E7%9A%84BUFFER/" target="_self">
-          <img src="/img/banner.jpg" alt="Xilinx FPGA中的BUFFER">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/05/29/Xilinx%20FPGA%E4%B8%AD%E7%9A%84BUFFER/" target="_self">
-          Xilinx FPGA中的BUFFER
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt " href="/2024/05/29/Xilinx%20FPGA%E4%B8%AD%E7%9A%84BUFFER/" target="_self">
-        <div>
-          FPGA大型设计中推荐使用同步时序电路，同步时序电路基于时钟触发沿设计，对时钟的周期、占空比、延时和抖动有更高的要求。为满足时序的要求，一般采用全局时钟资源驱动设计的主时钟，FPGA的主时钟一般使用全铜层工艺实现，并设计了专用时钟缓冲与驱动结构。 缓冲和驱动缓冲输入输出缓冲，主要用于片外输入时钟或者片外差分输入的信号。 差分信号和差分时钟进入片内后如果不经过IBUFGDS、IBUFDS缓冲就无法直
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-29 00:00" pubdate>
-              2024-05-29
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/FPGA/">#FPGA</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2024/05/19/NCO%E6%A8%A1%E5%9D%97%E7%9A%84%E5%90%84%E9%A1%B9%E5%8F%82%E6%95%B0/" target="_self">
-          <img src="/img/banner.jpg" alt="NCO模块的各项参数">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/05/19/NCO%E6%A8%A1%E5%9D%97%E7%9A%84%E5%90%84%E9%A1%B9%E5%8F%82%E6%95%B0/" target="_self">
-          NCO模块的各项参数
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt " href="/2024/05/19/NCO%E6%A8%A1%E5%9D%97%E7%9A%84%E5%90%84%E9%A1%B9%E5%8F%82%E6%95%B0/" target="_self">
-        <div>
-          NCO模块可以生成实数或者复数正弦信号，同时提供硬件友好的控制信号 Accumulator累加器位数正弦波的频率分辨率取决于累加器的位数的大小，根据频率分辨率可以计算出累加器的位数，根据此位数设置累加器的数据类型字长 计算公式为 $$N&#x3D;ceil(log_2(\frac{F_s}{\Delta f}))$$ 量化位数量化累加器的输出可以在不增加查找表的大小的情况下提高频率分辨率 要根据无
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-19 00:00" pubdate>
-              2024-05-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
-            
-              <a href="/tags/MATLAB/">#MATLAB</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2024/05/05/%E8%BF%90%E6%94%BE%E7%9A%84%E5%90%8C%E7%9B%B8%E4%B8%8E%E5%8F%8D%E7%9B%B8%E6%94%BE%E5%A4%A7/" target="_self">
-          <img src="/img/banner.jpg" alt="运放的同相与反相放大">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/05/05/%E8%BF%90%E6%94%BE%E7%9A%84%E5%90%8C%E7%9B%B8%E4%B8%8E%E5%8F%8D%E7%9B%B8%E6%94%BE%E5%A4%A7/" target="_self">
-          运放的同相与反相放大
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt " href="/2024/05/05/%E8%BF%90%E6%94%BE%E7%9A%84%E5%90%8C%E7%9B%B8%E4%B8%8E%E5%8F%8D%E7%9B%B8%E6%94%BE%E5%A4%A7/" target="_self">
-        <div>
-          反相放大器同相端接地，电压为 0，反相端和同相端虚短，因此也是 0 V 的电压，同时由于虚断，几乎没有电流注入，所以R 1 和R 2 相当于串联，电阻上的电流相等  因此可以求出输入输出关系式为 $$V_{out}&#x3D;-\frac{R_2}{R_1}\times V_i$$ 同相放大器同样根据虚断和虚短可以求得输入输出关系式为 $$V_{out}&#x3D;\frac{R_1+R_2}{R
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-05 00:00" pubdate>
-              2024-05-05
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%94%B5%E8%B7%AF/" class="category-chain-item">电路</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%94%B5%E8%B7%AF/">#电路</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2024/05/01/Vivado%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" target="_self">
-          <img src="/img/banner.jpg" alt="Vivado报错集合">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/05/01/Vivado%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" target="_self">
-          Vivado报错集合
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt " href="/2024/05/01/Vivado%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" target="_self">
-        <div>
-          Synth 8-5535报错代码 12345[Synth 8-5535] port &lt;clk_0&gt; has illegal connections. It is illegal to have a port connected to an input buffer and other components. The following are the port connections
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-01 00:00" pubdate>
-              2024-05-01
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/FPGA/">#FPGA</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2024/04/25/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/" target="_self">
-          <img src="/img/banner.jpg" alt="Matlab生成txt文件导入到Vivado仿真">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/04/25/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/" target="_self">
-          Matlab生成txt文件导入到Vivado仿真
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt " href="/2024/04/25/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/" target="_self">
-        <div>
-          Matlab处理数据并将其写入txt文件1234567%% Txt Generatepre_RS_data=dec2bin(simDataIn,8);       %将数据转化为8bit的二进制fid=fopen(&quot;F:\FPGA\Xilinx_vivado\project\dvbstestbench\dbvs\matlab\pre_RS_data.txt&quot;,&quot;wt&
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-04-25 00:00" pubdate>
-              2024-04-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/FPGA/">#FPGA</a>
-            
-              <a href="/tags/MATLAB/">#MATLAB</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/" target="_self">
-          <img src="/img/banner.jpg" alt="DVB-S系统仿真学习">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/" target="_self">
-          DVB-S系统仿真学习
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt " href="/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/" target="_self">
-        <div>
-          DVB-S系统用于卫星电视信号传输，发送端框图如下所示  扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为 $$p(x)&#x3D;x^{15}+x^{14}+1$$ 同时移位寄存器的初始状态为
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-03-27 00:00" pubdate>
-              2024-03-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2024/03/24/QPSK%20simulink%E5%AE%9E%E7%8E%B0/" target="_self">
-          <img src="/img/banner.jpg" alt="QPSK simulink实现">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/03/24/QPSK%20simulink%E5%AE%9E%E7%8E%B0/" target="_self">
-          QPSK simulink实现
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt " href="/2024/03/24/QPSK%20simulink%E5%AE%9E%E7%8E%B0/" target="_self">
-        <div>
-          调制部分总体框架 各模块参数升余弦滚降滤波器滚降系数为 1  单双极性变换  各阶段波形Buffer Demux Raised Cosine TransmitFilter  QPSK 信号功率谱密度 解调部分经过 AWGN 信道后，假设已经进行了载波同步  部分模块参数载波模块 Pulse Generator 由于经过了串并转换，因此数据率减半 部分波形 将初始信号经过一定时间的延时后，在示波器中
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-03-24 00:00" pubdate>
-              2024-03-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
-            
-              <a href="/tags/MATLAB/">#MATLAB</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2024/03/23/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" target="_self">
-          <img src="/img/banner.jpg" alt="8bit数据转1bit逐位输出电路仿真">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/03/23/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" target="_self">
-          8bit数据转1bit逐位输出电路仿真
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt " href="/2024/03/23/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" target="_self">
-        <div>
-          在DVB-S系统中，TS流在经过RS编码后，会变成uint8类型的数据，在后续QPSK星座映射时又需要二进制码流，因此在进行了RS编码后要将8个bit的数据转化成1个bit逐位输出 实现思路首先使用BitwiseOperator模块按位与操作，分别将8位二进制数据提取出来，然后使用一个计数器产生0~7的计数信号作为mux模块的使能，在8个时钟周期内分别输出提取出来的8位数据 结构框图 仿真结果 输
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-03-23 00:00" pubdate>
-              2024-03-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/FPGA/">#FPGA</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2024/03/20/AXI-STREAM%E7%AE%80%E4%BB%8B/" target="_self">
-          <img src="/img/banner.jpg" alt="AXI-STREAM简介">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/03/20/AXI-STREAM%E7%AE%80%E4%BB%8B/" target="_self">
-          AXI-STREAM简介
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt " href="/2024/03/20/AXI-STREAM%E7%AE%80%E4%BB%8B/" target="_self">
-        <div>
-          AXI-STREAM简介概念AXI-Stream总线是一种高效、简单的数据传输协议，主要用于高吞吐量的数据流传输场景。相比于传统的AXI总线，AXI-Stream总线更加简单和轻量级，它通过无需地址的方式，将数据从一个模块传输到另一个模块，适用于需要高速数据传输的应用场景。 部分术语 Transfer：基于TVALID和TREADY握手协议的传输 Packet：一组通过axi-stream传输的数
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-03-20 00:00" pubdate>
-              2024-03-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/FPGA/">#FPGA</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><span class="page-number current">3</span>
-    </span>
-  </nav>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
-        <span id="busuanzi_value_site_pv"></span>
-         次
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
-        <span id="busuanzi_value_site_uv"></span>
-         人
-      </span>
-    
-    
-
-  
-
-</div>
-
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Sawen_Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Sawen_Blog"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Sawen_Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Sawen_Blog"><meta property="og:url" content="https://moerjie.github.io/"><meta property="og:site_name" content="Sawen_Blog"><meta property="og:locale" content="zh"><meta property="og:image" content="https://moerjie.github.io/img/og_image.png"><meta property="article:author" content="Sawen Moerjie"><meta property="article:tag" content="FPGA Verilog MATLAB Coding"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://moerjie.github.io/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://moerjie.github.io"},"headline":"Sawen_Blog","image":["https://moerjie.github.io/img/og_image.png"],"author":{"@type":"Person","name":"Sawen Moerjie"},"publisher":{"@type":"Organization","name":"Sawen_Blog","logo":{"@type":"ImageObject","url":"https://moerjie.github.io/img/favicon.png"}},"description":""}</script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
       }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/favicon.png" alt="Sawen_Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-06-08T16:00:00.000Z" title="2024/6/9 00:00:00">2024-06-09</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-01-20T02:41:52.767Z" title="2025/1/20 10:41:52">2025-01-20</time></span><span class="level-item"><a class="link-muted" href="/categories/FPGA/">FPGA</a></span><span class="level-item">2 minutes read (About 249 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/06/09/Modelsim%E4%B8%AD%E4%BD%BF%E7%94%A8tcl%E5%91%BD%E4%BB%A4%E5%AF%BC%E5%87%BA%E4%BB%BF%E7%9C%9F%E6%95%B0%E6%8D%AE%E5%88%B0txt%E6%96%87%E4%BB%B6/">Modelsim中使用tcl命令导出仿真数据到txt文件</a></p><div class="content"><p>参考下面的CSDN博客</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lum250/article/details/121237146">bookmark</a></p>
+<h1 id="Tcl命令"><a href="#Tcl命令" class="headerlink" title="Tcl命令"></a>Tcl命令</h1><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">proc write_sim_data &#123;env name radix cycle file&#125; &#123;</span><br><span class="line">    set fid [open $file w]</span><br><span class="line">    <span class="keyword">for</span> &#123;set i <span class="number">0</span>&#125; &#123;$i &lt;= $::now&#125; &#123;incr i [expr $cycle * <span class="number">1000</span>]&#125; &#123;</span><br><span class="line">        set str [exa -env $env -radix $radix -<span class="keyword">time</span> $&#123;i&#125;ps &#123;*&#125;$name]</span><br><span class="line">        puts $fid $str</span><br><span class="line">    &#125;</span><br><span class="line">    close $fid </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Line1：定义一个名为write_sim_data的过程，参数列表为：{env name radix cycle file}</p>
+<p>  env：指定查找对象名称的路径。如top_tb&#x2F;top_u<br>  name：需要导出的变量列表。如{I_reset_n R_data_cnt}<br>  radix：进制。可选：ascii,binary, decimal,hexadecimal,unsigned等<br>  cycle：时钟周期，单位ns<br>  file：输出文件。如.&#x2F;1.txt</p>
+</li>
+<li><p>Line2：打开一个文档，返回文件描述符</p>
+</li>
+<li><p>Line3：分别获得从0到仿真结尾时间，按时钟周期间隔对数据进行取样输出</p>
+</li>
+<li><p>Line4：获得具体数据</p>
+</li>
+<li><p>Line5：将数据写入文件</p>
+</li>
+<li><p>Line7：关闭文件</p>
+</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">write_sim_data sim:/top_tb/u_top_wrapper/top_i/RS_Enc_0 &#123;RS_Out Trigger&#125; <span class="keyword">unsigned</span> <span class="number">1000</span> data<span class="variable">.txt</span></span><br></pre></td></tr></table></figure>
+
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-05-28T16:00:00.000Z" title="2024/5/29 00:00:00">2024-05-29</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-01-20T02:37:22.046Z" title="2025/1/20 10:37:22">2025-01-20</time></span><span class="level-item"><a class="link-muted" href="/categories/FPGA/">FPGA</a></span><span class="level-item">4 minutes read (About 557 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/05/29/Xilinx%20FPGA%E4%B8%AD%E7%9A%84BUFFER/">Xilinx FPGA中的BUFFER</a></p><div class="content"><p>FPGA大型设计中推荐使用同步时序电路，同步时序电路基于时钟触发沿设计，对时钟的周期、占空比、延时和抖动有更高的要求。为满足时序的要求，一般采用全局时钟资源驱动设计的主时钟，FPGA的主时钟一般使用全铜层工艺实现，并设计了专用时钟缓冲与驱动结构。</p>
+<h1 id="缓冲和驱动"><a href="#缓冲和驱动" class="headerlink" title="缓冲和驱动"></a>缓冲和驱动</h1><h2 id="缓冲"><a href="#缓冲" class="headerlink" title="缓冲"></a>缓冲</h2><p>输入输出缓冲，主要用于片外输入时钟或者片外差分输入的信号。</p>
+<p>差分信号和差分时钟进入片内后如果不经过IBUFGDS、IBUFDS缓冲就无法直接处理</p>
+<h2 id="驱动"><a href="#驱动" class="headerlink" title="驱动"></a>驱动</h2><p>当信号扇出过大时可以通过加BUFG增加信号稳定性</p>
+<p>过一次BUFG有10ns左右的延时，但是通过BUFG后输出到片上所有单元的延时都可以忽略不记</p>
+<h1 id="Buffer的类别和作用"><a href="#Buffer的类别和作用" class="headerlink" title="Buffer的类别和作用"></a>Buffer的类别和作用</h1><h2 id="BUFG"><a href="#BUFG" class="headerlink" title="BUFG"></a>BUFG</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716954745330.png" alt="1716954745330.png"></p>
+<p>BUFG是一个高扇出缓冲器，将信号连接到全局布线资源上，使得信号的延时和抖动最小</p>
+<p>通常用于时钟网络以及其他高扇出网络，比如复位和使能信号</p>
+<h2 id="BUFGCE"><a href="#BUFGCE" class="headerlink" title="BUFGCE"></a>BUFGCE</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716954943324.png" alt="1716954943324.png"></p>
+<p>BUFGCE具有单门控输入的全局时钟缓冲器，CE高电平有效</p>
+<p>当CE为低电平时 O 端口输出0</p>
+<h2 id="BUFH"><a href="#BUFH" class="headerlink" title="BUFH"></a>BUFH</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716962343955.png" alt="1716962343955.png"></p>
+<p>BUFH原语允许直接访问BUFG的时钟区域入口，允许访问全局时钟网络中未使用的部分，作为高速低偏移的本地路由资源（单时钟区域）</p>
+<h2 id="IBUFDS"><a href="#IBUFDS" class="headerlink" title="IBUFDS"></a>IBUFDS</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716963068218.png" alt="1716963068218.png"></p>
+<p>支持低压差分信号输入的缓冲器，有两个输入的端口，一个为主端口一个为从端口，输入的信号相位相反</p>
+<h2 id="IBUFDS-GTE2"><a href="#IBUFDS-GTE2" class="headerlink" title="IBUFDS_GTE2"></a>IBUFDS_GTE2</h2><p>7系列器件中的Gbit 收发器输入缓冲，REFCLK应连接到串行收发器的专用参考时钟输入引脚</p>
+<h2 id="OBUFDS"><a href="#OBUFDS" class="headerlink" title="OBUFDS"></a>OBUFDS</h2><p>差分信号输出缓冲器</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-05-18T16:00:00.000Z" title="2024/5/19 00:00:00">2024-05-19</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-01-20T02:40:51.238Z" title="2025/1/20 10:40:51">2025-01-20</time></span><span class="level-item"><a class="link-muted" href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">数字通信</a></span><span class="level-item">a minute read (About 182 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/05/19/NCO%E6%A8%A1%E5%9D%97%E7%9A%84%E5%90%84%E9%A1%B9%E5%8F%82%E6%95%B0/">NCO模块的各项参数</a></p><div class="content"><p>NCO模块可以生成实数或者复数正弦信号，同时提供硬件友好的控制信号</p>
+<h1 id="Accumulator累加器位数"><a href="#Accumulator累加器位数" class="headerlink" title="Accumulator累加器位数"></a>Accumulator累加器位数</h1><p>正弦波的频率分辨率取决于累加器的位数的大小，根据频率分辨率可以计算出累加器的位数，根据此位数设置累加器的数据类型字长</p>
+<p>计算公式为</p>
+<p>$$<br>N&#x3D;ceil(log_2(\frac{F_s}{\Delta f}))<br>$$</p>
+<h1 id="量化位数"><a href="#量化位数" class="headerlink" title="量化位数"></a>量化位数</h1><p>量化累加器的输出可以在不增加查找表的大小的情况下提高频率分辨率</p>
+<p>要根据无杂散动态范围来计算量化位数，计算公式为</p>
+<p>$$<br>Q&#x3D;ceil(\frac{SFDR-12}{6})<br>$$</p>
+<h1 id="相位增量"><a href="#相位增量" class="headerlink" title="相位增量"></a>相位增量</h1><p>$$<br>phInc&#x3D;round(\frac{f\times 2^N}{F_s})<br>$$</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-05-04T16:00:00.000Z" title="2024/5/5 00:00:00">2024-05-05</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-01-20T02:52:41.009Z" title="2025/1/20 10:52:41">2025-01-20</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%94%B5%E8%B7%AF/">电路</a></span><span class="level-item">3 minutes read (About 396 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/05/05/%E8%BF%90%E6%94%BE%E7%9A%84%E5%90%8C%E7%9B%B8%E4%B8%8E%E5%8F%8D%E7%9B%B8%E6%94%BE%E5%A4%A7/">运放的同相与反相放大</a></p><div class="content"><h1 id="反相放大器"><a href="#反相放大器" class="headerlink" title="反相放大器"></a>反相放大器</h1><p>同相端接地，电压为 0，反相端和同相端虚短，因此也是 0 V 的电压，同时由于虚断，几乎没有电流注入，所以R 1 和R 2 相当于串联，电阻上的电流相等</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405051202106.png" alt="2024after4202405051202106.png"></p>
+<p>因此可以求出输入输出关系式为</p>
+<p>$$<br>V_{out}&#x3D;-\frac{R_2}{R_1}\times V_i<br>$$</p>
+<h1 id="同相放大器"><a href="#同相放大器" class="headerlink" title="同相放大器"></a>同相放大器</h1><p>同样根据虚断和虚短可以求得输入输出关系式为</p>
+<p>$$<br>V_{out}&#x3D;\frac{R_1+R_2}{R_2}\times V_i <br>$$</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405051206856.png" alt="2024after4202405051206856.png"></p>
+<h1 id="同相放大器和反相放大器的优缺点"><a href="#同相放大器和反相放大器的优缺点" class="headerlink" title="同相放大器和反相放大器的优缺点"></a>同相放大器和反相放大器的优缺点</h1><h2 id="反相放大器-1"><a href="#反相放大器-1" class="headerlink" title="反相放大器"></a>反相放大器</h2><ul>
+<li>优点：两个输入端电位始终近似为 0，只有差模信号，抗干扰能力强</li>
+<li>缺点：输入阻抗小，等于信号到输入端的串联电阻阻值</li>
+</ul>
+<h2 id="同相放大器-1"><a href="#同相放大器-1" class="headerlink" title="同相放大器"></a>同相放大器</h2><ul>
+<li>优点：输入阻抗接近无穷大</li>
+<li>缺点：放大电路没有虚地，有较大共模电压，抗干扰能力差，使用时要求运放有较高的共模抑制比</li>
+</ul>
+<p>如果要求输入阻抗不高且相位无要求时，首选反相放大，因为反相放大只存在差模信号，抗干扰能力强，可以得到更大的输入信号范围</p>
+<p>在设计中要求放大倍数相同的情况下尽量选择数值小的电阻配合，这样可以减小输入偏置电流的影响和分布电容的影响</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-04-30T16:00:00.000Z" title="2024/5/1 00:00:00">2024-05-01</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-01-20T02:38:11.296Z" title="2025/1/20 10:38:11">2025-01-20</time></span><span class="level-item"><a class="link-muted" href="/categories/FPGA/">FPGA</a></span><span class="level-item">4 minutes read (About 548 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/05/01/Vivado%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/">Vivado报错集合</a></p><div class="content"><h1 id="Synth-8-5535"><a href="#Synth-8-5535" class="headerlink" title="Synth 8-5535"></a><strong>Synth 8-5535</strong></h1><p>报错代码</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Synth <span class="number">8</span>-<span class="number">5535</span>] port &lt;clk_0&gt; has illegal connections. It is illegal to have a port connected to an <span class="keyword">input</span> buffer <span class="keyword">and</span> other components. The following are the port connections :</span><br><span class="line">Input Buffer:</span><br><span class="line">	Port I of <span class="keyword">instance</span> clkin1_ibufg(IBUF) in <span class="keyword">module</span> &lt;top_clk_wiz_0_1_clk_wiz&gt;</span><br><span class="line">Other Components:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>普通IO输入的时钟信号必须要经过buffer才能驱动PLL</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>将clocking wizard中的输入信号配置为 No Buffer</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405011507953.png" alt="2024after4202405011507953.png"></p>
+<h1 id="Warning：filegmt-56-199"><a href="#Warning：filegmt-56-199" class="headerlink" title="Warning：filegmt 56-199"></a>Warning：filegmt 56-199</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715671392034.png" alt="1715671392034.png"></p>
+<h2 id="解决方法-1"><a href="#解决方法-1" class="headerlink" title="解决方法"></a>解决方法</h2><p>在Sources栏右键选择refresh hierarchy即可</p>
+<h1 id="Warning：CRITICAL-WARNING-filemgmt-56-176-Module-references-are-not-supported-in-manual-compile-order-mode-and-will-be-ignored"><a href="#Warning：CRITICAL-WARNING-filemgmt-56-176-Module-references-are-not-supported-in-manual-compile-order-mode-and-will-be-ignored" class="headerlink" title="Warning：CRITICAL WARNING: [filemgmt 56-176] Module references are not supported in manual compile order mode and will be ignored."></a>Warning：CRITICAL WARNING: [filemgmt 56-176] Module references are not supported in manual compile order mode and will be ignored.</h1><h2 id="解决方法-2"><a href="#解决方法-2" class="headerlink" title="解决方法"></a>解决方法</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405152050816.png" alt="2024after4202405152050816.png"></p>
+<p>将刷新层次结构的模式设置为自动更新和编译即可</p>
+<h1 id="BD-41-237-Bus-Interface-property-FREQ-HZ-does-not-match-between-M-AXIS-DATA-0-100000000-and-dds-compiler-0-M-AXIS-DATA-200000000"><a href="#BD-41-237-Bus-Interface-property-FREQ-HZ-does-not-match-between-M-AXIS-DATA-0-100000000-and-dds-compiler-0-M-AXIS-DATA-200000000" class="headerlink" title="[BD 41-237] Bus Interface property FREQ_HZ does not match between &#x2F;M_AXIS_DATA_0(100000000) and &#x2F;dds_compiler_0&#x2F;M_AXIS_DATA(200000000)"></a>[BD 41-237] Bus Interface property FREQ_HZ does not match between &#x2F;M_AXIS_DATA_0(100000000) and &#x2F;dds_compiler_0&#x2F;M_AXIS_DATA(200000000)</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716115542445.png" alt="1716115542445.png"></p>
+<p>引发这个报错的原因是IP核的时钟频率为200M，但是AXI4s的端口的频率为100M，因此将端口的频率设置为和IP核匹配的频率即可</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405191846838.png" alt="2024after4202405191846838.png"></p>
+<h1 id="vivado的各种设置无法保存"><a href="#vivado的各种设置无法保存" class="headerlink" title="vivado的各种设置无法保存"></a>vivado的各种设置无法保存</h1><h2 id="原因-1"><a href="#原因-1" class="headerlink" title="原因"></a>原因</h2><p>“C:\Users\31651\AppData\Roaming\Xilinx\Vivado\2023.2\vivado.xml”这个文件里面存放了vivado的设置，例如最近打开的文件等</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716627301329.png" alt="1716627301329.png"></p>
+<p>如果这些路径中有中文字符或其他vivado无法识别的字符，那么每次启动时vivado无法正常读取这些配置，就会重置这个文件，表现为重启vivado后所有配置全部丢失</p>
+<h2 id="解决方法-3"><a href="#解决方法-3" class="headerlink" title="解决方法"></a>解决方法</h2><p>将含有中文字符的文件路径删除或者改成英语命名</p>
+<h1 id="Common-17-180-Spawn-failed-No-error"><a href="#Common-17-180-Spawn-failed-No-error" class="headerlink" title="[Common 17-180] Spawn failed: No error"></a>[Common 17-180] Spawn failed: No error</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1736078187552.png" alt="1736078187552.png"></p>
+<h2 id="导致原因"><a href="#导致原因" class="headerlink" title="导致原因"></a>导致原因</h2><p>在 Vivado 中，报错信息 <strong>“[Common 17-180] Spawn failed: No error”</strong> 表示 Vivado 无法成功启动或创建某个进程，尽管没有明确的错误信息。这个错误通常发生在 Vivado 尝试启动外部进程或执行某些操作时，比如编译、生成比特流或启动仿真工具等。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-04-24T16:00:00.000Z" title="2024/4/25 00:00:00">2024-04-25</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-01-20T02:43:30.253Z" title="2025/1/20 10:43:30">2025-01-20</time></span><span class="level-item"><a class="link-muted" href="/categories/FPGA/">FPGA</a></span><span class="level-item">3 minutes read (About 486 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/04/25/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/">Matlab生成txt文件导入到Vivado仿真</a></p><div class="content"><h1 id="Matlab处理数据并将其写入txt文件"><a href="#Matlab处理数据并将其写入txt文件" class="headerlink" title="Matlab处理数据并将其写入txt文件"></a>Matlab处理数据并将其写入txt文件</h1><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% Txt Generate</span></span><br><span class="line">pre_RS_data=dec2bin(simDataIn,<span class="number">8</span>);       <span class="comment">%将数据转化为8bit的二进制</span></span><br><span class="line">fid=fopen(<span class="string">&quot;F:\FPGA\Xilinx_vivado\project\dvbstestbench\dbvs\matlab\pre_RS_data.txt&quot;</span>,<span class="string">&quot;wt&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:n*nMessages         <span class="comment">%数据长度</span></span><br><span class="line">    fprintf(fid,<span class="string">&quot;%s\n&quot;</span>,pre_RS_data(<span class="built_in">i</span>,<span class="number">1</span>:<span class="number">8</span>));  <span class="comment">%由于二进制数据为8位，因此是1:8</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">fclose(fid);</span><br></pre></td></tr></table></figure>
 
 
+<p>使用fopen函数获取文件id，fopen的语法如下</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1714036628457.png" alt="1714036628457.png"></p>
+<p>其中permisson为文件访问类型，有以下几种权限</p>
+<table>
+<thead>
+<tr>
+<th><code>&#39;r&#39;</code></th>
+<th>打开要读取的文件。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&#39;w&#39;</code></td>
+<td>打开或创建要写入的新文件。放弃现有内容（如果有）。</td>
+</tr>
+<tr>
+<td><code>&#39;a&#39;</code></td>
+<td>打开或创建要写入的新文件。追加数据到文件末尾。</td>
+</tr>
+<tr>
+<td><code>&#39;r+&#39;</code></td>
+<td>打开要读写的文件。</td>
+</tr>
+<tr>
+<td><code>&#39;w+&#39;</code></td>
+<td>打开或创建要读写的新文件。放弃现有内容（如果有）。</td>
+</tr>
+<tr>
+<td><code>&#39;a+&#39;</code></td>
+<td>打开或创建要读写的新文件。追加数据到文件末尾。</td>
+</tr>
+<tr>
+<td><code>&#39;A&#39;</code></td>
+<td>打开文件以追加（但不自动刷新）当前输出缓冲区。</td>
+</tr>
+<tr>
+<td><code>&#39;W&#39;</code></td>
+<td>打开文件以写入（但不自动刷新）当前输出缓冲区。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💡 要以文本模式打开的话，要附加’t’</p>
+</blockquote>
+<h1 id="Vivado中testbench写法"><a href="#Vivado中testbench写法" class="headerlink" title="Vivado中testbench写法"></a>Vivado中testbench写法</h1><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">timescale</span> 1ns/1ps</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> top_tb();</span><br><span class="line"></span><br><span class="line"><span class="keyword">reg</span> clk;</span><br><span class="line"><span class="keyword">reg</span> rst_n;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>]SEQ_IN_0;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] data_mem[<span class="number">1</span>:<span class="number">1020</span>];</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>] i;</span><br><span class="line"><span class="keyword">wire</span> BIN_OUT;</span><br><span class="line"><span class="keyword">wire</span> ce_out;</span><br><span class="line"><span class="keyword">wire</span> locked;</span><br><span class="line"></span><br><span class="line"><span class="comment">//clk &amp; rst_n gen</span></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    clk=<span class="number">1&#x27;b0</span>;</span><br><span class="line">    rst_n=<span class="number">1&#x27;b0</span>;</span><br><span class="line">    #<span class="number">100</span></span><br><span class="line">    rst_n=<span class="number">1&#x27;b1</span>;  </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">always</span> #<span class="number">5</span> clk=~clk;</span><br><span class="line"></span><br><span class="line"><span class="comment">//data read</span></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    <span class="built_in">$readmemb</span>(<span class="string">&quot;F:/FPGA/Xilinx_vivado/project/dvbstestbench/dbvs/matlab/pre_RS_data.txt&quot;</span>,data_mem);</span><br><span class="line">  </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    i=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">forever</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(i&lt;<span class="number">1020</span>)  <span class="keyword">begin</span></span><br><span class="line">            i=i+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            i=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">$display</span>(<span class="string">&quot;%s&quot;</span>,data_mem[i]);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    SEQ_IN_0&lt;=data_mem[i];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">top_wrapper top_wrapper_u0(</span><br><span class="line">    <span class="variable">.clk_0</span>    (clk),</span><br><span class="line">    <span class="variable">.rst_n_0</span>  (rst_n),</span><br><span class="line">    <span class="variable">.SEQ_IN_0</span>(SEQ_IN_0),</span><br><span class="line">    <span class="variable">.BIN_OUT_0</span>  (BIN_OUT),</span><br><span class="line">    <span class="variable">.ce_out_0</span>   (ce_out),</span><br><span class="line">    <span class="variable">.locked_0</span>   (locked)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
 
 
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-  
-<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
-<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxingxing.js"></script>
-<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
-
+<blockquote>
+<p>💡 直接在文件夹内部复制的文件路径是\，但是testbench中要将所有反斜杠改为&#x2F;，否则无法读取txt文件</p>
+</blockquote>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-03-26T16:00:00.000Z" title="2024/3/27 00:00:00">2024-03-27</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-01-20T02:48:08.021Z" title="2025/1/20 10:48:08">2025-01-20</time></span><span class="level-item"><a class="link-muted" href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">数字通信</a></span><span class="level-item">6 minutes read (About 937 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/">DVB-S系统仿真学习</a></p><div class="content"><p>DVB-S系统用于卫星电视信号传输，发送端框图如下所示</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png" alt="1711536126647.png"></p>
+<h1 id="扰码"><a href="#扰码" class="headerlink" title="扰码"></a>扰码</h1><p>实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理</p>
+<p>DVB-S标准中规定扰码的生成多项式为</p>
+<p>$$<br>p(x)&#x3D;x^{15}+x^{14}+1<br>$$</p>
+<p>同时移位寄存器的初始状态为”1001_0101_0000_000”</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536797434.png" alt="1711536797434.png"></p>
+<h2 id="Matlab代码仿真"><a href="#Matlab代码仿真" class="headerlink" title="Matlab代码仿真"></a>Matlab代码仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">n=<span class="number">500</span>;</span><br><span class="line"><span class="comment">% origin_data=randi([0 1],n,1);</span></span><br><span class="line">origin_cnt_1=nnz(origin_data==<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">scrambling = comm.Scrambler(<span class="string">&quot;CalculationBase&quot;</span>,<span class="number">2</span>,<span class="string">&quot;InitialConditions&quot;</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>], ...</span><br><span class="line">    <span class="string">&quot;Polynomial&quot;</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>]);</span><br><span class="line">scrambling_data=step(scrambling,origin_data);</span><br><span class="line">scrambling_data_cnt_1=nnz(scrambling_data==<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 
 
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<p>运行结果如下图所示</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536855542.png" alt="1711536855542.png"></p>
+<p>可以看出初始的500点长度的数据包中有403个“1”，经过扰码处理后“1”的个数接近数据总量的一半</p>
+<h1 id="外码纠错编码（RS编码）"><a href="#外码纠错编码（RS编码）" class="headerlink" title="外码纠错编码（RS编码）"></a>外码纠错编码（RS编码）</h1><p>RS码定义：</p>
+<p>$GF(q)上（q \neq 2, 通常q&#x3D;2^m），码长n&#x3D;q-1的本原BCH码$</p>
+<p>能纠正 t 个错误的RS码的参数为</p>
+<pre><code>- 分组长度n=q-1
+- 校验符号数n-k=2t
+- 码的最小距离dmin=2t+1
+</code></pre>
+<p>DVB-S系统中使用的RS(188，204)是由RS(239,255)截断而来的，可以纠正8个字节的错误</p>
+<h2 id="Matlab仿真"><a href="#Matlab仿真" class="headerlink" title="Matlab仿真"></a>Matlab仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">m=<span class="number">8</span>; <span class="comment">%bit per symbol</span></span><br><span class="line">n=<span class="number">204</span>;</span><br><span class="line">k=<span class="number">188</span>;</span><br><span class="line"></span><br><span class="line">data_test=randi([<span class="number">0</span>,n],<span class="number">1</span>,k);</span><br><span class="line">data_gf=gf(data_test,m);</span><br><span class="line"></span><br><span class="line">data_rs_enc=rsenc(data_gf,n,k);</span><br><span class="line">data_enc=data_rs_enc.x;</span><br><span class="line"></span><br><span class="line">data_rs_dec=rsdec(data_rs_enc,n,k);</span><br><span class="line">data_dec=data_rs_dec.x;</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">stem(data_test);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">stem(data_enc);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">stem(data_dec);</span><br></pre></td></tr></table></figure>
 
 
-  
+<p>首先生成一个长度为188的序列，将其转换到伽罗华域后，使用rsenc函数进行RS编码，再进行译码，根据对比可以看出译码后的比特和译码前的完全一样</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711538853533.png" alt="1711538853533.png"></p>
+<h1 id="卷积交织"><a href="#卷积交织" class="headerlink" title="卷积交织"></a>卷积交织</h1><p>在实际的传输过程中，由于脉冲干扰、多径效应等因素会带来持续一定时间的突发错误，虽然RS码对突发错误有较好的纠错能力，但是当其持续时间较长时，就会超出RS码的纠错能力，因此在编码过程中引入了卷积交织，将数据的传输顺序按照一定的规律分散开，就可以使得错误的码元也被分散开</p>
+<p>DVB-S中交织深度为12，总共17个FIFO，数据按行写入寄存器，按列读出</p>
+<p>交织后最大可纠错长度为12*8&#x3D;96</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711539867512.png" alt="1711539867512.png"></p>
+<p>可以看出前一段时间读取到了很多0，说明下面的移位寄存器中的数据还没有移动到末端</p>
+<h1 id="卷积编码"><a href="#卷积编码" class="headerlink" title="卷积编码"></a>卷积编码</h1><p>卷积码是一种有效的前向纠错码记作$(n,k,m)$，将k个信息比特编为n个比特，m为编码存储长度，N&#x3D;m+1为约束长度，即卷积码的当前码元不仅与当前输入的k的信息码元有关，还与前面m个时刻输入的信息码元有关</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">clc;</span><br><span class="line">close all;</span><br><span class="line">n=<span class="number">500</span>;</span><br><span class="line">tre1=[<span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]; <span class="comment">%oct 171</span></span><br><span class="line">tre2=[<span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>]; <span class="comment">%oct 133</span></span><br><span class="line"></span><br><span class="line">trellis = poly2trellis(<span class="number">7</span>,[<span class="number">171</span> <span class="number">133</span>]);</span><br><span class="line"></span><br><span class="line">convData=convenc(scrambling_data,trellis);</span><br><span class="line"></span><br><span class="line">decData=vitdec(convData,trellis,<span class="number">499</span>,<span class="string">&quot;trunc&quot;</span>,<span class="string">&quot;hard&quot;</span>);</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">stem(scrambling_data);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">stem(convData);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">stem(decData);</span><br><span class="line">biterr(scrambling_data,decData)</span><br></pre></td></tr></table></figure>
 
-  <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
-  </noscript>
-</body>
-</html>
+
+<p>使用poly2trellis将卷积编码多项式转换为网格描述</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711541868504.png" alt="1711541868504.png"></p>
+<p>比对后可以看到解码出的数据和原数据完全相同</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-03-23T16:00:00.000Z" title="2024/3/24 00:00:00">2024-03-24</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-01-20T02:39:54.913Z" title="2025/1/20 10:39:54">2025-01-20</time></span><span class="level-item"><a class="link-muted" href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">数字通信</a></span><span class="level-item">3 minutes read (About 487 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/03/24/QPSK%20simulink%E5%AE%9E%E7%8E%B0/">QPSK simulink实现</a></p><div class="content"><h1 id="调制部分"><a href="#调制部分" class="headerlink" title="调制部分"></a>调制部分</h1><h2 id="总体框架"><a href="#总体框架" class="headerlink" title="总体框架"></a>总体框架</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212057092.png#id=LJGlx&originHeight=501&originWidth=1636&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+<h2 id="各模块参数"><a href="#各模块参数" class="headerlink" title="各模块参数"></a>各模块参数</h2><p>升余弦滚降滤波器滚降系数为 1</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401211628053.png#height=385&id=bhKfw&originHeight=599&originWidth=778&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=500" alt="image"></p>
+<p>单双极性变换</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401211629886.png#height=312&id=zaVYy&originHeight=357&originWidth=572&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=500" alt="image"></p>
+<h2 id="各阶段波形"><a href="#各阶段波形" class="headerlink" title="各阶段波形"></a>各阶段波形</h2><h2 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212121669.png#id=OcUth&originHeight=683&originWidth=830&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+<h2 id="Demux"><a href="#Demux" class="headerlink" title="Demux"></a>Demux</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212121971.png#id=nYMmd&originHeight=628&originWidth=702&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+<h2 id="Raised-Cosine-Transmit"><a href="#Raised-Cosine-Transmit" class="headerlink" title="Raised Cosine Transmit"></a>Raised Cosine Transmit</h2><p>Filter</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212127899.png#id=oRiV8&originHeight=628&originWidth=702&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+<h2 id="QPSK-信号功率谱密度"><a href="#QPSK-信号功率谱密度" class="headerlink" title="QPSK 信号功率谱密度"></a>QPSK 信号功率谱密度</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212131255.png#id=zvEIe&originHeight=664&originWidth=1002&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+<h1 id="解调部分"><a href="#解调部分" class="headerlink" title="解调部分"></a>解调部分</h1><p>经过 AWGN 信道后，假设已经进行了载波同步</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212140586.png#id=mIoHF&originHeight=433&originWidth=1257&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+<h2 id="部分模块参数"><a href="#部分模块参数" class="headerlink" title="部分模块参数"></a>部分模块参数</h2><h2 id="载波模块"><a href="#载波模块" class="headerlink" title="载波模块"></a>载波模块</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212141258.png#height=630&id=fwivS&originHeight=759&originWidth=572&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=475" alt="image"></p>
+<h2 id="Pulse-Generator"><a href="#Pulse-Generator" class="headerlink" title="Pulse Generator"></a>Pulse Generator</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212142578.png#height=643&id=jBQqM&originHeight=736&originWidth=572&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=500" alt="image"></p>
+<p>由于经过了串并转换，因此数据率减半</p>
+<h2 id="部分波形"><a href="#部分波形" class="headerlink" title="部分波形"></a>部分波形</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212150099.png#id=wGg2F&originHeight=1021&originWidth=1920&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+<p>将初始信号经过一定时间的延时后，在示波器中和解调输出的信号基本对齐，可以发现基本实现<br>QPSK 调制解调</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212152756.png#id=q8Kha&originHeight=1021&originWidth=1920&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-03-22T16:00:00.000Z" title="2024/3/23 00:00:00">2024-03-23</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-01-20T03:13:09.340Z" title="2025/1/20 11:13:09">2025-01-20</time></span><span class="level-item"><a class="link-muted" href="/categories/FPGA/">FPGA</a></span><span class="level-item">a minute read (About 205 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/03/23/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/">8bit数据转1bit逐位输出电路仿真</a></p><div class="content"><p>在DVB-S系统中，TS流在经过RS编码后，会变成uint8类型的数据，在后续QPSK星座映射时又需要二进制码流，因此在进行了RS编码后要将8个bit的数据转化成1个bit逐位输出</p>
+<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>首先使用BitwiseOperator模块按位与操作，分别将8位二进制数据提取出来，然后使用一个计数器产生0~7的计数信号作为mux模块的使能，在8个时钟周期内分别输出提取出来的8位数据</p>
+<h1 id="结构框图"><a href="#结构框图" class="headerlink" title="结构框图"></a>结构框图</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1713153777444.png" alt="1713153777444.png"></p>
+<h1 id="仿真结果"><a href="#仿真结果" class="headerlink" title="仿真结果"></a>仿真结果</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1713153816902.png" alt="1713153816902.png"></p>
+<p>输入的数据是133，二进制为10000101，可以看到输出的结果符合需求</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-03-19T16:00:00.000Z" title="2024/3/20 00:00:00">2024-03-20</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-01-20T02:50:44.709Z" title="2025/1/20 10:50:44">2025-01-20</time></span><span class="level-item"><a class="link-muted" href="/categories/FPGA/">FPGA</a></span><span class="level-item">2 minutes read (About 331 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/03/20/AXI-STREAM%E7%AE%80%E4%BB%8B/">AXI-STREAM简介</a></p><div class="content"><h1 id="AXI-STREAM简介"><a href="#AXI-STREAM简介" class="headerlink" title="AXI-STREAM简介"></a>AXI-STREAM简介</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>AXI-Stream总线是一种高效、简单的数据传输协议，主要用于高吞吐量的数据流传输场景。相比于传统的AXI总线，AXI-Stream总线更加简单和轻量级，它通过无需地址的方式，将数据从一个模块传输到另一个模块，适用于需要高速数据传输的应用场景。</p>
+<h2 id="部分术语"><a href="#部分术语" class="headerlink" title="部分术语"></a>部分术语</h2><ul>
+<li>Transfer：基于<strong>TVALID</strong>和<strong>TREADY</strong>握手协议的传输</li>
+<li>Packet：一组通过axi-stream传输的数据</li>
+<li>Frame：最大的Byte组合，包含整数个Packet</li>
+</ul>
+<h2 id="接口信号"><a href="#接口信号" class="headerlink" title="接口信号"></a>接口信号</h2><table>
+<thead>
+<tr>
+<th>信号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ACLK</td>
+<td>全局时钟信号，上升沿有效</td>
+</tr>
+<tr>
+<td>ARSTn</td>
+<td>全局复位信号，低电平有效</td>
+</tr>
+<tr>
+<td>TVALID</td>
+<td>主机驱动有效数据</td>
+</tr>
+<tr>
+<td>TREADY</td>
+<td>从机可以接收数据</td>
+</tr>
+<tr>
+<td>TDATA[(8n-1):0]</td>
+<td>位宽为整数倍byte</td>
+</tr>
+<tr>
+<td>TLAST</td>
+<td>表示数据包的边界</td>
+</tr>
+<tr>
+<td>TID</td>
+<td>由主机发出，Identity标识符，在存在多个stream数据传输时起作用，用于识别不同的数据流</td>
+</tr>
+</tbody></table>
+<p><img src="https://s11.ax1x.com/2023/12/22/pi7uxYV.png" alt="pi7uxYV.png"></p>
+<p>当clk上升沿检测到TVALID和TREADY均为高电平时开始传输数据</p>
+<p>由于AXI-STREAM不需要传输地址，仅进行简单的发送和接收，因此减小了传播时延</p>
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/2/">Previous</a></div><div class="pagination-next is-invisible is-hidden-mobile"><a href="/page/4/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><a class="pagination-link is-current" href="/page/3/">3</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/banner.png" alt="Sawen_Blog"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Sawen_Blog</p><p class="is-size-6 is-block">一个路过的工科牲</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Beijing, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">40</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">4</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">8</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/moerjie" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/moerjie"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="CSDN" href="https://blog.csdn.net/qq_66439282?type=blog"><i class="fa-brands fa-cuttlefish"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Xlog" href="https://moerjielovecookie-4735.xlog.app/"><i class="fa-brands fa-mixer"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/FPGA/"><span class="level-start"><span class="level-item">FPGA</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/"><span class="level-start"><span class="level-item">数字通信</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%9D%82%E7%B1%BB/"><span class="level-start"><span class="level-item">杂类</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%94%B5%E8%B7%AF/"><span class="level-start"><span class="level-item">电路</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-01-24T16:00:00.000Z">2025-01-25</time></p><p class="title"><a href="/2025/01/25/AXI%20DMA+AXI-S%20FIFO%E5%9B%9E%E7%8E%AF%E5%AD%A6%E4%B9%A0/">AXI DMA+AXI-S FIFO回环学习</a></p><p class="categories"><a href="/categories/FPGA/">FPGA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-01-23T16:00:00.000Z">2025-01-24</time></p><p class="title"><a href="/2025/01/24/hexo%E9%83%A8%E7%BD%B2%E5%88%B0github%20page%E6%97%B6%EF%BC%8Chexo%20d%E5%90%8Epage%E9%87%8C%E9%9D%A2%E7%BB%91%E5%AE%9A%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D%E6%B6%88%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/">hexo部署到github page时，hexo d后page里面绑定的个人域名消失的问题</a></p><p class="categories"><a href="/categories/%E6%9D%82%E7%B1%BB/">杂类</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-01-20T16:00:00.000Z">2025-01-21</time></p><p class="title"><a href="/2025/01/21/Verilog%E4%B8%ADif%E8%AF%AD%E5%8F%A5%E5%92%8Ccase%E8%AF%AD%E5%8F%A5%E7%BB%BC%E5%90%88%E5%87%BA%E7%9A%84%E7%94%B5%E8%B7%AF%E5%8C%BA%E5%88%AB/">Verilog中if语句和case语句综合出的电路区别</a></p><p class="categories"><a href="/categories/FPGA/">FPGA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-01-19T16:00:00.000Z">2025-01-20</time></p><p class="title"><a href="/2025/01/20/ZYNQ-IP-AXI-GPIO/">ZYNQ-IP-AXI-GPIO</a></p><p class="categories"><a href="/categories/FPGA/">FPGA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-01-19T16:00:00.000Z">2025-01-20</time></p><p class="title"><a href="/2025/01/20/ZYNQ%E4%B8%AD%E7%9A%84IO/">ZYNQ中的GPIO</a></p><p class="categories"><a href="/categories/FPGA/">FPGA</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2025/01/"><span class="level-start"><span class="level-item">January 2025</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/12/"><span class="level-start"><span class="level-item">December 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/11/"><span class="level-start"><span class="level-item">November 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/10/"><span class="level-start"><span class="level-item">October 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">September 2024</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/08/"><span class="level-start"><span class="level-item">August 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/07/"><span class="level-start"><span class="level-item">July 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/06/"><span class="level-start"><span class="level-item">June 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">May 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/04/"><span class="level-start"><span class="level-item">April 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">March 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/FPGA/"><span class="tag">FPGA</span><span class="tag">19</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MATLAB/"><span class="tag">MATLAB</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Report/"><span class="tag">Report</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ZYNQ/"><span class="tag">ZYNQ</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/bug/"><span class="tag">bug</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/coding/"><span class="tag">coding</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/"><span class="tag">数字通信</span><span class="tag">11</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%94%B5%E8%B7%AF/"><span class="tag">电路</span><span class="tag">5</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/favicon.png" alt="Sawen_Blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Sawen Moerjie</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2023</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
