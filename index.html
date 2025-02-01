@@ -327,6 +327,137 @@ mjx-container[display="true"] + br {
 
 
   
+    <article id="post-FPGA开发时序图绘制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2025/02/01/FPGA%E5%BC%80%E5%8F%91%E6%97%B6%E5%BA%8F%E5%9B%BE%E7%BB%98%E5%88%B6/" target="_blank">FPGA开发时序图绘制</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2025/02/01/FPGA%E5%BC%80%E5%8F%91%E6%97%B6%E5%BA%8F%E5%9B%BE%E7%BB%98%E5%88%B6/" class="archive-article-date">
+        <time datetime="2025-01-31T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-02-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>开始的时候画时序图都是拿 visio 硬连，但是那个线宽太难统一了，丑不拉几的，遂学习 waveform 语法使用代码来画时序图。</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>Vscode 中安装 waveform render 或者在 GitHub 搜索 wavedrom 安装即可。由于 vscode 是我常用的编辑器，所以选择在 vscode 安装插件的方式来学习使用 waveform。<br>在 vscode 中创建一个 json 文件，内容</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">{</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">"signal"</span><span class="punctuation">:</span><span class="punctuation">[</span></span><br><span class="line"></span><br><span class="line">        <span class="punctuation">{</span><span class="attr">"name"</span><span class="punctuation">:</span><span class="string">"clk"</span><span class="punctuation">,</span><span class="attr">"wave"</span><span class="punctuation">:</span><span class="string">"p....."</span><span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">        <span class="punctuation">{</span><span class="attr">"name"</span><span class="punctuation">:</span><span class="string">"data"</span><span class="punctuation">,</span><span class="attr">"wave"</span><span class="punctuation">:</span><span class="string">"010101"</span><span class="punctuation">}</span></span><br><span class="line"></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></table></figure>
+<p>在命令面板中选择如下命令后即可查看渲染结果：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011457187.png" alt="|460"></p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="时钟信号"><a href="#时钟信号" class="headerlink" title="时钟信号"></a>时钟信号</h3><ul>
+<li><code>p</code> 表示上升沿开始的方波</li>
+<li><code>n</code> 表示下降沿开始的方波</li>
+<li><code>l</code> 表示低电平</li>
+<li><code>h</code> 表示高电平</li>
+<li>大写会在方波边沿绘制箭头<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011502739.png" alt="|300"><br>代码渲染出的时序图为：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011504967.png" alt="|365"></li>
+</ul>
+<h3 id="数据信号"><a href="#数据信号" class="headerlink" title="数据信号"></a>数据信号</h3><ul>
+<li><p><code>0</code> 和 <code>1</code></p>
+</li>
+<li><p><code>x</code> 表示未知状态</p>
+</li>
+<li><p>=表示有效数据，也可写成 <code>2~9</code>，会用不同的颜色显示，并且可用 <code>data</code> 变量加上文本标签<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011511049.png" alt="500"></p>
+</li>
+<li><p>可以用 <code>|</code> 表示省略一段信号<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011512460.png" alt="500"><br><code>period</code> 和 <code>phase</code> 变量用于调整时序</p>
+</li>
+<li><p><code>period</code> 的值应该是一个数字 n ，表示横向等比例放大或缩小</p>
+</li>
+<li><p><code>phase</code> 的值应该是一个数字 n ，表示横向的位置调整，单位是一个时钟周期：</p>
+<ul>
+<li>如果是正数，表示向左移动 n 个时钟周期</li>
+<li>如果是负数，表示向右移动 n 个时钟周期<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011519462.png" alt="500"><br>多个信号可以用 <code>['group name', {...}, {...}, ...]</code> 语法编成一组，而且支持嵌套<br>时序绘制完毕后，还可以对图片进行修饰。 <code>"config": { "hscale": n }</code> 表示将图片横向等比例放大 n 倍。<code>"head":{ }</code> 和 <code>"foot":{ }</code> 分别表示在时序图的上方和下方添加一些内容：</li>
+</ul>
+</li>
+<li><p><code>text</code> 变量应该设置一个字符串，表示添加一行文本</p>
+</li>
+<li><p><code>tick</code> 变量应该设置一个整数，表示在时钟周期的起点显示序号，从 n 开始</p>
+</li>
+<li><p><code>tock</code> 变量应该设置一个整数，表示在时钟周期的中点显示序号，从 n 开始</p>
+</li>
+</ul>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FPGA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/FPGA//" class="article-tag-list-link color5">FPGA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2025/02/01/FPGA%E5%BC%80%E5%8F%91%E6%97%B6%E5%BA%8F%E5%9B%BE%E7%BB%98%E5%88%B6/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ZYNQ-PS GPIO中断过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1892,104 +2023,6 @@ mjx-container[display="true"] + br {
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2024/12/29/FIR%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E6%9E%B6%E6%9E%84/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Quartus报错记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" target="_blank">Quartus报错记录</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" class="archive-article-date">
-        <time datetime="2024-12-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-12-28</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="Error-176310-Can’t-place-multiple-pins-assigned-to-pin-location-Pin-F-16-IOPAD-X-34-Y-18-N-21"><a href="#Error-176310-Can’t-place-multiple-pins-assigned-to-pin-location-Pin-F-16-IOPAD-X-34-Y-18-N-21" class="headerlink" title="Error (176310): Can’t place multiple pins assigned to pin location Pin_F 16 (IOPAD_X 34_Y 18_N 21)"></a>Error (176310): Can’t place multiple pins assigned to pin location Pin_F 16 (IOPAD_X 34_Y 18_N 21)</h1><p>报错如下<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412282018135.png"><br>可以看到 Pin_F 16 既被用于 DAC_DATA，又被用于 nCEO 引脚，因此才会报错不能将多个引脚赋到 Pin_F 16 上。</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412282020011.png"><br>将nCEO 的 value 设置为 Use as regual I&#x2F;O 即可解决问题。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FPGA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/FPGA//" class="article-tag-list-link color5">FPGA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/">展开全文 >></a>
     </p>
     
 

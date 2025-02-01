@@ -215,6 +215,217 @@
 
 
   
+    <article id="post-C标准库读写文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/06/20/C%E6%A0%87%E5%87%86%E5%BA%93%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" target="_blank">C标准库读写文件</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/06/20/C%E6%A0%87%E5%87%86%E5%BA%93%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" class="archive-article-date">
+        <time datetime="2024-06-19T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-20</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="函数介绍"><a href="#函数介绍" class="headerlink" title="函数介绍"></a>函数介绍</h1><h2 id="库变量"><a href="#库变量" class="headerlink" title="库变量"></a>库变量</h2><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>size_t</td>
+<td>无符号整数类型，是sizeof关键字的结果，表示对象大小</td>
+</tr>
+<tr>
+<td>FILE</td>
+<td>文件流类型，适合存储文件流信息的对象类型</td>
+</tr>
+</tbody></table>
+<h2 id="库宏"><a href="#库宏" class="headerlink" title="库宏"></a>库宏</h2><table>
+<thead>
+<tr>
+<th>宏</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NULL</td>
+<td>空指针常量</td>
+</tr>
+<tr>
+<td>EOF</td>
+<td>表示已经到达文件结束的负整数</td>
+</tr>
+<tr>
+<td>stderr、stdin、stdout</td>
+<td>指向FILE类型的指针，分别对应标准错误、标准输入和标准输出流</td>
+</tr>
+</tbody></table>
+<h2 id="库函数"><a href="#库函数" class="headerlink" title="库函数"></a>库函数</h2><h3 id="fopen"><a href="#fopen" class="headerlink" title="fopen"></a>fopen</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FILE *<span class="title function_">fopen</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *filename, <span class="type">const</span> <span class="type">char</span> *mode)</span> </span><br><span class="line"><span class="comment">//以给定的模式mode打开filename指向的文件</span></span><br></pre></td></tr></table></figure>
+
+
+<table>
+<thead>
+<tr>
+<th>mode</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“r“</td>
+<td>打开一个用于读取的文件，文件必须存在</td>
+</tr>
+<tr>
+<td>”w“</td>
+<td>创建一个用于写入的空文件。若存在同名文件，则删除旧文件的内容</td>
+</tr>
+<tr>
+<td>”a“</td>
+<td>追加到一个文件，写操作向文件末尾追加数据，文件不存在就创建文件</td>
+</tr>
+<tr>
+<td>”r+“</td>
+<td>打开一个用于更新的文件，可读取也可写入。该文件必须存在</td>
+</tr>
+<tr>
+<td>”w+“</td>
+<td>创建一个用于读写的空文件</td>
+</tr>
+<tr>
+<td>“a+”</td>
+<td>打开一个用于读取和追加的文件</td>
+</tr>
+</tbody></table>
+<p>函数返回一个FILE指针，否则返回NULL</p>
+<h3 id="fread"><a href="#fread" class="headerlink" title="fread"></a>fread</h3><p>声明：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> <span class="title function_">fread</span><span class="params">(<span class="type">void</span> *ptr, <span class="type">size_t</span> size, <span class="type">size_t</span> nmemb, FILE *stream)</span></span><br><span class="line"><span class="comment">//ptr：指向带有最小尺寸 size*nmemb 字节的内存块的指针</span></span><br><span class="line"><span class="comment">//size：读取的每个元素的大小，以字节为单位</span></span><br><span class="line"><span class="comment">//nmemb：元素的个数</span></span><br><span class="line"><span class="comment">//stream：指向FILE对象的指针，指定了一个输入流</span></span><br></pre></td></tr></table></figure>
+
+
+<p>成功读取的元素会以size_t对象返回</p>
+<h3 id="fwrite"><a href="#fwrite" class="headerlink" title="fwrite"></a>fwrite</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> <span class="title function_">fwrite</span><span class="params">(<span class="type">const</span> <span class="type">void</span> *ptr, <span class="type">size_t</span> size, <span class="type">size_t</span> nmemb, FILE *stream)</span></span><br><span class="line"><span class="comment">//ptr：指向被写入元素数组的指针</span></span><br><span class="line"><span class="comment">//size：读取的每个元素的大小，以字节为单位</span></span><br><span class="line"><span class="comment">//nmemb：元素的个数</span></span><br><span class="line"><span class="comment">//stream：指向FILE对象的指针，指定了一个输出流</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="fseek"><a href="#fseek" class="headerlink" title="fseek"></a>fseek</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">fseek</span><span class="params">(FILE *stream, <span class="type">long</span> <span class="type">int</span> offset, <span class="type">int</span> whence)</span></span><br><span class="line"><span class="comment">//stream：指向FILE对象的指针</span></span><br><span class="line"><span class="comment">//offset：相对whence的偏移量，以字节为单位</span></span><br><span class="line"><span class="comment">//whence：表示开始添加偏移的位置</span></span><br></pre></td></tr></table></figure>
+
+
+<p>whence一般为下面三个常量</p>
+<table>
+<thead>
+<tr>
+<th>常量</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SEEK_SET</td>
+<td>文件开头</td>
+</tr>
+<tr>
+<td>SEEK_CUR</td>
+<td>文件指针的当前位置</td>
+</tr>
+<tr>
+<td>SEEK_END</td>
+<td>文件的末尾</td>
+</tr>
+</tbody></table>
+<p>返回从whence位置开始查找的字节数</p>
+<h3 id="ftell"><a href="#ftell" class="headerlink" title="ftell"></a>ftell</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="type">int</span> <span class="title function_">ftell</span><span class="params">(FILE *stream)</span></span><br></pre></td></tr></table></figure>
+
+
+<p>返回位置标识符的当前值</p>
+<h1 id="使用C标准库读取TS文件并写入txt"><a href="#使用C标准库读取TS文件并写入txt" class="headerlink" title="使用C标准库读取TS文件并写入txt"></a>使用C标准库读取TS文件并写入txt</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    FILE *fileInput, *fileOutput;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> buffer[<span class="number">188</span>];  <span class="comment">// TS流的标准包大小为188字节</span></span><br><span class="line">    <span class="type">size_t</span> bytesRead;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打开TS文件</span></span><br><span class="line">    fileInput = fopen(<span class="string">&quot;/home/sawen/my_test_pcie/test.ts&quot;</span>, <span class="string">&quot;rb&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!fileInput) &#123;</span><br><span class="line">        perror(<span class="string">&quot;Failed to open input file&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Input file opened successfully.\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查文件大小</span></span><br><span class="line">    fseek(fileInput, <span class="number">0</span>, SEEK_END);</span><br><span class="line">    <span class="type">long</span> fileSize = ftell(fileInput);</span><br><span class="line">    rewind(fileInput);</span><br><span class="line">    <span class="keyword">if</span> (fileSize == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Input file is empty.\n&quot;</span>);</span><br><span class="line">        fclose(fileInput);</span><br><span class="line">        <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Input file size: %ld bytes.\n&quot;</span>, fileSize);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打开TXT文件</span></span><br><span class="line">    fileOutput = fopen(<span class="string">&quot;output.txt&quot;</span>, <span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!fileOutput) &#123;</span><br><span class="line">        perror(<span class="string">&quot;Failed to open output file&quot;</span>);</span><br><span class="line">        fclose(fileInput);</span><br><span class="line">        <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Output file opened successfully.\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 读取数据并写入到TXT文件</span></span><br><span class="line">    <span class="type">int</span> packetCount = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> ((bytesRead = fread(buffer, <span class="number">1</span>, <span class="keyword">sizeof</span>(buffer), fileInput)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; bytesRead; ++i) &#123;</span><br><span class="line">            <span class="built_in">fprintf</span>(fileOutput, <span class="string">&quot;%02x &quot;</span>, buffer[i]); <span class="comment">// 将字节以十六进制格式写入</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">fprintf</span>(fileOutput, <span class="string">&quot;\n&quot;</span>);  <span class="comment">// 每个TS包后换行</span></span><br><span class="line">        packetCount++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查是否有数据被读取</span></span><br><span class="line">    <span class="keyword">if</span> (packetCount == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;No data read from file.\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Processed %d TS packets.\n&quot;</span>, packetCount);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭文件</span></span><br><span class="line">    fclose(fileInput);</span><br><span class="line">    fclose(fileOutput);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Data transfer complete.\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>运行结果如下</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1718891286912.png" alt="1718891286912.png"></p>
+<p>可以看到以188个字节为一行写入txt</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">coding</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/杂类//" class="article-tag-list-link color3">杂类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/06/20/C%E6%A0%87%E5%87%86%E5%BA%93%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-MATLAB中使用HDL Coder生成HDL代码时的报错集合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
