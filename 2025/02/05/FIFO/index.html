@@ -21,30 +21,22 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
-    <meta name="description" content="Synth 8-5535报错代码 12345[Synth 8-5535] port &lt;clk_0&gt; has illegal connections. It is illegal to have a port connected to an input buffer and other components. The following are the port connections">
+    <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647{    &quot;signal&quot;: [        {            &quot;name&quot;: &quot;pclk&quot;,            &quot;wave&quot;: &quot;p.....|..&quot;        },        {            &quot;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vivado报错集合">
-<meta property="og:url" content="https://www.moerjielovecookie.icu/2024/05/01/Vivado%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/index.html">
+<meta property="og:title" content="Sawen_Blog">
+<meta property="og:url" content="https://www.moerjielovecookie.icu/2025/02/05/FIFO/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="Synth 8-5535报错代码 12345[Synth 8-5535] port &lt;clk_0&gt; has illegal connections. It is illegal to have a port connected to an input buffer and other components. The following are the port connections">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647{    &quot;signal&quot;: [        {            &quot;name&quot;: &quot;pclk&quot;,            &quot;wave&quot;: &quot;p.....|..&quot;        },        {            &quot;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405011507953.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715671392034.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405152050816.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716115542445.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405191846838.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716627301329.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1736078187552.png">
-<meta property="article:published_time" content="2024-04-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-01-20T02:38:11.296Z">
+<meta property="article:published_time" content="2025-02-05T12:58:31.119Z">
+<meta property="article:modified_time" content="2025-02-05T13:00:22.189Z">
 <meta property="article:author" content="Sawen Moerjie">
-<meta property="article:tag" content="FPGA">
+<meta property="article:tag" content="FPGA Verilog MATLAB Coding">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405011507953.png">
   
   
   
-  <title>Vivado报错集合 - Sawen_Blog</title>
+  <title>Sawen_Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -113,7 +105,119 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <body>
@@ -268,7 +372,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Vivado报错集合"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -284,8 +388,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-01 00:00" pubdate>
-           2024 年 05 月 01 日 , 凌晨 12:00 , 星期三
+        <time datetime="2025-02-05 20:58" pubdate>
+           2025 年 02 月 05 日 , 晚上 08:58 , 星期三
         </time>
       </span>
     
@@ -297,7 +401,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          386 字
+          21 字
         
       </span>
     
@@ -309,7 +413,7 @@
         
         
           <!-- compatible with older versions-->
-          4 分钟
+          1 分钟
         
       </span>
     
@@ -355,31 +459,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Vivado报错集合</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Synth-8-5535"><a href="#Synth-8-5535" class="headerlink" title="Synth 8-5535"></a><strong>Synth 8-5535</strong></h1><p>报错代码</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Synth <span class="number">8</span>-<span class="number">5535</span>] port &lt;clk_0&gt; has illegal connections. It is illegal to have a port connected to an <span class="keyword">input</span> buffer <span class="keyword">and</span> other components. The following are the port connections :</span><br><span class="line">Input Buffer:</span><br><span class="line">	Port I of <span class="keyword">instance</span> clkin1_ibufg(IBUF) in <span class="keyword">module</span> &lt;top_clk_wiz_0_1_clk_wiz&gt;</span><br><span class="line">Other Components:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>普通IO输入的时钟信号必须要经过buffer才能驱动PLL</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>将clocking wizard中的输入信号配置为 No Buffer</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405011507953.png" alt="2024after4202405011507953.png"></p>
-<h1 id="Warning：filegmt-56-199"><a href="#Warning：filegmt-56-199" class="headerlink" title="Warning：filegmt 56-199"></a>Warning：filegmt 56-199</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715671392034.png" alt="1715671392034.png"></p>
-<h2 id="解决方法-1"><a href="#解决方法-1" class="headerlink" title="解决方法"></a>解决方法</h2><p>在Sources栏右键选择refresh hierarchy即可</p>
-<h1 id="Warning：CRITICAL-WARNING-filemgmt-56-176-Module-references-are-not-supported-in-manual-compile-order-mode-and-will-be-ignored"><a href="#Warning：CRITICAL-WARNING-filemgmt-56-176-Module-references-are-not-supported-in-manual-compile-order-mode-and-will-be-ignored" class="headerlink" title="Warning：CRITICAL WARNING: [filemgmt 56-176] Module references are not supported in manual compile order mode and will be ignored."></a>Warning：CRITICAL WARNING: [filemgmt 56-176] Module references are not supported in manual compile order mode and will be ignored.</h1><h2 id="解决方法-2"><a href="#解决方法-2" class="headerlink" title="解决方法"></a>解决方法</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405152050816.png" alt="2024after4202405152050816.png"></p>
-<p>将刷新层次结构的模式设置为自动更新和编译即可</p>
-<h1 id="BD-41-237-Bus-Interface-property-FREQ-HZ-does-not-match-between-M-AXIS-DATA-0-100000000-and-dds-compiler-0-M-AXIS-DATA-200000000"><a href="#BD-41-237-Bus-Interface-property-FREQ-HZ-does-not-match-between-M-AXIS-DATA-0-100000000-and-dds-compiler-0-M-AXIS-DATA-200000000" class="headerlink" title="[BD 41-237] Bus Interface property FREQ_HZ does not match between &#x2F;M_AXIS_DATA_0(100000000) and &#x2F;dds_compiler_0&#x2F;M_AXIS_DATA(200000000)"></a>[BD 41-237] Bus Interface property FREQ_HZ does not match between &#x2F;M_AXIS_DATA_0(100000000) and &#x2F;dds_compiler_0&#x2F;M_AXIS_DATA(200000000)</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716115542445.png" alt="1716115542445.png"></p>
-<p>引发这个报错的原因是IP核的时钟频率为200M，但是AXI4s的端口的频率为100M，因此将端口的频率设置为和IP核匹配的频率即可</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405191846838.png" alt="2024after4202405191846838.png"></p>
-<h1 id="vivado的各种设置无法保存"><a href="#vivado的各种设置无法保存" class="headerlink" title="vivado的各种设置无法保存"></a>vivado的各种设置无法保存</h1><h2 id="原因-1"><a href="#原因-1" class="headerlink" title="原因"></a>原因</h2><p>“C:\Users\31651\AppData\Roaming\Xilinx\Vivado\2023.2\vivado.xml”这个文件里面存放了vivado的设置，例如最近打开的文件等</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716627301329.png" alt="1716627301329.png"></p>
-<p>如果这些路径中有中文字符或其他vivado无法识别的字符，那么每次启动时vivado无法正常读取这些配置，就会重置这个文件，表现为重启vivado后所有配置全部丢失</p>
-<h2 id="解决方法-3"><a href="#解决方法-3" class="headerlink" title="解决方法"></a>解决方法</h2><p>将含有中文字符的文件路径删除或者改成英语命名</p>
-<h1 id="Common-17-180-Spawn-failed-No-error"><a href="#Common-17-180-Spawn-failed-No-error" class="headerlink" title="[Common 17-180] Spawn failed: No error"></a>[Common 17-180] Spawn failed: No error</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1736078187552.png" alt="1736078187552.png"></p>
-<h2 id="导致原因"><a href="#导致原因" class="headerlink" title="导致原因"></a>导致原因</h2><p>在 Vivado 中，报错信息 <strong>“[Common 17-180] Spawn failed: No error”</strong> 表示 Vivado 无法成功启动或创建某个进程，尽管没有明确的错误信息。这个错误通常发生在 Vivado 尝试启动外部进程或执行某些操作时，比如编译、生成比特流或启动仿真工具等。</p>
+                <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs wavedrom">{<br><br>    "signal": [<br><br>        {<br><br>            "name": "pclk",<br><br>            "wave": "p.....|.."<br><br>        },<br><br>        {<br><br>            "name": "data",<br><br>            "wave": "010101|01"<br><br>        },<br><br>        {<br><br>            "name": "data",<br><br>            "wave": "x23478|9x",<br><br>            "data": [<br><br>                "head",<br><br>                "2",<br><br>                "",<br><br>                "3",<br><br>                "",<br><br>                "5"<br><br>            ]<br><br>        }<br><br>    ]<br><br>}<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -388,34 +473,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/FPGA/" class="print-no-link">#FPGA</a>
-      
-    </div>
   
 </div>
 
@@ -425,8 +482,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Vivado报错集合</div>
-      <div>https://www.moerjielovecookie.icu/2024/05/01/Vivado报错集合/</div>
+      <div></div>
+      <div>https://www.moerjielovecookie.icu/2025/02/05/FIFO/</div>
     </div>
     <div class="license-meta">
       
@@ -438,7 +495,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年5月1日</div>
+          <div>2025年2月5日</div>
         </div>
       
       
@@ -470,18 +527,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/05/%E8%BF%90%E6%94%BE%E7%9A%84%E5%90%8C%E7%9B%B8%E4%B8%8E%E5%8F%8D%E7%9B%B8%E6%94%BE%E5%A4%A7/" title="运放的同相与反相放大">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">运放的同相与反相放大</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/04/25/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/" title="Matlab生成txt文件导入到Vivado仿真">
-                        <span class="hidden-mobile">Matlab生成txt文件导入到Vivado仿真</span>
+                      <a href="/2025/02/01/FPGA%E5%BC%80%E5%8F%91%E6%97%B6%E5%BA%8F%E5%9B%BE%E7%BB%98%E5%88%B6/" title="FPGA开发时序图绘制">
+                        <span class="hidden-mobile">FPGA开发时序图绘制</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
