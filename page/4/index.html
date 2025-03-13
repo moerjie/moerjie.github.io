@@ -215,6 +215,225 @@
 
 
   
+    <article id="post-QPSK simulink实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/03/24/QPSK%20simulink%E5%AE%9E%E7%8E%B0/" target="_blank">QPSK simulink实现</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/03/24/QPSK%20simulink%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+        <time datetime="2024-03-23T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-24</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="调制部分"><a href="#调制部分" class="headerlink" title="调制部分"></a>调制部分</h1><h2 id="总体框架"><a href="#总体框架" class="headerlink" title="总体框架"></a>总体框架</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212057092.png#id=LJGlx&originHeight=501&originWidth=1636&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+<h2 id="各模块参数"><a href="#各模块参数" class="headerlink" title="各模块参数"></a>各模块参数</h2><p>升余弦滚降滤波器滚降系数为 1</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401211628053.png#height=385&id=bhKfw&originHeight=599&originWidth=778&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=500" alt="image"></p>
+<p>单双极性变换</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401211629886.png#height=312&id=zaVYy&originHeight=357&originWidth=572&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=500" alt="image"></p>
+<h2 id="各阶段波形"><a href="#各阶段波形" class="headerlink" title="各阶段波形"></a>各阶段波形</h2><h2 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212121669.png#id=OcUth&originHeight=683&originWidth=830&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+<h2 id="Demux"><a href="#Demux" class="headerlink" title="Demux"></a>Demux</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212121971.png#id=nYMmd&originHeight=628&originWidth=702&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+<h2 id="Raised-Cosine-Transmit"><a href="#Raised-Cosine-Transmit" class="headerlink" title="Raised Cosine Transmit"></a>Raised Cosine Transmit</h2><p>Filter</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212127899.png#id=oRiV8&originHeight=628&originWidth=702&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+<h2 id="QPSK-信号功率谱密度"><a href="#QPSK-信号功率谱密度" class="headerlink" title="QPSK 信号功率谱密度"></a>QPSK 信号功率谱密度</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212131255.png#id=zvEIe&originHeight=664&originWidth=1002&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+<h1 id="解调部分"><a href="#解调部分" class="headerlink" title="解调部分"></a>解调部分</h1><p>经过 AWGN 信道后，假设已经进行了载波同步</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212140586.png#id=mIoHF&originHeight=433&originWidth=1257&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+<h2 id="部分模块参数"><a href="#部分模块参数" class="headerlink" title="部分模块参数"></a>部分模块参数</h2><h2 id="载波模块"><a href="#载波模块" class="headerlink" title="载波模块"></a>载波模块</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212141258.png#height=630&id=fwivS&originHeight=759&originWidth=572&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=475" alt="image"></p>
+<h2 id="Pulse-Generator"><a href="#Pulse-Generator" class="headerlink" title="Pulse Generator"></a>Pulse Generator</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212142578.png#height=643&id=jBQqM&originHeight=736&originWidth=572&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=500" alt="image"></p>
+<p>由于经过了串并转换，因此数据率减半</p>
+<h2 id="部分波形"><a href="#部分波形" class="headerlink" title="部分波形"></a>部分波形</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212150099.png#id=wGg2F&originHeight=1021&originWidth=1920&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+<p>将初始信号经过一定时间的延时后，在示波器中和解调输出的信号基本对齐，可以发现基本实现<br>QPSK 调制解调</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/pic/202401212152756.png#id=q8Kha&originHeight=1021&originWidth=1920&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=" alt="image"></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">MATLAB</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数字通信//" class="article-tag-list-link color5">数字通信</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/03/24/QPSK%20simulink%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-8bit数据转1bit逐位输出电路仿真" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/03/23/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" target="_blank">8bit数据转1bit逐位输出电路仿真</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/03/23/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" class="archive-article-date">
+        <time datetime="2024-03-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-23</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>在DVB-S系统中，TS流在经过RS编码后，会变成uint8类型的数据，在后续QPSK星座映射时又需要二进制码流，因此在进行了RS编码后要将8个bit的数据转化成1个bit逐位输出</p>
+<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>首先使用BitwiseOperator模块按位与操作，分别将8位二进制数据提取出来，然后使用一个计数器产生0~7的计数信号作为mux模块的使能，在8个时钟周期内分别输出提取出来的8位数据</p>
+<h1 id="结构框图"><a href="#结构框图" class="headerlink" title="结构框图"></a>结构框图</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1713153777444.png" alt="1713153777444.png"></p>
+<h1 id="仿真结果"><a href="#仿真结果" class="headerlink" title="仿真结果"></a>仿真结果</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1713153816902.png" alt="1713153816902.png"></p>
+<p>输入的数据是133，二进制为10000101，可以看到输出的结果符合需求</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FPGA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/FPGA//" class="article-tag-list-link color5">FPGA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/03/23/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-AXI-STREAM简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

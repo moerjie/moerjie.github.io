@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292149737.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292156578.png">
 <meta property="article:published_time" content="2024-12-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-02-05T06:45:04.606Z">
+<meta property="article:modified_time" content="2025-02-05T06:55:17.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta property="article:tag" content="数字通信">
@@ -402,7 +402,7 @@ mjx-container[display="true"] + br {
 </tr>
 </tbody></table>
 <h2 id="系数量化"><a href="#系数量化" class="headerlink" title="系数量化"></a>系数量化</h2><p>将一组数据先进行归一化处理，再乘上一个整数因子，最后进行四舍五入截尾处理即可</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">h = <span class="hljs-built_in">round</span>(h/<span class="hljs-built_in">max</span>(<span class="hljs-built_in">abs</span>(h))*(<span class="hljs-number">2</span>^N<span class="hljs-number">-1</span>)) //N为量化位数<br></code></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h = <span class="built_in">round</span>(h/<span class="built_in">max</span>(<span class="built_in">abs</span>(h))*(<span class="number">2</span>^N<span class="number">-1</span>)) //N为量化位数</span><br></pre></td></tr></table></figure>
 <h1 id="Fully-Parallel-Systolic-Architecture（全并行脉动结构）"><a href="#Fully-Parallel-Systolic-Architecture（全并行脉动结构）" class="headerlink" title="Fully Parallel Systolic Architecture（全并行脉动结构）"></a>Fully Parallel Systolic Architecture（全并行脉动结构）</h1><p>全并行脉动滤波器对对称系数、反对称系数和零值系数进行了优化。滤波器的时延受到滤波器系数的对称性影响。<br>当对称系数绝对相等时，它们共享同一个 DSP block。这种配对共享允许在实现的过程中使用 Xilinx 和 Altera 的 dsp block 中的 pre-adder。<br>对称的滤波器如果不适用对称系数优化架构的话，结构如下图的上半部分，优化后为下半部分：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292142810.png" alt="fir_arch_systolic_sym.png|500"></p>
 <h1 id="Fully-Parallel-Transposed-Architecture（全并行转置结构）"><a href="#Fully-Parallel-Transposed-Architecture（全并行转置结构）" class="headerlink" title="Fully Parallel Transposed Architecture（全并行转置结构）"></a>Fully Parallel Transposed Architecture（全并行转置结构）</h1><p>Fully Parallel Transposed Architecture 通过为任意的绝对相等的系数共享乘法器，同时移除零值系数所需的乘法器。此结构的滤波器时延为固定的 6 个 clk。<br>下图的上半部分是没有优化的部分对称滤波器，下半部分为优化后的结构：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292146523.png" alt="fir_arch_transposed_sym.png|500"></p>
 <h1 id="Partly-Serial-Systolic-Architecture-1"><a href="#Partly-Serial-Systolic-Architecture-1" class="headerlink" title="Partly Serial Systolic Architecture (1 < N < L)"></a>Partly Serial Systolic Architecture (1 &lt; N &lt; L)</h1><p>其中 N 为延时长度，L 为滤波器阶数。<br>部分串行滤波器需要 <code>M=ceil(L/N)</code> 个脉动单元，结构如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292149737.png" alt="fir_arch_systolic_partly_serial.png|500"><br>滤波器的时延为 <code>M+ceil(L/M)+5</code>。<br>如果一个乘法器对应的查找表里面的系数为 0 或者 2 的幂次，则实现过程不包含乘法器，通过移位来实现幂次的变化。</p>
