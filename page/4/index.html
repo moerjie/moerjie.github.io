@@ -215,6 +215,140 @@
 
 
   
+    <article id="post-DVB-S系统仿真学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/" target="_blank">DVB-S系统仿真学习</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
+        <time datetime="2024-03-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-27</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>DVB-S系统用于卫星电视信号传输，发送端框图如下所示</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png" alt="1711536126647.png"></p>
+<h1 id="扰码"><a href="#扰码" class="headerlink" title="扰码"></a>扰码</h1><p>实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理</p>
+<p>DVB-S标准中规定扰码的生成多项式为</p>
+<p>$$<br>p(x)&#x3D;x^{15}+x^{14}+1<br>$$</p>
+<p>同时移位寄存器的初始状态为”1001_0101_0000_000”</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536797434.png" alt="1711536797434.png"></p>
+<h2 id="Matlab代码仿真"><a href="#Matlab代码仿真" class="headerlink" title="Matlab代码仿真"></a>Matlab代码仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">n=<span class="number">500</span>;</span><br><span class="line"><span class="comment">% origin_data=randi([0 1],n,1);</span></span><br><span class="line">origin_cnt_1=nnz(origin_data==<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">scrambling = comm.Scrambler(<span class="string">&quot;CalculationBase&quot;</span>,<span class="number">2</span>,<span class="string">&quot;InitialConditions&quot;</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>], ...</span><br><span class="line">    <span class="string">&quot;Polynomial&quot;</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>]);</span><br><span class="line">scrambling_data=step(scrambling,origin_data);</span><br><span class="line">scrambling_data_cnt_1=nnz(scrambling_data==<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p>运行结果如下图所示</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536855542.png" alt="1711536855542.png"></p>
+<p>可以看出初始的500点长度的数据包中有403个“1”，经过扰码处理后“1”的个数接近数据总量的一半</p>
+<h1 id="外码纠错编码（RS编码）"><a href="#外码纠错编码（RS编码）" class="headerlink" title="外码纠错编码（RS编码）"></a>外码纠错编码（RS编码）</h1><p>RS码定义：</p>
+<p>$GF(q)上（q \neq 2, 通常q&#x3D;2^m），码长n&#x3D;q-1的本原BCH码$</p>
+<p>能纠正 t 个错误的RS码的参数为</p>
+<pre><code>- 分组长度n=q-1
+- 校验符号数n-k=2t
+- 码的最小距离dmin=2t+1
+</code></pre>
+<p>DVB-S系统中使用的RS(188，204)是由RS(239,255)截断而来的，可以纠正8个字节的错误</p>
+<h2 id="Matlab仿真"><a href="#Matlab仿真" class="headerlink" title="Matlab仿真"></a>Matlab仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">m=<span class="number">8</span>; <span class="comment">%bit per symbol</span></span><br><span class="line">n=<span class="number">204</span>;</span><br><span class="line">k=<span class="number">188</span>;</span><br><span class="line"></span><br><span class="line">data_test=randi([<span class="number">0</span>,n],<span class="number">1</span>,k);</span><br><span class="line">data_gf=gf(data_test,m);</span><br><span class="line"></span><br><span class="line">data_rs_enc=rsenc(data_gf,n,k);</span><br><span class="line">data_enc=data_rs_enc.x;</span><br><span class="line"></span><br><span class="line">data_rs_dec=rsdec(data_rs_enc,n,k);</span><br><span class="line">data_dec=data_rs_dec.x;</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">stem(data_test);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">stem(data_enc);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">stem(data_dec);</span><br></pre></td></tr></table></figure>
+
+
+<p>首先生成一个长度为188的序列，将其转换到伽罗华域后，使用rsenc函数进行RS编码，再进行译码，根据对比可以看出译码后的比特和译码前的完全一样</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711538853533.png" alt="1711538853533.png"></p>
+<h1 id="卷积交织"><a href="#卷积交织" class="headerlink" title="卷积交织"></a>卷积交织</h1><p>在实际的传输过程中，由于脉冲干扰、多径效应等因素会带来持续一定时间的突发错误，虽然RS码对突发错误有较好的纠错能力，但是当其持续时间较长时，就会超出RS码的纠错能力，因此在编码过程中引入了卷积交织，将数据的传输顺序按照一定的规律分散开，就可以使得错误的码元也被分散开</p>
+<p>DVB-S中交织深度为12，总共17个FIFO，数据按行写入寄存器，按列读出</p>
+<p>交织后最大可纠错长度为12*8&#x3D;96</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711539867512.png" alt="1711539867512.png"></p>
+<p>可以看出前一段时间读取到了很多0，说明下面的移位寄存器中的数据还没有移动到末端</p>
+<h1 id="卷积编码"><a href="#卷积编码" class="headerlink" title="卷积编码"></a>卷积编码</h1><p>卷积码是一种有效的前向纠错码记作$(n,k,m)$，将k个信息比特编为n个比特，m为编码存储长度，N&#x3D;m+1为约束长度，即卷积码的当前码元不仅与当前输入的k的信息码元有关，还与前面m个时刻输入的信息码元有关</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">clc;</span><br><span class="line">close all;</span><br><span class="line">n=<span class="number">500</span>;</span><br><span class="line">tre1=[<span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]; <span class="comment">%oct 171</span></span><br><span class="line">tre2=[<span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>]; <span class="comment">%oct 133</span></span><br><span class="line"></span><br><span class="line">trellis = poly2trellis(<span class="number">7</span>,[<span class="number">171</span> <span class="number">133</span>]);</span><br><span class="line"></span><br><span class="line">convData=convenc(scrambling_data,trellis);</span><br><span class="line"></span><br><span class="line">decData=vitdec(convData,trellis,<span class="number">499</span>,<span class="string">&quot;trunc&quot;</span>,<span class="string">&quot;hard&quot;</span>);</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">stem(scrambling_data);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">stem(convData);</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">stem(decData);</span><br><span class="line">biterr(scrambling_data,decData)</span><br></pre></td></tr></table></figure>
+
+
+<p>使用poly2trellis将卷积编码多项式转换为网格描述</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711541868504.png" alt="1711541868504.png"></p>
+<p>比对后可以看到解码出的数据和原数据完全相同</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数字通信</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数字通信//" class="article-tag-list-link color5">数字通信</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-QPSK simulink实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -712,6 +846,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FPGA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">电路</a>
               </li>
              
@@ -720,15 +858,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">FPGA</a>
+                <a href="javascript:void(0)" class="js-tag color5">数字通信</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">coding</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数字通信</a>
               </li>
              
               <li class="article-tag-list-item">
