@@ -364,16 +364,16 @@
 <h1 id="PS（处理器系统）"><a href="#PS（处理器系统）" class="headerlink" title="PS（处理器系统）"></a>PS（处理器系统）</h1><p>作为处理器系统的基础，所有芯片都包含一颗双核的 ARM Cortex- A 9 芯片。这是一颗硬处理器，是芯片上专门且优化过的硅片元件。</p>
 <p>除了“硬”处理器，还有另外一种方案，像是 MicroBlaze 这样的“软”处理器，这是由 PL 端端单元组合成的，即和 PL 端的 IP 是等价的。相比之下，“硬”处理器可以获得相对较高的性能，“软”处理器的数量和精确实现是灵活的。</p>
 <p>值得一提的是，可以在 zynq 的 PL 端分配一个或多个 MicroBlaze 软处理器，用于和硬核协同工作。比如可以让软核负责协调特定的底层功能和系统之间的配合，将要求不高的任务从硬核上脱离出来，提高整体性能。</p>
-<p><img src="https://s2.loli.net/2024/10/15/b5KAyTow21a3NXv.png" alt="b5KAyTow21a3NXv.png"></p>
+<p><img src="https://s2.loli.net/2024/10/15/b5KAyTow21a3NXv.png" srcset="/img/banner.png" lazyload alt="b5KAyTow21a3NXv.png"></p>
 <p>Zynq 的 PS 端里面并非只有 ARM 处理器，还有一组相关的处理资源，构成一个应用处理器单元（Application Processing Uint，APU），另外还有扩展外设接口、cache 存储器、存储器接口、互联接口和时钟发生电路。</p>
-<p><img src="https://s2.loli.net/2024/10/15/U2hAxkw1QgKJD7t.png" alt="U2hAxkw1QgKJD7t.png"></p>
+<p><img src="https://s2.loli.net/2024/10/15/U2hAxkw1QgKJD7t.png" srcset="/img/banner.png" lazyload alt="U2hAxkw1QgKJD7t.png"></p>
 <h1 id="PL（可编程逻辑）"><a href="#PL（可编程逻辑）" class="headerlink" title="PL（可编程逻辑）"></a>PL（可编程逻辑）</h1><p>Zynq 中的逻辑部分是基于 Artix 7 和 Kintex 7 的 fpga 组件。</p>
-<h1 id="逻辑部分"><a href="#逻辑部分" class="headerlink" title="逻辑部分"></a>逻辑部分</h1><p><img src="https://s2.loli.net/2024/10/15/yNq72JCTcwIVxbX.png" alt="yNq72JCTcwIVxbX.png"></p>
+<h1 id="逻辑部分"><a href="#逻辑部分" class="headerlink" title="逻辑部分"></a>逻辑部分</h1><p><img src="https://s2.loli.net/2024/10/15/yNq72JCTcwIVxbX.png" srcset="/img/banner.png" lazyload alt="yNq72JCTcwIVxbX.png"></p>
 <ul>
 <li>可配置逻辑块（CLB）—— CLB 是逻辑单元的小规模、普通编组，在 PL 中排列为一个二维阵列，通过可编程互联连接到其他类似的资源。每个 CLB 内都含有两个逻辑片，并紧邻一个开关矩阵。</li>
 <li>片（Slice）—— CLB 里的子单元，里面有实现组合和时序逻辑电路的资源。</li>
 </ul>
-<p><img src="https://s2.loli.net/2024/10/15/EaAknYzH7fUXWRl.png" alt="EaAknYzH7fUXWRl.png"></p>
+<p><img src="https://s2.loli.net/2024/10/15/EaAknYzH7fUXWRl.png" srcset="/img/banner.png" lazyload alt="EaAknYzH7fUXWRl.png"></p>
 <ul>
 <li><p>查找表（Lookup Table，LUT）—— 一个灵活的资源，可以实现</p>
 <ol>
@@ -394,13 +394,13 @@
 </li>
 </ul>
 <h1 id="特殊资源：DSP-48-E-1-和-BRAM"><a href="#特殊资源：DSP-48-E-1-和-BRAM" class="headerlink" title="特殊资源：DSP 48 E 1 和 BRAM"></a>特殊资源：DSP 48 E 1 和 BRAM</h1><p>这两个资源都按列排列集成在逻辑阵列中，嵌入在逻辑部分中，而且彼此靠近，原因是密集计算和给内存中存储数据往往是紧密联系的运算。</p>
-<p><img src="https://s2.loli.net/2024/10/15/4rAX3bdykQPplz1.png" alt="4rAX3bdykQPplz1.png"></p>
+<p><img src="https://s2.loli.net/2024/10/15/4rAX3bdykQPplz1.png" srcset="/img/banner.png" lazyload alt="4rAX3bdykQPplz1.png"></p>
 <h2 id="BRAM"><a href="#BRAM" class="headerlink" title="BRAM"></a>BRAM</h2><p>Zynq-7000 的 BRAM 和其他 Xilinx 7 系列 FPGA 里的 BRAM 是相同的，都可以实现 RAM、ROM、FIFO，同时还支持纠错编码。</p>
 <p>每个 BRAM 里最多可以存储 36 KB 的信息，可以被配置为一个 36 KB 的 RAM 或者两个独立的 18 KB 的 RAM。还可以被“重塑”来包含更多的更小的单元，或者组合起来组成更大容量大 RAM。</p>
 <p>使用 BRAM 意味着能在芯片内部优化的专用存储单元内，用很小的物理空间存储大量的数据。另一种方法是分布式 RAM（Distributed RAM），DRAM 是用逻辑部分里的 LUT 来搭建的，想要构成和 BRAM 大小相当的的存储器，需要用到大量的 LUT，而且实现的结果还受到剧增的逻辑和布线延迟所造成的时序性能受限的影响。另一方面，用 DRAM 实现小存储器是有优势的，这样资源利用率高，并且布局更灵活。BRAM 往往能工作在芯片支持的最高时钟频率下。</p>
 <h2 id="DSP-48-E-1"><a href="#DSP-48-E-1" class="headerlink" title="DSP 48 E 1"></a>DSP 48 E 1</h2><p>逻辑部分的 LUT 可以用来实现任意长度的算术运算，但由于长字长的算术电路会在逻辑片内占据较大的空间，这样的布局和布线会导致时钟频率是次优的，因此最好拿 LUT 做短字长的运算。</p>
 <p>DSP 48 E 1 是专门用于实现对长字长信号的高速算术运算的逻辑片，是专用的硅片资源，并且在逻辑单元内部包含了预加法器&#x2F;减法器、乘法器和后加法器&#x2F;减法器。</p>
-<p><img src="https://s2.loli.net/2024/10/15/vCgbeN8i9Xtq7Eo.png" alt="vCgbeN8i9Xtq7Eo.png"></p>
+<p><img src="https://s2.loli.net/2024/10/15/vCgbeN8i9Xtq7Eo.png" srcset="/img/banner.png" lazyload alt="vCgbeN8i9Xtq7Eo.png"></p>
 <p>后加法器还可以用作逻辑单元，此时它可以做逻辑运算，支持所有的基础布尔运算。</p>
 <p>如果需要更大字长的运算，可以将多个 DSP 组合起来做扩展。</p>
 <h1 id="通用输入-输出"><a href="#通用输入-输出" class="headerlink" title="通用输入&#x2F;输出"></a>通用输入&#x2F;输出</h1><p>Zynq 上的通用输入&#x2F;输出功能合起来被成为 SelectIO 资源，它们被组成 50 个 IOB 一组，每个 IOB 都有一个焊盘，与外部世界连接。</p>
@@ -418,7 +418,7 @@
 <h3 id="AXI-4-Lite"><a href="#AXI-4-Lite" class="headerlink" title="AXI 4-Lite"></a>AXI 4-Lite</h3><p>简化的连接，只支持每次传输一个数据。AXI 4 Lite 也是存储映射的，每次传输一个地址和单个数据。</p>
 <h3 id="AXI-4-Stream"><a href="#AXI-4-Stream" class="headerlink" title="AXI 4-Stream"></a>AXI 4-Stream</h3><p>用于高速流式数据，支持批量传输无线大小的数据。没有地址机制，适合源与目的之间的直接数据流。</p>
 <h2 id="EMIO-接口"><a href="#EMIO-接口" class="headerlink" title="EMIO 接口"></a>EMIO 接口</h2><p>EMIO 涉及两个域之间的传输，是由一组简单的导线连接实现的。</p>
-<p><img src="https://s2.loli.net/2024/10/15/s318l2SCX6zYIqE.png" alt="s318l2SCX6zYIqE.png"></p>
+<p><img src="https://s2.loli.net/2024/10/15/s318l2SCX6zYIqE.png" srcset="/img/banner.png" lazyload alt="s318l2SCX6zYIqE.png"></p>
 <h1 id="EBAZ-4205-矿板资料汇总"><a href="#EBAZ-4205-矿板资料汇总" class="headerlink" title="EBAZ 4205 矿板资料汇总"></a>EBAZ 4205 矿板资料汇总</h1><h2 id="扩展版"><a href="#扩展版" class="headerlink" title="扩展版"></a>扩展版</h2><p><a target="_blank" rel="noopener" href="https://oshwhub.com/zefff/ebaz4205-ta-zhan-ban">ebaz4205拓展板 - 立创开源硬件平台 (oshwhub.com)</a></p>
 <h2 id="开发板补全"><a href="#开发板补全" class="headerlink" title="开发板补全"></a>开发板补全</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Turix/article/details/109738107">从零开始的ZYNQ学习（基于矿卡EBAZ4205）（一）-CSDN博客</a></p>
 <h2 id="原理图相关"><a href="#原理图相关" class="headerlink" title="原理图相关"></a>原理图相关</h2><p>矿板原理图</p>

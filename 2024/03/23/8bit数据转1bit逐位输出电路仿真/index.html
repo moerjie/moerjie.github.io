@@ -357,8 +357,8 @@
                 
                 <p>在DVB-S系统中，TS流在经过RS编码后，会变成uint8类型的数据，在后续QPSK星座映射时又需要二进制码流，因此在进行了RS编码后要将8个bit的数据转化成1个bit逐位输出</p>
 <h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>首先使用BitwiseOperator模块按位与操作，分别将8位二进制数据提取出来，然后使用一个计数器产生0~7的计数信号作为mux模块的使能，在8个时钟周期内分别输出提取出来的8位数据</p>
-<h1 id="结构框图"><a href="#结构框图" class="headerlink" title="结构框图"></a>结构框图</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1713153777444.png" alt="1713153777444.png"></p>
-<h1 id="仿真结果"><a href="#仿真结果" class="headerlink" title="仿真结果"></a>仿真结果</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1713153816902.png" alt="1713153816902.png"></p>
+<h1 id="结构框图"><a href="#结构框图" class="headerlink" title="结构框图"></a>结构框图</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1713153777444.png" srcset="/img/banner.png" lazyload alt="1713153777444.png"></p>
+<h1 id="仿真结果"><a href="#仿真结果" class="headerlink" title="仿真结果"></a>仿真结果</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1713153816902.png" srcset="/img/banner.png" lazyload alt="1713153816902.png"></p>
 <p>输入的数据是133，二进制为10000101，可以看到输出的结果符合需求</p>
 
                 

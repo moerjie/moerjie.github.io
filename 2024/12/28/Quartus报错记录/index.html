@@ -355,8 +355,8 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Error-176310-Can’t-place-multiple-pins-assigned-to-pin-location-Pin-F-16-IOPAD-X-34-Y-18-N-21"><a href="#Error-176310-Can’t-place-multiple-pins-assigned-to-pin-location-Pin-F-16-IOPAD-X-34-Y-18-N-21" class="headerlink" title="Error (176310): Can’t place multiple pins assigned to pin location Pin_F 16 (IOPAD_X 34_Y 18_N 21)"></a>Error (176310): Can’t place multiple pins assigned to pin location Pin_F 16 (IOPAD_X 34_Y 18_N 21)</h1><p>报错如下<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412282018135.png"><br>可以看到 Pin_F 16 既被用于 DAC_DATA，又被用于 nCEO 引脚，因此才会报错不能将多个引脚赋到 Pin_F 16 上。</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412282020011.png"><br>将nCEO 的 value 设置为 Use as regual I&#x2F;O 即可解决问题。</p>
+                <h1 id="Error-176310-Can’t-place-multiple-pins-assigned-to-pin-location-Pin-F-16-IOPAD-X-34-Y-18-N-21"><a href="#Error-176310-Can’t-place-multiple-pins-assigned-to-pin-location-Pin-F-16-IOPAD-X-34-Y-18-N-21" class="headerlink" title="Error (176310): Can’t place multiple pins assigned to pin location Pin_F 16 (IOPAD_X 34_Y 18_N 21)"></a>Error (176310): Can’t place multiple pins assigned to pin location Pin_F 16 (IOPAD_X 34_Y 18_N 21)</h1><p>报错如下<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412282018135.png" srcset="/img/banner.png" lazyload><br>可以看到 Pin_F 16 既被用于 DAC_DATA，又被用于 nCEO 引脚，因此才会报错不能将多个引脚赋到 Pin_F 16 上。</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412282020011.png" srcset="/img/banner.png" lazyload><br>将nCEO 的 value 设置为 Use as regual I&#x2F;O 即可解决问题。</p>
 
                 
               </div>

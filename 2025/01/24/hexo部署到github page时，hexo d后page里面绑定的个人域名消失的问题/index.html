@@ -466,7 +466,7 @@ mjx-container[display="true"] + br {
             
               <div class="markdown-body">
                 
-                <p>Hexo 部署博客到 GitHub page 后，可以在 setting 中的 page 中绑定自己的域名，但是我发现更新博客后绑定的域名消失，恢复原始的 githubio 的域名。<br>后面搜索发现需要在 repo 里面添加 CNAME 文件，内容为 page 里面绑定的域名：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501242155903.png"><br>但是这样的话每次 deploy 后 CNAME 文件会消失。<br>然后我将这个文件放到本地 hexo 文件夹内的 public 文件夹中，这样的话 deploy 后 CNAME 文件就会和别的 html 文件一起推送到 GitHub 仓库里面。看似解决了，可是在调试主题的时候，运行了 hexo clean 后导致 public 文件夹被删除，CNAME 文件又没了。<br>最后的最后，了解到执行 hexo g 的时候，会 source 文件夹内的文件进行编译，因此将 CNAME 放到 source 文件夹中即可完美解决。</p>
+                <p>Hexo 部署博客到 GitHub page 后，可以在 setting 中的 page 中绑定自己的域名，但是我发现更新博客后绑定的域名消失，恢复原始的 githubio 的域名。<br>后面搜索发现需要在 repo 里面添加 CNAME 文件，内容为 page 里面绑定的域名：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501242155903.png" srcset="/img/banner.png" lazyload><br>但是这样的话每次 deploy 后 CNAME 文件会消失。<br>然后我将这个文件放到本地 hexo 文件夹内的 public 文件夹中，这样的话 deploy 后 CNAME 文件就会和别的 html 文件一起推送到 GitHub 仓库里面。看似解决了，可是在调试主题的时候，运行了 hexo clean 后导致 public 文件夹被删除，CNAME 文件又没了。<br>最后的最后，了解到执行 hexo g 的时候，会 source 文件夹内的文件进行编译，因此将 CNAME 放到 source 文件夹中即可完美解决。</p>
 
                 
               </div>

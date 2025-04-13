@@ -21,29 +21,22 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
-    <meta name="description" content="顶层 bd通过 mm-s-fifo 将 PS 侧的 GP 接口转化为 stream 接口。 调试结果2025-3-14可以看出 mm-s-fifo 的输出一直没变，后级的 ready 信号可能有问题。 mm-s-fifo 的 valid 信号有问题 解决方法勾选 cut through 后才会流式传输数据 3-16写入 fifo 时必须加入打印，后面的 valid 信号才会有效，但是 valid">
+    <meta name="description" content="一、综合选项 优化级别（-O或--optimize）  0：默认优化，缩短编译时间。 1：减少功耗（运行Power_DefaultOpt策略）。 2：提升内核速度（添加PHYS_OPT_DESIGN步骤）。 3：最高性能（启用重定时和物理优化）。 s：减少逻辑资源（运行Area_Explore策略）。 quick：缩短实现时间（启用Flow_RuntimeOptimized）。   综合策略（vi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多频点数字上变频器-调试记录">
-<meta property="og:url" content="https://www.moerjielovecookie.icu/2025/03/14/%E5%A4%9A%E9%A2%91%E7%82%B9%E6%95%B0%E5%AD%97%E4%B8%8A%E5%8F%98%E9%A2%91%E5%99%A8-%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="Vivado中关于综合的设置">
+<meta property="og:url" content="https://www.moerjielovecookie.icu/2025/04/13/Vivado%E4%B8%AD%E5%85%B3%E4%BA%8E%E7%BB%BC%E5%90%88%E7%9A%84%E8%AE%BE%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="顶层 bd通过 mm-s-fifo 将 PS 侧的 GP 接口转化为 stream 接口。 调试结果2025-3-14可以看出 mm-s-fifo 的输出一直没变，后级的 ready 信号可能有问题。 mm-s-fifo 的 valid 信号有问题 解决方法勾选 cut through 后才会流式传输数据 3-16写入 fifo 时必须加入打印，后面的 valid 信号才会有效，但是 valid">
+<meta property="og:description" content="一、综合选项 优化级别（-O或--optimize）  0：默认优化，缩短编译时间。 1：减少功耗（运行Power_DefaultOpt策略）。 2：提升内核速度（添加PHYS_OPT_DESIGN步骤）。 3：最高性能（启用重定时和物理优化）。 s：减少逻辑资源（运行Area_Explore策略）。 quick：缩短实现时间（启用Flow_RuntimeOptimized）。   综合策略（vi">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250314163606.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250314163728.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250314163740.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250315110026.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250316171423.png">
-<meta property="article:published_time" content="2025-03-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-16T09:14:59.280Z">
+<meta property="article:published_time" content="2025-04-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-13T14:17:44.790Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
-<meta property="article:tag" content="bug">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250314163606.png">
   
   
   
-  <title>多频点数字上变频器-调试记录 - Sawen_Blog</title>
+  <title>Vivado中关于综合的设置 - Sawen_Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -379,7 +372,7 @@ mjx-container[display="true"] + br {
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="多频点数字上变频器-调试记录"></span>
+            <span id="subtitle" data-typed-text="Vivado中关于综合的设置"></span>
           
         </div>
 
@@ -395,8 +388,8 @@ mjx-container[display="true"] + br {
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-14 00:00" pubdate>
-           2025 年 03 月 14 日 , 凌晨 12:00 , 星期五
+        <time datetime="2025-04-13 00:00" pubdate>
+           2025 年 04 月 13 日 , 凌晨 12:00 , 星期日
         </time>
       </span>
     
@@ -408,7 +401,7 @@ mjx-container[display="true"] + br {
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          100 字
+          489 字
         
       </span>
     
@@ -420,7 +413,7 @@ mjx-container[display="true"] + br {
         
         
           <!-- compatible with older versions-->
-          1 分钟
+          5 分钟
         
       </span>
     
@@ -466,16 +459,94 @@ mjx-container[display="true"] + br {
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">多频点数字上变频器-调试记录</h1>
+            <h1 id="seo-header">Vivado中关于综合的设置</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="顶层-bd"><a href="#顶层-bd" class="headerlink" title="顶层 bd"></a>顶层 bd</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250314163606.png" srcset="/img/banner.png" lazyload><br>通过 mm-s-fifo 将 PS 侧的 GP 接口转化为 stream 接口。</p>
-<h1 id="调试结果"><a href="#调试结果" class="headerlink" title="调试结果"></a>调试结果</h1><h2 id="2025-3-14"><a href="#2025-3-14" class="headerlink" title="2025-3-14"></a>2025-3-14</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250314163728.png" srcset="/img/banner.png" lazyload><br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250314163740.png" srcset="/img/banner.png" lazyload><br>可以看出 <code>mm-s-fifo</code> 的输出一直没变，后级的 <code>ready</code> 信号可能有问题。</p>
-<p><code>mm-s-fifo</code> 的 <code>valid</code> 信号有问题</p>
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250315110026.png" srcset="/img/banner.png" lazyload><br>勾选 <code>cut through</code> 后才会流式传输数据</p>
-<h2 id="3-16"><a href="#3-16" class="headerlink" title="3-16"></a>3-16</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250316171423.png" srcset="/img/banner.png" lazyload><br>写入 fifo 时必须加入打印，后面的 <code>valid</code> 信号才会有效，但是 <code>valid</code> 的速率很低。</p>
+                <h1 id="一、综合选项"><a href="#一、综合选项" class="headerlink" title="一、综合选项"></a><strong>一、综合选项</strong></h1><ol>
+<li><p><strong>优化级别（<code>-O</code>或<code>--optimize</code>）</strong></p>
+<ul>
+<li><code>0</code>：默认优化，缩短编译时间。</li>
+<li><code>1</code>：减少功耗（运行<code>Power_DefaultOpt</code>策略）。</li>
+<li><code>2</code>：提升内核速度（添加<code>PHYS_OPT_DESIGN</code>步骤）。</li>
+<li><code>3</code>：最高性能（启用重定时和物理优化）。</li>
+<li><code>s</code>：减少逻辑资源（运行<code>Area_Explore</code>策略）。</li>
+<li><code>quick</code>：缩短实现时间（启用<code>Flow_RuntimeOptimized</code>）。</li>
+</ul>
+</li>
+<li><p><strong>综合策略（<code>vivado.synth_strategy</code>）</strong></p>
+<ul>
+<li>包括默认策略（<code>Synthesis_Defaults</code>）、快速运行优化（<code>Flow_RuntimeOptimized</code>）及自定义策略。</li>
+</ul>
+</li>
+<li><p><strong>RTL语言选择（<code>vivado.rtl</code>）</strong></p>
+<ul>
+<li>指定为<code>verilog</code>或<code>vhdl</code>。</li>
+</ul>
+</li>
+<li><p><strong>层次管理（<code>-flatten_hierarchy</code>）</strong></p>
+<ul>
+<li>选项：<code>none</code>（保持层次）、<code>full</code>（完全展开）、<code>rebuilt</code>（后重建层次）。</li>
+</ul>
+</li>
+<li><p><strong>资源控制</strong></p>
+<ul>
+<li>门控时钟转换（<code>-gated_clock_conversion</code>）</li>
+<li>BUFG数量限制（<code>-bufg</code>）</li>
+<li>资源共享（<code>-resource_sharing</code>）。</li>
+</ul>
+</li>
+<li><p><strong>报告级别（<code>vivado.report_level</code>）</strong></p>
+<ul>
+<li><code>0</code>：综合后利用率 + 实现后时序。</li>
+<li><code>1</code>：综合/实现后详细分析。</li>
+<li><code>2</code>（默认）：包含快速失败检查。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="二、实现选项"><a href="#二、实现选项" class="headerlink" title="二、实现选项"></a><strong>二、实现选项</strong></h1><ol>
+<li><p><strong>实现策略（<code>--vivado.impl.strategies</code>）</strong></p>
+<ul>
+<li>预定义策略如性能优先（<code>Performance_Explore</code>）、资源优化（<code>Area_Explore</code>），或自定义策略。</li>
+</ul>
+</li>
+<li><p><strong>并行作业数（<code>--vivado.impl.jobs</code>）</strong></p>
+<ul>
+<li>指定Vivado实现的并行进程数（例如：<code>--vivado.impl.jobs 4</code>）。</li>
+</ul>
+</li>
+<li><p><strong>物理优化（<code>vivado.phys_opt</code>）</strong></p>
+<ul>
+<li>阶段选择：<code>none</code>、<code>place</code>（布局优化）、<code>route</code>（布线优化）或<code>all</code>。</li>
+</ul>
+</li>
+<li><p><strong>时序控制</strong></p>
+<ul>
+<li>最大时序路径数（<code>vivado.max_timing_paths</code>）：指定未满足时序时报告的路径数量。</li>
+</ul>
+</li>
+<li><p><strong>Pblock范围（<code>vivado.pblock</code>）</strong></p>
+<ul>
+<li>指定实现期间关注的逻辑区域（例如：<code>{SLICE_X8Y105:SLICE_X23Y149}</code>）。</li>
+</ul>
+</li>
+<li><p><strong>资源优化</strong></p>
+<ul>
+<li><code>--optimize</code>参数可影响资源使用（如<code>s</code>选项减少资源占用）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="三、其他关键选项"><a href="#三、其他关键选项" class="headerlink" title="三、其他关键选项"></a><strong>三、其他关键选项</strong></h1><ul>
+<li><strong>禁用IP缓存（<code>--no_ip_cache</code>）</strong>：强制工具重新生成IP综合结果。</li>
+<li><strong>自定义综合命令（<code>vivado.synth_design_args</code>）</strong>：传递额外参数至<code>synth_design</code>。</li>
+<li><strong>物理布局控制</strong>：通过LSF集群分发实现任务（<code>--vivado.impl.lsf</code>）。</li>
+</ul>
+<hr>
+<p><strong>注</strong>：部分选项需通过Vitis工具链（<code>v++</code> 命令）配置，部分可通过Vivado GUI的“Project Settings”调整（如综合策略、实现策略及并行作业数）。详细策略请参阅《Vivado Design Suite用户指南》。</p>
+<p>没时间写了，先拿 ima 生成的凑数</p>
 
                 
               </div>
@@ -511,8 +582,6 @@ mjx-container[display="true"] + br {
       
         <a href="/tags/FPGA/" class="print-no-link">#FPGA</a>
       
-        <a href="/tags/bug/" class="print-no-link">#bug</a>
-      
     </div>
   
 </div>
@@ -523,8 +592,8 @@ mjx-container[display="true"] + br {
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>多频点数字上变频器-调试记录</div>
-      <div>https://www.moerjielovecookie.icu/2025/03/14/多频点数字上变频器-调试记录/</div>
+      <div>Vivado中关于综合的设置</div>
+      <div>https://www.moerjielovecookie.icu/2025/04/13/Vivado中关于综合的设置/</div>
     </div>
     <div class="license-meta">
       
@@ -536,7 +605,7 @@ mjx-container[display="true"] + br {
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年3月14日</div>
+          <div>2025年4月13日</div>
         </div>
       
       
@@ -568,18 +637,12 @@ mjx-container[display="true"] + br {
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/04/13/Vivado%E4%B8%AD%E5%85%B3%E4%BA%8E%E7%BB%BC%E5%90%88%E7%9A%84%E8%AE%BE%E7%BD%AE/" title="Vivado中关于综合的设置">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Vivado中关于综合的设置</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/03/12/win11%20Hyper-V%E6%B6%88%E5%A4%B1/" title="win11 Hyper-V消失">
-                        <span class="hidden-mobile">win11 Hyper-V消失</span>
+                      <a href="/2025/03/14/%E5%A4%9A%E9%A2%91%E7%82%B9%E6%95%B0%E5%AD%97%E4%B8%8A%E5%8F%98%E9%A2%91%E5%99%A8-%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/" title="多频点数字上变频器-调试记录">
+                        <span class="hidden-mobile">多频点数字上变频器-调试记录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

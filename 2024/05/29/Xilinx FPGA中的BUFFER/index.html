@@ -362,15 +362,15 @@
 <p>差分信号和差分时钟进入片内后如果不经过IBUFGDS、IBUFDS缓冲就无法直接处理</p>
 <h2 id="驱动"><a href="#驱动" class="headerlink" title="驱动"></a>驱动</h2><p>当信号扇出过大时可以通过加BUFG增加信号稳定性</p>
 <p>过一次BUFG有10ns左右的延时，但是通过BUFG后输出到片上所有单元的延时都可以忽略不记</p>
-<h1 id="Buffer的类别和作用"><a href="#Buffer的类别和作用" class="headerlink" title="Buffer的类别和作用"></a>Buffer的类别和作用</h1><h2 id="BUFG"><a href="#BUFG" class="headerlink" title="BUFG"></a>BUFG</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716954745330.png" alt="1716954745330.png"></p>
+<h1 id="Buffer的类别和作用"><a href="#Buffer的类别和作用" class="headerlink" title="Buffer的类别和作用"></a>Buffer的类别和作用</h1><h2 id="BUFG"><a href="#BUFG" class="headerlink" title="BUFG"></a>BUFG</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716954745330.png" srcset="/img/banner.png" lazyload alt="1716954745330.png"></p>
 <p>BUFG是一个高扇出缓冲器，将信号连接到全局布线资源上，使得信号的延时和抖动最小</p>
 <p>通常用于时钟网络以及其他高扇出网络，比如复位和使能信号</p>
-<h2 id="BUFGCE"><a href="#BUFGCE" class="headerlink" title="BUFGCE"></a>BUFGCE</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716954943324.png" alt="1716954943324.png"></p>
+<h2 id="BUFGCE"><a href="#BUFGCE" class="headerlink" title="BUFGCE"></a>BUFGCE</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716954943324.png" srcset="/img/banner.png" lazyload alt="1716954943324.png"></p>
 <p>BUFGCE具有单门控输入的全局时钟缓冲器，CE高电平有效</p>
 <p>当CE为低电平时 O 端口输出0</p>
-<h2 id="BUFH"><a href="#BUFH" class="headerlink" title="BUFH"></a>BUFH</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716962343955.png" alt="1716962343955.png"></p>
+<h2 id="BUFH"><a href="#BUFH" class="headerlink" title="BUFH"></a>BUFH</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716962343955.png" srcset="/img/banner.png" lazyload alt="1716962343955.png"></p>
 <p>BUFH原语允许直接访问BUFG的时钟区域入口，允许访问全局时钟网络中未使用的部分，作为高速低偏移的本地路由资源（单时钟区域）</p>
-<h2 id="IBUFDS"><a href="#IBUFDS" class="headerlink" title="IBUFDS"></a>IBUFDS</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716963068218.png" alt="1716963068218.png"></p>
+<h2 id="IBUFDS"><a href="#IBUFDS" class="headerlink" title="IBUFDS"></a>IBUFDS</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716963068218.png" srcset="/img/banner.png" lazyload alt="1716963068218.png"></p>
 <p>支持低压差分信号输入的缓冲器，有两个输入的端口，一个为主端口一个为从端口，输入的信号相位相反</p>
 <h2 id="IBUFDS-GTE2"><a href="#IBUFDS-GTE2" class="headerlink" title="IBUFDS_GTE2"></a>IBUFDS_GTE2</h2><p>7系列器件中的Gbit 收发器输入缓冲，REFCLK应连接到串行收发器的专用参考时钟输入引脚</p>
 <h2 id="OBUFDS"><a href="#OBUFDS" class="headerlink" title="OBUFDS"></a>OBUFDS</h2><p>差分信号输出缓冲器</p>

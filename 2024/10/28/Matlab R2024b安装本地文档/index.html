@@ -361,21 +361,21 @@
 </details>
 
 
-<h1 id="挂载后导航到镜像中的安装包文件夹"><a href="#挂载后导航到镜像中的安装包文件夹" class="headerlink" title="挂载后导航到镜像中的安装包文件夹"></a>挂载后导航到镜像中的安装包文件夹</h1><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;mountedDocImage&gt;/bin/&lt;arch&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="挂载后导航到镜像中的安装包文件夹"><a href="#挂载后导航到镜像中的安装包文件夹" class="headerlink" title="挂载后导航到镜像中的安装包文件夹"></a>挂载后导航到镜像中的安装包文件夹</h1><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">cd &lt;mountedDocImage&gt;/bin/&lt;arch&gt;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><code>&lt;mountedDocImage&gt;</code> 是装载的文档 ISO 或 DMG 镜像的根目录。</li>
 <li><code>&lt;arch&gt;</code> 是 ISO 或 DMG 镜像的操作系统架构文件夹，例如 <code>win64</code>、<code>glnxa64</code>、<code>maci64</code> 或 <code>maca64</code></li>
 </ul>
 <h1 id="使用mpm-install-doc命令运行文档安装程序"><a href="#使用mpm-install-doc命令运行文档安装程序" class="headerlink" title="使用mpm install-doc命令运行文档安装程序"></a>使用mpm install-doc命令运行文档安装程序</h1><p>为了将文档安装到指定的位置，要使用**—destination<strong>命令，用</strong>—source**命令指定安装程序文件路径</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.\mpm install-doc --matlabroot=&lt;matlabrootfolder&gt; --source=&lt;docinstallfolder&gt; </span><br><span class="line">--destination=&lt;destinationfolder&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs matlab">.\mpm install-doc --matlabroot=&lt;matlabrootfolder&gt; --source=&lt;docinstallfolder&gt; <br>--destination=&lt;destinationfolder&gt;<br></code></pre></td></tr></table></figure>
 
 
 <h1 id="配置MATLAB"><a href="#配置MATLAB" class="headerlink" title="配置MATLAB"></a>配置MATLAB</h1><ol>
 <li>预设项中，将<strong>帮助</strong>中的文档位置选为<strong>本地</strong></li>
 <li>在<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/userpath.html">userpath</a>中创建startup.m文件，使用<strong>docroot命令</strong> 指定帮助文档的路径</li>
 </ol>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202410281935483.png" alt="2024after4202410281935483.png"></p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202410281935483.png" srcset="/img/banner.png" lazyload alt="2024after4202410281935483.png"></p>
 <h1 id="验证本地安装"><a href="#验证本地安装" class="headerlink" title="验证本地安装"></a><strong>验证本地安装</strong></h1><p>验证文档是否在本地打开。在 MATLAB 命令提示符下，输入：<code>doc</code></p>
 <p>在打开的浏览器页面中，检查 URL 的地址。</p>
 <ul>

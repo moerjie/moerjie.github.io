@@ -473,30 +473,30 @@ mjx-container[display="true"] + br {
                 
                 <p>开始的时候画时序图都是拿 visio 硬连，但是那个线宽太难统一了，丑不拉几的，遂学习 waveform 语法使用代码来画时序图。</p>
 <h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>Vscode 中安装 waveform render 或者在 GitHub 搜索 wavedrom 安装即可。由于 vscode 是我常用的编辑器，所以选择在 vscode 安装插件的方式来学习使用 waveform。<br>在 vscode 中创建一个 json 文件，内容</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">{</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">"signal"</span><span class="punctuation">:</span><span class="punctuation">[</span></span><br><span class="line"></span><br><span class="line">        <span class="punctuation">{</span><span class="attr">"name"</span><span class="punctuation">:</span><span class="string">"clk"</span><span class="punctuation">,</span><span class="attr">"wave"</span><span class="punctuation">:</span><span class="string">"p....."</span><span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">        <span class="punctuation">{</span><span class="attr">"name"</span><span class="punctuation">:</span><span class="string">"data"</span><span class="punctuation">,</span><span class="attr">"wave"</span><span class="punctuation">:</span><span class="string">"010101"</span><span class="punctuation">}</span></span><br><span class="line"></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></table></figure>
-<p>在命令面板中选择如下命令后即可查看渲染结果：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011457187.png" alt="|460"></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">{</span><br><br>    <span class="hljs-attr">"signal"</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><br><br>        <span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"clk"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"wave"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"p....."</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><br><br>        <span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"data"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"wave"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"010101"</span><span class="hljs-punctuation">}</span><br><br>    <span class="hljs-punctuation">]</span><br><br><span class="hljs-punctuation">}</span><br></code></pre></td></tr></table></figure>
+<p>在命令面板中选择如下命令后即可查看渲染结果：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011457187.png" srcset="/img/banner.png" lazyload alt="|460"></p>
 <h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h2 id="时钟信号"><a href="#时钟信号" class="headerlink" title="时钟信号"></a>时钟信号</h2><ul>
 <li><code>p</code> 表示上升沿开始的方波</li>
 <li><code>n</code> 表示下降沿开始的方波</li>
 <li><code>l</code> 表示低电平</li>
 <li><code>h</code> 表示高电平</li>
-<li>大写会在方波边沿绘制箭头<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011502739.png" alt="|300"><br>代码渲染出的时序图为：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011504967.png" alt="|365"></li>
+<li>大写会在方波边沿绘制箭头<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011502739.png" srcset="/img/banner.png" lazyload alt="|300"><br>代码渲染出的时序图为：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011504967.png" srcset="/img/banner.png" lazyload alt="|365"></li>
 </ul>
 <h2 id="数据信号"><a href="#数据信号" class="headerlink" title="数据信号"></a>数据信号</h2><ul>
 <li><p><code>0</code> 和 <code>1</code></p>
 </li>
 <li><p><code>x</code> 表示未知状态</p>
 </li>
-<li><p>=表示有效数据，也可写成 <code>2~9</code>，会用不同的颜色显示，并且可用 <code>data</code> 变量加上文本标签<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011511049.png" alt="500"></p>
+<li><p>=表示有效数据，也可写成 <code>2~9</code>，会用不同的颜色显示，并且可用 <code>data</code> 变量加上文本标签<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011511049.png" srcset="/img/banner.png" lazyload alt="500"></p>
 </li>
-<li><p>可以用 <code>|</code> 表示省略一段信号<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011512460.png" alt="500"><br><code>period</code> 和 <code>phase</code> 变量用于调整时序</p>
+<li><p>可以用 <code>|</code> 表示省略一段信号<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011512460.png" srcset="/img/banner.png" lazyload alt="500"><br><code>period</code> 和 <code>phase</code> 变量用于调整时序</p>
 </li>
 <li><p><code>period</code> 的值应该是一个数字 n ，表示横向等比例放大或缩小</p>
 </li>
 <li><p><code>phase</code> 的值应该是一个数字 n ，表示横向的位置调整，单位是一个时钟周期：</p>
 <ul>
 <li>如果是正数，表示向左移动 n 个时钟周期</li>
-<li>如果是负数，表示向右移动 n 个时钟周期<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011519462.png" alt="500"><br>多个信号可以用 <code>['group name', {...}, {...}, ...]</code> 语法编成一组，而且支持嵌套<br>时序绘制完毕后，还可以对图片进行修饰。 <code>"config": { "hscale": n }</code> 表示将图片横向等比例放大 n 倍。<code>"head":{ }</code> 和 <code>"foot":{ }</code> 分别表示在时序图的上方和下方添加一些内容：</li>
+<li>如果是负数，表示向右移动 n 个时钟周期<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502011519462.png" srcset="/img/banner.png" lazyload alt="500"><br>多个信号可以用 <code>['group name', {...}, {...}, ...]</code> 语法编成一组，而且支持嵌套<br>时序绘制完毕后，还可以对图片进行修饰。 <code>"config": { "hscale": n }</code> 表示将图片横向等比例放大 n 倍。<code>"head":{ }</code> 和 <code>"foot":{ }</code> 分别表示在时序图的上方和下方添加一些内容：</li>
 </ul>
 </li>
 <li><p><code>text</code> 变量应该设置一个字符串，表示添加一行文本</p>
