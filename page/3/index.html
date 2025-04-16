@@ -400,15 +400,15 @@ mjx-container[display="true"] + br {
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-Nobel%E6%81%92%E7%AD%89%E5%BC%8F/" target="_self">
-          多速率信号处理-Nobel恒等式
+        <a href="/2024/09/21/HDL%20coder%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" target="_self">
+          HDL coder使用手册
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-Nobel%E6%81%92%E7%AD%89%E5%BC%8F/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/21/HDL%20coder%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" target="_self">
         <div>
-          典型的插值器的结构，滤波器位于插值操作后，意味着滤波器工作在较高的采样率下，对滤波器的设计带来压力。可以通过恒等变换将插值操作后置，滤波器前置，简化系统的设计。 第一恒等式表明抽取操作位于乘加操作之后和抽取操作位于乘加之前是等效的。  第二恒等式M个延迟之后再进行M抽取和M抽取之后再进行1个延迟是等效的。  第三恒等式信号通过滤波器H（zM ）并经M抽取后与信号通过M抽取并经滤波器H（z）是等效的
+          💡 由于本科毕设女朋友准备使用FPGA完成，因此写这篇文章帮助她快速上手HDL coder的使用，降低前期入门的难度。  支持生成HDL代码的simulink库 名字中含有HDL的库中的模块一般都可以用来生成HDL代码。直接搜索模块名称，比如搜索fir，  可以看到旁边会显示位于哪个库中，模块有可能位于多个库，只要有一个库的名字里面有HDL，就代表这个模块可以用来生成HDL代码。 一些常用操作
         </div>
       </a>
 
@@ -416,17 +416,40 @@ mjx-container[display="true"] + br {
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-10 00:00" pubdate>
-              2024-09-10
+            <time datetime="2024-09-21 00:00" pubdate>
+              2024-09-21
             </time>
           </div>
         
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+              <a href="/tags/MATLAB/">#MATLAB</a>
             
           </div>
         
@@ -440,15 +463,15 @@ mjx-container[display="true"] + br {
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E6%8F%92%E5%80%BC%E5%92%8C%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/" target="_self">
-          多速率信号处理-插值和插值滤波器
+        <a href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-Nobel%E6%81%92%E7%AD%89%E5%BC%8F/" target="_self">
+          多速率信号处理-Nobel恒等式
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E6%8F%92%E5%80%BC%E5%92%8C%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-Nobel%E6%81%92%E7%AD%89%E5%BC%8F/" target="_self">
         <div>
-          插值意味着提高采样率，故而被称为上采样（Up Sample）。设原始序列为，采样率为，插值因子为，则插值的过程为原始序列每相邻两个样点之间插入个构成一个新序列，数学表达式为其他以表示的采样率，则采样率之间的关系为  图示如下：  从频域角度看， 原始序列的频谱以为周期做周期延拓。  插值后的新序列以新的采样率做周期延拓。  可以看到插值前后频谱成分不变，但是在的整数倍频点处的频谱称为镜像成分。所以
+          典型的插值器的结构，滤波器位于插值操作后，意味着滤波器工作在较高的采样率下，对滤波器的设计带来压力。可以通过恒等变换将插值操作后置，滤波器前置，简化系统的设计。 第一恒等式表明抽取操作位于乘加操作之后和抽取操作位于乘加之前是等效的。  第二恒等式M个延迟之后再进行M抽取和M抽取之后再进行1个延迟是等效的。  第三恒等式信号通过滤波器H（zM ）并经M抽取后与信号通过M抽取并经滤波器H（z）是等效的
         </div>
       </a>
 
@@ -583,6 +606,46 @@ mjx-container[display="true"] + br {
 </span>
 
           </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E6%8F%92%E5%80%BC%E5%92%8C%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/" target="_self">
+          多速率信号处理-插值和插值滤波器
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E6%8F%92%E5%80%BC%E5%92%8C%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/" target="_self">
+        <div>
+          插值意味着提高采样率，故而被称为上采样（Up Sample）。设原始序列为，采样率为，插值因子为，则插值的过程为原始序列每相邻两个样点之间插入个构成一个新序列，数学表达式为其他以表示的采样率，则采样率之间的关系为  图示如下：  从频域角度看， 原始序列的频谱以为周期做周期延拓。  插值后的新序列以新的采样率做周期延拓。  可以看到插值前后频谱成分不变，但是在的整数倍频点处的频谱称为镜像成分。所以
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-10 00:00" pubdate>
+              2024-09-10
+            </time>
+          </div>
+        
         
         
           <div class="post-meta">
@@ -773,9 +836,9 @@ mjx-container[display="true"] + br {
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/FPGA/">#FPGA</a>
-            
               <a href="/tags/%E7%94%B5%E8%B7%AF/">#电路</a>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
             
           </div>
         
@@ -1207,69 +1270,6 @@ mjx-container[display="true"] + br {
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/FPGA/">#FPGA</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/04/25/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/" target="_self">
-          Matlab生成txt文件导入到Vivado仿真
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/25/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/" target="_self">
-        <div>
-          Matlab处理数据并将其写入txt文件1234567%% Txt Generatepre_RS_data=dec2bin(simDataIn,8);       %将数据转化为8bit的二进制fid=fopen(&quot;F:\FPGA\Xilinx_vivado\project\dvbstestbench\dbvs\matlab\pre_RS_data.txt&quot;,&quot;wt&
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-04-25 00:00" pubdate>
-              2024-04-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/FPGA/">#FPGA</a>
-            
-              <a href="/tags/MATLAB/">#MATLAB</a>
             
           </div>
         
