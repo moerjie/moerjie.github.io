@@ -21,24 +21,22 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
-    <meta name="description" content="Unable to connect to bitbake server编译时卡住，检查 build.log 发现 log 文件提示 Unable to connect to bitbake server，此时只需要将 build 文件夹下的 bitbake.lock 删除即可 Login incorrect在最新版的UG1144 (v2022.2) 文档中，可以发现当前的 petalinux 登录">
+    <meta name="description" content="WSL 2 安装的 Ubuntu-20.04 默认的显示管理器是 gdm。默认情况下运行 vivado 的安装程序启动 gui 后，页面发生改变时就会花屏，修改缩放也无法修复。 解决方法安装 kde，将显示管理器修改为 ssdm 后即可修复该问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Petalinux报错记录">
-<meta property="og:url" content="https://www.moerjielovecookie.icu/2025/02/27/Petalinux%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="WSL2 Ubuntu-20.04LTS启动某些软件的gui时花屏">
+<meta property="og:url" content="https://www.moerjielovecookie.icu/2025/04/19/WSL2%20Ubuntu-20.04LTS%E5%90%AF%E5%8A%A8%E6%9F%90%E4%BA%9B%E8%BD%AF%E4%BB%B6%E7%9A%84gui%E6%97%B6%E8%8A%B1%E5%B1%8F/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="Unable to connect to bitbake server编译时卡住，检查 build.log 发现 log 文件提示 Unable to connect to bitbake server，此时只需要将 build 文件夹下的 bitbake.lock 删除即可 Login incorrect在最新版的UG1144 (v2022.2) 文档中，可以发现当前的 petalinux 登录">
+<meta property="og:description" content="WSL 2 安装的 Ubuntu-20.04 默认的显示管理器是 gdm。默认情况下运行 vivado 的安装程序启动 gui 后，页面发生改变时就会花屏，修改缩放也无法修复。 解决方法安装 kde，将显示管理器修改为 ssdm 后即可修复该问题。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1740744328234.png">
-<meta property="article:published_time" content="2025-02-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-19T13:05:23.047Z">
+<meta property="article:published_time" content="2025-04-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-20T03:53:20.465Z">
 <meta property="article:author" content="Sawen Moerjie">
-<meta property="article:tag" content="FPGA">
+<meta property="article:tag" content="bug">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1740744328234.png">
   
   
   
-  <title>Petalinux报错记录 - Sawen_Blog</title>
+  <title>WSL2 Ubuntu-20.04LTS启动某些软件的gui时花屏 - Sawen_Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -374,7 +372,7 @@ mjx-container[display="true"] + br {
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Petalinux报错记录"></span>
+            <span id="subtitle" data-typed-text="WSL2 Ubuntu-20.04LTS启动某些软件的gui时花屏"></span>
           
         </div>
 
@@ -390,8 +388,8 @@ mjx-container[display="true"] + br {
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-02-27 00:00" pubdate>
-           2025 年 02 月 27 日 , 凌晨 12:00 , 星期四
+        <time datetime="2025-04-19 00:00" pubdate>
+           2025 年 04 月 19 日 , 凌晨 12:00 , 星期六
         </time>
       </span>
     
@@ -403,7 +401,7 @@ mjx-container[display="true"] + br {
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          134 字
+          76 字
         
       </span>
     
@@ -415,7 +413,7 @@ mjx-container[display="true"] + br {
         
         
           <!-- compatible with older versions-->
-          2 分钟
+          1 分钟
         
       </span>
     
@@ -461,18 +459,13 @@ mjx-container[display="true"] + br {
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Petalinux报错记录</h1>
+            <h1 id="seo-header">WSL2 Ubuntu-20.04LTS启动某些软件的gui时花屏</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Unable-to-connect-to-bitbake-server"><a href="#Unable-to-connect-to-bitbake-server" class="headerlink" title="Unable to connect to bitbake server"></a>Unable to connect to bitbake server</h1><p>编译时卡住，检查 <code>build.log</code> 发现 <code>log</code> 文件提示 <code>Unable to connect to bitbake server</code>，此时只需要将 <code>build</code> 文件夹下的 <code>bitbake.lock</code> 删除即可</p>
-<h1 id="Login-incorrect"><a href="#Login-incorrect" class="headerlink" title="Login incorrect"></a>Login incorrect</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1740744328234.png" srcset="/img/banner.png" lazyload><br>在最新版的UG1144 (v2022.2) 文档中，可以发现当前的 petalinux 登录的用户名为 <code>petalinux</code>，密码在第一次 boot 的时候设置。</p>
-<h1 id="The-busybox-do-compile-sig-is-computed-to-be-9-d-71366-ed-13-abee-85683-f-77-d-88-c-75-ecbae-7-d-20-d-529014-e-1-da-8137631-f-8660-fb-2-but-the-sig-is-locked-to-101-bdd-12-e-211-f-67-f-8-c-0-bf-142-a-8-b-73-aed-7-f-4035684-a-921000-f-805-f-7-ff-5446-d-3-c-8-in-SIGGEN-LOCKEDSIGS-t-cortexa-9-t-2-hf-neon"><a href="#The-busybox-do-compile-sig-is-computed-to-be-9-d-71366-ed-13-abee-85683-f-77-d-88-c-75-ecbae-7-d-20-d-529014-e-1-da-8137631-f-8660-fb-2-but-the-sig-is-locked-to-101-bdd-12-e-211-f-67-f-8-c-0-bf-142-a-8-b-73-aed-7-f-4035684-a-921000-f-805-f-7-ff-5446-d-3-c-8-in-SIGGEN-LOCKEDSIGS-t-cortexa-9-t-2-hf-neon" class="headerlink" title="The busybox: do_compile sig is computed to be 9 d 71366 ed 13 abee 85683 f 77 d 88 c 75 ecbae 7 d 20 d 529014 e 1 da 8137631 f 8660 fb 2, but the sig is locked to 101 bdd 12 e 211 f 67 f 8 c 0 bf 142 a 8 b 73 aed 7 f 4035684 a 921000 f 805 f 7 ff 5446 d 3 c 8 in SIGGEN_LOCKEDSIGS_t-cortexa 9 t 2 hf-neon"></a>The busybox: do_compile sig is computed to be 9 d 71366 ed 13 abee 85683 f 77 d 88 c 75 ecbae 7 d 20 d 529014 e 1 da 8137631 f 8660 fb 2, but the sig is locked to 101 bdd 12 e 211 f 67 f 8 c 0 bf 142 a 8 b 73 aed 7 f 4035684 a 921000 f 805 f 7 ff 5446 d 3 c 8 in SIGGEN_LOCKEDSIGS_t-cortexa 9 t 2 hf-neon</h1><p>该警告表明修改了被 sstate 锁定的固件，解决方法如下：<br>在项目的 <code>project-spec/meta-user/conf/petalinuxbsp.conf</code> 中添加</p>
-<blockquote>
-<p>[!note]<br>SIGGEN_UNLOCKED_RECIPES += “busybox”</p>
-</blockquote>
-<p>告知构建系统忽略此组件的签名锁定，接受本地修改。</p>
+                <p>WSL 2 安装的 Ubuntu-20.04 默认的显示管理器是 gdm。默认情况下运行 vivado 的安装程序启动 gui 后，页面发生改变时就会花屏，修改缩放也无法修复。</p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>安装 kde，将显示管理器修改为 ssdm 后即可修复该问题。</p>
 
                 
               </div>
@@ -491,7 +484,7 @@ mjx-container[display="true"] + br {
     
       <span class="category-chain">
         
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  <a href="/categories/%E6%9D%82%E7%B1%BB/" class="category-chain-item">杂类</a>
   
   
 
@@ -506,7 +499,7 @@ mjx-container[display="true"] + br {
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/FPGA/" class="print-no-link">#FPGA</a>
+        <a href="/tags/bug/" class="print-no-link">#bug</a>
       
     </div>
   
@@ -518,8 +511,8 @@ mjx-container[display="true"] + br {
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Petalinux报错记录</div>
-      <div>https://www.moerjielovecookie.icu/2025/02/27/Petalinux报错记录/</div>
+      <div>WSL2 Ubuntu-20.04LTS启动某些软件的gui时花屏</div>
+      <div>https://www.moerjielovecookie.icu/2025/04/19/WSL2 Ubuntu-20.04LTS启动某些软件的gui时花屏/</div>
     </div>
     <div class="license-meta">
       
@@ -531,7 +524,7 @@ mjx-container[display="true"] + br {
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年2月27日</div>
+          <div>2025年4月19日</div>
         </div>
       
       
@@ -563,9 +556,9 @@ mjx-container[display="true"] + br {
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/02/27/Petalinux/" title="Petalinux">
+                      <a href="/2025/04/19/C%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86%E5%A4%8D%E4%B9%A0/" title="C语言知识复习">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Petalinux</span>
+                        <span class="hidden-mobile">C语言知识复习</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -573,8 +566,8 @@ mjx-container[display="true"] + br {
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/02/06/FIFO/" title="FIFO">
-                        <span class="hidden-mobile">FIFO</span>
+                      <a href="/2025/04/16/%E4%B8%8D%E5%90%8C%E6%B3%A2%E6%AE%B5%E7%94%B5%E7%A3%81%E6%B3%A2%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/" title="不同波段电磁波的特点和使用场景">
+                        <span class="hidden-mobile">不同波段电磁波的特点和使用场景</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
