@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1740744328234.png">
 <meta property="article:published_time" content="2025-02-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-19T13:05:23.047Z">
+<meta property="article:modified_time" content="2025-05-03T03:31:05.948Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta name="twitter:card" content="summary_large_image">
@@ -403,7 +403,7 @@ mjx-container[display="true"] + br {
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          134 字
+          166 字
         
       </span>
     
@@ -473,6 +473,8 @@ mjx-container[display="true"] + br {
 <p>[!note]<br>SIGGEN_UNLOCKED_RECIPES += “busybox”</p>
 </blockquote>
 <p>告知构建系统忽略此组件的签名锁定，接受本地修改。</p>
+<h1 id="Package-require-xsdb-FAILED-Error-loading-hsi-package-couldn’t-load-file-“libxv-commontasks-So”-libtinfo-So-5-cannot-open-shared-object-file-No-such-file-or-directory-While-executing"><a href="#Package-require-xsdb-FAILED-Error-loading-hsi-package-couldn’t-load-file-“libxv-commontasks-So”-libtinfo-So-5-cannot-open-shared-object-file-No-such-file-or-directory-While-executing" class="headerlink" title="Package require xsdb FAILED: Error loading hsi package: couldn’t load file “libxv_commontasks. So”: libtinfo. So. 5: cannot open shared object file: No such file or directory While executing"></a>Package require xsdb FAILED: Error loading hsi package: couldn’t load file “libxv_commontasks. So”: libtinfo. So. 5: cannot open shared object file: No such file or directory While executing</h1><p>该错误是缺少了链接库，安装后即可正常运行 petalinux</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">sudo apt-<span class="hljs-built_in">get</span> install libtinfo5<br></code></pre></td></tr></table></figure>
 
                 
               </div>
