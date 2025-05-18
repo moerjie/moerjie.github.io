@@ -29,8 +29,12 @@
 <meta property="og:description" content="STM 32 相关外设接口学习SPISPI 全称为 Serial Peripheral interface，串行外围设备接口。SPI 的结构框图如下：SPI 的引脚信息为  MISO（Master In &#x2F; Slave Out）：主设备数据输入，从设备数据输出。 MOSI（Master Out &#x2F; Slave In）：主设备数据输出，从设备数据输入。 SCLK（Serial Clock）：时钟信号">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250509203135.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250509211500.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250509212018.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250509213425.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250509214620.png">
 <meta property="article:published_time" content="2025-05-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-05-09T12:48:13.499Z">
+<meta property="article:modified_time" content="2025-05-09T13:46:48.291Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="MCU">
 <meta name="twitter:card" content="summary_large_image">
@@ -403,7 +407,7 @@ mjx-container[display="true"] + br {
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          251 字
+          610 字
         
       </span>
     
@@ -415,7 +419,7 @@ mjx-container[display="true"] + br {
         
         
           <!-- compatible with older versions-->
-          3 分钟
+          6 分钟
         
       </span>
     
@@ -471,8 +475,84 @@ mjx-container[display="true"] + br {
 <li>MISO（Master In / Slave Out）：主设备数据输入，从设备数据输出。</li>
 <li>MOSI（Master Out / Slave In）：主设备数据输出，从设备数据输入。</li>
 <li>SCLK（Serial Clock）：时钟信号，主设备输出。</li>
-<li>CS（Chip Select）：从设备片选信号，主设备输出。<br>==工作原理==：在进行 SPI 通信的从机和主机中都有一个 Shift Register，主机通过向它本身的移位寄存器写入一个 Byte 的数据发起一次传输。移位寄存器通过 MOSI 将字节传输给从机，同时从机将字节的移位寄存器中的内容通过 MISO 传输到主机，这样即可实现两个移位寄存器中的数据交换。因此，如果只进行写操作，主机忽略接收到的数据即可，如果主机想要读取从机的数据，则发送一个空字节引发从机传输。</li>
+<li>CS（Chip Select）：从设备片选信号，主设备输出。<br>==工作原理==：在进行 SPI 通信的从机和主机中都有一个 Shift Register，主机通过向它本身的移位寄存器写入一个 Byte 的数据发起一次传输。移位寄存器通过 MOSI 将字节传输给从机，同时从机将字节的移位寄存器中的内容通过 MISO 传输到主机，这样即可实现两个移位寄存器中的数据交换。因此，如果只进行写操作，主机忽略接收到的数据即可，如果主机想要读取从机的数据，则发送一个空字节引发从机传输。<br>SPI 支持全双工、半双工、单工传输方式。</li>
 </ol>
+<h3 id="SPI-工作模式"><a href="#SPI-工作模式" class="headerlink" title="SPI 工作模式"></a>SPI 工作模式</h3><p>SPI 的工作模式由 CPOL 和 CPHA 决定，它们都有 0、1 两种状态，因此 SPI 有四种工作模式。</p>
+<table>
+<thead>
+<tr>
+<th>工作模式</th>
+<th>CPOL</th>
+<th>CPHA</th>
+<th>SCL 空闲状态</th>
+<th>采样边沿</th>
+<th>采样时刻</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>低电平</td>
+<td>上升沿</td>
+<td>奇数边沿</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>低电平</td>
+<td>下降沿</td>
+<td>偶数边沿</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>高电平</td>
+<td>下降沿</td>
+<td>奇数边沿</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>高电平</td>
+<td>上升沿</td>
+<td>偶数边沿</td>
+</tr>
+<tr>
+<td>由表可知，CPOL 决定 SCL 空闲状态时为高电平还是低电平，CPHA 决定是在时钟的奇数边沿采样还是在偶数边沿采样。</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="SPI-寄存器"><a href="#SPI-寄存器" class="headerlink" title="SPI 寄存器"></a>SPI 寄存器</h3><h4 id="SPI-CR-1（SPI-控制寄存器-1）"><a href="#SPI-CR-1（SPI-控制寄存器-1）" class="headerlink" title="SPI_CR 1（SPI 控制寄存器 1）"></a>SPI_CR 1（SPI 控制寄存器 1）</h4><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250509211500.png" srcset="/img/banner.png" lazyload></p>
+<ul>
+<li>Bit 11 DFF：数据帧格式，0：8 位数据帧，1：16 位 </li>
+<li>Bit 10 RXONLY：只接收。0：全双工，1：只接收</li>
+<li>Bit 7：帧格式。0：先发送 MSB，1：先发送 LSB。<strong>通信时不应该修改此位</strong></li>
+<li>Bit 6：SPI 使能。0：关闭外设，1：使能外设。</li>
+<li>Bit 5-3：BR[2:0]：控制波特率。<ul>
+<li><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250509212018.png" srcset="/img/banner.png" lazyload></li>
+</ul>
+</li>
+<li>Bit 2：主模式选择。0：从模式，1：主模式</li>
+<li>Bit 1：CPOL</li>
+<li>Bit 0：CPHA</li>
+</ul>
+<h4 id="SPI-SR（SPI-状态寄存器）"><a href="#SPI-SR（SPI-状态寄存器）" class="headerlink" title="SPI_SR（SPI 状态寄存器）"></a>SPI_SR（SPI 状态寄存器）</h4><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250509213425.png" srcset="/img/banner.png" lazyload></p>
+<ul>
+<li>15-9 位保留，强制为 0</li>
+<li>Bit 8：帧格式错误。0：无帧格式错误，1：有帧格式错误</li>
+<li>Bit 7：忙标志。0：未处于忙状态，1：SPI 处于通信状态或者 Tx buffer 不空</li>
+<li>Bit 1：发送 buffer 空。0：非空，1：空</li>
+<li>Bit 0：接收 buffer 非空。0：空，1：不空</li>
+</ul>
+<h4 id="SPI-DR（SPI-数据寄存器）"><a href="#SPI-DR（SPI-数据寄存器）" class="headerlink" title="SPI_DR（SPI 数据寄存器）"></a>SPI_DR（SPI 数据寄存器）</h4><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250509214620.png" srcset="/img/banner.png" lazyload><br>当数据帧为 8 位时只使用低八位，16 位时使用整个寄存器</p>
 
                 
               </div>
