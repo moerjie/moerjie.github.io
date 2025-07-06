@@ -21,13 +21,15 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="Type-C插头常见的pin数有6P、12P、16P、24P，不同pin数在功能、应用场景和成本等方面存在区别，以下为你详细介绍： 0.1 引脚定义Type-C接口插头引脚功能定义如下：    Pin 名称 功能描述    A1 GND 接地   A2 SSTXp1 SuperSpeed差分信号#1，TX，正   A3 SSTXn1 SuperSpeed差分信号#1，TX，负   A4 VBUS">
+<meta property="og:type" content="article">
 <meta property="og:title" content="TypeC接口协议">
 <meta property="og:url" content="https://www.moerjielovecookie.icu/2025/06/12/TypeC/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:description" content="Type-C插头常见的pin数有6P、12P、16P、24P，不同pin数在功能、应用场景和成本等方面存在区别，以下为你详细介绍： 0.1 引脚定义Type-C接口插头引脚功能定义如下：    Pin 名称 功能描述    A1 GND 接地   A2 SSTXp1 SuperSpeed差分信号#1，TX，正   A3 SSTXn1 SuperSpeed差分信号#1，TX，负   A4 VBUS">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-06-12T13:41:52.000Z">
+<meta property="article:modified_time" content="2025-06-25T14:48:08.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="电路">
 <meta name="twitter:card" content="summary_large_image">
@@ -399,7 +401,7 @@ mjx-container[display="true"] + br {
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          0 字
+          890 字
         
       </span>
     
@@ -411,7 +413,7 @@ mjx-container[display="true"] + br {
         
         
           <!-- compatible with older versions-->
-          1 分钟
+          8 分钟
         
       </span>
     
@@ -462,7 +464,163 @@ mjx-container[display="true"] + br {
             
               <div class="markdown-body">
                 
-                
+                <p>Type-C插头常见的pin数有6P、12P、16P、24P，不同pin数在功能、应用场景和成本等方面存在区别，以下为你详细介绍：</p>
+<h1 id="0-1-引脚定义"><a href="#0-1-引脚定义" class="headerlink" title="0.1 引脚定义"></a>0.1 引脚定义</h1><p>Type-C接口插头引脚功能定义如下：</p>
+<table>
+<thead>
+<tr>
+<th>Pin</th>
+<th>名称</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A1</td>
+<td>GND</td>
+<td>接地</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>SSTXp1</td>
+<td>SuperSpeed差分信号#1，TX，正</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>SSTXn1</td>
+<td>SuperSpeed差分信号#1，TX，负</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>VBUS</td>
+<td>总线电源</td>
+</tr>
+<tr>
+<td>A5</td>
+<td>CC1</td>
+<td>Configuration channel，用于检测设备连接、正反插方向，以及进行USB Power Delivery通信</td>
+</tr>
+<tr>
+<td>A6</td>
+<td>Dp1</td>
+<td>USB 2.0差分信号，position 1，正</td>
+</tr>
+<tr>
+<td>A7</td>
+<td>Dn1</td>
+<td>USB 2.0差分信号，position 1，负</td>
+</tr>
+<tr>
+<td>A8</td>
+<td>SBU1</td>
+<td>Sideband use (SBU)，用于传输非USB信号，如音频信号等</td>
+</tr>
+<tr>
+<td>A9</td>
+<td>VBUS</td>
+<td>总线电源</td>
+</tr>
+<tr>
+<td>A10</td>
+<td>SSRXn2</td>
+<td>SuperSpeed差分信号#2，RX，负</td>
+</tr>
+<tr>
+<td>A11</td>
+<td>SSRXp2</td>
+<td>SuperSpeed差分信号#2，RX，正</td>
+</tr>
+<tr>
+<td>A12</td>
+<td>GND</td>
+<td>接地</td>
+</tr>
+<tr>
+<td>B1</td>
+<td>GND</td>
+<td>接地</td>
+</tr>
+<tr>
+<td>B2</td>
+<td>SSTXp2</td>
+<td>SuperSpeed差分信号#2，TX，正</td>
+</tr>
+<tr>
+<td>B3</td>
+<td>SSTXn2</td>
+<td>SuperSpeed差分信号#2，TX，负</td>
+</tr>
+<tr>
+<td>B4</td>
+<td>VBUS</td>
+<td>总线电源</td>
+</tr>
+<tr>
+<td>B5</td>
+<td>CC2</td>
+<td>Configuration channel</td>
+</tr>
+<tr>
+<td>B6</td>
+<td>Dp2</td>
+<td>USB 2.0差分信号，position 2，正</td>
+</tr>
+<tr>
+<td>B7</td>
+<td>Dn2</td>
+<td>USB 2.0差分信号，position 2，负</td>
+</tr>
+<tr>
+<td>B8</td>
+<td>SBU2</td>
+<td>Sideband use (SBU)</td>
+</tr>
+<tr>
+<td>B9</td>
+<td>VBUS</td>
+<td>总线电源</td>
+</tr>
+<tr>
+<td>B10</td>
+<td>SSRXn1</td>
+<td>SuperSpeed差分信号#1，RX，负</td>
+</tr>
+<tr>
+<td>B11</td>
+<td>SSRXp1</td>
+<td>SuperSpeed差分信号#1，RX，正</td>
+</tr>
+<tr>
+<td>B12</td>
+<td>GND</td>
+<td>接地</td>
+</tr>
+</tbody></table>
+<h1 id="0-2-不同pin数Type-C插头的区别"><a href="#0-2-不同pin数Type-C插头的区别" class="headerlink" title="0.2 不同pin数Type-C插头的区别"></a>0.2 不同pin数Type-C插头的区别</h1><ol>
+<li><strong>6P Type-C</strong><ul>
+<li><strong>功能</strong>：仅保留了Vbus、GND、CC1、CC2。Vbus用于供电，GND用于接地，CC1和CC2用于PD设备识别，承载USB - PD的通信，以向供电端请求电源供给。它没有USB 2.0的D+、D - 差分信号和USB 3.0的高速传输功能。</li>
+<li><strong>应用场景</strong>：适用于对USB通信无需求，仅需USB取电充电的设备，如玩具、电动牙刷、快充插头等。</li>
+<li><strong>成本</strong>：由于引脚数量少，生产工艺相对简单，成本较低。</li>
+</ul>
+</li>
+<li><strong>12P Type-C</strong><ul>
+<li><strong>功能</strong>：在6P的基础上增加了数据DP1/2，DN1/2，SBU1/2。DP1/2和DN1/2用于USB 2.0通信，可实现数据传输；SBU1/2用于传输非USB信号，如音频信号等。它支持PD快充、音频设备、HDMI传输、调试模式等功能，但缺少USB 3.0/3.1的高速传输能力。</li>
+<li><strong>应用场景</strong>：常用于一些对数据传输速度要求不高，但需要支持多种功能的小家电设备，这类设备使用的MCU通常只有USB 2.0，USB 3.0功能对其而言并非必要。</li>
+<li><strong>成本</strong>：相比24P，省去了部分引脚和相关电路，成本有所降低，但高于6P。</li>
+</ul>
+</li>
+<li><strong>16P Type-C</strong><ul>
+<li><strong>功能</strong>：在24Pin的基础上阉割了USB3.0的TX1/2、RX1/2，保留了SBU1/2、CC1/2、USB2.0的D+、D - 。除不具备USB 3.0/3.1高速传输外，其他功能与24P基本相同，同样支持PD快充、音频设备、HDMI传输、调试模式等。</li>
+<li><strong>应用场景</strong>：适用于对高速数据传输需求不高的设备，能在满足基本功能的同时，控制成本。</li>
+</ul>
+</li>
+<li><strong>24P Type-C</strong><ul>
+<li><strong>功能</strong>：是全功能的Type-C接口，具有12P引脚所具有的全部功能，并且多了USB 3.0/3.1高速传输功能。其D+/D - 提供了对USB 2.0数据传输差分对的兼容，有两组D+/D - 差分对以支持正反插；GND和VBUS分别用于提供地信号和电源信号，默认VBUS电压是5V，可通过协商支持更高电压和电流；RX和TX分开，可实现上行和下行的全双工通信；CC引脚用于插拔检测、正反插方向检测、source端的电流支持能力播报，以及在PD快充和alternate mode中使用；VCONN为Type - C Cable里面所包含的EMarker芯片供电。</li>
+<li><strong>应用场景</strong>：广泛应用于各类需要高速数据传输和多种功能支持的电子设备，如智能手机、平板电脑、笔记本电脑、显示器等。</li>
+<li><strong>成本</strong>：由于引脚数量多，功能丰富，其接口的采购成本相对较高。</li>
+</ul>
+</li>
+</ol>
+
                 
               </div>
             

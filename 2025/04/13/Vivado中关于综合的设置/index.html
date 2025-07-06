@@ -21,15 +21,15 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
-    <meta name="description" content="一、综合选项 优化级别（-O或--optimize）  0：默认优化，缩短编译时间。 1：减少功耗（运行Power_DefaultOpt策略）。 2：提升内核速度（添加PHYS_OPT_DESIGN步骤）。 3：最高性能（启用重定时和物理优化）。 s：减少逻辑资源（运行Area_Explore策略）。 quick：缩短实现时间（启用Flow_RuntimeOptimized）。   综合策略（vi">
+    <meta name="description" content="1 一、综合选项 优化级别（-O或--optimize）  0：默认优化，缩短编译时间。 1：减少功耗（运行Power_DefaultOpt策略）。 2：提升内核速度（添加PHYS_OPT_DESIGN步骤）。 3：最高性能（启用重定时和物理优化）。 s：减少逻辑资源（运行Area_Explore策略）。 quick：缩短实现时间（启用Flow_RuntimeOptimized）。   综合策略（">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vivado中关于综合的设置">
 <meta property="og:url" content="https://www.moerjielovecookie.icu/2025/04/13/Vivado%E4%B8%AD%E5%85%B3%E4%BA%8E%E7%BB%BC%E5%90%88%E7%9A%84%E8%AE%BE%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="一、综合选项 优化级别（-O或--optimize）  0：默认优化，缩短编译时间。 1：减少功耗（运行Power_DefaultOpt策略）。 2：提升内核速度（添加PHYS_OPT_DESIGN步骤）。 3：最高性能（启用重定时和物理优化）。 s：减少逻辑资源（运行Area_Explore策略）。 quick：缩短实现时间（启用Flow_RuntimeOptimized）。   综合策略（vi">
+<meta property="og:description" content="1 一、综合选项 优化级别（-O或--optimize）  0：默认优化，缩短编译时间。 1：减少功耗（运行Power_DefaultOpt策略）。 2：提升内核速度（添加PHYS_OPT_DESIGN步骤）。 3：最高性能（启用重定时和物理优化）。 s：减少逻辑资源（运行Area_Explore策略）。 quick：缩短实现时间（启用Flow_RuntimeOptimized）。   综合策略（">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-05-02T13:19:10.000Z">
+<meta property="article:modified_time" content="2025-06-30T05:59:29.123Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta name="twitter:card" content="summary_large_image">
@@ -401,7 +401,7 @@ mjx-container[display="true"] + br {
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          489 字
+          492 字
         
       </span>
     
@@ -464,7 +464,7 @@ mjx-container[display="true"] + br {
             
               <div class="markdown-body">
                 
-                <h1 id="一、综合选项"><a href="#一、综合选项" class="headerlink" title="一、综合选项"></a><strong>一、综合选项</strong></h1><ol>
+                <h1 id="1-一、综合选项"><a href="#1-一、综合选项" class="headerlink" title="1 一、综合选项"></a>1 <strong>一、综合选项</strong></h1><ol>
 <li><p><strong>优化级别（<code>-O</code>或<code>--optimize</code>）</strong></p>
 <ul>
 <li><code>0</code>：默认优化，缩短编译时间。</li>
@@ -506,7 +506,7 @@ mjx-container[display="true"] + br {
 </li>
 </ol>
 <hr>
-<h1 id="二、实现选项"><a href="#二、实现选项" class="headerlink" title="二、实现选项"></a><strong>二、实现选项</strong></h1><ol>
+<h1 id="2-二、实现选项"><a href="#2-二、实现选项" class="headerlink" title="2 二、实现选项"></a>2 <strong>二、实现选项</strong></h1><ol>
 <li><p><strong>实现策略（<code>--vivado.impl.strategies</code>）</strong></p>
 <ul>
 <li>预定义策略如性能优先（<code>Performance_Explore</code>）、资源优化（<code>Area_Explore</code>），或自定义策略。</li>
@@ -539,7 +539,7 @@ mjx-container[display="true"] + br {
 </li>
 </ol>
 <hr>
-<h1 id="三、其他关键选项"><a href="#三、其他关键选项" class="headerlink" title="三、其他关键选项"></a><strong>三、其他关键选项</strong></h1><ul>
+<h1 id="3-三、其他关键选项"><a href="#3-三、其他关键选项" class="headerlink" title="3 三、其他关键选项"></a>3 <strong>三、其他关键选项</strong></h1><ul>
 <li><strong>禁用IP缓存（<code>--no_ip_cache</code>）</strong>：强制工具重新生成IP综合结果。</li>
 <li><strong>自定义综合命令（<code>vivado.synth_design_args</code>）</strong>：传递额外参数至<code>synth_design</code>。</li>
 <li><strong>物理布局控制</strong>：通过LSF集群分发实现任务（<code>--vivado.impl.lsf</code>）。</li>
