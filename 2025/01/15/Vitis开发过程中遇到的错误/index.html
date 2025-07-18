@@ -21,15 +21,15 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
-    <meta name="description" content="Error while launching program: Memory write error at 0 x 105000. MMU section translation fault没找到具体原因。先生成 boot. Bin 文件烧录到内存卡后再启动 zynq 就不会出现这个报错。 解决方案将开发板的 boot 选项从 SD 切换到 jtag 即可 Unresolved inclusion:">
+    <meta name="description" content="1 Error while launching program: Memory write error at 0 x 105000. MMU section translation fault没找到具体原因。先生成 boot. Bin 文件烧录到内存卡后再启动 zynq 就不会出现这个报错。 1.1 解决方案将开发板的 boot 选项从 SD 切换到 jtag 即可 2 Unresolved in">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vitis开发过程中遇到的错误">
 <meta property="og:url" content="https://www.moerjielovecookie.icu/2025/01/15/Vitis%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="Error while launching program: Memory write error at 0 x 105000. MMU section translation fault没找到具体原因。先生成 boot. Bin 文件烧录到内存卡后再启动 zynq 就不会出现这个报错。 解决方案将开发板的 boot 选项从 SD 切换到 jtag 即可 Unresolved inclusion:">
+<meta property="og:description" content="1 Error while launching program: Memory write error at 0 x 105000. MMU section translation fault没找到具体原因。先生成 boot. Bin 文件烧录到内存卡后再启动 zynq 就不会出现这个报错。 1.1 解决方案将开发板的 boot 选项从 SD 切换到 jtag 即可 2 Unresolved in">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-27T12:28:31.000Z">
+<meta property="article:modified_time" content="2025-07-14T12:13:50.506Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta property="article:tag" content="bug">
@@ -290,7 +290,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          98 字
+          100 字
         
       </span>
     
@@ -353,10 +353,10 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Error-while-launching-program-Memory-write-error-at-0-x-105000-MMU-section-translation-fault"><a href="#Error-while-launching-program-Memory-write-error-at-0-x-105000-MMU-section-translation-fault" class="headerlink" title="Error while launching program: Memory write error at 0 x 105000. MMU section translation fault"></a>Error while launching program: Memory write error at 0 x 105000. MMU section translation fault</h1><p>没找到具体原因。<br>先生成 boot. Bin 文件烧录到内存卡后再启动 zynq 就不会出现这个报错。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>将开发板的 boot 选项从 SD 切换到 jtag 即可</p>
-<h1 id="Unresolved-inclusion-“stdio-H”"><a href="#Unresolved-inclusion-“stdio-H”" class="headerlink" title="Unresolved inclusion: “stdio. H”"></a>Unresolved inclusion: “stdio. H”</h1><p>在 Linux 环境下和 win 环境下创建工程添加 stdio 库时都会有这个问题。</p>
-<h2 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h2><p><code>Properties -&gt; C/C++ General -&gt; Preprocessor Includes… -&gt; Providers</code> ，并选中 <code>CDT GCC Built-in Compiler Settings</code></p>
+                <h1 id="1-Error-while-launching-program-Memory-write-error-at-0-x-105000-MMU-section-translation-fault"><a href="#1-Error-while-launching-program-Memory-write-error-at-0-x-105000-MMU-section-translation-fault" class="headerlink" title="1 Error while launching program: Memory write error at 0 x 105000. MMU section translation fault"></a>1 Error while launching program: Memory write error at 0 x 105000. MMU section translation fault</h1><p>没找到具体原因。<br>先生成 boot. Bin 文件烧录到内存卡后再启动 zynq 就不会出现这个报错。</p>
+<h2 id="1-1-解决方案"><a href="#1-1-解决方案" class="headerlink" title="1.1 解决方案"></a>1.1 解决方案</h2><p>将开发板的 boot 选项从 SD 切换到 jtag 即可</p>
+<h1 id="2-Unresolved-inclusion-“stdio-H”"><a href="#2-Unresolved-inclusion-“stdio-H”" class="headerlink" title="2 Unresolved inclusion: “stdio. H”"></a>2 Unresolved inclusion: “stdio. H”</h1><p>在 Linux 环境下和 win 环境下创建工程添加 stdio 库时都会有这个问题。</p>
+<h2 id="2-1-解决方案"><a href="#2-1-解决方案" class="headerlink" title="2.1 解决方案"></a>2.1 解决方案</h2><p><code>Properties -&gt; C/C++ General -&gt; Preprocessor Includes… -&gt; Providers</code> ，并选中 <code>CDT GCC Built-in Compiler Settings</code></p>
 
                 
               </div>
@@ -364,6 +364,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">

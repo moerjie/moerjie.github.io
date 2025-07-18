@@ -21,17 +21,17 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
-    <meta name="description" content="Delay balancing unsuccessful because an extra 4 cycles of latency introduced by optimizations in the feedback loop cannot be offset using design delays for the loop latency budget.产生原因 由于时序考虑，在每个模块的输出">
+    <meta name="description" content="1 Delay balancing unsuccessful because an extra 4 cycles of latency introduced by optimizations in the feedback loop cannot be offset using design delays for the loop latency budget.1.1 产生原因 由于时序考虑，在每">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MATLAB中使用HDL Coder生成HDL代码时的报错集合">
 <meta property="og:url" content="https://www.moerjielovecookie.icu/2024/06/13/MATLAB%E4%B8%AD%E4%BD%BF%E7%94%A8HDL%20Coder%E7%94%9F%E6%88%90HDL%E4%BB%A3%E7%A0%81%E6%97%B6%E7%9A%84%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="Delay balancing unsuccessful because an extra 4 cycles of latency introduced by optimizations in the feedback loop cannot be offset using design delays for the loop latency budget.产生原因 由于时序考虑，在每个模块的输出">
+<meta property="og:description" content="1 Delay balancing unsuccessful because an extra 4 cycles of latency introduced by optimizations in the feedback loop cannot be offset using design delays for the loop latency budget.1.1 产生原因 由于时序考虑，在每">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202406132008890.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1718280602962.png">
 <meta property="article:published_time" content="2024-06-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-27T12:28:30.000Z">
+<meta property="article:modified_time" content="2025-07-14T12:08:48.980Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta property="article:tag" content="MATLAB">
@@ -293,7 +293,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          150 字
+          153 字
         
       </span>
     
@@ -356,11 +356,11 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Delay-balancing-unsuccessful-because-an-extra-4-cycles-of-latency-introduced-by-optimizations-in-the-feedback-loop-cannot-be-offset-using-design-delays-for-the-loop-latency-budget"><a href="#Delay-balancing-unsuccessful-because-an-extra-4-cycles-of-latency-introduced-by-optimizations-in-the-feedback-loop-cannot-be-offset-using-design-delays-for-the-loop-latency-budget" class="headerlink" title="Delay balancing unsuccessful because an extra 4 cycles of latency introduced by optimizations in the feedback loop cannot be offset using design delays for the loop latency budget."></a>Delay balancing unsuccessful because an extra 4 cycles of latency introduced by optimizations in the feedback loop cannot be offset using design delays for the loop latency budget.</h1><h2 id="产生原因"><a href="#产生原因" class="headerlink" title="产生原因"></a>产生原因</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202406132008890.png" srcset="/img/banner.png" lazyload alt="2024after4202406132008890.png"></p>
+                <h1 id="1-Delay-balancing-unsuccessful-because-an-extra-4-cycles-of-latency-introduced-by-optimizations-in-the-feedback-loop-cannot-be-offset-using-design-delays-for-the-loop-latency-budget"><a href="#1-Delay-balancing-unsuccessful-because-an-extra-4-cycles-of-latency-introduced-by-optimizations-in-the-feedback-loop-cannot-be-offset-using-design-delays-for-the-loop-latency-budget" class="headerlink" title="1 Delay balancing unsuccessful because an extra 4 cycles of latency introduced by optimizations in the feedback loop cannot be offset using design delays for the loop latency budget."></a>1 Delay balancing unsuccessful because an extra 4 cycles of latency introduced by optimizations in the feedback loop cannot be offset using design delays for the loop latency budget.</h1><h2 id="1-1-产生原因"><a href="#1-1-产生原因" class="headerlink" title="1.1 产生原因"></a>1.1 产生原因</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202406132008890.png" srcset="/img/banner.png" lazyload alt="2024after4202406132008890.png"></p>
 <p>由于时序考虑，在每个模块的输出端添加了1到2级的输入输出流水线，但是在这种带反馈的结构上添加输入输出流水线后，会产生如下的报错</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1718280602962.png" srcset="/img/banner.png" lazyload alt="1718280602962.png"></p>
 <p>可以看出加入的输入输出流水线会导致额外的时钟延时，使得延时平衡失败。</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>在保证时序的前提下将带有反馈回路的模块输入输出流水线设置为0，也可以在同级输出端口加入delay手动添加流水线。</p>
+<h2 id="1-2-解决方法"><a href="#1-2-解决方法" class="headerlink" title="1.2 解决方法"></a>1.2 解决方法</h2><p>在保证时序的前提下将带有反馈回路的模块输入输出流水线设置为0，也可以在同级输出端口加入delay手动添加流水线。</p>
 
                 
               </div>
@@ -368,6 +368,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">

@@ -21,12 +21,12 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
-    <meta name="description" content="DVB-S系统用于卫星电视信号传输，发送端框图如下所示  扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为 $$p(x)&#x3D;x^{15}+x^{14}+1$$ 同时移位寄存器的初始状态为">
+    <meta name="description" content="DVB-S系统用于卫星电视信号传输，发送端框图如下所示  1 扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为 $$p(x)&#x3D;x^{15}+x^{14}+1$$ 同时移位寄存器的初始状">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DVB-S系统仿真学习">
 <meta property="og:url" content="https://www.moerjielovecookie.icu/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="DVB-S系统用于卫星电视信号传输，发送端框图如下所示  扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为 $$p(x)&#x3D;x^{15}+x^{14}+1$$ 同时移位寄存器的初始状态为">
+<meta property="og:description" content="DVB-S系统用于卫星电视信号传输，发送端框图如下所示  1 扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为 $$p(x)&#x3D;x^{15}+x^{14}+1$$ 同时移位寄存器的初始状">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536797434.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711539867512.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711541868504.png">
 <meta property="article:published_time" content="2024-03-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-27T12:28:31.000Z">
+<meta property="article:modified_time" content="2025-07-14T12:15:50.904Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="数字通信">
 <meta name="twitter:card" content="summary_large_image">
@@ -296,7 +296,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          840 字
+          846 字
         
       </span>
     
@@ -361,18 +361,18 @@
                 
                 <p>DVB-S系统用于卫星电视信号传输，发送端框图如下所示</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536126647.png" srcset="/img/banner.png" lazyload alt="1711536126647.png"></p>
-<h1 id="扰码"><a href="#扰码" class="headerlink" title="扰码"></a>扰码</h1><p>实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理</p>
+<h1 id="1-扰码"><a href="#1-扰码" class="headerlink" title="1 扰码"></a>1 扰码</h1><p>实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理</p>
 <p>DVB-S标准中规定扰码的生成多项式为</p>
 <p>$$<br>p(x)&#x3D;x^{15}+x^{14}+1<br>$$</p>
 <p>同时移位寄存器的初始状态为”1001_0101_0000_000”</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536797434.png" srcset="/img/banner.png" lazyload alt="1711536797434.png"></p>
-<h2 id="Matlab代码仿真"><a href="#Matlab代码仿真" class="headerlink" title="Matlab代码仿真"></a>Matlab代码仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs matlab">n=<span class="hljs-number">500</span>;<br><span class="hljs-comment">% origin_data=randi([0 1],n,1);</span><br>origin_cnt_1=nnz(origin_data==<span class="hljs-number">1</span>)<br><br>scrambling = comm.Scrambler(<span class="hljs-string">&quot;CalculationBase&quot;</span>,<span class="hljs-number">2</span>,<span class="hljs-string">&quot;InitialConditions&quot;</span>,[<span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>], ...<br>    <span class="hljs-string">&quot;Polynomial&quot;</span>,[<span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span>]);<br>scrambling_data=step(scrambling,origin_data);<br>scrambling_data_cnt_1=nnz(scrambling_data==<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="1-1-Matlab代码仿真"><a href="#1-1-Matlab代码仿真" class="headerlink" title="1.1 Matlab代码仿真"></a>1.1 Matlab代码仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs matlab">n=<span class="hljs-number">500</span>;<br><span class="hljs-comment">% origin_data=randi([0 1],n,1);</span><br>origin_cnt_1=nnz(origin_data==<span class="hljs-number">1</span>)<br><br>scrambling = comm.Scrambler(<span class="hljs-string">&quot;CalculationBase&quot;</span>,<span class="hljs-number">2</span>,<span class="hljs-string">&quot;InitialConditions&quot;</span>,[<span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>], ...<br>    <span class="hljs-string">&quot;Polynomial&quot;</span>,[<span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span>]);<br>scrambling_data=step(scrambling,origin_data);<br>scrambling_data_cnt_1=nnz(scrambling_data==<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
 
 
 <p>运行结果如下图所示</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711536855542.png" srcset="/img/banner.png" lazyload alt="1711536855542.png"></p>
 <p>可以看出初始的500点长度的数据包中有403个“1”，经过扰码处理后“1”的个数接近数据总量的一半</p>
-<h1 id="外码纠错编码（RS编码）"><a href="#外码纠错编码（RS编码）" class="headerlink" title="外码纠错编码（RS编码）"></a>外码纠错编码（RS编码）</h1><p>RS码定义：</p>
+<h1 id="2-外码纠错编码（RS编码）"><a href="#2-外码纠错编码（RS编码）" class="headerlink" title="2 外码纠错编码（RS编码）"></a>2 外码纠错编码（RS编码）</h1><p>RS码定义：</p>
 <p>$GF(q)上（q \neq 2, 通常q&#x3D;2^m），码长n&#x3D;q-1的本原BCH码$</p>
 <p>能纠正 t 个错误的RS码的参数为</p>
 <pre><code class="hljs">- 分组长度n=q-1
@@ -380,17 +380,17 @@
 - 码的最小距离dmin=2t+1
 </code></pre>
 <p>DVB-S系统中使用的RS(188，204)是由RS(239,255)截断而来的，可以纠正8个字节的错误</p>
-<h2 id="Matlab仿真"><a href="#Matlab仿真" class="headerlink" title="Matlab仿真"></a>Matlab仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs matlab">m=<span class="hljs-number">8</span>; <span class="hljs-comment">%bit per symbol</span><br>n=<span class="hljs-number">204</span>;<br>k=<span class="hljs-number">188</span>;<br><br>data_test=randi([<span class="hljs-number">0</span>,n],<span class="hljs-number">1</span>,k);<br>data_gf=gf(data_test,m);<br><br>data_rs_enc=rsenc(data_gf,n,k);<br>data_enc=data_rs_enc.x;<br><br>data_rs_dec=rsdec(data_rs_enc,n,k);<br>data_dec=data_rs_dec.x;<br><br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);<br>stem(data_test);<br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);<br>stem(data_enc);<br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>);<br>stem(data_dec);<br></code></pre></td></tr></table></figure>
+<h2 id="2-1-Matlab仿真"><a href="#2-1-Matlab仿真" class="headerlink" title="2.1 Matlab仿真"></a>2.1 Matlab仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs matlab">m=<span class="hljs-number">8</span>; <span class="hljs-comment">%bit per symbol</span><br>n=<span class="hljs-number">204</span>;<br>k=<span class="hljs-number">188</span>;<br><br>data_test=randi([<span class="hljs-number">0</span>,n],<span class="hljs-number">1</span>,k);<br>data_gf=gf(data_test,m);<br><br>data_rs_enc=rsenc(data_gf,n,k);<br>data_enc=data_rs_enc.x;<br><br>data_rs_dec=rsdec(data_rs_enc,n,k);<br>data_dec=data_rs_dec.x;<br><br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);<br>stem(data_test);<br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);<br>stem(data_enc);<br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>);<br>stem(data_dec);<br></code></pre></td></tr></table></figure>
 
 
 <p>首先生成一个长度为188的序列，将其转换到伽罗华域后，使用rsenc函数进行RS编码，再进行译码，根据对比可以看出译码后的比特和译码前的完全一样</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711538853533.png" srcset="/img/banner.png" lazyload alt="1711538853533.png"></p>
-<h1 id="卷积交织"><a href="#卷积交织" class="headerlink" title="卷积交织"></a>卷积交织</h1><p>在实际的传输过程中，由于脉冲干扰、多径效应等因素会带来持续一定时间的突发错误，虽然RS码对突发错误有较好的纠错能力，但是当其持续时间较长时，就会超出RS码的纠错能力，因此在编码过程中引入了卷积交织，将数据的传输顺序按照一定的规律分散开，就可以使得错误的码元也被分散开</p>
+<h1 id="3-卷积交织"><a href="#3-卷积交织" class="headerlink" title="3 卷积交织"></a>3 卷积交织</h1><p>在实际的传输过程中，由于脉冲干扰、多径效应等因素会带来持续一定时间的突发错误，虽然RS码对突发错误有较好的纠错能力，但是当其持续时间较长时，就会超出RS码的纠错能力，因此在编码过程中引入了卷积交织，将数据的传输顺序按照一定的规律分散开，就可以使得错误的码元也被分散开</p>
 <p>DVB-S中交织深度为12，总共17个FIFO，数据按行写入寄存器，按列读出</p>
 <p>交织后最大可纠错长度为12*8&#x3D;96</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1711539867512.png" srcset="/img/banner.png" lazyload alt="1711539867512.png"></p>
 <p>可以看出前一段时间读取到了很多0，说明下面的移位寄存器中的数据还没有移动到末端</p>
-<h1 id="卷积编码"><a href="#卷积编码" class="headerlink" title="卷积编码"></a>卷积编码</h1><p>卷积码是一种有效的前向纠错码记作$(n,k,m)$，将k个信息比特编为n个比特，m为编码存储长度，N&#x3D;m+1为约束长度，即卷积码的当前码元不仅与当前输入的k的信息码元有关，还与前面m个时刻输入的信息码元有关</p>
+<h1 id="4-卷积编码"><a href="#4-卷积编码" class="headerlink" title="4 卷积编码"></a>4 卷积编码</h1><p>卷积码是一种有效的前向纠错码记作$(n,k,m)$，将k个信息比特编为n个比特，m为编码存储长度，N&#x3D;m+1为约束长度，即卷积码的当前码元不仅与当前输入的k的信息码元有关，还与前面m个时刻输入的信息码元有关</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc;<br>close all;<br>n=<span class="hljs-number">500</span>;<br>tre1=[<span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span>]; <span class="hljs-comment">%oct 171</span><br>tre2=[<span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span>]; <span class="hljs-comment">%oct 133</span><br><br>trellis = poly2trellis(<span class="hljs-number">7</span>,[<span class="hljs-number">171</span> <span class="hljs-number">133</span>]);<br><br>convData=convenc(scrambling_data,trellis);<br><br>decData=vitdec(convData,trellis,<span class="hljs-number">499</span>,<span class="hljs-string">&quot;trunc&quot;</span>,<span class="hljs-string">&quot;hard&quot;</span>);<br><br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);<br>stem(scrambling_data);<br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);<br>stem(convData);<br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>);<br>stem(decData);<br>biterr(scrambling_data,decData)<br></code></pre></td></tr></table></figure>
 
 
@@ -404,6 +404,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">

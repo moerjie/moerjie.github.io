@@ -21,15 +21,15 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
-    <meta name="description" content="1 一、综合选项 优化级别（-O或--optimize）  0：默认优化，缩短编译时间。 1：减少功耗（运行Power_DefaultOpt策略）。 2：提升内核速度（添加PHYS_OPT_DESIGN步骤）。 3：最高性能（启用重定时和物理优化）。 s：减少逻辑资源（运行Area_Explore策略）。 quick：缩短实现时间（启用Flow_RuntimeOptimized）。   综合策略（">
+    <meta name="description" content="1 1. 综合策略（Synthesis Strategy） 作用：控制综合工具优化设计的方向（性能、面积、功耗）。 选项： Vivado Synthesis Defaults：默认策略，平衡性能和资源。 AreaOptimized_high：优先减少资源占用（如LUT、寄存器）。 PerformanceOptimized_high：优先时序性能（降低关键路径延迟）。 PowerOptimized_">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vivado中关于综合的设置">
 <meta property="og:url" content="https://www.moerjielovecookie.icu/2025/04/13/Vivado%E4%B8%AD%E5%85%B3%E4%BA%8E%E7%BB%BC%E5%90%88%E7%9A%84%E8%AE%BE%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="1 一、综合选项 优化级别（-O或--optimize）  0：默认优化，缩短编译时间。 1：减少功耗（运行Power_DefaultOpt策略）。 2：提升内核速度（添加PHYS_OPT_DESIGN步骤）。 3：最高性能（启用重定时和物理优化）。 s：减少逻辑资源（运行Area_Explore策略）。 quick：缩短实现时间（启用Flow_RuntimeOptimized）。   综合策略（">
+<meta property="og:description" content="1 1. 综合策略（Synthesis Strategy） 作用：控制综合工具优化设计的方向（性能、面积、功耗）。 选项： Vivado Synthesis Defaults：默认策略，平衡性能和资源。 AreaOptimized_high：优先减少资源占用（如LUT、寄存器）。 PerformanceOptimized_high：优先时序性能（降低关键路径延迟）。 PowerOptimized_">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-06-30T05:59:29.123Z">
+<meta property="article:modified_time" content="2025-07-18T03:48:07.310Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta name="twitter:card" content="summary_large_image">
@@ -401,7 +401,7 @@ mjx-container[display="true"] + br {
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          492 字
+          695 字
         
       </span>
     
@@ -413,7 +413,7 @@ mjx-container[display="true"] + br {
         
         
           <!-- compatible with older versions-->
-          5 分钟
+          6 分钟
         
       </span>
     
@@ -464,89 +464,118 @@ mjx-container[display="true"] + br {
             
               <div class="markdown-body">
                 
-                <h1 id="1-一、综合选项"><a href="#1-一、综合选项" class="headerlink" title="1 一、综合选项"></a>1 <strong>一、综合选项</strong></h1><ol>
-<li><p><strong>优化级别（<code>-O</code>或<code>--optimize</code>）</strong></p>
-<ul>
-<li><code>0</code>：默认优化，缩短编译时间。</li>
-<li><code>1</code>：减少功耗（运行<code>Power_DefaultOpt</code>策略）。</li>
-<li><code>2</code>：提升内核速度（添加<code>PHYS_OPT_DESIGN</code>步骤）。</li>
-<li><code>3</code>：最高性能（启用重定时和物理优化）。</li>
-<li><code>s</code>：减少逻辑资源（运行<code>Area_Explore</code>策略）。</li>
-<li><code>quick</code>：缩短实现时间（启用<code>Flow_RuntimeOptimized</code>）。</li>
+                <h1 id="1-1-综合策略（Synthesis-Strategy）"><a href="#1-1-综合策略（Synthesis-Strategy）" class="headerlink" title="1 1. 综合策略（Synthesis Strategy）"></a>1 <strong>1. 综合策略（Synthesis Strategy）</strong></h1><ul>
+<li><strong>作用</strong>：控制综合工具优化设计的方向（性能、面积、功耗）。</li>
+<li><strong>选项</strong>：<ul>
+<li><strong>Vivado Synthesis Defaults</strong>：默认策略，平衡性能和资源。</li>
+<li><strong>AreaOptimized_high</strong>：优先减少资源占用（如LUT、寄存器）。</li>
+<li><strong>PerformanceOptimized_high</strong>：优先时序性能（降低关键路径延迟）。</li>
+<li><strong>PowerOptimized_high</strong>：优化功耗（需配合电源约束）。</li>
 </ul>
 </li>
-<li><p><strong>综合策略（<code>vivado.synth_strategy</code>）</strong></p>
-<ul>
-<li>包括默认策略（<code>Synthesis_Defaults</code>）、快速运行优化（<code>Flow_RuntimeOptimized</code>）及自定义策略。</li>
+<li><strong>配置位置</strong>：<ul>
+<li>Vivado 的 <code>Project Settings &gt; Synthesis &gt; Strategy</code>。</li>
+<li>命令行：<code>set_property strategy &lt;strategy_name&gt; [current_run]</code></li>
 </ul>
 </li>
-<li><p><strong>RTL语言选择（<code>vivado.rtl</code>）</strong></p>
-<ul>
-<li>指定为<code>verilog</code>或<code>vhdl</code>。</li>
+</ul>
+<hr>
+<h1 id="2-2-关键优化属性"><a href="#2-2-关键优化属性" class="headerlink" title="2 2. 关键优化属性"></a>2 <strong>2. 关键优化属性</strong></h1><h2 id="2-1-1-资源控制"><a href="#2-1-1-资源控制" class="headerlink" title="2.1 (1) 资源控制"></a>2.1 <strong>(1) 资源控制</strong></h2><ul>
+<li><strong>MAX_FANOUT</strong>：<ul>
+<li>限制信号的最大扇出，减少高扇出网络导致的时序问题。</li>
+<li>设置方式：在 RTL 代码或 XDC 约束中添加 <code>set_property MAX_FANOUT &lt;value&gt; [get_nets &lt;net_name&gt;]</code>。</li>
 </ul>
 </li>
-<li><p><strong>层次管理（<code>-flatten_hierarchy</code>）</strong></p>
-<ul>
-<li>选项：<code>none</code>（保持层次）、<code>full</code>（完全展开）、<code>rebuilt</code>（后重建层次）。</li>
+<li><strong>RAM_STYLE</strong>：<ul>
+<li>指定 RAM 实现方式（<code>block</code> 使用 BRAM，<code>distributed</code> 使用 LUTRAM）。</li>
+<li>示例：<code>set_property RAM_STYLE block [get_cells &lt;ram_instance&gt;]</code>。</li>
 </ul>
 </li>
-<li><p><strong>资源控制</strong></p>
-<ul>
-<li>门控时钟转换（<code>-gated_clock_conversion</code>）</li>
-<li>BUFG数量限制（<code>-bufg</code>）</li>
-<li>资源共享（<code>-resource_sharing</code>）。</li>
+<li><strong>USE_DSP48</strong>：<ul>
+<li>强制乘法器使用 DSP48 单元（而非 LUT），提升性能。</li>
+<li>设置方式：<code>set_property USE_DSP48 yes [get_cells &lt;mult_instance&gt;]</code>。</li>
 </ul>
 </li>
-<li><p><strong>报告级别（<code>vivado.report_level</code>）</strong></p>
-<ul>
-<li><code>0</code>：综合后利用率 + 实现后时序。</li>
-<li><code>1</code>：综合/实现后详细分析。</li>
-<li><code>2</code>（默认）：包含快速失败检查。</li>
+</ul>
+<h2 id="2-2-2-时序优化"><a href="#2-2-2-时序优化" class="headerlink" title="2.2 (2) 时序优化"></a>2.2 <strong>(2) 时序优化</strong></h2><ul>
+<li><strong>Retiming</strong>：<ul>
+<li>跨寄存器调整逻辑位置，平衡关键路径延迟。</li>
+<li>启用方式：在综合设置中勾选 <code>Perform register retiming</code>。</li>
 </ul>
 </li>
+<li><strong>Control Set Optimization</strong>：<ul>
+<li>合并相同控制信号（复位/使能）的寄存器，减少控制集数量。</li>
+<li>选项：<code>Auto</code>（默认）或 <code>Aggressive</code>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="3-3-跨时钟域（CDC）处理"><a href="#3-3-跨时钟域（CDC）处理" class="headerlink" title="3 3. 跨时钟域（CDC）处理"></a>3 <strong>3. 跨时钟域（CDC）处理</strong></h1><ul>
+<li><p><strong>异步路径约束</strong>：</p>
+<ul>
+<li><p>对跨时钟域路径设置 <code>set_false_path</code> 或 <code>set_clock_groups</code>，避免无效时序分析。</p>
+</li>
+<li><p>示例：</p>
+  <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">set_clock_groups -asynchronous -<span class="hljs-keyword">group</span> <span class="hljs-title">{clkA</span>} -<span class="hljs-keyword">group</span> <span class="hljs-title">{clkB</span>}<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>同步器识别</strong>：</p>
+<ul>
+<li>Vivado 自动识别常见的同步器结构（如双寄存器），无需额外约束。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="4-4-增量综合（Incremental-Synthesis）"><a href="#4-4-增量综合（Incremental-Synthesis）" class="headerlink" title="4 4. 增量综合（Incremental Synthesis）"></a>4 <strong>4. 增量综合（Incremental Synthesis）</strong></h1><ul>
+<li><strong>作用</strong>：仅重新综合修改部分，缩短编译时间。</li>
+<li><strong>启用条件</strong>：<ul>
+<li>需在首次综合后生成 <code>checkpoint</code> 文件（<code>.dcp</code>）。</li>
+<li>后续运行时勾选 <code>Incremental Synthesis</code> 选项。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：小型设计迭代，避免全流程耗时。</li>
+</ul>
+<hr>
+<h1 id="5-5-约束文件（XDC）关键设置"><a href="#5-5-约束文件（XDC）关键设置" class="headerlink" title="5 5. 约束文件（XDC）关键设置"></a>5 <strong>5. 约束文件（XDC）关键设置</strong></h1><ul>
+<li><p><strong>时钟定义</strong>：</p>
+  <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">create_clock -period <span class="hljs-number">10</span> [get_ports clk]  <span class="hljs-comment">; 定义10ns周期时钟</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>输入/输出延迟</strong>：</p>
+  <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">set_input_delay</span> <span class="hljs-number">2</span>.<span class="hljs-number">0</span> -clock<span class="hljs-meta"> [get_clocks clk] [get_ports data_in]</span><br><span class="hljs-attribute">set_output_delay</span> <span class="hljs-number">1</span>.<span class="hljs-number">5</span> -clock<span class="hljs-meta"> [get_clocks clk] [get_ports data_out]</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>多周期路径</strong>：</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">set_multicycle_path <span class="hljs-number">2</span> -setup -<span class="hljs-selector-tag">from</span> <span class="hljs-selector-attr">[get_pins {regA|C}]</span> -<span class="hljs-selector-tag">to</span> <span class="hljs-selector-attr">[get_pins {regB|D}]</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h1 id="6-6-综合报告分析"><a href="#6-6-综合报告分析" class="headerlink" title="6 6. 综合报告分析"></a>6 <strong>6. 综合报告分析</strong></h1><p>生成报告的命令：<code>report_timing_summary -file timing.rpt</code><br>关键指标：</p>
+<ul>
+<li><strong>WNS (Worst Negative Slack)</strong>：最差负裕量（需 ≥0）。</li>
+<li><strong>资源利用率</strong>：LUT、FF、BRAM、DSP 占用比例。</li>
+<li><strong>时钟频率</strong>：检查是否满足目标频率（<code>Target Frequency</code>）。</li>
+</ul>
+<hr>
+<h1 id="7-7-常见问题与调优"><a href="#7-7-常见问题与调优" class="headerlink" title="7 7. 常见问题与调优"></a>7 <strong>7. 常见问题与调优</strong></h1><ul>
+<li><strong>高扇出网络</strong>：<ul>
+<li>解决方案：插入 <code>BUFG</code>（全局缓冲）或复制寄存器。</li>
+</ul>
+</li>
+<li><strong>关键路径未优化</strong>：<ul>
+<li>检查逻辑层级，手动添加流水线（<code>pipeline</code>）。</li>
+</ul>
+</li>
+<li><strong>控制集过多</strong>：<ul>
+<li>减少复位/使能信号种类，或启用 <code>Control Set Optimization</code>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="8-总结"><a href="#8-总结" class="headerlink" title="8 总结"></a>8 <strong>总结</strong></h1><p>Vivado 综合设置的核心是通过策略、属性、约束协同优化设计目标（性能/面积/功耗）。建议：</p>
+<ol>
+<li><strong>初始阶段</strong>：使用默认策略，逐步添加约束。</li>
+<li><strong>时序违例</strong>：优先调整 <code>PerformanceOptimized_high</code> 和 <code>Retiming</code>。</li>
+<li><strong>资源紧张</strong>：启用 <code>AreaOptimized_high</code> 和资源共享（如 <code>Resource Sharing</code>）。</li>
+<li><strong>迭代优化</strong>：结合综合报告与增量编译快速验证修改效果。</li>
 </ol>
-<hr>
-<h1 id="2-二、实现选项"><a href="#2-二、实现选项" class="headerlink" title="2 二、实现选项"></a>2 <strong>二、实现选项</strong></h1><ol>
-<li><p><strong>实现策略（<code>--vivado.impl.strategies</code>）</strong></p>
-<ul>
-<li>预定义策略如性能优先（<code>Performance_Explore</code>）、资源优化（<code>Area_Explore</code>），或自定义策略。</li>
-</ul>
-</li>
-<li><p><strong>并行作业数（<code>--vivado.impl.jobs</code>）</strong></p>
-<ul>
-<li>指定Vivado实现的并行进程数（例如：<code>--vivado.impl.jobs 4</code>）。</li>
-</ul>
-</li>
-<li><p><strong>物理优化（<code>vivado.phys_opt</code>）</strong></p>
-<ul>
-<li>阶段选择：<code>none</code>、<code>place</code>（布局优化）、<code>route</code>（布线优化）或<code>all</code>。</li>
-</ul>
-</li>
-<li><p><strong>时序控制</strong></p>
-<ul>
-<li>最大时序路径数（<code>vivado.max_timing_paths</code>）：指定未满足时序时报告的路径数量。</li>
-</ul>
-</li>
-<li><p><strong>Pblock范围（<code>vivado.pblock</code>）</strong></p>
-<ul>
-<li>指定实现期间关注的逻辑区域（例如：<code>{SLICE_X8Y105:SLICE_X23Y149}</code>）。</li>
-</ul>
-</li>
-<li><p><strong>资源优化</strong></p>
-<ul>
-<li><code>--optimize</code>参数可影响资源使用（如<code>s</code>选项减少资源占用）。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h1 id="3-三、其他关键选项"><a href="#3-三、其他关键选项" class="headerlink" title="3 三、其他关键选项"></a>3 <strong>三、其他关键选项</strong></h1><ul>
-<li><strong>禁用IP缓存（<code>--no_ip_cache</code>）</strong>：强制工具重新生成IP综合结果。</li>
-<li><strong>自定义综合命令（<code>vivado.synth_design_args</code>）</strong>：传递额外参数至<code>synth_design</code>。</li>
-<li><strong>物理布局控制</strong>：通过LSF集群分发实现任务（<code>--vivado.impl.lsf</code>）。</li>
-</ul>
-<hr>
-<p><strong>注</strong>：部分选项需通过Vitis工具链（<code>v++</code> 命令）配置，部分可通过Vivado GUI的“Project Settings”调整（如综合策略、实现策略及并行作业数）。详细策略请参阅《Vivado Design Suite用户指南》。</p>
-<p>没时间写了，先拿 ima 生成的凑数</p>
 
                 
               </div>

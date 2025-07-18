@@ -21,17 +21,17 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
-    <meta name="description" content="反相放大器同相端接地，电压为 0，反相端和同相端虚短，因此也是 0 V 的电压，同时由于虚断，几乎没有电流注入，所以R 1 和R 2 相当于串联，电阻上的电流相等  因此可以求出输入输出关系式为 $$V_{out}&#x3D;-\frac{R_2}{R_1}\times V_i$$ 同相放大器同样根据虚断和虚短可以求得输入输出关系式为 $$V_{out}&#x3D;\frac{R_1+R_2}{R">
+    <meta name="description" content="1 反相放大器同相端接地，电压为 0，反相端和同相端虚短，因此也是 0 V 的电压，同时由于虚断，几乎没有电流注入，所以R 1 和R 2 相当于串联，电阻上的电流相等  因此可以求出输入输出关系式为 $$V_{out}&#x3D;-\frac{R_2}{R_1}\times V_i$$ 2 同相放大器同样根据虚断和虚短可以求得输入输出关系式为 $$V_{out}&#x3D;\frac{R_1+R_">
 <meta property="og:type" content="article">
 <meta property="og:title" content="运放的同相与反相放大">
 <meta property="og:url" content="https://www.moerjielovecookie.icu/2024/05/05/%E8%BF%90%E6%94%BE%E7%9A%84%E5%90%8C%E7%9B%B8%E4%B8%8E%E5%8F%8D%E7%9B%B8%E6%94%BE%E5%A4%A7/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="反相放大器同相端接地，电压为 0，反相端和同相端虚短，因此也是 0 V 的电压，同时由于虚断，几乎没有电流注入，所以R 1 和R 2 相当于串联，电阻上的电流相等  因此可以求出输入输出关系式为 $$V_{out}&#x3D;-\frac{R_2}{R_1}\times V_i$$ 同相放大器同样根据虚断和虚短可以求得输入输出关系式为 $$V_{out}&#x3D;\frac{R_1+R_2}{R">
+<meta property="og:description" content="1 反相放大器同相端接地，电压为 0，反相端和同相端虚短，因此也是 0 V 的电压，同时由于虚断，几乎没有电流注入，所以R 1 和R 2 相当于串联，电阻上的电流相等  因此可以求出输入输出关系式为 $$V_{out}&#x3D;-\frac{R_2}{R_1}\times V_i$$ 2 同相放大器同样根据虚断和虚短可以求得输入输出关系式为 $$V_{out}&#x3D;\frac{R_1+R_">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405051202106.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405051206856.png">
 <meta property="article:published_time" content="2024-05-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-27T12:28:31.000Z">
+<meta property="article:modified_time" content="2025-07-14T12:10:47.503Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="电路">
 <meta name="twitter:card" content="summary_large_image">
@@ -292,7 +292,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          347 字
+          353 字
         
       </span>
     
@@ -355,18 +355,18 @@
             
               <div class="markdown-body">
                 
-                <h1 id="反相放大器"><a href="#反相放大器" class="headerlink" title="反相放大器"></a>反相放大器</h1><p>同相端接地，电压为 0，反相端和同相端虚短，因此也是 0 V 的电压，同时由于虚断，几乎没有电流注入，所以R 1 和R 2 相当于串联，电阻上的电流相等</p>
+                <h1 id="1-反相放大器"><a href="#1-反相放大器" class="headerlink" title="1 反相放大器"></a>1 反相放大器</h1><p>同相端接地，电压为 0，反相端和同相端虚短，因此也是 0 V 的电压，同时由于虚断，几乎没有电流注入，所以R 1 和R 2 相当于串联，电阻上的电流相等</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405051202106.png" srcset="/img/banner.png" lazyload alt="2024after4202405051202106.png"></p>
 <p>因此可以求出输入输出关系式为</p>
 <p>$$<br>V_{out}&#x3D;-\frac{R_2}{R_1}\times V_i<br>$$</p>
-<h1 id="同相放大器"><a href="#同相放大器" class="headerlink" title="同相放大器"></a>同相放大器</h1><p>同样根据虚断和虚短可以求得输入输出关系式为</p>
+<h1 id="2-同相放大器"><a href="#2-同相放大器" class="headerlink" title="2 同相放大器"></a>2 同相放大器</h1><p>同样根据虚断和虚短可以求得输入输出关系式为</p>
 <p>$$<br>V_{out}&#x3D;\frac{R_1+R_2}{R_2}\times V_i <br>$$</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202405051206856.png" srcset="/img/banner.png" lazyload alt="2024after4202405051206856.png"></p>
-<h1 id="同相放大器和反相放大器的优缺点"><a href="#同相放大器和反相放大器的优缺点" class="headerlink" title="同相放大器和反相放大器的优缺点"></a>同相放大器和反相放大器的优缺点</h1><h2 id="反相放大器-1"><a href="#反相放大器-1" class="headerlink" title="反相放大器"></a>反相放大器</h2><ul>
+<h1 id="3-同相放大器和反相放大器的优缺点"><a href="#3-同相放大器和反相放大器的优缺点" class="headerlink" title="3 同相放大器和反相放大器的优缺点"></a>3 同相放大器和反相放大器的优缺点</h1><h2 id="3-1-反相放大器"><a href="#3-1-反相放大器" class="headerlink" title="3.1 反相放大器"></a>3.1 反相放大器</h2><ul>
 <li>优点：两个输入端电位始终近似为 0，只有差模信号，抗干扰能力强</li>
 <li>缺点：输入阻抗小，等于信号到输入端的串联电阻阻值</li>
 </ul>
-<h2 id="同相放大器-1"><a href="#同相放大器-1" class="headerlink" title="同相放大器"></a>同相放大器</h2><ul>
+<h2 id="3-2-同相放大器"><a href="#3-2-同相放大器" class="headerlink" title="3.2 同相放大器"></a>3.2 同相放大器</h2><ul>
 <li>优点：输入阻抗接近无穷大</li>
 <li>缺点：放大电路没有虚地，有较大共模电压，抗干扰能力差，使用时要求运放有较高的共模抑制比</li>
 </ul>
@@ -379,6 +379,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%94%B5%E8%B7%AF/" class="category-chain-item">电路</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">

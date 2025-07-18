@@ -21,19 +21,19 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding">
   
-    <meta name="description" content="FPGA大型设计中推荐使用同步时序电路，同步时序电路基于时钟触发沿设计，对时钟的周期、占空比、延时和抖动有更高的要求。为满足时序的要求，一般采用全局时钟资源驱动设计的主时钟，FPGA的主时钟一般使用全铜层工艺实现，并设计了专用时钟缓冲与驱动结构。 缓冲和驱动缓冲输入输出缓冲，主要用于片外输入时钟或者片外差分输入的信号。 差分信号和差分时钟进入片内后如果不经过IBUFGDS、IBUFDS缓冲就无法直">
+    <meta name="description" content="FPGA大型设计中推荐使用同步时序电路，同步时序电路基于时钟触发沿设计，对时钟的周期、占空比、延时和抖动有更高的要求。为满足时序的要求，一般采用全局时钟资源驱动设计的主时钟，FPGA的主时钟一般使用全铜层工艺实现，并设计了专用时钟缓冲与驱动结构。 1 缓冲和驱动1.1 缓冲输入输出缓冲，主要用于片外输入时钟或者片外差分输入的信号。 差分信号和差分时钟进入片内后如果不经过IBUFGDS、IBUFDS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Xilinx FPGA中的BUFFER">
 <meta property="og:url" content="https://www.moerjielovecookie.icu/2024/05/29/Xilinx%20FPGA%E4%B8%AD%E7%9A%84BUFFER/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="FPGA大型设计中推荐使用同步时序电路，同步时序电路基于时钟触发沿设计，对时钟的周期、占空比、延时和抖动有更高的要求。为满足时序的要求，一般采用全局时钟资源驱动设计的主时钟，FPGA的主时钟一般使用全铜层工艺实现，并设计了专用时钟缓冲与驱动结构。 缓冲和驱动缓冲输入输出缓冲，主要用于片外输入时钟或者片外差分输入的信号。 差分信号和差分时钟进入片内后如果不经过IBUFGDS、IBUFDS缓冲就无法直">
+<meta property="og:description" content="FPGA大型设计中推荐使用同步时序电路，同步时序电路基于时钟触发沿设计，对时钟的周期、占空比、延时和抖动有更高的要求。为满足时序的要求，一般采用全局时钟资源驱动设计的主时钟，FPGA的主时钟一般使用全铜层工艺实现，并设计了专用时钟缓冲与驱动结构。 1 缓冲和驱动1.1 缓冲输入输出缓冲，主要用于片外输入时钟或者片外差分输入的信号。 差分信号和差分时钟进入片内后如果不经过IBUFGDS、IBUFDS">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716954745330.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716954943324.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716962343955.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716963068218.png">
 <meta property="article:published_time" content="2024-05-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-27T12:28:31.000Z">
+<meta property="article:modified_time" content="2025-07-14T12:13:02.309Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta name="twitter:card" content="summary_large_image">
@@ -294,7 +294,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          465 字
+          474 字
         
       </span>
     
@@ -358,22 +358,22 @@
               <div class="markdown-body">
                 
                 <p>FPGA大型设计中推荐使用同步时序电路，同步时序电路基于时钟触发沿设计，对时钟的周期、占空比、延时和抖动有更高的要求。为满足时序的要求，一般采用全局时钟资源驱动设计的主时钟，FPGA的主时钟一般使用全铜层工艺实现，并设计了专用时钟缓冲与驱动结构。</p>
-<h1 id="缓冲和驱动"><a href="#缓冲和驱动" class="headerlink" title="缓冲和驱动"></a>缓冲和驱动</h1><h2 id="缓冲"><a href="#缓冲" class="headerlink" title="缓冲"></a>缓冲</h2><p>输入输出缓冲，主要用于片外输入时钟或者片外差分输入的信号。</p>
+<h1 id="1-缓冲和驱动"><a href="#1-缓冲和驱动" class="headerlink" title="1 缓冲和驱动"></a>1 缓冲和驱动</h1><h2 id="1-1-缓冲"><a href="#1-1-缓冲" class="headerlink" title="1.1 缓冲"></a>1.1 缓冲</h2><p>输入输出缓冲，主要用于片外输入时钟或者片外差分输入的信号。</p>
 <p>差分信号和差分时钟进入片内后如果不经过IBUFGDS、IBUFDS缓冲就无法直接处理</p>
-<h2 id="驱动"><a href="#驱动" class="headerlink" title="驱动"></a>驱动</h2><p>当信号扇出过大时可以通过加BUFG增加信号稳定性</p>
+<h2 id="1-2-驱动"><a href="#1-2-驱动" class="headerlink" title="1.2 驱动"></a>1.2 驱动</h2><p>当信号扇出过大时可以通过加BUFG增加信号稳定性</p>
 <p>过一次BUFG有10ns左右的延时，但是通过BUFG后输出到片上所有单元的延时都可以忽略不记</p>
-<h1 id="Buffer的类别和作用"><a href="#Buffer的类别和作用" class="headerlink" title="Buffer的类别和作用"></a>Buffer的类别和作用</h1><h2 id="BUFG"><a href="#BUFG" class="headerlink" title="BUFG"></a>BUFG</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716954745330.png" srcset="/img/banner.png" lazyload alt="1716954745330.png"></p>
+<h1 id="2-Buffer的类别和作用"><a href="#2-Buffer的类别和作用" class="headerlink" title="2 Buffer的类别和作用"></a>2 Buffer的类别和作用</h1><h2 id="2-1-BUFG"><a href="#2-1-BUFG" class="headerlink" title="2.1 BUFG"></a>2.1 BUFG</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716954745330.png" srcset="/img/banner.png" lazyload alt="1716954745330.png"></p>
 <p>BUFG是一个高扇出缓冲器，将信号连接到全局布线资源上，使得信号的延时和抖动最小</p>
 <p>通常用于时钟网络以及其他高扇出网络，比如复位和使能信号</p>
-<h2 id="BUFGCE"><a href="#BUFGCE" class="headerlink" title="BUFGCE"></a>BUFGCE</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716954943324.png" srcset="/img/banner.png" lazyload alt="1716954943324.png"></p>
+<h2 id="2-2-BUFGCE"><a href="#2-2-BUFGCE" class="headerlink" title="2.2 BUFGCE"></a>2.2 BUFGCE</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716954943324.png" srcset="/img/banner.png" lazyload alt="1716954943324.png"></p>
 <p>BUFGCE具有单门控输入的全局时钟缓冲器，CE高电平有效</p>
 <p>当CE为低电平时 O 端口输出0</p>
-<h2 id="BUFH"><a href="#BUFH" class="headerlink" title="BUFH"></a>BUFH</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716962343955.png" srcset="/img/banner.png" lazyload alt="1716962343955.png"></p>
+<h2 id="2-3-BUFH"><a href="#2-3-BUFH" class="headerlink" title="2.3 BUFH"></a>2.3 BUFH</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716962343955.png" srcset="/img/banner.png" lazyload alt="1716962343955.png"></p>
 <p>BUFH原语允许直接访问BUFG的时钟区域入口，允许访问全局时钟网络中未使用的部分，作为高速低偏移的本地路由资源（单时钟区域）</p>
-<h2 id="IBUFDS"><a href="#IBUFDS" class="headerlink" title="IBUFDS"></a>IBUFDS</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716963068218.png" srcset="/img/banner.png" lazyload alt="1716963068218.png"></p>
+<h2 id="2-4-IBUFDS"><a href="#2-4-IBUFDS" class="headerlink" title="2.4 IBUFDS"></a>2.4 IBUFDS</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1716963068218.png" srcset="/img/banner.png" lazyload alt="1716963068218.png"></p>
 <p>支持低压差分信号输入的缓冲器，有两个输入的端口，一个为主端口一个为从端口，输入的信号相位相反</p>
-<h2 id="IBUFDS-GTE2"><a href="#IBUFDS-GTE2" class="headerlink" title="IBUFDS_GTE2"></a>IBUFDS_GTE2</h2><p>7系列器件中的Gbit 收发器输入缓冲，REFCLK应连接到串行收发器的专用参考时钟输入引脚</p>
-<h2 id="OBUFDS"><a href="#OBUFDS" class="headerlink" title="OBUFDS"></a>OBUFDS</h2><p>差分信号输出缓冲器</p>
+<h2 id="2-5-IBUFDS-GTE2"><a href="#2-5-IBUFDS-GTE2" class="headerlink" title="2.5 IBUFDS_GTE2"></a>2.5 IBUFDS_GTE2</h2><p>7系列器件中的Gbit 收发器输入缓冲，REFCLK应连接到串行收发器的专用参考时钟输入引脚</p>
+<h2 id="2-6-OBUFDS"><a href="#2-6-OBUFDS" class="headerlink" title="2.6 OBUFDS"></a>2.6 OBUFDS</h2><p>差分信号输出缓冲器</p>
 
                 
               </div>
@@ -381,6 +381,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">
