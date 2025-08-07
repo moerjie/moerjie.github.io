@@ -19,7 +19,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="Sawen Moerjie">
-  <meta name="keywords" content="FPGA Verilog MATLAB Coding">
+  <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
   
     <meta name="description" content="在DVB-S系统中，TS流在经过RS编码后，会变成uint8类型的数据，在后续QPSK星座映射时又需要二进制码流，因此在进行了RS编码后要将8个bit的数据转化成1个bit逐位输出 1 实现思路首先使用BitwiseOperator模块按位与操作，分别将8位二进制数据提取出来，然后使用一个计数器产生0~7的计数信号作为mux模块的使能，在8个时钟周期内分别输出提取出来的8位数据 2 结构框图 3">
 <meta property="og:type" content="article">
