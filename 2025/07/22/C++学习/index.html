@@ -468,10 +468,10 @@ mjx-container[display="true"] + br {
                 
                 <h1 id="1-命名空间"><a href="#1-命名空间" class="headerlink" title="1 命名空间"></a>1 命名空间</h1><p>命名空间可作为附加信息来区分不同库中相同名字的函数、类、变量等，本质上命名空间定义了一个范围。</p>
 <h2 id="1-1-定义命名空间"><a href="#1-1-定义命名空间" class="headerlink" title="1.1 定义命名空间"></a>1.1 定义命名空间</h2><p>使用关键字<strong>namespace</strong>，后跟命名空间的名称。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> ns_name</span><br><span class="line">{</span><br><span class="line">	<span class="comment">//code</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">namespace</span> ns_name<br>{<br>	<span class="hljs-comment">//code</span><br>}<br></code></pre></td></tr></table></figure>
 <p>调用该命名空间内的函数或变量等，如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ns_name::code;</span><br></pre></td></tr></table></figure>
-<h1 id="2-类"><a href="#2-类" class="headerlink" title="2 类"></a>2 类</h1><p>定义类需要关键字<strong>class</strong>，然后指定类的名称，类的主体包含在一对花括号内，主体包含类的成员变量和成员函数。<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2025-07/cpp-classes-objects-2020-12-10-11.png" alt="cpp-classes-objects"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ns_name::code;<br></code></pre></td></tr></table></figure>
+<h1 id="2-类"><a href="#2-类" class="headerlink" title="2 类"></a>2 类</h1><p>定义类需要关键字<strong>class</strong>，然后指定类的名称，类的主体包含在一对花括号内，主体包含类的成员变量和成员函数。<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2025-07/cpp-classes-objects-2020-12-10-11.png" srcset="/img/banner.png" lazyload alt="cpp-classes-objects"></p>
 <h2 id="2-1-访问数据成员"><a href="#2-1-访问数据成员" class="headerlink" title="2.1 访问数据成员"></a>2.1 访问数据成员</h2><p>使用 <code>.</code> 来访问类中的变量。</p>
 <h2 id="2-2-类访问修饰符"><a href="#2-2-类访问修饰符" class="headerlink" title="2.2 类访问修饰符"></a>2.2 类访问修饰符</h2><p>数据封装是面向对象编程重要特点之一，防止函数直接访问类内部成员。类成员访问限制是通过在类主体内部对各个区域标记 <code>public、private、protected</code> 来指定的。成员和类的默认访问修饰符是 <code>private</code>。</p>
 <h3 id="2-2-1-public"><a href="#2-2-1-public" class="headerlink" title="2.2.1 public"></a>2.2.1 public</h3><p>公有成员变量在程序中不需要使用任何成员函数即可设置和获取值。</p>
@@ -482,7 +482,7 @@ mjx-container[display="true"] + br {
 <li><strong>protected</strong>成员可以被派生类访问</li>
 </ul>
 <h1 id="3-函数"><a href="#3-函数" class="headerlink" title="3 函数"></a>3 函数</h1><h2 id="3-1-sprintf"><a href="#3-1-sprintf" class="headerlink" title="3.1 sprintf"></a>3.1 sprintf</h2><h3 id="3-1-1-描述"><a href="#3-1-1-描述" class="headerlink" title="3.1.1 描述"></a>3.1.1 描述</h3><p><code>int sprintf(char str, const char format, ...)</code>发送格式化输出到 <code>str</code> 指向的字符串。</p>
-<h3 id="3-1-2-声明"><a href="#3-1-2-声明" class="headerlink" title="3.1.2 声明"></a>3.1.2 声明</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">sprintf</span><span class="params">(<span class="type">char</span> *str, <span class="type">const</span> <span class="type">char</span> *format, ...)</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-1-2-声明"><a href="#3-1-2-声明" class="headerlink" title="3.1.2 声明"></a>3.1.2 声明</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">sprintf</span><span class="hljs-params">(<span class="hljs-type">char</span> *str, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *format, ...)</span><br></code></pre></td></tr></table></figure>
 <h3 id="3-1-3-参数"><a href="#3-1-3-参数" class="headerlink" title="3.1.3 参数"></a>3.1.3 参数</h3><ul>
 <li><code>str</code>：指向一个字符数组的指针</li>
 <li><code>format</code>：字符串，包含了要被写入 <code>str</code> 的文本</li>
@@ -492,7 +492,7 @@ mjx-container[display="true"] + br {
 <li>返回一个指向<em><em>以 NULL 结尾的 const char</em> C</em>*风格的字符串</li>
 <li>不复制字符串，只提供内部数据指针</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">std::string s = <span class="string">"hello"</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* p = s.<span class="built_in">c_str</span>();  <span class="comment">// p 指向 "hello\0"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::string s = <span class="hljs-string">"hello"</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">char</span>* p = s.<span class="hljs-built_in">c_str</span>();  <span class="hljs-comment">// p 指向 "hello\0"</span><br></code></pre></td></tr></table></figure>
 <h1 id="4-关键字"><a href="#4-关键字" class="headerlink" title="4 关键字"></a>4 关键字</h1><h2 id="4-1-virtual-虚函数"><a href="#4-1-virtual-虚函数" class="headerlink" title="4.1 virtual 虚函数"></a>4.1 virtual 虚函数</h2><p>虚函数允许子类重写它，从而在运行时通过基类指针或引用调用子类的重写版本，实现动态绑定。<br>我们想要的是在程序中任意点可以根据所调用的对象类型来选择调用的函数，这种操作被称为动态链接，或后期绑定。<br>特点</p>
 <ul>
 <li>在基类中可以有实现。通常虚函数在基类中提供默认实现，但派生类可以选择重写</li>
@@ -586,6 +586,12 @@ mjx-container[display="true"] + br {
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2025/08/08/FM%E8%B0%83%E9%A2%91/" title="FM调频">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">FM调频</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

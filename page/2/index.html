@@ -400,6 +400,67 @@ mjx-container[display="true"] + br {
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2025/03/12/win11%20Hyper-V%E6%B6%88%E5%A4%B1/" target="_self">
+          win11 Hyper-V消失
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/12/win11%20Hyper-V%E6%B6%88%E5%A4%B1/" target="_self">
+        <div>
+          在 win 中的“启动或关闭 Windows 功能“中突然找不到 Hyper-V 相关的选项，同时 wsl 无法启动。在桌面新建一个 .bat 文件，内容为 ``` 1234567891011pushd "%~dp0"dir /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum &gt;hyper-v.txtfor /f %%i in ('findstr
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-12 00:00" pubdate>
+              2025-03-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9D%82%E7%B1%BB/" class="category-chain-item">杂类</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/bug/">#bug</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2025/02/27/Linux%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/" target="_self">
           Linux用到的命令
         </a>
@@ -461,15 +522,15 @@ mjx-container[display="true"] + br {
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/02/27/Petalinux/" target="_self">
-          Petalinux
+        <a href="/2025/02/27/Petalinux%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" target="_self">
+          Petalinux报错记录
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/02/27/Petalinux/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/02/27/Petalinux%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" target="_self">
         <div>
-          Petalinux 命令参考《UG 1157 PetaLinux Command Line Reference Guide》 123456789101112131415161718192021//创建petalinux工程petalinux-create -t project --template zynq -n &lt;name&gt; //配置工程cd 上一步的工程petalinux-conf
+          Unable to connect to bitbake server编译时卡住，检查 build.log 发现 log 文件提示 Unable to connect to bitbake server，此时只需要将 build 文件夹下的 bitbake.lock 删除即可 Login incorrect在最新版的UG1144 (v2022.2) 文档中，可以发现当前的 petalinux 登录
         </div>
       </a>
 
@@ -522,15 +583,15 @@ mjx-container[display="true"] + br {
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/02/27/Petalinux%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" target="_self">
-          Petalinux报错记录
+        <a href="/2025/02/27/Petalinux/" target="_self">
+          Petalinux
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/02/27/Petalinux%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/02/27/Petalinux/" target="_self">
         <div>
-          Unable to connect to bitbake server编译时卡住，检查 build.log 发现 log 文件提示 Unable to connect to bitbake server，此时只需要将 build 文件夹下的 bitbake.lock 删除即可 Login incorrect在最新版的UG1144 (v2022.2) 文档中，可以发现当前的 petalinux 登录
+          Petalinux 命令参考《UG 1157 PetaLinux Command Line Reference Guide》 123456789101112131415161718192021//创建petalinux工程petalinux-create -t project --template zynq -n &lt;name&gt; //配置工程cd 上一步的工程petalinux-conf
         </div>
       </a>
 
@@ -1453,69 +1514,6 @@ mjx-container[display="true"] + br {
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/MATLAB/">#MATLAB</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/10/20/DVB-S%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A/" target="_self">
-          DVB-S系统设计报告
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/10/20/DVB-S%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A/" target="_self">
-        <div>
-          1 DVB标准Digital Video Broadcasting（数字视频广播）是一个完整的数字电视解决方案，其中包括DVB-C（数字电视有线传输标准），DVB-T（数字电视地面传输标准），DVB-S（数字电视卫星传输标准），下面主要介绍DVB-S系统。 DVB-S为数字卫星广播标准，卫星传输具有覆盖面广、节目容量大等优点。信号采用RS(188，204)和卷积码的级联编码，调制方式为QPSK。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-10-20 00:00" pubdate>
-              2024-10-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Report/">#Report</a>
-            
-              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
             
           </div>
         
