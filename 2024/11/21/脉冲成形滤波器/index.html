@@ -36,8 +36,12 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182214240.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182219396.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411190916731.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251021133756.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251021134004.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251021134143.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251021134501.png">
 <meta property="article:published_time" content="2024-11-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-07-14T09:45:39.688Z">
+<meta property="article:modified_time" content="2025-10-21T05:46:30.454Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="数字通信">
 <meta name="twitter:card" content="summary_large_image">
@@ -298,7 +302,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1k 字
+          1.2k 字
         
       </span>
     
@@ -310,7 +314,7 @@
         
         
           <!-- compatible with older versions-->
-          9 分钟
+          10 分钟
         
       </span>
     
@@ -371,6 +375,7 @@
 <h1 id="2-基带滤波器"><a href="#2-基带滤波器" class="headerlink" title="2 基带滤波器"></a>2 基带滤波器</h1><h2 id="2-1-理想低通滤波器"><a href="#2-1-理想低通滤波器" class="headerlink" title="2.1 理想低通滤波器"></a>2.1 理想低通滤波器</h2><p>如果要脉冲成形为 sinc 波形，只要将单位冲激信号输入理想 LPF 即可得到 sinc 脉冲信号。<br>如果 LPF 的带宽为 B，则输出的 sinc 脉冲信号波形如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182209002.png" srcset="/img/banner.png" lazyload alt="|500"><br>只要 sinc 脉冲信号发送间隔设为 $\frac{1}{B}$，也就是码元传输速率 $R_B&#x3D;2B$，就可以实现无码间串扰。</p>
 <h2 id="2-2-升余弦滚降滤波器"><a href="#2-2-升余弦滚降滤波器" class="headerlink" title="2.2 升余弦滚降滤波器"></a>2.2 升余弦滚降滤波器</h2><p>采用理想低通滤波器对单位冲激信号进行滤波得到的 sinc 脉冲信号，拖尾振荡幅度比较大、衰减速度比较慢，当定时出现偏差时，码间串扰会比较大。考虑到实际的系统总是存在一定的定时误差，所以脉冲成形一般不采用理想低通滤波器，而是采用升余弦滚降滤波器，这种滤波器拖尾振幅小、衰减快，对于减小码间串扰和降低对定时的要求都有利。<br>升余弦滚降滤波器的频率响应为：<br>$$<br>\begin{aligned}<br>&amp;\mathrm{H}(f)&#x3D;\begin{cases}\frac{1}{2B},&amp;0\leqslant\left|f\right|&lt;\left(1-\alpha\right)B\\frac{1}{4B}\left{1+\cos\frac{\pi}{2B\alpha}\Big[\left|f\right|-B\left(1-\alpha\right)\right]\Big},&amp;(1-\alpha)B\leqslant|f|&lt;(1+\alpha)B\0,&amp;\left|f\right|\geqslant\left(1+\alpha\right)B \<br>\end{cases}\end{aligned}<br>$$<br>其中，$B&#x3D;\frac{R_B}{2}$<br>升余弦滚降滤波器的频率响应曲线如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182214240.png" srcset="/img/banner.png" lazyload><br>升余弦滚降滤波器的单位冲激响应为：<br>$$<br>\mathrm h(t)&#x3D;\mathscr{F}^{-1}\big[\mathrm H(f)\big]&#x3D;\mathrm sinc\big(2Bt\big)\frac{\cos\big(2\pi\alpha Bt\big)}{1-\big(4\alpha Bt\big)^2}<br>$$<br>其中 $\alpha$ 是升余弦滚降滤波器的一个很重要的参数，称为滚降系数。<br>当 $\alpha&#x3D;0$ 时，升余弦滚降滤波器就是一个带宽为 B 的理想低通滤波器。<br>当 $\alpha&#x3D;0.5$ 时，升余弦滚降滤波器的频率响应和单位冲激响应如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411182219396.png" srcset="/img/banner.png" lazyload><br>此时滤波器的带宽为 $（1+\alpha）B&#x3D;1.5B$。<br>当 $\alpha&#x3D;1$ 时，升余弦滚降滤波器的频率响应和单位冲激响应如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202411190916731.png" srcset="/img/banner.png" lazyload><br>此时滤波器带宽为 $（1+\alpha）B&#x3D;2B$。<br>在使用升余弦滚降滤波器进行脉冲成形时，要想实现无码间串扰，则脉冲信号之间的时间间隔必须为 $\frac{1}{2B}$，即码元速率为 $R_B&#x3D;2B$。<br>由于升余弦滚降滤波器会展宽带宽，因此在给定码元速率 $R_B$ 的情况下，基带信号的频谱带宽为 $(1+\alpha)\times \frac{R_B}{2}$。</p>
 <h1 id="3-眼图"><a href="#3-眼图" class="headerlink" title="3 眼图"></a>3 眼图</h1><p>眼图可以用来评估一个系统的码间串扰情况。</p>
+<h1 id="4-matlab-simulink-仿真"><a href="#4-matlab-simulink-仿真" class="headerlink" title="4 matlab&#x2F;simulink 仿真"></a>4 matlab&#x2F;simulink 仿真</h1><p>在 simulink 中仿真时，如果直接使用 Communications Toolbox HDL Support 库中的升余弦滤波器，会遇到必须要对输入信号进行两倍以上过采样才行的问题，但是在使用 simulink HDL Coder 生成 Verilog 代码时，要保证时钟尽可能一致。<br>因此不使用库中的模块，而使用滤波器设计工具设计出升余弦滚降滤波器的滤波器系数，导入到 FIR block 中使用。<br>仿真系数如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251021133756.png" srcset="/img/banner.png" lazyload><br>simulink 框图如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251021134004.png" srcset="/img/banner.png" lazyload><br>升余弦滚降滤波器的滚降系数为 0.25，幅频相应如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251021134143.png" srcset="/img/banner.png" lazyload><br>使用计数器生成 500kHz 的使能信号，驱动 Bernoulli Binary Generator 模块生成 1bit 随机信号，经过滤波器后信号时域波形如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251021134501.png" srcset="/img/banner.png" lazyload></p>
 
                 
               </div>
