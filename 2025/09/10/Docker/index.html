@@ -21,13 +21,15 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="🚀 I. Docker 基础命令 (镜像与容器)   场景 命令 描述 示例    下载镜像 docker pull &lt;image&gt;:&lt;tag&gt; 从 Docker Hub 或其他仓库下载镜像。 docker pull nginx:latest   列出镜像 docker images 列出本地所有镜像。 docker images   构建镜像 docker build">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Docker">
 <meta property="og:url" content="https://www.moerjielovecookie.icu/2025/09/10/Docker/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:description" content="🚀 I. Docker 基础命令 (镜像与容器)   场景 命令 描述 示例    下载镜像 docker pull &lt;image&gt;:&lt;tag&gt; 从 Docker Hub 或其他仓库下载镜像。 docker pull nginx:latest   列出镜像 docker images 列出本地所有镜像。 docker images   构建镜像 docker build">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-10T11:36:13.289Z">
+<meta property="article:modified_time" content="2025-11-02T10:19:31.925Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="coding">
 <meta name="twitter:card" content="summary_large_image">
@@ -399,7 +401,7 @@ mjx-container[display="true"] + br {
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          0 字
+          545 字
         
       </span>
     
@@ -411,7 +413,7 @@ mjx-container[display="true"] + br {
         
         
           <!-- compatible with older versions-->
-          1 分钟
+          5 分钟
         
       </span>
     
@@ -462,7 +464,154 @@ mjx-container[display="true"] + br {
             
               <div class="markdown-body">
                 
-                
+                <h1 id="🚀-I-Docker-基础命令-镜像与容器"><a href="#🚀-I-Docker-基础命令-镜像与容器" class="headerlink" title="🚀 I. Docker 基础命令 (镜像与容器)"></a>🚀 I. Docker 基础命令 (镜像与容器)</h1><table>
+<thead>
+<tr>
+<th><strong>场景</strong></th>
+<th><strong>命令</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>示例</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>下载镜像</strong></td>
+<td><code>docker pull &lt;image&gt;:&lt;tag&gt;</code></td>
+<td>从 Docker Hub 或其他仓库下载镜像。</td>
+<td><code>docker pull nginx:latest</code></td>
+</tr>
+<tr>
+<td><strong>列出镜像</strong></td>
+<td><code>docker images</code></td>
+<td>列出本地所有镜像。</td>
+<td><code>docker images</code></td>
+</tr>
+<tr>
+<td><strong>构建镜像</strong></td>
+<td><code>docker build -t &lt;name&gt;:&lt;tag&gt; .</code></td>
+<td>使用当前目录下的 <code>Dockerfile</code> 构建新镜像。</td>
+<td><code>docker build -t myapp:1.0 .</code></td>
+</tr>
+<tr>
+<td><strong>删除镜像</strong></td>
+<td><code>docker rmi &lt;image_id/name&gt;</code></td>
+<td>删除本地镜像。</td>
+<td><code>docker rmi myapp:1.0</code></td>
+</tr>
+<tr>
+<td><strong>运行容器</strong></td>
+<td><code>docker run [options] &lt;image&gt; [cmd]</code></td>
+<td>创建并启动容器。</td>
+<td><code>docker run -d -p 8080:80 --name web nginx</code></td>
+</tr>
+<tr>
+<td><strong>列出容器</strong></td>
+<td><code>docker ps</code></td>
+<td>列出<strong>正在运行</strong>的容器。</td>
+<td><code>docker ps</code></td>
+</tr>
+<tr>
+<td><strong>列出所有容器</strong></td>
+<td><code>docker ps -a</code></td>
+<td>列出所有容器（包括已停止的）。</td>
+<td><code>docker ps -a</code></td>
+</tr>
+<tr>
+<td><strong>停止容器</strong></td>
+<td><code>docker stop &lt;container_id/name&gt;</code></td>
+<td>正常停止一个正在运行的容器。</td>
+<td><code>docker stop web</code></td>
+</tr>
+<tr>
+<td><strong>删除容器</strong></td>
+<td><code>docker rm &lt;container_id/name&gt;</code></td>
+<td>删除一个已停止的容器。</td>
+<td><code>docker rm web</code></td>
+</tr>
+<tr>
+<td><strong>查看日志</strong></td>
+<td><code>docker logs -f &lt;container_id/name&gt;</code></td>
+<td>实时查看容器的日志输出。</td>
+<td><code>docker logs -f web</code></td>
+</tr>
+<tr>
+<td><strong>进入容器</strong></td>
+<td><code>docker exec -it &lt;container_id/name&gt; /bin/bash</code></td>
+<td>在运行中的容器内部执行命令，常用于进入 Bash 终端。</td>
+<td><code>docker exec -it web /bin/bash</code></td>
+</tr>
+<tr>
+<td><strong>挂载目录</strong></td>
+<td><code>docker run -v &lt;host_path&gt;:&lt;container_path&gt; ...</code></td>
+<td>将主机目录挂载到容器中，实现数据持久化或共享。</td>
+<td><code>docker run -v /data/app:/app/data ...</code></td>
+</tr>
+<tr>
+<td><strong>清理资源</strong></td>
+<td><code>docker system prune</code></td>
+<td>清理停止的容器、未使用的网络和悬空镜像。</td>
+<td><code>docker system prune -a</code> (清理更多未使用的资源)</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="🔨-II-Docker-Compose-命令"><a href="#🔨-II-Docker-Compose-命令" class="headerlink" title="🔨 II. Docker Compose 命令"></a>🔨 II. Docker Compose 命令</h1><table>
+<thead>
+<tr>
+<th><strong>场景</strong></th>
+<th><strong>命令</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>示例</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>启动应用</strong></td>
+<td><code>docker-compose up -d</code></td>
+<td>根据 <code>docker-compose.yml</code> 文件构建（如果需要）、创建、启动并关联所有服务，<code>-d</code> 表示后台运行。</td>
+<td><code>docker-compose up -d</code></td>
+</tr>
+<tr>
+<td><strong>停止和移除</strong></td>
+<td><code>docker-compose down</code></td>
+<td>停止并删除由 <code>up</code> 创建的容器、网络和默认卷。</td>
+<td><code>docker-compose down</code></td>
+</tr>
+<tr>
+<td><strong>列出服务</strong></td>
+<td><code>docker-compose ps</code></td>
+<td>列出 Compose 项目中所有服务的状态。</td>
+<td><code>docker-compose ps</code></td>
+</tr>
+<tr>
+<td><strong>查看日志</strong></td>
+<td><code>docker-compose logs -f</code></td>
+<td>实时查看所有服务的日志输出。</td>
+<td><code>docker-compose logs -f</code></td>
+</tr>
+<tr>
+<td><strong>进入服务</strong></td>
+<td><code>docker-compose exec &lt;service_name&gt; &lt;command&gt;</code></td>
+<td>在运行中的服务容器内执行命令。</td>
+<td><code>docker-compose exec web bash</code></td>
+</tr>
+<tr>
+<td><strong>仅构建镜像</strong></td>
+<td><code>docker-compose build &lt;service_name&gt;</code></td>
+<td>仅构建或重新构建指定服务的镜像。</td>
+<td><code>docker-compose build backend</code></td>
+</tr>
+<tr>
+<td><strong>停止服务</strong></td>
+<td><code>docker-compose stop &lt;service_name&gt;</code></td>
+<td>停止指定服务的容器，但不删除它们。</td>
+<td><code>docker-compose stop web</code></td>
+</tr>
+<tr>
+<td><strong>重启服务</strong></td>
+<td><code>docker-compose restart &lt;service_name&gt;</code></td>
+<td>重启指定服务的容器。</td>
+<td><code>docker-compose restart db</code></td>
+</tr>
+</tbody></table>
+
                 
               </div>
             
