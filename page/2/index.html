@@ -400,39 +400,6 @@ mjx-container[display="true"] + br {
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/05/18/template/blog_template/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/05/18/template/blog_template/" target="_self">
-        <div>
-          
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-05-18 20:32" pubdate>
-              2025-05-18
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
         <a href="/2025/05/08/STM32F407%E5%AD%A6%E4%B9%A0/" target="_self">
           STM32F407学习
         </a>
@@ -1566,6 +1533,67 @@ mjx-container[display="true"] + br {
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/bug/">#bug</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/21/Verilog%E4%B8%ADif%E8%AF%AD%E5%8F%A5%E5%92%8Ccase%E8%AF%AD%E5%8F%A5%E7%BB%BC%E5%90%88%E5%87%BA%E7%9A%84%E7%94%B5%E8%B7%AF%E5%8C%BA%E5%88%AB/" target="_self">
+          Verilog中if语句和case语句综合出的电路区别
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/21/Verilog%E4%B8%ADif%E8%AF%AD%E5%8F%A5%E5%92%8Ccase%E8%AF%AD%E5%8F%A5%E7%BB%BC%E5%90%88%E5%87%BA%E7%9A%84%E7%94%B5%E8%B7%AF%E5%8C%BA%E5%88%AB/" target="_self">
+        <div>
+          区别是 if else 的逻辑判断有优先级，最内层的 if 的优先级最高，case 的逻辑判断是并列的。每个 if else 综合出来的电路是一个 2 选 1 选通器。当信号有明显优先级时使用该语句，但是 if 嵌套太多的话会导致路径延时过大，降低运行速度。所以在判定条件较少的时候使用。if else 综合出的电路面积较小。case语句适用于无明显优先级的逻辑判断，这些逻辑条件都处于同一个优先级且
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-21 00:00" pubdate>
+              2025-01-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
             
           </div>
         

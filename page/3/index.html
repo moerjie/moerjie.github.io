@@ -400,67 +400,6 @@ mjx-container[display="true"] + br {
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/01/21/Verilog%E4%B8%ADif%E8%AF%AD%E5%8F%A5%E5%92%8Ccase%E8%AF%AD%E5%8F%A5%E7%BB%BC%E5%90%88%E5%87%BA%E7%9A%84%E7%94%B5%E8%B7%AF%E5%8C%BA%E5%88%AB/" target="_self">
-          Verilog中if语句和case语句综合出的电路区别
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/21/Verilog%E4%B8%ADif%E8%AF%AD%E5%8F%A5%E5%92%8Ccase%E8%AF%AD%E5%8F%A5%E7%BB%BC%E5%90%88%E5%87%BA%E7%9A%84%E7%94%B5%E8%B7%AF%E5%8C%BA%E5%88%AB/" target="_self">
-        <div>
-          区别是 if else 的逻辑判断有优先级，最内层的 if 的优先级最高，case 的逻辑判断是并列的。每个 if else 综合出来的电路是一个 2 选 1 选通器。当信号有明显优先级时使用该语句，但是 if 嵌套太多的话会导致路径延时过大，降低运行速度。所以在判定条件较少的时候使用。if else 综合出的电路面积较小。case语句适用于无明显优先级的逻辑判断，这些逻辑条件都处于同一个优先级且
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-21 00:00" pubdate>
-              2025-01-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/FPGA/">#FPGA</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
         <a href="/2025/01/20/ZYNQ-IP-AXI-GPIO/" target="_self">
           ZYNQ-IP-AXI-GPIO
         </a>
@@ -900,6 +839,46 @@ mjx-container[display="true"] + br {
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E7%94%B5%E8%B7%AF/">#电路</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/11/06/%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC/" target="_self">
+          阻塞赋值和非阻塞赋值
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/06/%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC/" target="_self">
+        <div>
+          1 阻塞和非阻塞的区别1.1 阻塞赋值“&#x3D;”必须是阻塞赋值完成后，才进行下一条语句的执行；赋值一旦完成，等号左边的变量值立即变化。在同一个块中，阻塞赋值表达式的书写顺序会影响赋值的结果。硬件没有对应的电路。  即串行赋值，语句从上到下顺序执行，立即生效  1.2 非阻塞赋值“&lt;&#x3D;”在赋值开始时计算表达式右边的值，在本次仿真周期时钟的下降沿时才更新被赋值变量，即赋值不是立即
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-11-06 00:00" pubdate>
+              2024-11-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
             
           </div>
         
