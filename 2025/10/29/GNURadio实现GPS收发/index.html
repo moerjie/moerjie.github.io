@@ -21,28 +21,19 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
   
-    <meta name="description" content="1 GPS 发射gnuradio 流程图如下：未添加与 SDR 通信的 block运行结果如下所示：其中 C&#x2F;A 码的频谱如图：P 码的频谱如图：两路叠加，C&#x2F;A 放 I 路，P 码放 Q 路后频谱如图：将 IQ 信号经过升余弦滚降滤波后频谱如图： 1.1 疑问经过升余弦滤波后，星座点变为：但是时域波形看起来没有什么问题：">
+    <meta name="description" content="1 GPS 发射工程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GNURadio实现GPS收发">
 <meta property="og:url" content="https://www.moerjielovecookie.icu/2025/10/29/GNURadio%E5%AE%9E%E7%8E%B0GPS%E6%94%B6%E5%8F%91/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="1 GPS 发射gnuradio 流程图如下：未添加与 SDR 通信的 block运行结果如下所示：其中 C&#x2F;A 码的频谱如图：P 码的频谱如图：两路叠加，C&#x2F;A 放 I 路，P 码放 Q 路后频谱如图：将 IQ 信号经过升余弦滚降滤波后频谱如图： 1.1 疑问经过升余弦滤波后，星座点变为：但是时域波形看起来没有什么问题：">
+<meta property="og:description" content="1 GPS 发射工程">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030144413.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030144725.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030144802.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030144819.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030144856.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030145030.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030152228.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030152241.png">
 <meta property="article:published_time" content="2025-10-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-30T08:29:20.444Z">
+<meta property="article:modified_time" content="2026-03-17T14:13:54.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="数字通信">
 <meta property="article:tag" content="通导">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030144413.png">
   
   
   
@@ -411,7 +402,7 @@ mjx-container[display="true"] + br {
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          108 字
+          5 字
         
       </span>
     
@@ -474,9 +465,7 @@ mjx-container[display="true"] + br {
             
               <div class="markdown-body">
                 
-                <h1 id="1-GPS-发射"><a href="#1-GPS-发射" class="headerlink" title="1 GPS 发射"></a>1 GPS 发射</h1><p>gnuradio 流程图如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030144413.png" srcset="/img/banner.png" lazyload><br>未添加与 SDR 通信的 block<br>运行结果如下所示：<br>其中 C/A 码的频谱如图：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030144725.png" srcset="/img/banner.png" lazyload><br>P 码的频谱如图：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030144802.png" srcset="/img/banner.png" lazyload><br>两路叠加，C/A 放 I 路，P 码放 Q 路后频谱如图：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030144819.png" srcset="/img/banner.png" lazyload><br>将 IQ 信号经过升余弦滚降滤波后频谱如图：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030144856.png" srcset="/img/banner.png" lazyload></p>
-<h2 id="1-1-疑问"><a href="#1-1-疑问" class="headerlink" title="1.1 疑问"></a>1.1 疑问</h2><p>经过升余弦滤波后，星座点变为：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030145030.png" srcset="/img/banner.png" lazyload alt="|500"><br>但是时域波形看起来没有什么问题：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030152228.png" srcset="/img/banner.png" lazyload><br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251030152241.png" srcset="/img/banner.png" lazyload></p>
-
+                <h1 id="1-GPS-发射工程"><a href="#1-GPS-发射工程" class="headerlink" title="1 GPS 发射工程"></a>1 GPS 发射工程</h1>
                 
               </div>
             

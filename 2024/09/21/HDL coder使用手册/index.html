@@ -21,12 +21,12 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
   
-    <meta name="description" content="由于本科毕设女朋友准备使用FPGA完成，因此写这篇文章帮助她快速上手HDL coder的使用，降低前期入门的难度。  支持生成HDL代码的simulink库 名字中含有HDL的库中的模块一般都可以用来生成HDL代码。直接搜索模块名称，比如搜索fir，  可以看到旁边会显示位于哪个库中，模块有可能位于多个库，只要有一个库的名字里面有HDL，就代表这个模块可以用来生成HDL代码。 一些常用操作创建子">
+    <meta name="description" content="由于本科毕设女朋友准备使用FPGA完成，因此写这篇文章帮助她快速上手HDL coder的使用，降低前期入门的难度。  1 支持生成HDL代码的simulink库 名字中含有HDL的库中的模块一般都可以用来生成HDL代码。直接搜索模块名称，比如搜索fir，  可以看到旁边会显示位于哪个库中，模块有可能位于多个库，只要有一个库的名字里面有HDL，就代表这个模块可以用来生成HDL代码。 2 一些常用操">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HDL coder使用手册">
 <meta property="og:url" content="https://www.moerjielovecookie.icu/2024/09/21/HDL%20coder%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="由于本科毕设女朋友准备使用FPGA完成，因此写这篇文章帮助她快速上手HDL coder的使用，降低前期入门的难度。  支持生成HDL代码的simulink库 名字中含有HDL的库中的模块一般都可以用来生成HDL代码。直接搜索模块名称，比如搜索fir，  可以看到旁边会显示位于哪个库中，模块有可能位于多个库，只要有一个库的名字里面有HDL，就代表这个模块可以用来生成HDL代码。 一些常用操作创建子">
+<meta property="og:description" content="由于本科毕设女朋友准备使用FPGA完成，因此写这篇文章帮助她快速上手HDL coder的使用，降低前期入门的难度。  1 支持生成HDL代码的simulink库 名字中含有HDL的库中的模块一般都可以用来生成HDL代码。直接搜索模块名称，比如搜索fir，  可以看到旁边会显示位于哪个库中，模块有可能位于多个库，只要有一个库的名字里面有HDL，就代表这个模块可以用来生成HDL代码。 2 一些常用操">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211041121.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211050982.png">
@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211206344.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211207218.png">
 <meta property="article:published_time" content="2024-09-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-23T03:15:08.000Z">
+<meta property="article:modified_time" content="2026-03-17T14:13:55.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta property="article:tag" content="MATLAB">
@@ -376,38 +376,38 @@
                 <blockquote>
 <p>由于本科毕设女朋友准备使用FPGA完成，因此写这篇文章帮助她快速上手HDL coder的使用，降低前期入门的难度。</p>
 </blockquote>
-<h1 id="支持生成HDL代码的simulink库"><a href="#支持生成HDL代码的simulink库" class="headerlink" title="支持生成HDL代码的simulink库"></a>支持生成HDL代码的simulink库</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211041121.png" srcset="/img/banner.png" lazyload alt="2024after4202409211041121.png"></p>
+<h1 id="1-支持生成HDL代码的simulink库"><a href="#1-支持生成HDL代码的simulink库" class="headerlink" title="1 支持生成HDL代码的simulink库"></a>1 支持生成HDL代码的simulink库</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211041121.png" srcset="/img/banner.png" lazyload alt="2024after4202409211041121.png"></p>
 <p>名字中含有HDL的库中的模块一般都可以用来生成HDL代码。直接搜索模块名称，比如搜索fir，</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211050982.png" srcset="/img/banner.png" lazyload alt="2024after4202409211050982.png"></p>
 <p>可以看到旁边会显示位于哪个库中，模块有可能位于多个库，只要有一个库的名字里面有HDL，就代表这个模块可以用来生成HDL代码。</p>
-<h1 id="一些常用操作"><a href="#一些常用操作" class="headerlink" title="一些常用操作"></a>一些常用操作</h1><h2 id="创建子系统"><a href="#创建子系统" class="headerlink" title="创建子系统"></a>创建子系统</h2><p>将库中的模块拖到主界面组合好后，可能会占据很大的空间，如果工程较大，模块越连越多就特别臃肿，因此当我们完成某个功能以后，就可以将这部分的模块全部选中，此时右下角会出现三个点，将鼠标移到上面后会展开，出现很多不同的功能。下图是一个AM调制的过程，可以看到选中所有相关的模块后点击创建子系统，即可得到右图的子系统。刚生成的子系统的命名为subsystem，可以将命名改为更清晰易懂的名字。</p>
+<h1 id="2-一些常用操作"><a href="#2-一些常用操作" class="headerlink" title="2 一些常用操作"></a>2 一些常用操作</h1><h2 id="2-1-创建子系统"><a href="#2-1-创建子系统" class="headerlink" title="2.1 创建子系统"></a>2.1 创建子系统</h2><p>将库中的模块拖到主界面组合好后，可能会占据很大的空间，如果工程较大，模块越连越多就特别臃肿，因此当我们完成某个功能以后，就可以将这部分的模块全部选中，此时右下角会出现三个点，将鼠标移到上面后会展开，出现很多不同的功能。下图是一个AM调制的过程，可以看到选中所有相关的模块后点击创建子系统，即可得到右图的子系统。刚生成的子系统的命名为subsystem，可以将命名改为更清晰易懂的名字。</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211056583.png" srcset="/img/banner.png" lazyload alt="2024after4202409211056583.png"></p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1726887497741.png" srcset="/img/banner.png" lazyload alt="1726887497741.png"></p>
-<h2 id="观察节点的信号波形"><a href="#观察节点的信号波形" class="headerlink" title="观察节点的信号波形"></a>观察节点的信号波形</h2><p>当选中某根连线时，同样会出现三个点，鼠标移动到上面后会展开，选择WiFi形状的选项即可记录该连线上的信号。运行仿真后再次点击WiFi图标即可打开逻辑分析仪，即可查看该连线上的信号。</p>
+<h2 id="2-2-观察节点的信号波形"><a href="#2-2-观察节点的信号波形" class="headerlink" title="2.2 观察节点的信号波形"></a>2.2 观察节点的信号波形</h2><p>当选中某根连线时，同样会出现三个点，鼠标移动到上面后会展开，选择WiFi形状的选项即可记录该连线上的信号。运行仿真后再次点击WiFi图标即可打开逻辑分析仪，即可查看该连线上的信号。</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1726888515922.png" srcset="/img/banner.png" lazyload alt="1726888515922.png"></p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1726889009858.png" srcset="/img/banner.png" lazyload alt="1726889009858.png"></p>
 <p>逻辑分析仪内部选中某个信号后即可在波形中调节数制、高度等设置。</p>
 <blockquote>
 <p>也可以使用scope模板看节点信号。</p>
 </blockquote>
-<h2 id="频谱分析"><a href="#频谱分析" class="headerlink" title="频谱分析"></a>频谱分析</h2><p>使用Spectrum Analyzer模块进行频谱分析。</p>
+<h2 id="2-3-频谱分析"><a href="#2-3-频谱分析" class="headerlink" title="2.3 频谱分析"></a>2.3 频谱分析</h2><p>使用Spectrum Analyzer模块进行频谱分析。</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211127829.png" srcset="/img/banner.png" lazyload alt="2024after4202409211127829.png"></p>
 <p>当样点比较少的时候可以将估计方法改为welch。</p>
-<h2 id="信号数据格式显示"><a href="#信号数据格式显示" class="headerlink" title="信号数据格式显示"></a>信号数据格式显示</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211131120.png" srcset="/img/banner.png" lazyload alt="2024after4202409211131120.png"></p>
+<h2 id="2-4-信号数据格式显示"><a href="#2-4-信号数据格式显示" class="headerlink" title="2.4 信号数据格式显示"></a>2.4 信号数据格式显示</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211131120.png" srcset="/img/banner.png" lazyload alt="2024after4202409211131120.png"></p>
 <p>可以显示模块输入输出信号的数据类型和小数位数。</p>
 <blockquote>
 <p>采样时间一栏中的时间图例选中以后，会用不同的颜色显示不同采样速率的模块，在多速率系统设计中有很大的用处。</p>
 </blockquote>
-<h1 id="生成HDL代码"><a href="#生成HDL代码" class="headerlink" title="生成HDL代码"></a>生成HDL代码</h1><h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><h3 id="设置诊断类型"><a href="#设置诊断类型" class="headerlink" title="设置诊断类型"></a>设置诊断类型</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211138607.png" srcset="/img/banner.png" lazyload alt="2024after4202409211138607.png"></p>
+<h1 id="3-生成HDL代码"><a href="#3-生成HDL代码" class="headerlink" title="3 生成HDL代码"></a>3 生成HDL代码</h1><h2 id="3-1-前期准备"><a href="#3-1-前期准备" class="headerlink" title="3.1 前期准备"></a>3.1 前期准备</h2><h3 id="3-1-1-设置诊断类型"><a href="#3-1-1-设置诊断类型" class="headerlink" title="3.1.1 设置诊断类型"></a>3.1.1 设置诊断类型</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211138607.png" srcset="/img/banner.png" lazyload alt="2024after4202409211138607.png"></p>
 <p>模型设置中选择诊断&#x2F;采样时间</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211139629.png" srcset="/img/banner.png" lazyload alt="2024after4202409211139629.png"></p>
 <p>单任务和多任务数据传输必须设置成错误。</p>
-<h3 id="兼容性检测"><a href="#兼容性检测" class="headerlink" title="兼容性检测"></a>兼容性检测</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211145908.png" srcset="/img/banner.png" lazyload alt="2024after4202409211145908.png"></p>
+<h3 id="3-1-2-兼容性检测"><a href="#3-1-2-兼容性检测" class="headerlink" title="3.1.2 兼容性检测"></a>3.1.2 兼容性检测</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211145908.png" srcset="/img/banner.png" lazyload alt="2024after4202409211145908.png"></p>
 <p>选择代码生成的目标文件夹，运行兼容性检查器，如果工程没有问题的话会出现如下界面</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1726890374067.png" srcset="/img/banner.png" lazyload alt="1726890374067.png"></p>
-<h3 id="目标平台选择"><a href="#目标平台选择" class="headerlink" title="目标平台选择"></a>目标平台选择</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211148557.png" srcset="/img/banner.png" lazyload alt="2024after4202409211148557.png"></p>
+<h3 id="3-1-3-目标平台选择"><a href="#3-1-3-目标平台选择" class="headerlink" title="3.1.3 目标平台选择"></a>3.1.3 目标平台选择</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211148557.png" srcset="/img/banner.png" lazyload alt="2024after4202409211148557.png"></p>
 <p>根据使用的FPGA选择综合工具和FPGA的系列。</p>
-<h3 id="模块设置"><a href="#模块设置" class="headerlink" title="模块设置"></a>模块设置</h3><p>在要生成代码的子系统上右键，选择HDL模块属性：</p>
+<h3 id="3-1-4-模块设置"><a href="#3-1-4-模块设置" class="headerlink" title="3.1.4 模块设置"></a>3.1.4 模块设置</h3><p>在要生成代码的子系统上右键，选择HDL模块属性：</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211151201.png" srcset="/img/banner.png" lazyload alt="2024after4202409211151201.png"></p>
 <p>可以对流水线、乘法器等参数进行设置</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1726890814415.png" srcset="/img/banner.png" lazyload alt="1726890814415.png"></p>
@@ -419,7 +419,7 @@
 </blockquote>
 <pre><code class="hljs">[bookmark](https://blog.sawenmoerjie.top/article/ec96aebc-b5a5-4059-bbef-02f0003e7a45)
 </code></pre>
-<h2 id="代码生成"><a href="#代码生成" class="headerlink" title="代码生成"></a>代码生成</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211154140.png" srcset="/img/banner.png" lazyload alt="2024after4202409211154140.png"></p>
+<h2 id="3-2-代码生成"><a href="#3-2-代码生成" class="headerlink" title="3.2 代码生成"></a>3.2 代码生成</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409211154140.png" srcset="/img/banner.png" lazyload alt="2024after4202409211154140.png"></p>
 <p>点击为子系统生成HDL代码后会自动进行一次编译，命令行窗口会出现如下信息</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1726891451673.png" srcset="/img/banner.png" lazyload alt="1726891451673.png"></p>
 <p>同时会生成一个report</p>
@@ -514,8 +514,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E5%8D%8A%E5%B8%A6%E6%BB%A4%E6%B3%A2%E5%99%A8/" title="多速率信号处理-半带滤波器">
-                        <span class="hidden-mobile">多速率信号处理-半带滤波器</span>
+                      <a href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-Nobel%E6%81%92%E7%AD%89%E5%BC%8F/" title="多速率信号处理-Nobel恒等式">
+                        <span class="hidden-mobile">多速率信号处理-Nobel恒等式</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

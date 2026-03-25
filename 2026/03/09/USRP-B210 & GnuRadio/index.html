@@ -21,24 +21,26 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
   
-    <meta name="description" content="在使用OP07设计单路运放时，设计目标为将100K到1M的1V峰峰值的正弦波放大2倍，但是测试过程中发现100K频率下输出的波形类似三角波，数据手册说OP07的增益带宽积为0.5MHz，正常来说100K的频率下2倍增益是没问题的。 但是数据手册又说OP07的压摆率Slew Rate为0.3V&#x2F;us，那么根据设计目标可以计算得出运放的压摆率至少要到6.28V&#x2F;us，可以看到OP0">
+    <meta name="description" content="1 USRP-B210 介绍1.1 板卡参数1.1.1 射频性能   参数 规格    频率范围 50 MHz 至 6 GHz（接收和发射链的本振LO可独立调谐于此范围）   瞬时带宽   最大56 MHz（模拟前端可无缝调节的带宽范围为200 kHz至56 MHz）   通道数量   2个独立的收发通道，支持全双工MIMO操作。  • 两个接收前端共享一个RX本振。  • 两个发射前端共享一个T">
 <meta property="og:type" content="article">
-<meta property="og:title" content="运放选型">
-<meta property="og:url" content="https://www.moerjielovecookie.icu/2025/04/27/%E8%BF%90%E6%94%BE%E9%80%89%E5%9E%8B/index.html">
+<meta property="og:title" content="USRP-B210 &amp; GnuRadio">
+<meta property="og:url" content="https://www.moerjielovecookie.icu/2026/03/09/USRP-B210%20&%20GnuRadio/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="在使用OP07设计单路运放时，设计目标为将100K到1M的1V峰峰值的正弦波放大2倍，但是测试过程中发现100K频率下输出的波形类似三角波，数据手册说OP07的增益带宽积为0.5MHz，正常来说100K的频率下2倍增益是没问题的。 但是数据手册又说OP07的压摆率Slew Rate为0.3V&#x2F;us，那么根据设计目标可以计算得出运放的压摆率至少要到6.28V&#x2F;us，可以看到OP0">
+<meta property="og:description" content="1 USRP-B210 介绍1.1 板卡参数1.1.1 射频性能   参数 规格    频率范围 50 MHz 至 6 GHz（接收和发射链的本振LO可独立调谐于此范围）   瞬时带宽   最大56 MHz（模拟前端可无缝调节的带宽范围为200 kHz至56 MHz）   通道数量   2个独立的收发通道，支持全双工MIMO操作。  • 两个接收前端共享一个RX本振。  • 两个发射前端共享一个T">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202407211436085.png">
-<meta property="article:published_time" content="2025-04-27T12:28:32.000Z">
-<meta property="article:modified_time" content="2025-07-14T09:45:06.193Z">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-03/260309174439180.png">
+<meta property="article:published_time" content="2026-03-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-18T13:50:48.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="电路">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="射频">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202407211436085.png">
+<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-03/260309174439180.png">
   
   
   
-  <title>运放选型 - Sawen_Blog</title>
+  <title>USRP-B210 &amp; GnuRadio - Sawen_Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -107,7 +109,119 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <body>
@@ -262,7 +376,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="运放选型"></span>
+            <span id="subtitle" data-typed-text="USRP-B210 &amp; GnuRadio"></span>
           
         </div>
 
@@ -278,8 +392,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-04-27 20:28" pubdate>
-           2025 年 04 月 27 日 , 晚上 08:28 , 星期日
+        <time datetime="2026-03-09 00:00" pubdate>
+           2026 年 03 月 09 日 , 凌晨 12:00 , 星期一
         </time>
       </span>
     
@@ -291,7 +405,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          179 字
+          484 字
         
       </span>
     
@@ -303,7 +417,7 @@
         
         
           <!-- compatible with older versions-->
-          2 分钟
+          5 分钟
         
       </span>
     
@@ -349,15 +463,84 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">运放选型</h1>
+            <h1 id="seo-header">USRP-B210 &amp; GnuRadio</h1>
             
             
               <div class="markdown-body">
                 
-                <p>在使用OP07设计单路运放时，设计目标为将100K到1M的1V峰峰值的正弦波放大2倍，但是测试过程中发现100K频率下输出的波形类似三角波，数据手册说OP07的增益带宽积为0.5MHz，正常来说100K的频率下2倍增益是没问题的。</p>
-<p>但是数据手册又说OP07的压摆率Slew Rate为0.3V&#x2F;us，那么根据设计目标可以计算得出运放的压摆率至少要到6.28V&#x2F;us，可以看到OP07的压摆率完全不够，因此波形会失真。</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202407211436085.png" srcset="/img/banner.png" lazyload alt="2024after4202407211436085.png"></p>
-<p>当使用正负5V供电时，AD8051的压摆率最小值在105V&#x2F;us，，因此可以满足设计要求。</p>
+                <h1 id="1-USRP-B210-介绍"><a href="#1-USRP-B210-介绍" class="headerlink" title="1 USRP-B210 介绍"></a>1 USRP-B210 介绍</h1><h2 id="1-1-板卡参数"><a href="#1-1-板卡参数" class="headerlink" title="1.1 板卡参数"></a>1.1 板卡参数</h2><h3 id="1-1-1-射频性能"><a href="#1-1-1-射频性能" class="headerlink" title="1.1.1 射频性能"></a>1.1.1 射频性能</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>规格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>频率范围</td>
+<td><strong>50 MHz 至 6 GHz</strong>（接收和发射链的本振LO可独立调谐于此范围）</td>
+</tr>
+<tr>
+<td>瞬时带宽  <br></td>
+<td><strong>最大56 MHz</strong>（模拟前端可无缝调节的带宽范围为200 kHz至56 MHz）</td>
+</tr>
+<tr>
+<td>通道数量  <br></td>
+<td><strong>2个独立的收发通道</strong>，支持<strong>全双工MIMO操作</strong>。  <br>• 两个接收前端共享一个RX本振。  <br>• 两个发射前端共享一个TX本振。</td>
+</tr>
+<tr>
+<td>接收增益  <br></td>
+<td>76 dB可用增益（模拟控制）。文档建议至少使用一半增益以获得合理的动态范围。</td>
+</tr>
+<tr>
+<td>发射增益</td>
+<td>89.8 dB可用增益（模拟控制）。</td>
+</tr>
+<tr>
+<td>接收输入功率  <br></td>
+<td><strong>最大 -15 dBm</strong>（任何RF输入端口）。严禁超过此值，否则可能损坏设备。</td>
+</tr>
+<tr>
+<td>发射输出功率</td>
+<td><strong>最大 +20 dBm</strong>（任何TX/RX端口）。</td>
+</tr>
+</tbody></table>
+<h3 id="1-1-2-数字处理与时钟"><a href="#1-1-2-数字处理与时钟" class="headerlink" title="1.1.2 数字处理与时钟"></a>1.1.2 数字处理与时钟</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>规格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ADC/DAC</td>
+<td>集成12位ADC和DAC（由射频芯片AD9361提供）。</td>
+</tr>
+<tr>
+<td>主时钟速率</td>
+<td><strong>5 MHz 至 61.44 MHz</strong> 可编程设置。  <br>• <strong>双通道模式</strong>下最高为 <strong>30.72 MHz</strong>。  <br>• 高于56 MHz不推荐使用。  <br>• <strong>注意</strong>：主时钟速率必须是采样率的整数倍。</td>
+</tr>
+<tr>
+<td>自动时钟设置</td>
+<td>默认根据请求的采样率自动选择最优主时钟。为精确同步多设备，<strong>文档强烈建议手动指定主时钟速率</strong>。</td>
+</tr>
+<tr>
+<td>同步支持</td>
+<td>• <strong>外部10 MHz参考输入</strong>（J100，最大+15 dBm）。  <br>• <strong>外部PPS输入</strong>（J104，1.8V-5V）。  <br>• <strong>可选GPSDO模块</strong>（安装在U100插座）。  <br>• <strong>重要警告</strong>：<strong>若已安装GPSDO，则无法同时使用外部10 MHz参考，必须先物理移除GPSDO模块。</strong></td>
+</tr>
+</tbody></table>
+<h2 id="1-2-GNURadio-UHD-block"><a href="#1-2-GNURadio-UHD-block" class="headerlink" title="1.2 GNURadio UHD block"></a>1.2 GNURadio UHD block</h2><h3 id="1-2-1-USRP-source"><a href="#1-2-1-USRP-source" class="headerlink" title="1.2.1 USRP source"></a>1.2.1 USRP source</h3><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-03/260309174439180.png" srcset="/img/banner.png" lazyload alt="USRP Source Block|470">  </p>
+<ol>
+<li>Stream channels：等效为[0]，若使用两个通道可写成[0,1]</li>
+<li>Device Arguments：其他可传递给 USRP 的参数</li>
+<li>Sync：<ol>
+<li>No Sync：无时钟源，适用于单设备，不关心时间戳</li>
+<li>PC Clock：时间源为主机时钟，精度较低（ms）</li>
+<li>PC Clock on Next PPS：精度中</li>
+<li>GPS on Next PPS：精度高（ns）</li>
+<li>Unknown PPS：多设备相位同步，不关心绝对时间</li>
+</ol>
+</li>
+</ol>
 
                 
               </div>
@@ -376,7 +559,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%94%B5%E8%B7%AF/" class="category-chain-item">电路</a>
+  <a href="/categories/%E5%B0%84%E9%A2%91/" class="category-chain-item">射频</a>
   
   
 
@@ -393,6 +576,10 @@
       
         <a href="/tags/%E7%94%B5%E8%B7%AF/" class="print-no-link">#电路</a>
       
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/%E5%B0%84%E9%A2%91/" class="print-no-link">#射频</a>
+      
     </div>
   
 </div>
@@ -403,8 +590,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>运放选型</div>
-      <div>https://www.moerjielovecookie.icu/2025/04/27/运放选型/</div>
+      <div>USRP-B210 &amp; GnuRadio</div>
+      <div>https://www.moerjielovecookie.icu/2026/03/09/USRP-B210 &amp; GnuRadio/</div>
     </div>
     <div class="license-meta">
       
@@ -416,7 +603,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年4月27日</div>
+          <div>2026年3月9日</div>
         </div>
       
       
@@ -448,9 +635,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/01/Pluto%20SDR%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95/" title="Pluto SDR入门记录">
+                      <a href="/2026/03/17/Testbench%E4%BB%BF%E7%9C%9F%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99%E6%8C%87%E5%8C%97/" title="Quartus报错记录">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Pluto SDR入门记录</span>
+                        <span class="hidden-mobile">Quartus报错记录</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -458,8 +645,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/04/27/Testbench%E4%BB%BF%E7%9C%9F%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99%E6%8C%87%E5%8C%97/" title="Quartus报错记录">
-                        <span class="hidden-mobile">Quartus报错记录</span>
+                      <a href="/2026/02/17/%E5%8C%B9%E9%85%8D%E6%BB%A4%E6%B3%A2/" title="匹配滤波">
+                        <span class="hidden-mobile">匹配滤波</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
