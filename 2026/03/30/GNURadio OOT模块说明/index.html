@@ -1,0 +1,1202 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Sawen Moerjie">
+  <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
+  
+    <meta name="description" content="1 GNU Radio C++ OOT 开发指南1.1 目录 1. OOT 模块简介 2. 开发工具和资源 3. 创建 OOT 模块 4. 模块结构 5. 创建 C++ Block 6. Block 类型 7. 编译和安装 8. 在 GRC 中使用 9. 常见问题和技巧   1.2 OOT 模块简介1.2.1 什么是 OOT 模块？OOT (Out-Of-Tree) 模块是不位于 GNU Radi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GNURadio OOT模块说明">
+<meta property="og:url" content="https://www.moerjielovecookie.icu/2026/03/30/GNURadio%20OOT%E6%A8%A1%E5%9D%97%E8%AF%B4%E6%98%8E/index.html">
+<meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:description" content="1 GNU Radio C++ OOT 开发指南1.1 目录 1. OOT 模块简介 2. 开发工具和资源 3. 创建 OOT 模块 4. 模块结构 5. 创建 C++ Block 6. Block 类型 7. 编译和安装 8. 在 GRC 中使用 9. 常见问题和技巧   1.2 OOT 模块简介1.2.1 什么是 OOT 模块？OOT (Out-Of-Tree) 模块是不位于 GNU Radi">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-30T09:07:53.510Z">
+<meta property="article:author" content="Sawen Moerjie">
+<meta property="article:tag" content="coding">
+<meta property="article:tag" content="数字通信">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>GNURadio OOT模块说明 - Sawen_Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_3846514_kabxni94auf.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.moerjielovecookie.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"s1VuBxXCcgtXqVI9HAQm9qPr-gzGzoHsz","app_key":"ZRUva62YyRxmXoylVSg3mBBq","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Sawen_Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives" target="_self">
+                <i class="iconfont icon-books"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories" target="_self">
+                <i class="iconfont icon-th-large"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-book"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GNURadio OOT模块说明"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Sawen Moerjie
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-30 00:00" pubdate>
+           2026 年 03 月 30 日 , 凌晨 12:00 , 星期一
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GNURadio OOT模块说明</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-GNU-Radio-C-OOT-开发指南"><a href="#1-GNU-Radio-C-OOT-开发指南" class="headerlink" title="1 GNU Radio C++ OOT 开发指南"></a>1 GNU Radio C++ OOT 开发指南</h1><h2 id="1-1-目录"><a href="#1-1-目录" class="headerlink" title="1.1 目录"></a>1.1 目录</h2><ul>
+<li><a href="#1-oot-%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B">1. OOT 模块简介</a></li>
+<li><a href="#2-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%92%8C%E8%B5%84%E6%BA%90">2. 开发工具和资源</a></li>
+<li><a href="#3-%E5%88%9B%E5%BB%BA-oot-%E6%A8%A1%E5%9D%97">3. 创建 OOT 模块</a></li>
+<li><a href="#4-%E6%A8%A1%E5%9D%97%E7%BB%93%E6%9E%84">4. 模块结构</a></li>
+<li><a href="#5-%E5%88%9B%E5%BB%BA-c-block">5. 创建 C++ Block</a></li>
+<li><a href="#6-block-%E7%B1%BB%E5%9E%8B">6. Block 类型</a></li>
+<li><a href="#7-%E7%BC%96%E8%AF%91%E5%92%8C%E5%AE%89%E8%A3%85">7. 编译和安装</a></li>
+<li><a href="#8-%E5%9C%A8-grc-%E4%B8%AD%E4%BD%BF%E7%94%A8">8. 在 GRC 中使用</a></li>
+<li><a href="#9-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%92%8C%E6%8A%80%E5%B7%A7">9. 常见问题和技巧</a></li>
+</ul>
+<hr>
+<h2 id="1-2-OOT-模块简介"><a href="#1-2-OOT-模块简介" class="headerlink" title="1.2 OOT 模块简介"></a>1.2 OOT 模块简介</h2><h3 id="1-2-1-什么是-OOT-模块？"><a href="#1-2-1-什么是-OOT-模块？" class="headerlink" title="1.2.1 什么是 OOT 模块？"></a>1.2.1 什么是 OOT 模块？</h3><p>OOT (Out-Of-Tree) 模块是不位于 GNU Radio 源码树中的 GNU Radio 组件。如果你想用自己的功能和模块扩展 GNU Radio，OOT 模块就是需要创建的内容。</p>
+<p>OOT 模块的优势：</p>
+<ul>
+<li>可以自行维护代码</li>
+<li>与主代码并存提供额外功能</li>
+<li>无需修改 GNU Radio 核心代码即可添加自定义功能</li>
+<li>可以单独发布和分享</li>
+</ul>
+<p>许多 OOT 项目托管在 <a target="_blank" rel="noopener" href="http://cgran.org/">CGRAN</a> (Comprehensive GNU Radio Archive Network)。</p>
+<hr>
+<h2 id="1-3-开发工具和资源"><a href="#1-3-开发工具和资源" class="headerlink" title="1.3 开发工具和资源"></a>1.3 开发工具和资源</h2><h3 id="1-3-1-gr-modtool"><a href="#1-3-1-gr-modtool" class="headerlink" title="1.3.1 gr_modtool"></a>1.3.1 gr_modtool</h3><p><code>gr_modtool</code> 是模块编辑的瑞士军刀，它可以：</p>
+<ul>
+<li>自动编辑 makefiles</li>
+<li>使用模板生成代码</li>
+<li>处理繁琐的样板代码</li>
+<li>让开发者直接专注于 DSP 编码</li>
+</ul>
+<h3 id="1-3-2-安装依赖"><a href="#1-3-2-安装依赖" class="headerlink" title="1.3.2 安装依赖"></a>1.3.2 安装依赖</h3><p>在 Ubuntu/Debian 系统上，安装 GNU Radio 后还需要以下包来编译 OOT 模块：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get install gnuradio-dev cmake libspdlog-dev clang-format<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-3-3-开发者资源"><a href="#1-3-3-开发者资源" class="headerlink" title="1.3.3 开发者资源"></a>1.3.3 开发者资源</h3><ul>
+<li><strong><a target="_blank" rel="noopener" href="https://wiki.gnuradio.org/index.php/BlocksCodingGuide">Block Coding Guide</a></strong> - 块编码指南，包含命名规范</li>
+<li><strong><a target="_blank" rel="noopener" href="https://wiki.gnuradio.org/index.php/Types_of_Blocks">Types of Blocks</a></strong> - 不同类型的块说明</li>
+<li><strong><a target="_blank" rel="noopener" href="https://wiki.gnuradio.org/index.php/YAML_GRC">YAML GRC</a></strong> - YAML 格式的 GRC 块描述</li>
+</ul>
+<hr>
+<h2 id="1-4-创建-OOT-模块"><a href="#1-4-创建-OOT-模块" class="headerlink" title="1.4 创建 OOT 模块"></a>1.4 创建 OOT 模块</h2><h3 id="1-4-1-使用-gr-modtool-创建新模块"><a href="#1-4-1-使用-gr-modtool-创建新模块" class="headerlink" title="1.4.1 使用 gr_modtool 创建新模块"></a>1.4.1 使用 gr_modtool 创建新模块</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 在想要创建模块的目录中执行</span><br>gr_modtool newmod my_module<br></code></pre></td></tr></table></figure>
+
+<p>这将创建一个名为 <code>gr-my_module</code> 的新目录。</p>
+<h3 id="1-4-2-模块创建输出示例"><a href="#1-4-2-模块创建输出示例" class="headerlink" title="1.4.2 模块创建输出示例"></a>1.4.2 模块创建输出示例</h3><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">Creating <span class="hljs-keyword">out</span>-<span class="hljs-keyword">of</span>-tree <span class="hljs-keyword">module</span> <span class="hljs-keyword">in</span> ./gr-howto... Done.<br>Use <span class="hljs-string">'gr_modtool add'</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">add</span> a <span class="hljs-keyword">new</span> <span class="hljs-keyword">block</span> <span class="hljs-keyword">to</span> this currently <span class="hljs-keyword">empty</span> <span class="hljs-keyword">module</span>.<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="1-5-模块结构"><a href="#1-5-模块结构" class="headerlink" title="1.5 模块结构"></a>1.5 模块结构</h2><p>创建的模块包含以下子目录：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs nix">gr-howto<span class="hljs-symbol">/</span><br>├── apps<span class="hljs-symbol">/</span>          <span class="hljs-comment"># 完整应用程序（GRC 和独立可执行文件）</span><br>├── cmake<span class="hljs-symbol">/</span>         <span class="hljs-comment"># CMake 配置文件</span><br>├── CMakeLists.txt <span class="hljs-comment"># 主 CMake 构建文件</span><br>├── docs<span class="hljs-symbol">/</span>          <span class="hljs-comment"># 文档</span><br>├── examples<span class="hljs-symbol">/</span>      <span class="hljs-comment"># 示例代码</span><br>├── grc<span class="hljs-symbol">/</span>           <span class="hljs-comment"># GRC 块描述文件（YAML 格式，3.8+）</span><br>├── include<span class="hljs-symbol">/</span>       <span class="hljs-comment"># 头文件（需要导出的）</span><br>├── lib<span class="hljs-symbol">/</span>           <span class="hljs-comment"># C/C++ 源代码（以及内部头文件）</span><br>├── python<span class="hljs-symbol">/</span>        <span class="hljs-comment"># Python 模块和单元测试</span><br>└── swig<span class="hljs-symbol">/</span>          <span class="hljs-comment"># SWIG 接口文件（用于 Python 绑定）</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-5-1-目录说明"><a href="#1-5-1-目录说明" class="headerlink" title="1.5.1 目录说明"></a>1.5.1 目录说明</h3><ul>
+<li><strong>lib/</strong>：C++ 或 C 源代码</li>
+<li><strong>include/</strong>：C++ 头文件（需要导出的 API）</li>
+<li><strong>python/</strong>：Python 模块、单元测试</li>
+<li><strong>swig/</strong>：SWIG 绑定说明（让 C++ 块在 Python 中可用）</li>
+<li><strong>grc/</strong>：GRC 块描述文件（3.8+ 使用 YAML，之前是 XML）</li>
+<li><strong>docs/</strong>：文档（使用 Doxygen 和 Sphinx）</li>
+<li><strong>apps/</strong>：完整的应用程序</li>
+<li><strong>examples/</strong>：使用示例</li>
+</ul>
+<hr>
+<h2 id="1-6-创建-C-Block"><a href="#1-6-创建-C-Block" class="headerlink" title="1.6 创建 C++ Block"></a>1.6 创建 C++ Block</h2><h3 id="1-6-1-添加新-Block"><a href="#1-6-1-添加新-Block" class="headerlink" title="1.6.1 添加新 Block"></a>1.6.1 添加新 Block</h3><p>在模块目录中执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> gr-my_module<br>gr_modtool add my_block<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-6-2-Block-类型选择"><a href="#1-6-2-Block-类型选择" class="headerlink" title="1.6.2 Block 类型选择"></a>1.6.2 Block 类型选择</h3><p><code>gr_modtool</code> 会询问块类型：</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">GNU Radio <span class="hljs-keyword">module</span> name identified: my_module<br>(<span class="hljs-string">'sink'</span>, <span class="hljs-string">'source'</span>, <span class="hljs-string">'sync'</span>, <span class="hljs-string">'decimator'</span>, <span class="hljs-string">'interpolator'</span>, <span class="hljs-string">'general'</span>, <span class="hljs-string">'tagged_stream'</span>, <span class="hljs-string">'hier'</span>, <span class="hljs-string">'noblock'</span>)<br>Enter <span class="hljs-keyword">block</span> <span class="hljs-keyword">type</span>: [选择类型]<br></code></pre></td></tr></table></figure>
+
+<p>主要类型说明：</p>
+<ul>
+<li><strong>sink</strong>：只有输入，没有输出</li>
+<li><strong>source</strong>：只有输出，没有输入</li>
+<li><strong>sync</strong>：同步块，输入输出数量相同</li>
+<li><strong>decimator</strong>：抽取器，输出数量少于输入</li>
+<li><strong>interpolator</strong>：插值器，输出数量多于输入</li>
+<li><strong>general</strong>：通用块，完全自定义行为</li>
+<li><strong>tagged_stream</strong>：带标签流的块</li>
+<li><strong>hier</strong>：分层块（由其他块组成）</li>
+</ul>
+<h3 id="1-6-3-选择语言和参数"><a href="#1-6-3-选择语言和参数" class="headerlink" title="1.6.3 选择语言和参数"></a>1.6.3 选择语言和参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">Language (python/cpp): cpp<br>Block/code identifier: my_block<br>Please specify the copyright holder: YourName<br>Enter valid argument list, including default arguments:<br>int parameter1=0, <span class="hljs-built_in">float</span> parameter2=1.0<br>Add Python QA code? [Y/n]: Y<br>Add C++ QA code? [Y/n]: n<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-6-4-生成的文件"><a href="#1-6-4-生成的文件" class="headerlink" title="1.6.4 生成的文件"></a>1.6.4 生成的文件</h3><p>执行后会生成/修改以下文件：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs lasso">Adding file <span class="hljs-string">'lib/my_block_impl.h'</span><span class="hljs-params">...</span><br>Adding file <span class="hljs-string">'lib/my_block_impl.cc'</span><span class="hljs-params">...</span><br>Adding file <span class="hljs-string">'include/gnuradio/my_module/my_block.h'</span><span class="hljs-params">...</span><br>Adding file <span class="hljs-string">'python/my_module/bindings/docstrings/my_block_pydoc_template.h'</span><span class="hljs-params">...</span><br>Adding file <span class="hljs-string">'python/my_module/bindings/my_block_python.cc'</span><span class="hljs-params">...</span><br>Adding file <span class="hljs-string">'grc/my_module_my_block.block.yml'</span><span class="hljs-params">...</span><br>Editing grc/CMakeLists.txt<span class="hljs-params">...</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="1-7-Block-类型详解"><a href="#1-7-Block-类型详解" class="headerlink" title="1.7 Block 类型详解"></a>1.7 Block 类型详解</h2><h3 id="1-7-1-Sync-Block（同步块）"><a href="#1-7-1-Sync-Block（同步块）" class="headerlink" title="1.7.1 Sync Block（同步块）"></a>1.7.1 Sync Block（同步块）</h3><p>同步块是最常见的类型。对于每个输入项，产生相同数量的输出项。</p>
+<p><strong>工作原理</strong>：</p>
+<ul>
+<li>消耗的输入项 = <code>noutput_items</code></li>
+<li>产生的输出项 = <code>noutput_items</code></li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>元素级的数学运算（乘、加、滤波器等）</li>
+<li>一对一转换</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 在构造函数中设置 IO 签名</span><br>gr::<span class="hljs-built_in">sync_block</span>(<span class="hljs-string">"my_sync_block"</span>,<br>               gr::io_signature::<span class="hljs-built_in">make</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">float</span>)),   <span class="hljs-comment">// 1 输入，float 类型</span><br>               gr::io_signature::<span class="hljs-built_in">make</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">float</span>)))   <span class="hljs-comment">// 1 输出，float 类型</span><br><br><span class="hljs-comment">// work 函数</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">work</span><span class="hljs-params">(<span class="hljs-type">int</span> noutput_items,</span></span><br><span class="hljs-params"><span class="hljs-function">         gr_vector_const_void_star &amp;input_items,</span></span><br><span class="hljs-params"><span class="hljs-function">         gr_vector_void_star &amp;output_items)</span> </span>{<br>    <span class="hljs-type">const</span> <span class="hljs-type">float</span> *in = (<span class="hljs-type">const</span> <span class="hljs-type">float</span> *)input_items[<span class="hljs-number">0</span>];<br>    <span class="hljs-type">float</span> *out = (<span class="hljs-type">float</span> *)output_items[<span class="hljs-number">0</span>];<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; noutput_items; i++) {<br>        out[i] = in[i] * <span class="hljs-number">2.0f</span>;  <span class="hljs-comment">// 每个输入项产生一个输出项</span><br>    }<br><br>    <span class="hljs-keyword">return</span> noutput_items;<br>}<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-7-2-Decimator-Block（抽取块）"><a href="#1-7-2-Decimator-Block（抽取块）" class="headerlink" title="1.7.2 Decimator Block（抽取块）"></a>1.7.2 Decimator Block（抽取块）</h3><p>输出项数少于输入项数。</p>
+<p><strong>工作原理</strong>：</p>
+<ul>
+<li>消耗 <code>ninput_items</code> 个输入</li>
+<li>产生 <code>noutput_items = floor(ninput_items / decimation)</code> 个输出</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>下采样</li>
+<li>降采样</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 在构造函数中设置抽取因子</span><br><span class="hljs-built_in">set_decimation</span>(<span class="hljs-number">4</span>);  <span class="hljs-comment">// 每4个输入产生1个输出</span><br><br><span class="hljs-comment">// work 函数</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">work</span><span class="hljs-params">(<span class="hljs-type">int</span> noutput_items,</span></span><br><span class="hljs-params"><span class="hljs-function">         gr_vector_const_void_star &amp;input_items,</span></span><br><span class="hljs-params"><span class="hljs-function">         gr_vector_void_star &amp;output_items)</span> </span>{<br>    <span class="hljs-type">const</span> <span class="hljs-type">float</span> *in = (<span class="hljs-type">const</span> <span class="hljs-type">float</span> *)input_items[<span class="hljs-number">0</span>];<br>    <span class="hljs-type">float</span> *out = (<span class="hljs-type">float</span> *)output_items[<span class="hljs-number">0</span>];<br><br>    <span class="hljs-type">int</span> decim = <span class="hljs-built_in">decimation</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; noutput_items; i++) {<br>        out[i] = in[i * decim];  <span class="hljs-comment">// 每 decim 个输入取1个</span><br>    }<br><br>    <span class="hljs-keyword">return</span> noutput_items;<br>}<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-7-3-Interpolator-Block（插值块）"><a href="#1-7-3-Interpolator-Block（插值块）" class="headerlink" title="1.7.3 Interpolator Block（插值块）"></a>1.7.3 Interpolator Block（插值块）</h3><p>输出项数多于输入项数。</p>
+<p><strong>工作原理</strong>：</p>
+<ul>
+<li>消耗 <code>noutput_items / interpolation</code> 个输入</li>
+<li>产生 <code>noutput_items</code> 个输出</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>上采样</li>
+<li>升采样</li>
+</ul>
+<h3 id="1-7-4-Source-Block（源块）"><a href="#1-7-4-Source-Block（源块）" class="headerlink" title="1.7.4 Source Block（源块）"></a>1.7.4 Source Block（源块）</h3><p>只有输出，没有输入。</p>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>信号生成器</li>
+<li>数据源（文件、网络等）</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp">gr::<span class="hljs-built_in">sync_block</span>(<span class="hljs-string">"my_source"</span>,<br>               gr::io_signature::<span class="hljs-built_in">make</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>),  <span class="hljs-comment">// 0 输入</span><br>               gr::io_signature::<span class="hljs-built_in">make</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">float</span>)))  <span class="hljs-comment">// 1 输出</span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">work</span><span class="hljs-params">(<span class="hljs-type">int</span> noutput_items,</span></span><br><span class="hljs-params"><span class="hljs-function">         gr_vector_const_void_star &amp;input_items,</span></span><br><span class="hljs-params"><span class="hljs-function">         gr_vector_void_star &amp;output_items)</span> </span>{<br>    <span class="hljs-type">float</span> *out = (<span class="hljs-type">float</span> *)output_items[<span class="hljs-number">0</span>];<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; noutput_items; i++) {<br>        out[i] = <span class="hljs-built_in">generate_sample</span>();  <span class="hljs-comment">// 生成数据</span><br>    }<br><br>    <span class="hljs-keyword">return</span> noutput_items;<br>}<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-7-5-Sink-Block（宿块）"><a href="#1-7-5-Sink-Block（宿块）" class="headerlink" title="1.7.5 Sink Block（宿块）"></a>1.7.5 Sink Block（宿块）</h3><p>只有输入，没有输出。</p>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>数据显示</li>
+<li>文件写入</li>
+<li>数据发送</li>
+</ul>
+<h3 id="1-7-6-General-Block（通用块）"><a href="#1-7-6-General-Block（通用块）" class="headerlink" title="1.7.6 General Block（通用块）"></a>1.7.6 General Block（通用块）</h3><p>完全自定义行为，需要实现更多函数。</p>
+<p><strong>需要实现的函数</strong>：</p>
+<ul>
+<li><code>forecast()</code>: 预测需要的输入</li>
+<li><code>general_work()</code>: 通用工作函数</li>
+</ul>
+<hr>
+<h2 id="1-8-实现-C-Block"><a href="#1-8-实现-C-Block" class="headerlink" title="1.8 实现 C++ Block"></a>1.8 实现 C++ Block</h2><h3 id="1-8-1-修改头文件-my-block-impl-h"><a href="#1-8-1-修改头文件-my-block-impl-h" class="headerlink" title="1.8.1 修改头文件 (my_block_impl. h)"></a>1.8.1 修改头文件 (my_block_impl. h)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/* -*- c++ -*- */</span><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * Copyright 2024 YourName.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * SPDX-License-Identifier: GPL-3.0-or-later</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> INCLUDED_MYMODULE_MYBLOCK_IMPL_H</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> INCLUDED_MYMODULE_MYBLOCK_IMPL_H</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;gnuradio/my_module/my_block.h&gt;</span></span><br><br><span class="hljs-keyword">namespace</span> gr {<br><span class="hljs-keyword">namespace</span> my_module {<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">my_block_impl</span> : <span class="hljs-keyword">public</span> my_block<br>{<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-comment">// 私有成员变量</span><br>    <span class="hljs-type">int</span> _parameter1;<br>    <span class="hljs-type">float</span> _parameter2;<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">my_block_impl</span>(<span class="hljs-type">int</span> parameter1, <span class="hljs-type">float</span> parameter2);<br>    ~<span class="hljs-built_in">my_block_impl</span>();<br><br>    <span class="hljs-comment">// work 函数 - 这里是信号处理的核心</span><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">work</span><span class="hljs-params">(<span class="hljs-type">int</span> noutput_items,</span></span><br><span class="hljs-params"><span class="hljs-function">             gr_vector_const_void_star &amp;input_items,</span></span><br><span class="hljs-params"><span class="hljs-function">             gr_vector_void_star &amp;output_items)</span></span>;<br>};<br><br>} <span class="hljs-comment">// namespace my_module</span><br>} <span class="hljs-comment">// namespace gr</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">/* INCLUDED_MYMODULE_MYBLOCK_IMPL_H */</span></span><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-8-2-修改实现文件-my-block-impl-cc"><a href="#1-8-2-修改实现文件-my-block-impl-cc" class="headerlink" title="1.8.2 修改实现文件 (my_block_impl. cc)"></a>1.8.2 修改实现文件 (my_block_impl. cc)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/* -*- C++ -*- */</span><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * Copyright 2024 YourName.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * SPDX-License-Identifier: GPL-3.0-or-later</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"my_block_impl.h"</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;gnuradio/io_signature.h&gt;</span></span><br><br><span class="hljs-keyword">namespace</span> gr {<br><span class="hljs-keyword">namespace</span> my_module {<br><br><span class="hljs-comment">// 定义输入输出类型</span><br><span class="hljs-keyword">using</span> input_type = <span class="hljs-type">float</span>;<br><span class="hljs-keyword">using</span> output_type = <span class="hljs-type">float</span>;<br><br><span class="hljs-comment">// make 函数 - 创建块的工厂函数</span><br><span class="hljs-function">my_block::sptr <span class="hljs-title">my_block::make</span><span class="hljs-params">(<span class="hljs-type">int</span> parameter1, <span class="hljs-type">float</span> parameter2)</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-keyword">return</span> gnuradio::<span class="hljs-built_in">make_block_sptr</span>&lt;my_block_impl&gt;(parameter1, parameter2);<br>}<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 私有构造函数</span><br><span class="hljs-comment"> */</span><br>my_block_impl::<span class="hljs-built_in">my_block_impl</span>(<span class="hljs-type">int</span> parameter1, <span class="hljs-type">float</span> parameter2)<br>    : gr::<span class="hljs-built_in">sync_block</span>(<span class="hljs-string">"my_block"</span>,<br>                     gr::io_signature::<span class="hljs-built_in">make</span>(<br>                         <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-built_in">sizeof</span>(input_type)),  <span class="hljs-comment">// 1 输入</span><br>                     gr::io_signature::<span class="hljs-built_in">make</span>(<br>                         <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-built_in">sizeof</span>(output_type))) <span class="hljs-comment">// 1 输出</span><br>{<br>    _parameter1 = parameter1;<br>    _parameter2 = parameter2;<br>}<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 虚析构函数</span><br><span class="hljs-comment"> */</span><br>my_block_impl::~<span class="hljs-built_in">my_block_impl</span>()<br>{<br>}<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * work 函数 - 信号处理的核心</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">my_block_impl::work</span><span class="hljs-params">(<span class="hljs-type">int</span> noutput_items,</span></span><br><span class="hljs-params"><span class="hljs-function">                        gr_vector_const_void_star &amp;input_items,</span></span><br><span class="hljs-params"><span class="hljs-function">                        gr_vector_void_star &amp;output_items)</span></span><br><span class="hljs-function"></span>{<br>    <span class="hljs-comment">// 获取输入输出指针</span><br>    <span class="hljs-type">const</span> input_type *in = (<span class="hljs-type">const</span> input_type *)input_items[<span class="hljs-number">0</span>];<br>    output_type *out = (output_type *)output_items[<span class="hljs-number">0</span>];<br><br>    <span class="hljs-comment">// 处理每个样本</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; noutput_items; i++) {<br>        <span class="hljs-comment">// 实现你的信号处理算法</span><br>        out[i] = in[i] * _parameter1 + _parameter2;<br>    }<br><br>    <span class="hljs-comment">// 告诉运行时系统我们产生了多少输出项</span><br>    <span class="hljs-keyword">return</span> noutput_items;<br>}<br><br>} <span class="hljs-comment">/* namespace my_module */</span><br>} <span class="hljs-comment">/* namespace gr */</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-8-3-work-函数详解"><a href="#1-8-3-work-函数详解" class="headerlink" title="1.8.3 work 函数详解"></a>1.8.3 work 函数详解</h3><p><code>work()</code> 函数是信号处理的核心，参数说明：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">work</span><span class="hljs-params">(<span class="hljs-type">int</span> noutput_items,</span></span><br><span class="hljs-params"><span class="hljs-function">         gr_vector_const_void_star &amp;input_items,</span></span><br><span class="hljs-params"><span class="hljs-function">         gr_vector_void_star &amp;output_items)</span></span><br></code></pre></td></tr></table></figure>
+
+<p><strong>参数</strong>：</p>
+<ul>
+<li><code>noutput_items</code>：请求的输出项数</li>
+<li><code>input_items</code>：输入项的指针数组（每个输入端口一个）</li>
+<li><code>output_items</code>：输出项的指针数组（每个输出端口一个）</li>
+</ul>
+<p><strong>返回值</strong>：</p>
+<ul>
+<li>实际产生的输出项数</li>
+</ul>
+<p><strong>重要提示</strong>：</p>
+<ul>
+<li>永远不要返回大于 <code>noutput_items</code> 的值</li>
+<li>可以返回小于 <code>noutput_items</code> 的值（如果处理失败或需要更多信息）</li>
+<li>对于同步块，通常返回 <code>noutput_items</code></li>
+</ul>
+<hr>
+<h2 id="1-9-修改-YAML-GRC-文件"><a href="#1-9-修改-YAML-GRC-文件" class="headerlink" title="1.9 修改 YAML GRC 文件"></a>1.9 修改 YAML GRC 文件</h2><h3 id="1-9-1-YAML-文件位置"><a href="#1-9-1-YAML-文件位置" class="headerlink" title="1.9.1 YAML 文件位置"></a>1.9.1 YAML 文件位置</h3><p><code>grc/my_module_my_block.block.yml</code></p>
+<h3 id="1-9-2-完整-YAML-文件示例"><a href="#1-9-2-完整-YAML-文件示例" class="headerlink" title="1.9.2 完整 YAML 文件示例"></a>1.9.2 完整 YAML 文件示例</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">id:</span> <span class="hljs-string">my_module_my_block</span><br><span class="hljs-attr">label:</span> <span class="hljs-string">My</span> <span class="hljs-string">Block</span><br><span class="hljs-attr">category:</span> <span class="hljs-string">'[My Module]'</span><br><br><span class="hljs-attr">templates:</span><br>  <span class="hljs-attr">imports:</span> <span class="hljs-string">from</span> <span class="hljs-string">gnuradio</span> <span class="hljs-string">import</span> <span class="hljs-string">my_module</span><br>  <span class="hljs-attr">make:</span> <span class="hljs-string">my_module.my_block(${parameter1},</span> <span class="hljs-string">${parameter2})</span><br><br><span class="hljs-comment"># 参数列表 - 在 GUI 中可设置的参数</span><br><span class="hljs-attr">parameters:</span><br><span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">parameter1</span><br>  <span class="hljs-attr">label:</span> <span class="hljs-string">Parameter</span> <span class="hljs-number">1</span><br>  <span class="hljs-attr">dtype:</span> <span class="hljs-string">int</span><br>  <span class="hljs-attr">default:</span> <span class="hljs-number">0</span><br><span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">parameter2</span><br>  <span class="hljs-attr">label:</span> <span class="hljs-string">Parameter</span> <span class="hljs-number">2</span><br>  <span class="hljs-attr">dtype:</span> <span class="hljs-string">float</span><br>  <span class="hljs-attr">default:</span> <span class="hljs-number">1.0</span><br><br><span class="hljs-comment"># 输入端口列表</span><br><span class="hljs-attr">inputs:</span><br><span class="hljs-bullet">-</span> <span class="hljs-attr">label:</span> <span class="hljs-string">in</span><br>  <span class="hljs-attr">domain:</span> <span class="hljs-string">stream</span><br>  <span class="hljs-attr">dtype:</span> <span class="hljs-string">float</span><br>  <span class="hljs-attr">optional:</span> <span class="hljs-literal">false</span><br><br><span class="hljs-comment"># 输出端口列表</span><br><span class="hljs-attr">outputs:</span><br><span class="hljs-bullet">-</span> <span class="hljs-attr">label:</span> <span class="hljs-string">out</span><br>  <span class="hljs-attr">domain:</span> <span class="hljs-string">stream</span><br>  <span class="hljs-attr">dtype:</span> <span class="hljs-string">float</span><br>  <span class="hljs-attr">optional:</span> <span class="hljs-literal">false</span><br><br><span class="hljs-comment"># 文档字符串</span><br><span class="hljs-attr">documentation:</span> <span class="hljs-string">|-</span><br><span class="hljs-string">  This is my custom block.</span><br><span class="hljs-string">  It multiplies input by parameter1 and adds parameter2.</span><br><span class="hljs-string"></span><br><span class="hljs-comment"># 示例代码</span><br><span class="hljs-attr">examples:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">grc/my_module_my_block_example.grc</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-9-3-YAML-文件关键字段"><a href="#1-9-3-YAML-文件关键字段" class="headerlink" title="1.9.3 YAML 文件关键字段"></a>1.9.3 YAML 文件关键字段</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>id</code></td>
+<td>块的唯一标识符（格式：module_blockname）</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>在 GRC 中显示的名称</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>GRC 中的分类</td>
+</tr>
+<tr>
+<td><code>templates.imports</code></td>
+<td>Python 导入语句</td>
+</tr>
+<tr>
+<td><code>templates.make</code></td>
+<td>创建块的 Python 代码</td>
+</tr>
+<tr>
+<td><code>parameters</code></td>
+<td>可设置的参数列表</td>
+</tr>
+<tr>
+<td><code>inputs</code></td>
+<td>输入端口列表</td>
+</tr>
+<tr>
+<td><code>outputs</code></td>
+<td>输出端口列表</td>
+</tr>
+<tr>
+<td><code>dtype</code></td>
+<td>数据类型（int, float, complex, byte, short 等）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="1-10-编译和安装"><a href="#1-10-编译和安装" class="headerlink" title="1.10 编译和安装"></a>1.10 编译和安装</h2><h3 id="1-10-1-构建流程"><a href="#1-10-1-构建流程" class="headerlink" title="1.10.1 构建流程"></a>1.10.1 构建流程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> gr-my_module<br><span class="hljs-built_in">mkdir</span> build<br><span class="hljs-built_in">cd</span> build<br><br><span class="hljs-comment"># 配置</span><br>cmake ..<br><br><span class="hljs-comment"># 编译</span><br>make<br><br><span class="hljs-comment"># 运行测试（如果有）</span><br>make <span class="hljs-built_in">test</span><br><br><span class="hljs-comment"># 安装</span><br><span class="hljs-built_in">sudo</span> make install<br><br><span class="hljs-comment"># 更新库缓存</span><br><span class="hljs-built_in">sudo</span> ldconfig<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-10-2-遇到问题时的清理"><a href="#1-10-2-遇到问题时的清理" class="headerlink" title="1.10.2 遇到问题时的清理"></a>1.10.2 遇到问题时的清理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> gr-my_module<br><span class="hljs-built_in">rm</span> -rf build<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-10-3-重新编译"><a href="#1-10-3-重新编译" class="headerlink" title="1.10.3 重新编译"></a>1.10.3 重新编译</h3><p>修改代码后：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> build<br>make<br><span class="hljs-built_in">sudo</span> make install<br><span class="hljs-built_in">sudo</span> ldconfig<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="1-11-在-GRC-中使用"><a href="#1-11-在-GRC-中使用" class="headerlink" title="1.11 在 GRC 中使用"></a>1.11 在 GRC 中使用</h2><h3 id="1-11-1-启动-GRC"><a href="#1-11-1-启动-GRC" class="headerlink" title="1.11.1 启动 GRC"></a>1.11.1 启动 GRC</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gnuradio-companion<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-11-2-查找自定义-Block"><a href="#1-11-2-查找自定义-Block" class="headerlink" title="1.11.2 查找自定义 Block"></a>1.11.2 查找自定义 Block</h3><ol>
+<li>在右侧的块列表中搜索你的块名称</li>
+<li>或在分类 <code>[My Module]</code> 下找到</li>
+<li>将块拖到画布上使用</li>
+</ol>
+<h3 id="1-11-3-测试流程图"><a href="#1-11-3-测试流程图" class="headerlink" title="1.11.3 测试流程图"></a>1.11.3 测试流程图</h3><p>创建一个简单的测试流程图：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">Signal</span> Source → My <span class="hljs-keyword">Block</span> → Throttle → QT GUI <span class="hljs-built_in">Time</span> Sink<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="1-12-单元测试"><a href="#1-12-单元测试" class="headerlink" title="1.12 单元测试"></a>1.12 单元测试</h2><h3 id="1-12-1-Python-QA-代码"><a href="#1-12-1-Python-QA-代码" class="headerlink" title="1.12.1 Python QA 代码"></a>1.12.1 Python QA 代码</h3><p>添加块时选择 <code>Add Python QA code? [Y/n]: Y</code> 会自动生成测试框架。</p>
+<p><code>python/qa_my_block. py</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gnuradio <span class="hljs-keyword">import</span> gr, gr_unittest<br><span class="hljs-keyword">from</span> gnuradio <span class="hljs-keyword">import</span> blocks<br><span class="hljs-keyword">import</span> my_module_swig <span class="hljs-keyword">as</span> my_module<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">qa_my_block</span> (gr_unittest. TestCase):<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">setUp</span> (<span class="hljs-variable language_">self</span>):<br>        <span class="hljs-variable language_">self</span>. tb = gr. top_block ()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tearDown</span> (<span class="hljs-variable language_">self</span>):<br>        <span class="hljs-variable language_">self</span>. tb = <span class="hljs-literal">None</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">test_001_my_block</span> (<span class="hljs-variable language_">self</span>):<br>        <span class="hljs-comment"># 测试数据</span><br>        src_data = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)<br>        expected_result = (<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>, <span class="hljs-number">10</span>)  <span class="hljs-comment"># 乘以 2</span><br><br>        <span class="hljs-comment"># 创建流图</span><br>        src = blocks. vector_source_f (src_data)<br>        blk = my_module. my_block (parameter1=<span class="hljs-number">2</span>, parameter2=<span class="hljs-number">0</span>)<br>        dst = blocks. vector_sink_f ()<br><br>        <span class="hljs-comment"># 连接</span><br>        <span class="hljs-variable language_">self</span>.tb.connect (src, blk)<br>        <span class="hljs-variable language_">self</span>.tb.connect (blk, dst)<br><br>        <span class="hljs-comment"># 运行</span><br>        <span class="hljs-variable language_">self</span>.tb.run ()<br><br>        <span class="hljs-comment"># 验证结果</span><br>        result_data = dst.data ()<br>        <span class="hljs-variable language_">self</span>.assertFloatTuplesAlmostEqual (expected_result, result_data, <span class="hljs-number">6</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:<br>    gr_unittest.run (qa_my_block, <span class="hljs-string">"qa_my_block. xml"</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-12-2-运行测试"><a href="#1-12-2-运行测试" class="headerlink" title="1.12.2 运行测试"></a>1.12.2 运行测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> build<br>ctest --output-on-failure<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="1-13-高级主题"><a href="#1-13-高级主题" class="headerlink" title="1.13 高级主题"></a>1.13 高级主题</h2><h3 id="1-13-1-设置历史（History）"><a href="#1-13-1-设置历史（History）" class="headerlink" title="1.13.1 设置历史（History）"></a>1.13.1 设置历史（History）</h3><p>对于需要访问历史数据的块：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 在构造函数中</span><br><span class="hljs-built_in">set_history</span> (required_history);<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-13-2-预测（Forecast）"><a href="#1-13-2-预测（Forecast）" class="headerlink" title="1.13.2 预测（Forecast）"></a>1.13.2 预测（Forecast）</h3><p>对于通用块，需要预测需要的输入：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">forecast</span> <span class="hljs-params">(<span class="hljs-type">int</span> noutput_items, gr_vector_int &amp;ninput_items_required)</span> </span>{<br>    <span class="hljs-comment">// 预测每个输入端口需要的项数</span><br>    <span class="hljs-type">unsigned</span> ninputs = ninput_items_required.<span class="hljs-built_in">size</span> ();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">unsigned</span> i = <span class="hljs-number">0</span>; i &lt; ninputs; i++) {<br>        ninput_items_required[i] = noutput_items;<br>    }<br>}<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-13-3-设置输出倍数（Output-Multiple）"><a href="#1-13-3-设置输出倍数（Output-Multiple）" class="headerlink" title="1.13.3 设置输出倍数（Output Multiple）"></a>1.13.3 设置输出倍数（Output Multiple）</h3><p>强制输出项数为某个数的倍数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 在构造函数中</span><br><span class="hljs-built_in">set_output_multiple</span> (<span class="hljs-number">64</span>);  <span class="hljs-comment">// 输出总是 64 的倍数</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-13-4-消息传递"><a href="#1-13-4-消息传递" class="headerlink" title="1.13.4 消息传递"></a>1.13.4 消息传递</h3><p>添加消息端口：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 在头文件中</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">message_handler</span> <span class="hljs-params">(pmt:: <span class="hljs-type">pmt_t</span> msg)</span></span>;<br><br><span class="hljs-comment">// 在构造函数中</span><br><span class="hljs-built_in">message_port_register_in</span> (pmt:: <span class="hljs-built_in">mp</span> (<span class="hljs-string">"in"</span>));<br><span class="hljs-built_in">set_msg_handler</span> (pmt:: <span class="hljs-built_in">mp</span> (<span class="hljs-string">"in"</span>), [<span class="hljs-keyword">this</span>](pmt:: <span class="hljs-type">pmt_t</span> msg) {<br>    <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">message_handler</span> (msg);<br>});<br><span class="hljs-built_in">message_port_register_out</span> (pmt:: <span class="hljs-built_in">mp</span> (<span class="hljs-string">"out"</span>));<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="1-14-调试技巧"><a href="#1-14-调试技巧" class="headerlink" title="1.14 调试技巧"></a>1.14 调试技巧</h2><h3 id="1-14-1-使用-GDB"><a href="#1-14-1-使用-GDB" class="headerlink" title="1.14.1 使用 GDB"></a>1.14.1 使用 GDB</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gdb gnuradio-companion<br></code></pre></td></tr></table></figure>
+
+<p>设置断点：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arduino">(gdb) <span class="hljs-function"><span class="hljs-keyword">break</span> <span class="hljs-title">my_block_impl::work</span></span><br><span class="hljs-function"><span class="hljs-params">(gdb)</span> run</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-14-2-日志输出"><a href="#1-14-2-日志输出" class="headerlink" title="1.14.2 日志输出"></a>1.14.2 日志输出</h3><p>使用 GNU Radio 的日志系统：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;gnuradio/logger.h&gt;</span></span><br><br><span class="hljs-built_in">GR_LOG_INFO</span> (<span class="hljs-keyword">this</span>-&gt;d_logger, <span class="hljs-string">"Debug message: {}"</span>, value);<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-14-3-性能分析"><a href="#1-14-3-性能分析" class="headerlink" title="1.14.3 性能分析"></a>1.14.3 性能分析</h3><p>使用 <code>gr_time_perfect_square</code> 示例或自定义计时器。</p>
+<hr>
+<h2 id="1-15-发布和分享"><a href="#1-15-发布和分享" class="headerlink" title="1.15 发布和分享"></a>1.15 发布和分享</h2><h3 id="1-15-1-创建-PyBOMBS-配方"><a href="#1-15-1-创建-PyBOMBS-配方" class="headerlink" title="1.15.1 创建 PyBOMBS 配方"></a>1.15.1 创建 PyBOMBS 配方</h3><p>创建 PyBOMBS 配方文件，让其他人可以通过 PyBOMBS 安装。</p>
+<h3 id="1-15-2-提交到-CGRAN"><a href="#1-15-2-提交到-CGRAN" class="headerlink" title="1.15.2 提交到 CGRAN"></a>1.15.2 提交到 CGRAN</h3><p>将你的模块提交到 <a target="_blank" rel="noopener" href="http://cgran.org/">CGRAN</a> 与社区分享。</p>
+<h3 id="1-15-3-版本控制"><a href="#1-15-3-版本控制" class="headerlink" title="1.15.3 版本控制"></a>1.15.3 版本控制</h3><p>使用 Git 管理你的代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git init<br>git add .<br>git commit -m <span class="hljs-string">"Initial commit"</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="1-16-参考资源"><a href="#1-16-参考资源" class="headerlink" title="1.16 参考资源"></a>1.16 参考资源</h2><h3 id="1-16-1-官方文档"><a href="#1-16-1-官方文档" class="headerlink" title="1.16.1 官方文档"></a>1.16.1 官方文档</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.gnuradio.org/">GNU Radio Wiki</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.gnuradio.org/index.php/OutOfTreeModules">OOT Modules Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.gnuradio.org/index.php/Creating_C%2B%2B_OOT_with_gr-modtool">Creating C++ OOT with gr-modtool</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.gnuradio.org/index.php/BlocksCodingGuide">Block Coding Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.gnuradio.org/index.php/Types_of_Blocks">Types of Blocks</a></li>
+</ul>
+<h3 id="1-16-2-社区资源"><a href="#1-16-2-社区资源" class="headerlink" title="1.16.2 社区资源"></a>1.16.2 社区资源</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://cgran.org/">CGRAN</a> - Comprehensive GNU Radio Archive Network</li>
+<li><a target="_blank" rel="noopener" href="https://discord.gg/cWwCk3f">GNU Radio Discord</a></li>
+<li><a target="_blank" rel="noopener" href="https://lists.gnu.org/mailman/listinfo/discuss-gnuradio">GNU Radio Mailing List</a></li>
+</ul>
+<h3 id="1-16-3-示例项目"><a href="#1-16-3-示例项目" class="headerlink" title="1.16.3 示例项目"></a>1.16.3 示例项目</h3><ul>
+<li>gr- blocks in GNU Radio source tree</li>
+<li>CGRAN 上的各种 OOT 模块</li>
+</ul>
+<hr>
+<h2 id="1-17-常见问题（FAQ）"><a href="#1-17-常见问题（FAQ）" class="headerlink" title="1.17 常见问题（FAQ）"></a>1.17 常见问题（FAQ）</h2><h3 id="1-17-1-Q1-gr-modtool-找不到命令"><a href="#1-17-1-Q1-gr-modtool-找不到命令" class="headerlink" title="1.17.1 Q1: gr_modtool 找不到命令"></a>1.17.1 Q1: gr_modtool 找不到命令</h3><p><strong>A</strong>: 确保 <code>gnuradio-dev</code> 已安装并正确配置了 PATH。</p>
+<h3 id="1-17-2-Q2-编译时找不到-gnuradio-头文件"><a href="#1-17-2-Q2-编译时找不到-gnuradio-头文件" class="headerlink" title="1.17.2 Q2: 编译时找不到 gnuradio 头文件"></a>1.17.2 Q2: 编译时找不到 gnuradio 头文件</h3><p><strong>A</strong>: 确保 <code>gnuradio-dev</code> 已安装，并且 CMake 能找到 GNU Radio。</p>
+<h3 id="1-17-3-Q3-GRC-中找不到我的块"><a href="#1-17-3-Q3-GRC-中找不到我的块" class="headerlink" title="1.17.3 Q3: GRC 中找不到我的块"></a>1.17.3 Q3: GRC 中找不到我的块</h3><p><strong>A</strong>: 确保已执行 <code>sudo make install</code> 和 <code>sudo ldconfig</code>，然后重启 GRC。</p>
+<h3 id="1-17-4-Q4-运行时出现-“undefined-symbol”"><a href="#1-17-4-Q4-运行时出现-“undefined-symbol”" class="headerlink" title="1.17.4 Q4: 运行时出现 “undefined symbol”"></a>1.17.4 Q4: 运行时出现 “undefined symbol”</h3><p><strong>A</strong>: 通常是链接问题，检查 CMakeLists. txt 中的库依赖。</p>
+<h3 id="1-17-5-Q5-如何使用复数类型？"><a href="#1-17-5-Q5-如何使用复数类型？" class="headerlink" title="1.17.5 Q5: 如何使用复数类型？"></a>1.17.5 Q5: 如何使用复数类型？</h3><p><strong>A</strong>: 使用 <code>gr_complex</code> 类型，它是 <code>std::complex&lt;float&gt;</code> 的别名。</p>
+<hr>
+<h2 id="1-18-附录-A-完整示例"><a href="#1-18-附录-A-完整示例" class="headerlink" title="1.18 附录 A: 完整示例"></a>1.18 附录 A: 完整示例</h2><p>以下是一个完整的 C++ OOT 模块示例，实现一个简单的平方块。</p>
+<h3 id="1-18-1-square-block-impl-h"><a href="#1-18-1-square-block-impl-h" class="headerlink" title="1.18.1 square_block_impl. h"></a>1.18.1 square_block_impl. h</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> INCLUDED_MYMODULE_SQUARE_BLOCK_IMPL_H</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> INCLUDED_MYMODULE_SQUARE_BLOCK_IMPL_H</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;gnuradio/my_module/square_block.h&gt;</span></span><br><br><span class="hljs-keyword">namespace</span> gr {<br><span class="hljs-keyword">namespace</span> my_module {<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">square_block_impl</span> : <span class="hljs-keyword">public</span> square_block<br>{<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">square_block_impl</span> ();<br>    ~<span class="hljs-built_in">square_block_impl</span> ();<br><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">work</span> <span class="hljs-params">(<span class="hljs-type">int</span> noutput_items,</span></span><br><span class="hljs-params"><span class="hljs-function">             gr_vector_const_void_star &amp;input_items,</span></span><br><span class="hljs-params"><span class="hljs-function">             gr_vector_void_star &amp;output_items)</span></span>;<br>};<br><br>} <span class="hljs-comment">// namespace my_module</span><br>} <span class="hljs-comment">// namespace gr</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">/* INCLUDED_MYMODULE_SQUARE_BLOCK_IMPL_H */</span></span><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-18-2-square-block-impl-cc"><a href="#1-18-2-square-block-impl-cc" class="headerlink" title="1.18.2 square_block_impl. cc"></a>1.18.2 square_block_impl. cc</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"square_block_impl. h"</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;gnuradio/io_signature.h&gt;</span></span><br><br><span class="hljs-keyword">namespace</span> gr {<br><span class="hljs-keyword">namespace</span> my_module {<br><br><span class="hljs-keyword">using</span> input_type = <span class="hljs-type">float</span>;<br><span class="hljs-keyword">using</span> output_type = <span class="hljs-type">float</span>;<br><br>square_block:: sptr square_block:: <span class="hljs-built_in">make</span> ()<br>{<br>    <span class="hljs-keyword">return</span> gnuradio::<span class="hljs-built_in">make_block_sptr</span>&lt;square_block_impl&gt;();<br>}<br><br>square_block_impl:: <span class="hljs-built_in">square_block_impl</span> ()<br>    : gr:: <span class="hljs-built_in">sync_block</span> (<span class="hljs-string">"square_block"</span>,<br>                     gr::io_signature:: <span class="hljs-built_in">make</span> (<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-built_in">sizeof</span> (input_type)),<br>                     gr::io_signature:: <span class="hljs-built_in">make</span> (<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-built_in">sizeof</span> (output_type)))<br>{<br>}<br><br>square_block_impl::~<span class="hljs-built_in">square_block_impl</span> ()<br>{<br>}<br><br><span class="hljs-type">int</span> square_block_impl:: <span class="hljs-built_in">work</span> (<span class="hljs-type">int</span> noutput_items,<br>                            gr_vector_const_void_star &amp;input_items,<br>                            gr_vector_void_star &amp;output_items)<br>{<br>    <span class="hljs-type">const</span> input_type *in = (<span class="hljs-type">const</span> input_type *) input_items[<span class="hljs-number">0</span>];<br>    output_type *out = (output_type *) output_items[<span class="hljs-number">0</span>];<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; noutput_items; i++) {<br>        out[i] = in[i] * in[i];  <span class="hljs-comment">// 计算平方</span><br>    }<br><br>    <span class="hljs-keyword">return</span> noutput_items;<br>}<br><br>} <span class="hljs-comment">/* namespace my_module */</span><br>} <span class="hljs-comment">/* namespace gr */</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-18-3-YAML-配置文件"><a href="#1-18-3-YAML-配置文件" class="headerlink" title="1.18.3 YAML 配置文件"></a>1.18.3 YAML 配置文件</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">id:</span> <span class="hljs-string">my_module_square_block</span><br><span class="hljs-attr">label:</span> <span class="hljs-string">Square</span> <span class="hljs-string">Block</span><br><span class="hljs-attr">category:</span> <span class="hljs-string">'[My Module]'</span><br><br><span class="hljs-attr">templates:</span><br>  <span class="hljs-attr">imports:</span> <span class="hljs-string">from</span> <span class="hljs-string">gnuradio</span> <span class="hljs-string">import</span> <span class="hljs-string">my_module</span><br>  <span class="hljs-attr">make:</span> <span class="hljs-string">my_module.</span> <span class="hljs-string">square_block</span> <span class="hljs-string">()</span><br><br><span class="hljs-attr">inputs:</span><br><span class="hljs-bullet">-</span> <span class="hljs-attr">label:</span> <span class="hljs-string">in</span><br>  <span class="hljs-attr">domain:</span> <span class="hljs-string">stream</span><br>  <span class="hljs-attr">dtype:</span> <span class="hljs-string">float</span><br><br><span class="hljs-attr">outputs:</span><br><span class="hljs-bullet">-</span> <span class="hljs-attr">label:</span> <span class="hljs-string">out</span><br>  <span class="hljs-attr">domain:</span> <span class="hljs-string">stream</span><br>  <span class="hljs-attr">dtype:</span> <span class="hljs-string">float</span><br><br><span class="hljs-attr">documentation:</span> <span class="hljs-string">|-</span><br><span class="hljs-string">  Squares the input samples.</span><br><span class="hljs-string">  output = input * input</span><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/coding/" class="print-no-link">#coding</a>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="print-no-link">#数字通信</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GNURadio OOT模块说明</div>
+      <div>https://www.moerjielovecookie.icu/2026/03/30/GNURadio OOT模块说明/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Sawen Moerjie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/04/05/Claude%20Code%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" title="Claude Code使用记录">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Claude Code使用记录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/17/%E8%BF%90%E6%94%BE%E9%80%89%E5%9E%8B/" title="运放选型">
+                        <span class="hidden-mobile">运放选型</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"你的appId","appKey":"你的appKey","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"你的serverURLs","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
