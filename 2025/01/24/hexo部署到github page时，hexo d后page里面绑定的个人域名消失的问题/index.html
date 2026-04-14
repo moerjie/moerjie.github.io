@@ -24,7 +24,7 @@
     <meta name="description" content="Hexo 部署博客到 GitHub page 后，可以在 setting 中的 page 中绑定自己的域名，但是我发现更新博客后绑定的域名消失，恢复原始的 githubio 的域名。后面搜索发现需要在 repo 里面添加 CNAME 文件，内容为 page 里面绑定的域名：但是这样的话每次 deploy 后 CNAME 文件会消失。然后我将这个文件放到本地 hexo 文件夹内的 public 文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo部署到github page时，hexo d后page里面绑定的个人域名消失的问题">
-<meta property="og:url" content="https://www.moerjielovecookie.icu/2025/01/24/hexo%E9%83%A8%E7%BD%B2%E5%88%B0github%20page%E6%97%B6%EF%BC%8Chexo%20d%E5%90%8Epage%E9%87%8C%E9%9D%A2%E7%BB%91%E5%AE%9A%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D%E6%B6%88%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:url" content="https://moerjie.github.io/2025/01/24/hexo%E9%83%A8%E7%BD%B2%E5%88%B0github%20page%E6%97%B6%EF%BC%8Chexo%20d%E5%90%8Epage%E9%87%8C%E9%9D%A2%E7%BB%91%E5%AE%9A%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D%E6%B6%88%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="Hexo 部署博客到 GitHub page 后，可以在 setting 中的 page 中绑定自己的域名，但是我发现更新博客后绑定的域名消失，恢复原始的 githubio 的域名。后面搜索发现需要在 repo 里面添加 CNAME 文件，内容为 page 里面绑定的域名：但是这样的话每次 deploy 后 CNAME 文件会消失。然后我将这个文件放到本地 hexo 文件夹内的 public 文件">
 <meta property="og:locale" content="zh_CN">
@@ -81,7 +81,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.moerjielovecookie.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"s1VuBxXCcgtXqVI9HAQm9qPr-gzGzoHsz","app_key":"ZRUva62YyRxmXoylVSg3mBBq","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"moerjie.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"s1VuBxXCcgtXqVI9HAQm9qPr-gzGzoHsz","app_key":"ZRUva62YyRxmXoylVSg3mBBq","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -513,7 +513,7 @@ mjx-container[display="true"] + br {
   <div class="license-box my-3">
     <div class="license-title">
       <div>hexo部署到github page时，hexo d后page里面绑定的个人域名消失的问题</div>
-      <div>https://www.moerjielovecookie.icu/2025/01/24/hexo部署到github page时，hexo d后page里面绑定的个人域名消失的问题/</div>
+      <div>https://moerjie.github.io/2025/01/24/hexo部署到github page时，hexo d后page里面绑定的个人域名消失的问题/</div>
     </div>
     <div class="license-meta">
       

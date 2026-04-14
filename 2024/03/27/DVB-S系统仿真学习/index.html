@@ -24,7 +24,7 @@
     <meta name="description" content="DVB-S系统用于卫星电视信号传输，发送端框图如下所示  1 扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为 $$p(x)&#x3D;x^{15}+x^{14}+1$$ 同时移位寄存器的初始状">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DVB-S系统仿真学习">
-<meta property="og:url" content="https://www.moerjielovecookie.icu/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:url" content="https://moerjie.github.io/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="DVB-S系统用于卫星电视信号传输，发送端框图如下所示  1 扰码实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为 $$p(x)&#x3D;x^{15}+x^{14}+1$$ 同时移位寄存器的初始状">
 <meta property="og:locale" content="zh_CN">
@@ -86,7 +86,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.moerjielovecookie.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"s1VuBxXCcgtXqVI9HAQm9qPr-gzGzoHsz","app_key":"ZRUva62YyRxmXoylVSg3mBBq","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"moerjie.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"s1VuBxXCcgtXqVI9HAQm9qPr-gzGzoHsz","app_key":"ZRUva62YyRxmXoylVSg3mBBq","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -443,7 +443,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>DVB-S系统仿真学习</div>
-      <div>https://www.moerjielovecookie.icu/2024/03/27/DVB-S系统仿真学习/</div>
+      <div>https://moerjie.github.io/2024/03/27/DVB-S系统仿真学习/</div>
     </div>
     <div class="license-meta">
       

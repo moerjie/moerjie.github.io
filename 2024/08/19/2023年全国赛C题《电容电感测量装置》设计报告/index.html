@@ -24,7 +24,7 @@
     <meta name="description" content="1 测量原理参考下面网站的方案 bookmark 参考LCR测试仪，基本工作原理为给DUT加上正弦激励信号，然后测得该DUT两端的电压和流过DUT的电流，即可通过计算得到DUT的性质和参数。  对于一个理想电容，电流相位应该超前电容两端电压90°。然而实际的电容存在损耗，可以等效为一个理想电容$C_p$和一个理想电阻$R_p$的并联，因此电流超前电压的相位将小于90°，这个角度差即为损耗角。  假">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2023年全国赛C题《 电容电感测量装置》设计报告">
-<meta property="og:url" content="https://www.moerjielovecookie.icu/2024/08/19/2023%E5%B9%B4%E5%85%A8%E5%9B%BD%E8%B5%9BC%E9%A2%98%E3%80%8A%E7%94%B5%E5%AE%B9%E7%94%B5%E6%84%9F%E6%B5%8B%E9%87%8F%E8%A3%85%E7%BD%AE%E3%80%8B%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:url" content="https://moerjie.github.io/2024/08/19/2023%E5%B9%B4%E5%85%A8%E5%9B%BD%E8%B5%9BC%E9%A2%98%E3%80%8A%E7%94%B5%E5%AE%B9%E7%94%B5%E6%84%9F%E6%B5%8B%E9%87%8F%E8%A3%85%E7%BD%AE%E3%80%8B%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="1 测量原理参考下面网站的方案 bookmark 参考LCR测试仪，基本工作原理为给DUT加上正弦激励信号，然后测得该DUT两端的电压和流过DUT的电流，即可通过计算得到DUT的性质和参数。  对于一个理想电容，电流相位应该超前电容两端电压90°。然而实际的电容存在损耗，可以等效为一个理想电容$C_p$和一个理想电阻$R_p$的并联，因此电流超前电压的相位将小于90°，这个角度差即为损耗角。  假">
 <meta property="og:locale" content="zh_CN">
@@ -91,7 +91,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.moerjielovecookie.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"s1VuBxXCcgtXqVI9HAQm9qPr-gzGzoHsz","app_key":"ZRUva62YyRxmXoylVSg3mBBq","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"moerjie.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"s1VuBxXCcgtXqVI9HAQm9qPr-gzGzoHsz","app_key":"ZRUva62YyRxmXoylVSg3mBBq","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -455,7 +455,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>2023年全国赛C题《 电容电感测量装置》设计报告</div>
-      <div>https://www.moerjielovecookie.icu/2024/08/19/2023年全国赛C题《电容电感测量装置》设计报告/</div>
+      <div>https://moerjie.github.io/2024/08/19/2023年全国赛C题《电容电感测量装置》设计报告/</div>
     </div>
     <div class="license-meta">
       

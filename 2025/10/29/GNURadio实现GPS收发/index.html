@@ -24,7 +24,7 @@
     <meta name="description" content="1 GPS 发射工程由于 GNURadio 的采样率难以控制，因此将导航电文的 bin 文件进行  倍的升采样，以匹配流图的采样率。使用 Struct Variable 模块进行变量的管理，其中 gps_sys 中的变量包含 GPS 系统相关参数的配置：codeRate 和 codeLength 都为 C&#x2F;A 码的码率和码长。   1.1 工程模块介绍1.1.1 File source数据源为 5">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GNURadio实现GPS收发">
-<meta property="og:url" content="https://www.moerjielovecookie.icu/2025/10/29/GNURadio%E5%AE%9E%E7%8E%B0GPS%E6%94%B6%E5%8F%91/index.html">
+<meta property="og:url" content="https://moerjie.github.io/2025/10/29/GNURadio%E5%AE%9E%E7%8E%B0GPS%E6%94%B6%E5%8F%91/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
 <meta property="og:description" content="1 GPS 发射工程由于 GNURadio 的采样率难以控制，因此将导航电文的 bin 文件进行  倍的升采样，以匹配流图的采样率。使用 Struct Variable 模块进行变量的管理，其中 gps_sys 中的变量包含 GPS 系统相关参数的配置：codeRate 和 codeLength 都为 C&#x2F;A 码的码率和码长。   1.1 工程模块介绍1.1.1 File source数据源为 5">
 <meta property="og:locale" content="zh_CN">
@@ -83,7 +83,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.moerjielovecookie.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"s1VuBxXCcgtXqVI9HAQm9qPr-gzGzoHsz","app_key":"ZRUva62YyRxmXoylVSg3mBBq","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"moerjie.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"s1VuBxXCcgtXqVI9HAQm9qPr-gzGzoHsz","app_key":"ZRUva62YyRxmXoylVSg3mBBq","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -518,7 +518,7 @@ mjx-container[display="true"] + br {
   <div class="license-box my-3">
     <div class="license-title">
       <div>GNURadio实现GPS收发</div>
-      <div>https://www.moerjielovecookie.icu/2025/10/29/GNURadio实现GPS收发/</div>
+      <div>https://moerjie.github.io/2025/10/29/GNURadio实现GPS收发/</div>
     </div>
     <div class="license-meta">
       
