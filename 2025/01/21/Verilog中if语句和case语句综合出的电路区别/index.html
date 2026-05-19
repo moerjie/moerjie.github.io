@@ -21,12 +21,12 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
   
-    <meta name="description" content="区别是 if else 的逻辑判断有优先级，最内层的 if 的优先级最高，case 的逻辑判断是并列的。每个 if else 综合出来的电路是一个 2 选 1 选通器。当信号有明显优先级时使用该语句，但是 if 嵌套太多的话会导致路径延时过大，降低运行速度。所以在判定条件较少的时候使用。if else 综合出的电路面积较小。case语句适用于无明显优先级的逻辑判断，这些逻辑条件都处于同一个优先级且">
+    <meta name="description" content="区别是 if else 的逻辑判断有优先级，最内层的 if 的优先级最高，case 的逻辑判断是并列的。 每个 if else 综合出来的电路是一个 2 选 1 选通器。当信号有明显优先级时使用该语句，但是 if 嵌套太多的话会导致路径延时过大，降低运行速度。所以在判定条件较少的时候使用。if else 综合出的电路面积较小。  case语句适用于无明显优先级的逻辑判断，这些逻辑条件都处于同一个优">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Verilog中if语句和case语句综合出的电路区别">
 <meta property="og:url" content="https://moerjie.github.io/2025/01/21/Verilog%E4%B8%ADif%E8%AF%AD%E5%8F%A5%E5%92%8Ccase%E8%AF%AD%E5%8F%A5%E7%BB%BC%E5%90%88%E5%87%BA%E7%9A%84%E7%94%B5%E8%B7%AF%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="区别是 if else 的逻辑判断有优先级，最内层的 if 的优先级最高，case 的逻辑判断是并列的。每个 if else 综合出来的电路是一个 2 选 1 选通器。当信号有明显优先级时使用该语句，但是 if 嵌套太多的话会导致路径延时过大，降低运行速度。所以在判定条件较少的时候使用。if else 综合出的电路面积较小。case语句适用于无明显优先级的逻辑判断，这些逻辑条件都处于同一个优先级且">
+<meta property="og:description" content="区别是 if else 的逻辑判断有优先级，最内层的 if 的优先级最高，case 的逻辑判断是并列的。 每个 if else 综合出来的电路是一个 2 选 1 选通器。当信号有明显优先级时使用该语句，但是 if 嵌套太多的话会导致路径延时过大，降低运行速度。所以在判定条件较少的时候使用。if else 综合出的电路面积较小。  case语句适用于无明显优先级的逻辑判断，这些逻辑条件都处于同一个优">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501212020215.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501212021357.png">
@@ -108,119 +108,7 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-.MathJax path {
-  stroke-width: 3;
-}
-
-mjx-container[display="true"] {
-  overflow: auto hidden;
-}
-
-mjx-container[display="true"] + br {
-  display: none;
-}
-</style></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -467,7 +355,11 @@ mjx-container[display="true"] + br {
             
               <div class="markdown-body">
                 
-                <p>区别是 <code>if else</code> 的逻辑判断有优先级，最内层的 <code>if</code> 的优先级最高，<code>case</code> 的逻辑判断是并列的。<br>每个 <code>if else</code> 综合出来的电路是一个 2 选 1 选通器。当信号有明显优先级时使用该语句，但是 <code>if</code> 嵌套太多的话会导致路径延时过大，降低运行速度。所以在判定条件较少的时候使用。<code>if else</code> 综合出的电路面积较小。<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501212020215.png" srcset="/img/banner.png" lazyload alt="|395"><br>case语句适用于无明显优先级的逻辑判断，这些逻辑条件都处于同一个优先级且互斥，比如实现对速度要求较高的编解码；case结构电路速度较快，但占用面积较大，综合为 n 选 1 mux电路。<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501212021357.png" srcset="/img/banner.png" lazyload alt="|400"></p>
+                <p>区别是 <code>if else</code> 的逻辑判断有优先级，最内层的 <code>if</code> 的优先级最高，<code>case</code> 的逻辑判断是并列的。
+每个 <code>if else</code> 综合出来的电路是一个 2 选 1 选通器。当信号有明显优先级时使用该语句，但是 <code>if</code> 嵌套太多的话会导致路径延时过大，降低运行速度。所以在判定条件较少的时候使用。<code>if else</code> 综合出的电路面积较小。
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501212020215.png" srcset="/img/banner.png" lazyload alt="|395" />
+case语句适用于无明显优先级的逻辑判断，这些逻辑条件都处于同一个优先级且互斥，比如实现对速度要求较高的编解码；case结构电路速度较快，但占用面积较大，综合为 n 选 1 mux电路。
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501212021357.png" srcset="/img/banner.png" lazyload alt="|400" /></p>
 
                 
               </div>
@@ -568,8 +460,8 @@ mjx-container[display="true"] + br {
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/01/20/ZYNQ%E4%B8%AD%E7%9A%84IO/" title="ZYNQ中的GPIO">
-                        <span class="hidden-mobile">ZYNQ中的GPIO</span>
+                      <a href="/2025/01/20/ZYNQ-IP-AXI-GPIO/" title="ZYNQ-IP-AXI-GPIO">
+                        <span class="hidden-mobile">ZYNQ-IP-AXI-GPIO</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -657,6 +549,12 @@ mjx-container[display="true"] + br {
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -877,6 +775,49 @@ mjx-container[display="true"] + br {
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

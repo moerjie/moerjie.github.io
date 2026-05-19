@@ -21,12 +21,12 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
   
-    <meta name="description" content="在数字通信中，当讨论匹配滤波时，在发端称其为脉冲成型，收端为匹配滤波。其有三个目标：    通过限制有效带宽来使得信号适合在信道中传输 增加接收端的 SNR 减少多径和非线性造成的码间串扰通过对符号进行滤波，可减少尖锐的相位和频率变换，获得一个频谱效率更高的信号，使用发射滤波器滤波前后的频谱图如下：可以看到滤波后信号的有效带宽减小了，主要是在发射器上进行了升采样和插值。因为时域和频域成反比，所以信">
+    <meta name="description" content="在数字通信中，当讨论匹配滤波时，在发端称其为脉冲成型，收端为匹配滤波。其有三个目标：  通过限制有效带宽来使得信号适合在信道中传输 增加接收端的 SNR 减少多径和非线性造成的码间串扰 通过对符号进行滤波，可减少尖锐的相位和频率变换，获得一个频谱效率更高的信号，使用发射滤波器滤波前后的频谱图如下：  可以看到滤波后信号的有效带宽减小了，主要是在发射器上进行了升采样和插值。因为时域和频域成反比，所以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="匹配滤波">
 <meta property="og:url" content="https://moerjie.github.io/2026/02/17/%E5%8C%B9%E9%85%8D%E6%BB%A4%E6%B3%A2/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="在数字通信中，当讨论匹配滤波时，在发端称其为脉冲成型，收端为匹配滤波。其有三个目标：    通过限制有效带宽来使得信号适合在信道中传输 增加接收端的 SNR 减少多径和非线性造成的码间串扰通过对符号进行滤波，可减少尖锐的相位和频率变换，获得一个频谱效率更高的信号，使用发射滤波器滤波前后的频谱图如下：可以看到滤波后信号的有效带宽减小了，主要是在发射器上进行了升采样和插值。因为时域和频域成反比，所以信">
+<meta property="og:description" content="在数字通信中，当讨论匹配滤波时，在发端称其为脉冲成型，收端为匹配滤波。其有三个目标：  通过限制有效带宽来使得信号适合在信道中传输 增加接收端的 SNR 减少多径和非线性造成的码间串扰 通过对符号进行滤波，可减少尖锐的相位和频率变换，获得一个频谱效率更高的信号，使用发射滤波器滤波前后的频谱图如下：  可以看到滤波后信号的有效带宽减小了，主要是在发射器上进行了升采样和插值。因为时域和频域成反比，所以">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260217181342933.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260220155858344.png">
@@ -110,119 +110,7 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-.MathJax path {
-  stroke-width: 3;
-}
-
-mjx-container[display="true"] {
-  overflow: auto hidden;
-}
-
-mjx-container[display="true"] + br {
-  display: none;
-}
-</style></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -469,13 +357,23 @@ mjx-container[display="true"] + br {
             
               <div class="markdown-body">
                 
-                <p>在数字通信中，当讨论匹配滤波时，在发端称其为脉冲成型，收端为匹配滤波。其有三个目标：  </p>
+                <p>在数字通信中，当讨论匹配滤波时，在发端称其为脉冲成型，收端为匹配滤波。其有三个目标：</p>
 <ol>
 <li>通过限制有效带宽来使得信号适合在信道中传输</li>
 <li>增加接收端的 SNR</li>
-<li>减少多径和非线性造成的码间串扰<br>通过对符号进行滤波，可减少尖锐的相位和频率变换，获得一个频谱效率更高的信号，使用发射滤波器滤波前后的频谱图如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260217181342933.png" srcset="/img/banner.png" lazyload alt="260217181342933.png"><br>可以看到滤波后信号的有效带宽减小了，主要是在发射器上进行了升采样和插值。因为时域和频域成反比，所以信号带宽会减少。<br>实际使用时，匹配滤波器的位置有两种：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260220155858344.png" srcset="/img/banner.png" lazyload alt="260220155858344.png"><br>两种方式都可以对信号进行奈奎斯特排列，减少或消除 ISI。<br>不同滚降系数对应的脉冲响应如下：<br><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260220160908222.png" srcset="/img/banner.png" lazyload alt="260220160908222.png"><br>可以看到在 Ts 间隔下根升余弦滚降滤波器脉冲响应不为 0，如果两个 SRRC 滤波器响应组合的话就为 0 了。<br>匹配滤波器可使 SNR 最大化，因为成型滤波后的信号与成型滤波器相关，而不是噪声，可在接收脉冲的中心产生相关峰，在下图 b 中，可以看到即使在较高的噪声下，信号仍然紧密与原始发送序列相关，然而在图 c 中，没有时间偏移的情况话会发生解调错误。</li>
+<li>减少多径和非线性造成的码间串扰
+通过对符号进行滤波，可减少尖锐的相位和频率变换，获得一个频谱效率更高的信号，使用发射滤波器滤波前后的频谱图如下：<br />
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260217181342933.png" srcset="/img/banner.png" lazyload alt="260217181342933.png" /><br />
+可以看到滤波后信号的有效带宽减小了，主要是在发射器上进行了升采样和插值。因为时域和频域成反比，所以信号带宽会减少。<br />
+实际使用时，匹配滤波器的位置有两种：<br />
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260220155858344.png" srcset="/img/banner.png" lazyload alt="260220155858344.png" /><br />
+两种方式都可以对信号进行奈奎斯特排列，减少或消除 ISI。<br />
+不同滚降系数对应的脉冲响应如下：<br />
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260220160908222.png" srcset="/img/banner.png" lazyload alt="260220160908222.png" /><br />
+可以看到在 Ts 间隔下根升余弦滚降滤波器脉冲响应不为 0，如果两个 SRRC 滤波器响应组合的话就为 0 了。<br />
+匹配滤波器可使 SNR 最大化，因为成型滤波后的信号与成型滤波器相关，而不是噪声，可在接收脉冲的中心产生相关峰，在下图 b 中，可以看到即使在较高的噪声下，信号仍然紧密与原始发送序列相关，然而在图 c 中，没有时间偏移的情况话会发生解调错误。</li>
 </ol>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260220162321065.png" srcset="/img/banner.png" lazyload></p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260220162321065.png" srcset="/img/banner.png" lazyload alt="" /></p>
 
                 
               </div>
@@ -665,6 +563,12 @@ mjx-container[display="true"] + br {
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -885,6 +789,49 @@ mjx-container[display="true"] + br {
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

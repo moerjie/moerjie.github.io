@@ -21,15 +21,15 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
   
-    <meta name="description" content="不同波段的电磁波在频率、波长、能量以及传播方式上各有差异，这使得它们在应用上也各有所长。下面我们将对中波、短波之外的主要电磁波波段的特点以及它们在通信或其它领域中的应用做一详细解析：  1. 超低频与极低频波段（ELF、SLF、ULF、VLF） 频率与波长特点  极低频（ELF）：通常在3~30 Hz之间，波长可达数万公里。  超低频（SLF）和特低频（ULF）：频率分别约在30–300 Hz和3">
+    <meta name="description" content="不同波段的电磁波在频率、波长、能量以及传播方式上各有差异，这使得它们在应用上也各有所长。下面我们将对中波、短波之外的主要电磁波波段的特点以及它们在通信或其它领域中的应用做一详细解析：  1. 超低频与极低频波段（ELF、SLF、ULF、VLF）   频率与波长特点   极低频（ELF）：通常在3~30 Hz之间，波长可达数万公里。   超低频（SLF）和特低频（ULF）：频率分别约在30–300">
 <meta property="og:type" content="article">
 <meta property="og:title" content="不同波段电磁波的特点和使用场景">
 <meta property="og:url" content="https://moerjie.github.io/2025/04/16/%E4%B8%8D%E5%90%8C%E6%B3%A2%E6%AE%B5%E7%94%B5%E7%A3%81%E6%B3%A2%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="不同波段的电磁波在频率、波长、能量以及传播方式上各有差异，这使得它们在应用上也各有所长。下面我们将对中波、短波之外的主要电磁波波段的特点以及它们在通信或其它领域中的应用做一详细解析：  1. 超低频与极低频波段（ELF、SLF、ULF、VLF） 频率与波长特点  极低频（ELF）：通常在3~30 Hz之间，波长可达数万公里。  超低频（SLF）和特低频（ULF）：频率分别约在30–300 Hz和3">
+<meta property="og:description" content="不同波段的电磁波在频率、波长、能量以及传播方式上各有差异，这使得它们在应用上也各有所长。下面我们将对中波、短波之外的主要电磁波波段的特点以及它们在通信或其它领域中的应用做一详细解析：  1. 超低频与极低频波段（ELF、SLF、ULF、VLF）   频率与波长特点   极低频（ELF）：通常在3~30 Hz之间，波长可达数万公里。   超低频（SLF）和特低频（ULF）：频率分别约在30–300">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-17T14:13:55.000Z">
+<meta property="article:modified_time" content="2026-04-29T08:14:32.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="电路">
 <meta name="twitter:card" content="summary_large_image">
@@ -105,119 +105,7 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-.MathJax path {
-  stroke-width: 3;
-}
-
-mjx-container[display="true"] {
-  overflow: auto hidden;
-}
-
-mjx-container[display="true"] + br {
-  display: none;
-}
-</style></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -465,155 +353,215 @@ mjx-container[display="true"] + br {
               <div class="markdown-body">
                 
                 <p>不同波段的电磁波在频率、波长、能量以及传播方式上各有差异，这使得它们在应用上也各有所长。下面我们将对中波、短波之外的主要电磁波波段的特点以及它们在通信或其它领域中的应用做一详细解析：</p>
-<hr>
-<h1 id="1-超低频与极低频波段（ELF、SLF、ULF、VLF）"><a href="#1-超低频与极低频波段（ELF、SLF、ULF、VLF）" class="headerlink" title="1. 超低频与极低频波段（ELF、SLF、ULF、VLF）"></a>1. 超低频与极低频波段（ELF、SLF、ULF、VLF）</h1><ul>
-<li><p><strong>频率与波长特点</strong></p>
+<hr />
+<h1>1. 超低频与极低频波段（ELF、SLF、ULF、VLF）</h1>
 <ul>
-<li><p><strong>极低频（ELF）</strong>：通常在3~30 Hz之间，波长可达数万公里。</p>
-</li>
-<li><p><strong>超低频（SLF）<strong>和</strong>特低频（ULF）</strong>：频率分别约在30–300 Hz和300–3000 Hz之间，波长仍非常长。</p>
-</li>
-<li><p><strong>甚低频（VLF）</strong>：一般在3 kHz至30 kHz，波长从几十到几百公里不等。</p>
-</li>
-</ul>
-</li>
-<li><p><strong>传播特性</strong><br>  由于波长极长，这些频段的波能绕过地形和海水，对传播媒介（如地下和海水）有很好的穿透能力。但其数据带宽非常有限，传输速率低。</p>
-</li>
-<li><p><strong>主要应用</strong></p>
+<li>
+<p><strong>频率与波长特点</strong></p>
 <ul>
-<li><p><strong>潜艇通信</strong>：ELF和VLF能够穿透海水，适用于与潜艇进行远程低速率的指挥通信。</p>
+<li>
+<p><strong>极低频（ELF）</strong>：通常在3~30 Hz之间，波长可达数万公里。</p>
 </li>
-<li><p><strong>导航与时间信号</strong>：例如LF（低频）信号被用于传送标准时间信号和导航信息。</p>
+<li>
+<p><strong>超低频（SLF）<strong>和</strong>特低频（ULF）</strong>：频率分别约在30–300 Hz和300–3000 Hz之间，波长仍非常长。</p>
+</li>
+<li>
+<p><strong>甚低频（VLF）</strong>：一般在3 kHz至30 kHz，波长从几十到几百公里不等。</p>
 </li>
 </ul>
 </li>
-</ul>
-<hr>
-<h1 id="2-中低频与中波（LF、MF、AM广播）"><a href="#2-中低频与中波（LF、MF、AM广播）" class="headerlink" title="2. 中低频与中波（LF、MF、AM广播）"></a>2. 中低频与中波（LF、MF、AM广播）</h1><ul>
-<li><p><strong>频率与波长特点</strong></p>
+<li>
+<p><strong>传播特性</strong><br />
+由于波长极长，这些频段的波能绕过地形和海水，对传播媒介（如地下和海水）有很好的穿透能力。但其数据带宽非常有限，传输速率低。</p>
+</li>
+<li>
+<p><strong>主要应用</strong></p>
 <ul>
-<li><p><strong>低频（LF）</strong>：一般在30 kHz～300 kHz，波长在1千米以上。</p>
+<li>
+<p><strong>潜艇通信</strong>：ELF和VLF能够穿透海水，适用于与潜艇进行远程低速率的指挥通信。</p>
 </li>
-<li><p><strong>中频（MF）</strong>：约300 kHz～3 MHz，涵盖了传统的调幅（AM）广播波段，中波通信便属于此类。</p>
+<li>
+<p><strong>导航与时间信号</strong>：例如LF（低频）信号被用于传送标准时间信号和导航信息。</p>
 </li>
 </ul>
 </li>
-<li><p><strong>传播特性</strong><br>  中低频段电磁波可通过地波传播，并且在夜间电离层条件较佳时可通过天波进行长距离传播，但由于波长较长，其带宽和数据传输能力相对受限。</p>
-</li>
-<li><p><strong>主要应用</strong></p>
+</ul>
+<hr />
+<h1>2. 中低频与中波（LF、MF、AM广播）</h1>
 <ul>
-<li><p><strong>广播通信</strong>：AM广播以及海事、航空导航等都经常使用中低频段信号。</p>
-</li>
-<li><p><strong>时间与定位信号</strong>：例如LF信号常用于一些长距离定位和时间校准系统。</p>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h1 id="3-高频与甚高频波段（HF、VHF、UHF）"><a href="#3-高频与甚高频波段（HF、VHF、UHF）" class="headerlink" title="3. 高频与甚高频波段（HF、VHF、UHF）"></a>3. 高频与甚高频波段（HF、VHF、UHF）</h1><ul>
-<li><p><strong>频率与波长特点</strong></p>
+<li>
+<p><strong>频率与波长特点</strong></p>
 <ul>
-<li><p><strong>高频（HF）</strong>：3–30 MHz，波长在10米到100米左右，适合长距离的短波通信。</p>
+<li>
+<p><strong>低频（LF）</strong>：一般在30 kHz～300 kHz，波长在1千米以上。</p>
 </li>
-<li><p><strong>甚高频（VHF）</strong>：30–300 MHz，对应波长约1米到10米，多为电视、调频广播、航空通信。</p>
-</li>
-<li><p><strong>特高频（UHF）</strong>：300 MHz–3 GHz，波长约为10厘米到1米，常见于移动通信、卫星广播及部分雷达系统。</p>
+<li>
+<p><strong>中频（MF）</strong>：约300 kHz～3 MHz，涵盖了传统的调幅（AM）广播波段，中波通信便属于此类。</p>
 </li>
 </ul>
 </li>
-<li><p><strong>传播特性</strong></p>
+<li>
+<p><strong>传播特性</strong><br />
+中低频段电磁波可通过地波传播，并且在夜间电离层条件较佳时可通过天波进行长距离传播，但由于波长较长，其带宽和数据传输能力相对受限。</p>
+</li>
+<li>
+<p><strong>主要应用</strong></p>
 <ul>
-<li><p><strong>HF</strong>：利用电离层反射（天波传播），可以覆盖极远距离，但信号易受大气与电离层条件影响。</p>
+<li>
+<p><strong>广播通信</strong>：AM广播以及海事、航空导航等都经常使用中低频段信号。</p>
 </li>
-<li><p><strong>VHF和UHF</strong>：主要依赖视线传播，传输稳定，抗干扰性能较好，但传输距离受地形阻挡限制，通常用于局部或卫星通信等。</p>
+<li>
+<p><strong>时间与定位信号</strong>：例如LF信号常用于一些长距离定位和时间校准系统。</p>
 </li>
 </ul>
 </li>
-<li><p><strong>主要应用</strong></p>
+</ul>
+<hr />
+<h1>3. 高频与甚高频波段（HF、VHF、UHF）</h1>
 <ul>
-<li><p><strong>长距离通信与业余无线电</strong>：HF频段经常用于国际通讯和业余无线电爱好者之间的跨洋联络。</p>
-</li>
-<li><p><strong>广播、电视与移动通信</strong>：VHF/UHF在民用广播、手机通信、无线局域网以及卫星电视中应用广泛。</p>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h1 id="4-微波及更高频段（SHF、EHF、THz）"><a href="#4-微波及更高频段（SHF、EHF、THz）" class="headerlink" title="4. 微波及更高频段（SHF、EHF、THz）"></a>4. 微波及更高频段（SHF、EHF、THz）</h1><ul>
-<li><p><strong>频率与波长特点</strong></p>
+<li>
+<p><strong>频率与波长特点</strong></p>
 <ul>
-<li><p><strong>微波（SHF）</strong>：3–30 GHz，波长从10毫米到1厘米左右。</p>
+<li>
+<p><strong>高频（HF）</strong>：3–30 MHz，波长在10米到100米左右，适合长距离的短波通信。</p>
 </li>
-<li><p><strong>极高频（EHF）</strong>：30–300 GHz，波长在1毫米到10毫米之间。</p>
+<li>
+<p><strong>甚高频（VHF）</strong>：30–300 MHz，对应波长约1米到10米，多为电视、调频广播、航空通信。</p>
 </li>
-<li><p><strong>太赫兹波（THz）</strong>：介于微波与红外线之间，频率大致在0.1–10 THz，对应波长在0.03毫米到3毫米之间。</p>
+<li>
+<p><strong>特高频（UHF）</strong>：300 MHz–3 GHz，波长约为10厘米到1米，常见于移动通信、卫星广播及部分雷达系统。</p>
 </li>
 </ul>
 </li>
-<li><p><strong>传播特性</strong></p>
+<li>
+<p><strong>传播特性</strong></p>
 <ul>
-<li><p>微波和EHF信号因其短波长，主要采用视线传播，且易受大气吸收、雨衰和障碍物阻挡；但传输的带宽很宽，支持高速数据传输。</p>
+<li>
+<p><strong>HF</strong>：利用电离层反射（天波传播），可以覆盖极远距离，但信号易受大气与电离层条件影响。</p>
 </li>
-<li><p>THz波虽然具有潜在极高的数据传输速率，其传播距离较短且对大气中的水汽特别敏感，因此目前主要在短距离、高速通信以及特殊成像与检测中被研究和应用。</p>
+<li>
+<p><strong>VHF和UHF</strong>：主要依赖视线传播，传输稳定，抗干扰性能较好，但传输距离受地形阻挡限制，通常用于局部或卫星通信等。</p>
 </li>
 </ul>
 </li>
-<li><p><strong>主要应用</strong></p>
+<li>
+<p><strong>主要应用</strong></p>
 <ul>
-<li><p><strong>卫星通信、雷达和无线宽带</strong>：微波波段应用于卫星链路、雷达系统以及点对点无线通信。</p>
+<li>
+<p><strong>长距离通信与业余无线电</strong>：HF频段经常用于国际通讯和业余无线电爱好者之间的跨洋联络。</p>
 </li>
-<li><p><strong>数据中心与下一代无线通信</strong>：EHF、毫米波和部分THz技术正被探索用于5G/6G通信，为实现超高速、低延时数据传输提供新的途径。</p>
-</li>
-<li><p><strong>成像与检测</strong>：THz波在医学成像、无损检测、食品安全与隐形检测等方面也有独特优势。</p>
-</li>
-</ul>
+<li>
+<p><strong>广播、电视与移动通信</strong>：VHF/UHF在民用广播、手机通信、无线局域网以及卫星电视中应用广泛。</p>
 </li>
 </ul>
-<hr>
-<h1 id="5-红外线、可见光、紫外线以及高能射线（X射线、γ射线）"><a href="#5-红外线、可见光、紫外线以及高能射线（X射线、γ射线）" class="headerlink" title="5. 红外线、可见光、紫外线以及高能射线（X射线、γ射线）"></a>5. 红外线、可见光、紫外线以及高能射线（X射线、γ射线）</h1><ul>
-<li><p><strong>红外线</strong></p>
+</li>
+</ul>
+<hr />
+<h1>4. 微波及更高频段（SHF、EHF、THz）</h1>
 <ul>
-<li><p><strong>特点</strong>：波长介于0.75μm到1mm，能量比可见光低但高于微波。</p>
-</li>
-<li><p><strong>应用</strong>：广泛用于光纤通信、红外热成像、夜视设备以及某些短距离高速无线光通信（例如自由空间光通信）。</p>
-</li>
-</ul>
-</li>
-<li><p><strong>可见光</strong></p>
+<li>
+<p><strong>频率与波长特点</strong></p>
 <ul>
-<li><p><strong>特点</strong>：波长约390～750nm，是人眼可见的部分。</p>
+<li>
+<p><strong>微波（SHF）</strong>：3–30 GHz，波长从10毫米到1厘米左右。</p>
 </li>
-<li><p><strong>应用</strong>：应用于光通信（如激光通信）、光纤传输、显示技术以及一般照明。</p>
+<li>
+<p><strong>极高频（EHF）</strong>：30–300 GHz，波长在1毫米到10毫米之间。</p>
+</li>
+<li>
+<p><strong>太赫兹波（THz）</strong>：介于微波与红外线之间，频率大致在0.1–10 THz，对应波长在0.03毫米到3毫米之间。</p>
 </li>
 </ul>
 </li>
-<li><p><strong>紫外线</strong></p>
+<li>
+<p><strong>传播特性</strong></p>
 <ul>
-<li><p><strong>特点</strong>：波长范围约10–400nm，具有较高能量，部分紫外线可引起化学反应。</p>
+<li>
+<p>微波和EHF信号因其短波长，主要采用视线传播，且易受大气吸收、雨衰和障碍物阻挡；但传输的带宽很宽，支持高速数据传输。</p>
 </li>
-<li><p><strong>应用</strong>：主要在科学检测、消毒杀菌、材料分析等领域有应用，通信应用较少。</p>
+<li>
+<p>THz波虽然具有潜在极高的数据传输速率，其传播距离较短且对大气中的水汽特别敏感，因此目前主要在短距离、高速通信以及特殊成像与检测中被研究和应用。</p>
 </li>
 </ul>
 </li>
-<li><p><strong>X射线与γ射线</strong></p>
+<li>
+<p><strong>主要应用</strong></p>
 <ul>
-<li><p><strong>特点</strong>：波长极短、频率极高、能量非常大。</p>
+<li>
+<p><strong>卫星通信、雷达和无线宽带</strong>：微波波段应用于卫星链路、雷达系统以及点对点无线通信。</p>
 </li>
-<li><p><strong>应用</strong>：因高能量而具有极强的穿透力，主要用于医学成像（如X光检查）、工业无损检测和核物理研究，通常不用于常规通信。</p>
+<li>
+<p><strong>数据中心与下一代无线通信</strong>：EHF、毫米波和部分THz技术正被探索用于5G/6G通信，为实现超高速、低延时数据传输提供新的途径。</p>
+</li>
+<li>
+<p><strong>成像与检测</strong>：THz波在医学成像、无损检测、食品安全与隐形检测等方面也有独特优势。</p>
 </li>
 </ul>
 </li>
 </ul>
-<hr>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>不同电磁波波段各有其独特的传输和物理特性，因此在通信系统中各取所长：</p>
+<hr />
+<h1>5. 红外线、可见光、紫外线以及高能射线（X射线、γ射线）</h1>
 <ul>
-<li><p>低频和极低频波段能穿透海水和地下，适合远距离低速传输和特殊环境通信；</p>
+<li>
+<p><strong>红外线</strong></p>
+<ul>
+<li>
+<p><strong>特点</strong>：波长介于0.75μm到1mm，能量比可见光低但高于微波。</p>
 </li>
-<li><p>中频至高频（HF、VHF、UHF）波段则适于广播、短波国际通信和视线通信；</p>
+<li>
+<p><strong>应用</strong>：广泛用于光纤通信、红外热成像、夜视设备以及某些短距离高速无线光通信（例如自由空间光通信）。</p>
 </li>
-<li><p>微波及其以上频段（SHF、EHF及THz）凭借宽带和高数据速率优势，正成为卫星通信、雷达、下一代无线网络的重要候选；</p>
+</ul>
 </li>
-<li><p>红外、可见光等则借助光的特性在光纤和自由空间光通信中发挥巨大作用，而紫外、X射线、γ射线则由于能量较高主要用于成像和检测领域，而非常规数据通信。</p>
+<li>
+<p><strong>可见光</strong></p>
+<ul>
+<li>
+<p><strong>特点</strong>：波长约390～750nm，是人眼可见的部分。</p>
+</li>
+<li>
+<p><strong>应用</strong>：应用于光通信（如激光通信）、光纤传输、显示技术以及一般照明。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>紫外线</strong></p>
+<ul>
+<li>
+<p><strong>特点</strong>：波长范围约10–400nm，具有较高能量，部分紫外线可引起化学反应。</p>
+</li>
+<li>
+<p><strong>应用</strong>：主要在科学检测、消毒杀菌、材料分析等领域有应用，通信应用较少。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>X射线与γ射线</strong></p>
+<ul>
+<li>
+<p><strong>特点</strong>：波长极短、频率极高、能量非常大。</p>
+</li>
+<li>
+<p><strong>应用</strong>：因高能量而具有极强的穿透力，主要用于医学成像（如X光检查）、工业无损检测和核物理研究，通常不用于常规通信。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h1>总结</h1>
+<p>不同电磁波波段各有其独特的传输和物理特性，因此在通信系统中各取所长：</p>
+<ul>
+<li>
+<p>低频和极低频波段能穿透海水和地下，适合远距离低速传输和特殊环境通信；</p>
+</li>
+<li>
+<p>中频至高频（HF、VHF、UHF）波段则适于广播、短波国际通信和视线通信；</p>
+</li>
+<li>
+<p>微波及其以上频段（SHF、EHF及THz）凭借宽带和高数据速率优势，正成为卫星通信、雷达、下一代无线网络的重要候选；</p>
+</li>
+<li>
+<p>红外、可见光等则借助光的特性在光纤和自由空间光通信中发挥巨大作用，而紫外、X射线、γ射线则由于能量较高主要用于成像和检测领域，而非常规数据通信。</p>
 </li>
 </ul>
 <p>这种多波段、多模式的应用构成了现代电磁波系统的基石，同时也展示了不同技术在满足不同传输需求时的互补性。选择合适的波段时，需要权衡传播距离、数据速率、抗干扰能力及环境适应性等多个因素。</p>
@@ -806,6 +754,12 @@ mjx-container[display="true"] + br {
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -1026,6 +980,49 @@ mjx-container[display="true"] + br {
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

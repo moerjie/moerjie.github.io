@@ -21,12 +21,12 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
   
-    <meta name="description" content="1 时钟引脚1.1 CLK：U182 复位2.1 RST：N153 扩展接口3.1 J10   3.2 J11   4 PL LED  5 PL KEY">
+    <meta name="description" content="1 时钟引脚 1.1 CLK：U18 2 复位 2.1 RST：N15 3 扩展接口 3.1 J10    3.2 J11    4 PL LED   5 PL KEY">
 <meta property="og:type" content="article">
 <meta property="og:title" content="黑金Alinx xc7z020 原理图">
 <meta property="og:url" content="https://moerjie.github.io/2024/07/23/%E9%BB%91%E9%87%91Alinx%20xc7z020%20%E5%8E%9F%E7%90%86%E5%9B%BE/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="1 时钟引脚1.1 CLK：U182 复位2.1 RST：N153 扩展接口3.1 J10   3.2 J11   4 PL LED  5 PL KEY">
+<meta property="og:description" content="1 时钟引脚 1.1 CLK：U18 2 复位 2.1 RST：N15 3 扩展接口 3.1 J10    3.2 J11    4 PL LED   5 PL KEY">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715858667344.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715858711730.png">
@@ -41,8 +41,8 @@
 <meta property="article:published_time" content="2024-07-22T16:00:00.000Z">
 <meta property="article:modified_time" content="2026-03-17T14:13:54.000Z">
 <meta property="article:author" content="Sawen Moerjie">
-<meta property="article:tag" content="FPGA">
 <meta property="article:tag" content="电路">
+<meta property="article:tag" content="FPGA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715858667344.png">
   
@@ -364,16 +364,25 @@
             
               <div class="markdown-body">
                 
-                <h1 id="1-时钟引脚"><a href="#1-时钟引脚" class="headerlink" title="1 时钟引脚"></a>1 时钟引脚</h1><h2 id="1-1-CLK：U18"><a href="#1-1-CLK：U18" class="headerlink" title="1.1 CLK：U18"></a>1.1 CLK：U18</h2><h1 id="2-复位"><a href="#2-复位" class="headerlink" title="2 复位"></a>2 复位</h1><h2 id="2-1-RST：N15"><a href="#2-1-RST：N15" class="headerlink" title="2.1 RST：N15"></a>2.1 RST：N15</h2><h1 id="3-扩展接口"><a href="#3-扩展接口" class="headerlink" title="3 扩展接口"></a>3 扩展接口</h1><h2 id="3-1-J10"><a href="#3-1-J10" class="headerlink" title="3.1 J10"></a>3.1 J10</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715858667344.png" srcset="/img/banner.png" lazyload alt="1715858667344.png|400"></p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715858711730.png" srcset="/img/banner.png" lazyload alt="1715858711730.png|400"></p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715858778817.png" srcset="/img/banner.png" lazyload alt="1715858778817.png|400"></p>
-<h2 id="3-2-J11"><a href="#3-2-J11" class="headerlink" title="3.2 J11"></a>3.2 J11</h2><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715858828182.png" srcset="/img/banner.png" lazyload alt="1715858828182.png|400"></p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715858880857.png" srcset="/img/banner.png" lazyload alt="1715858880857.png|400"></p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715859009851.png" srcset="/img/banner.png" lazyload alt="1715859009851.png|400"></p>
-<h1 id="4-PL-LED"><a href="#4-PL-LED" class="headerlink" title="4 PL LED"></a>4 PL LED</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715859045637.png" srcset="/img/banner.png" lazyload alt="1715859045637.png|400"></p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1736475075441.png" srcset="/img/banner.png" lazyload alt="1736475075441.png|400"></p>
-<h1 id="5-PL-KEY"><a href="#5-PL-KEY" class="headerlink" title="5 PL KEY"></a>5 PL KEY</h1><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1736475179705.png" srcset="/img/banner.png" lazyload alt="1736475179705.png|400"></p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1736475192537.png" srcset="/img/banner.png" lazyload alt="1736475192537.png|400"></p>
+                <h1>1 时钟引脚</h1>
+<h2 id="1-1-CLK：U18">1.1 CLK：U18</h2>
+<h1>2 复位</h1>
+<h2 id="2-1-RST：N15">2.1 RST：N15</h2>
+<h1>3 扩展接口</h1>
+<h2 id="3-1-J10">3.1 J10</h2>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715858667344.png" srcset="/img/banner.png" lazyload alt="1715858667344.png|400" /></p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715858711730.png" srcset="/img/banner.png" lazyload alt="1715858711730.png|400" /></p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715858778817.png" srcset="/img/banner.png" lazyload alt="1715858778817.png|400" /></p>
+<h2 id="3-2-J11">3.2 J11</h2>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715858828182.png" srcset="/img/banner.png" lazyload alt="1715858828182.png|400" /></p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715858880857.png" srcset="/img/banner.png" lazyload alt="1715858880857.png|400" /></p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715859009851.png" srcset="/img/banner.png" lazyload alt="1715859009851.png|400" /></p>
+<h1>4 PL LED</h1>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1715859045637.png" srcset="/img/banner.png" lazyload alt="1715859045637.png|400" /></p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1736475075441.png" srcset="/img/banner.png" lazyload alt="1736475075441.png|400" /></p>
+<h1>5 PL KEY</h1>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1736475179705.png" srcset="/img/banner.png" lazyload alt="1736475179705.png|400" /></p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1736475192537.png" srcset="/img/banner.png" lazyload alt="1736475192537.png|400" /></p>
 
                 
               </div>
@@ -407,9 +416,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/FPGA/" class="print-no-link">#FPGA</a>
-      
         <a href="/tags/%E7%94%B5%E8%B7%AF/" class="print-no-link">#电路</a>
+      
+        <a href="/tags/FPGA/" class="print-no-link">#FPGA</a>
       
     </div>
   
@@ -565,6 +574,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -785,6 +800,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

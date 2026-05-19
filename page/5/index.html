@@ -288,6 +288,500 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/05/29/Xilinx%20FPGA%E4%B8%AD%E7%9A%84BUFFER/" target="_self">
+          Xilinx FPGA中的BUFFER
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/29/Xilinx%20FPGA%E4%B8%AD%E7%9A%84BUFFER/" target="_self">
+        <div>
+          FPGA大型设计中推荐使用同步时序电路，同步时序电路基于时钟触发沿设计，对时钟的周期、占空比、延时和抖动有更高的要求。为满足时序的要求，一般采用全局时钟资源驱动设计的主时钟，FPGA的主时钟一般使用全铜层工艺实现，并设计了专用时钟缓冲与驱动结构。 1 缓冲和驱动 1.1 缓冲 输入输出缓冲，主要用于片外输入时钟或者片外差分输入的信号。 差分信号和差分时钟进入片内后如果不经过IBUFGDS、IBUF
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-05-29 00:00" pubdate>
+              2024-05-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/05/19/NCO%E6%A8%A1%E5%9D%97%E7%9A%84%E5%90%84%E9%A1%B9%E5%8F%82%E6%95%B0/" target="_self">
+          NCO模块的各项参数
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/19/NCO%E6%A8%A1%E5%9D%97%E7%9A%84%E5%90%84%E9%A1%B9%E5%8F%82%E6%95%B0/" target="_self">
+        <div>
+          NCO模块可以生成实数或者复数正弦信号，同时提供硬件友好的控制信号 1 Accumulator累加器位数 正弦波的频率分辨率取决于累加器的位数的大小，根据频率分辨率可以计算出累加器的位数，根据此位数设置累加器的数据类型字长 计算公式为 $$ N=ceil(log_2(\frac{F_s}{\Delta f})) $$ 2 量化位数 量化累加器的输出可以在不增加查找表的大小的情况下提高频率分辨率 要
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-05-19 00:00" pubdate>
+              2024-05-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
+            
+              <a href="/tags/MATLAB/">#MATLAB</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/05/05/%E8%BF%90%E6%94%BE%E7%9A%84%E5%90%8C%E7%9B%B8%E4%B8%8E%E5%8F%8D%E7%9B%B8%E6%94%BE%E5%A4%A7/" target="_self">
+          运放的同相与反相放大
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/05/%E8%BF%90%E6%94%BE%E7%9A%84%E5%90%8C%E7%9B%B8%E4%B8%8E%E5%8F%8D%E7%9B%B8%E6%94%BE%E5%A4%A7/" target="_self">
+        <div>
+          1 反相放大器 同相端接地，电压为 0，反相端和同相端虚短，因此也是 0 V 的电压，同时由于虚断，几乎没有电流注入，所以R 1 和R 2 相当于串联，电阻上的电流相等  因此可以求出输入输出关系式为 $$ V_{out}=-\frac{R_2}{R_1}\times V_i $$ 2 同相放大器 同样根据虚断和虚短可以求得输入输出关系式为 $$ V_{out}=\frac{R_1+R_2}{R_
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-05-05 00:00" pubdate>
+              2024-05-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%94%B5%E8%B7%AF/" class="category-chain-item">电路</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%94%B5%E8%B7%AF/">#电路</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/05/01/Vivado%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" target="_self">
+          Vivado报错集合
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/01/Vivado%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" target="_self">
+        <div>
+          1 ERROR: [Common 17-49] Internal Data Exception: 这个错误通常表示在使用 vvdo 进行逻辑分析时出现了问题。错误信息表明，存在一个断言失败，即在获取探针数据时，数据不匹配。 2 Synth 8-5535 报错代码 12345[Synth 8-5535] port &lt;clk_0&gt; has illegal connections. It i
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-05-01 00:00" pubdate>
+              2024-05-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/04/25/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/" target="_self">
+          Matlab生成txt文件导入到Vivado仿真
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/25/Matlab%E7%94%9F%E6%88%90txt%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%88%B0Vivado%E4%BB%BF%E7%9C%9F/" target="_self">
+        <div>
+          1 Matlab处理数据并将其写入txt文件 1234567%% Txt Generatepre_RS_data=dec2bin(simDataIn,8);       %将数据转化为8bit的二进制fid=fopen(&quot;F:\FPGA\Xilinx_vivado\project\dvbstestbench\dbvs\matlab\pre_RS_data.txt&quot;,&quot;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-04-25 00:00" pubdate>
+              2024-04-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+              <a href="/tags/MATLAB/">#MATLAB</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/" target="_self">
+          DVB-S系统仿真学习
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/27/DVB-S%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F%E5%AD%A6%E4%B9%A0/" target="_self">
+        <div>
+          DVB-S系统用于卫星电视信号传输，发送端框图如下所示  1 扰码 实际数字通信中，载荷数据的码元会出现长连0或长连1的情况，不利于接收端提取时钟信号，同时会使得数据流中含有大量的低频分量，使得QPSK调制器的相位长时间不变，使得信号易受干扰。因此要对载荷数据进行随机化扰码处理 DVB-S标准中规定扰码的生成多项式为 $$ p(x)=x^{15}+x^{14}+1 $$ 同时移位寄存器的初始状态为
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-27 00:00" pubdate>
+              2024-03-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/24/QPSK%20simulink%E5%AE%9E%E7%8E%B0/" target="_self">
+          QPSK simulink实现
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/24/QPSK%20simulink%E5%AE%9E%E7%8E%B0/" target="_self">
+        <div>
+          1 调制部分 1.1 总体框架  1.2 各模块参数 升余弦滚降滤波器滚降系数为 1  单双极性变换  1.3 各阶段波形 1.4 Buffer  1.5 Demux  1.6 Raised Cosine Transmit Filter  1.7 QPSK 信号功率谱密度  2 解调部分 经过 AWGN 信道后，假设已经进行了载波同步  2.1 部分模块参数 2.2 载波模块  2.3 Pulse
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-24 00:00" pubdate>
+              2024-03-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
+            
+              <a href="/tags/MATLAB/">#MATLAB</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/23/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" target="_self">
+          8bit数据转1bit逐位输出电路仿真
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/23/8bit%E6%95%B0%E6%8D%AE%E8%BD%AC1bit%E9%80%90%E4%BD%8D%E8%BE%93%E5%87%BA%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F/" target="_self">
+        <div>
+          在DVB-S系统中，TS流在经过RS编码后，会变成uint8类型的数据，在后续QPSK星座映射时又需要二进制码流，因此在进行了RS编码后要将8个bit的数据转化成1个bit逐位输出 1 实现思路 首先使用BitwiseOperator模块按位与操作，分别将8位二进制数据提取出来，然后使用一个计数器产生0~7的计数信号作为mux模块的使能，在8个时钟周期内分别输出提取出来的8位数据 2 结构框图
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-23 00:00" pubdate>
+              2024-03-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/03/20/AXI-STREAM%E7%AE%80%E4%BB%8B/" target="_self">
           AXI-STREAM简介
         </a>
@@ -296,7 +790,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/03/20/AXI-STREAM%E7%AE%80%E4%BB%8B/" target="_self">
         <div>
-          AXI-STREAM简介概念AXI-Stream总线是一种高效、简单的数据传输协议，主要用于高吞吐量的数据流传输场景。相比于传统的AXI总线，AXI-Stream总线更加简单和轻量级，它通过无需地址的方式，将数据从一个模块传输到另一个模块，适用于需要高速数据传输的应用场景。 部分术语 Transfer：基于TVALID和TREADY握手协议的传输 Packet：一组通过axi-stream传输的数
+          AXI-STREAM简介 概念 AXI-Stream总线是一种高效、简单的数据传输协议，主要用于高吞吐量的数据流传输场景。相比于传统的AXI总线，AXI-Stream总线更加简单和轻量级，它通过无需地址的方式，将数据从一个模块传输到另一个模块，适用于需要高速数据传输的应用场景。 部分术语  Transfer：基于TVALID和TREADY握手协议的传输 Packet：一组通过axi-stream传
         </div>
       </a>
 

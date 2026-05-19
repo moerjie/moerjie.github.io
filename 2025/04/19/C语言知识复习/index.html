@@ -21,12 +21,12 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
   
-    <meta name="description" content="C 语言教程 | 菜鸟教程 1 Vscode 编译调试 C 代码由于 vscode 只是一个文本编辑器，因此需要配置 task.json 和 launch.json 来完成编译和调试的工作。（笔者的 C 环境基于 WSL 2（Ubuntu-20.04）搭建）task.json 如下： 1234567891011121314151617181920212223{    &quot;version&quot;: &quot;2.0">
+    <meta name="description" content="C 语言教程 | 菜鸟教程 1 Vscode 编译调试 C 代码 由于 vscode 只是一个文本编辑器，因此需要配置 task.json 和 launch.json 来完成编译和调试的工作。（笔者的 C 环境基于 WSL 2（Ubuntu-20.04）搭建） task.json 如下： 1234567891011121314151617181920212223&#123;    &quot;ve">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言知识复习">
 <meta property="og:url" content="https://moerjie.github.io/2025/04/19/C%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86%E5%A4%8D%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="C 语言教程 | 菜鸟教程 1 Vscode 编译调试 C 代码由于 vscode 只是一个文本编辑器，因此需要配置 task.json 和 launch.json 来完成编译和调试的工作。（笔者的 C 环境基于 WSL 2（Ubuntu-20.04）搭建）task.json 如下： 1234567891011121314151617181920212223{    &quot;version&quot;: &quot;2.0">
+<meta property="og:description" content="C 语言教程 | 菜鸟教程 1 Vscode 编译调试 C 代码 由于 vscode 只是一个文本编辑器，因此需要配置 task.json 和 launch.json 来完成编译和调试的工作。（笔者的 C 环境基于 WSL 2（Ubuntu-20.04）搭建） task.json 如下： 1234567891011121314151617181920212223&#123;    &quot;ve">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-18T16:00:00.000Z">
 <meta property="article:modified_time" content="2026-03-17T14:13:56.000Z">
@@ -105,119 +105,7 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-.MathJax path {
-  stroke-width: 3;
-}
-
-mjx-container[display="true"] {
-  overflow: auto hidden;
-}
-
-mjx-container[display="true"] + br {
-  display: none;
-}
-</style></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -401,7 +289,7 @@ mjx-container[display="true"] + br {
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1k 字
+          1.2k 字
         
       </span>
     
@@ -413,7 +301,7 @@ mjx-container[display="true"] + br {
         
         
           <!-- compatible with older versions-->
-          9 分钟
+          10 分钟
         
       </span>
     
@@ -465,54 +353,71 @@ mjx-container[display="true"] + br {
               <div class="markdown-body">
                 
                 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/cprogramming/c-tutorial.html">C 语言教程 | 菜鸟教程</a></p>
-<h1 id="1-Vscode-编译调试-C-代码"><a href="#1-Vscode-编译调试-C-代码" class="headerlink" title="1 Vscode 编译调试 C 代码"></a>1 Vscode 编译调试 C 代码</h1><p>由于 vscode 只是一个文本编辑器，因此需要配置 <code>task.json</code> 和 <code>launch.json</code> 来完成编译和调试的工作。（笔者的 C 环境基于 WSL 2（Ubuntu-20.04）搭建）<br><code>task.json</code> 如下：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs Json"><span class="hljs-punctuation">{</span><br>    <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2.0.0"</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"tasks"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-punctuation">{</span><br>            <span class="hljs-attr">"label"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Build C Program"</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"shell"</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"command"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"gcc"</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"args"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>                <span class="hljs-string">"-g"</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-string">"${file}"</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-string">"-o"</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-string">"${fileDirname}/${fileBasenameNoExtension}"</span><br>            <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"group"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><br>                <span class="hljs-attr">"kind"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"build"</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-attr">"isDefault"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>            <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"problemMatcher"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>                <span class="hljs-string">"$gcc"</span><br>            <span class="hljs-punctuation">]</span><br>        <span class="hljs-punctuation">}</span><br>    <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">}</span><br></code></pre></td></tr></table></figure>
+<h1>1 Vscode 编译调试 C 代码</h1>
+<p>由于 vscode 只是一个文本编辑器，因此需要配置 <code>task.json</code> 和 <code>launch.json</code> 来完成编译和调试的工作。（笔者的 C 环境基于 WSL 2（Ubuntu-20.04）搭建）
+<code>task.json</code> 如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs Json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2.0.0&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;tasks&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;label&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Build C Program&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;shell&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;gcc&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>                <span class="hljs-string">&quot;-g&quot;</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-string">&quot;$&#123;file&#125;&quot;</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-string">&quot;-o&quot;</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-string">&quot;$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;&quot;</span><br>            <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;group&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>                <span class="hljs-attr">&quot;kind&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;build&quot;</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-attr">&quot;isDefault&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>            <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;problemMatcher&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>                <span class="hljs-string">&quot;$gcc&quot;</span><br>            <span class="hljs-punctuation">]</span><br>        <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 <ul>
-<li><p><strong>version</strong>：指定配置格式版本，当前仅支持 <code>"2.0.0"</code>。</p>
+<li>
+<p><strong>version</strong>：指定配置格式版本，当前仅支持 <code>&quot;2.0.0&quot;</code>。</p>
 </li>
-<li><p><strong>tasks</strong>：任务数组，每个元素对应一个可执行任务。</p>
+<li>
+<p><strong>tasks</strong>：任务数组，每个元素对应一个可执行任务。</p>
 </li>
-<li><p><strong>label</strong>：任务名称，用于引用（如 <code>preLaunchTask</code>）和在 UI 列表中显示。</p>
+<li>
+<p><strong>label</strong>：任务名称，用于引用（如 <code>preLaunchTask</code>）和在 UI 列表中显示。</p>
 </li>
-<li><p><strong>type</strong>：任务类型，常见值 <code>"shell"</code>（在 shell 中运行）或 <code>"process"</code>（直接启动可执行文件）。</p>
+<li>
+<p><strong>type</strong>：任务类型，常见值 <code>&quot;shell&quot;</code>（在 shell 中运行）或 <code>&quot;process&quot;</code>（直接启动可执行文件）。</p>
 </li>
-<li><p><strong>command</strong>：要执行的命令或程序名称。</p>
+<li>
+<p><strong>command</strong>：要执行的命令或程序名称。</p>
 </li>
-<li><p><strong>args</strong>：传递给命令的参数列表，可使用内置变量插值。</p>
+<li>
+<p><strong>args</strong>：传递给命令的参数列表，可使用内置变量插值。</p>
 <ul>
-<li><code>"-g"</code>：生成调试符号，便于 GDB 等调试器进行源码级调试。</li>
-<li><code>"${file}"</code>：当前活动编辑器中打开的文件的完整路径（如 <code>/home/user/main.c</code>）。         </li>
-<li><code>"-o"</code>：GCC 的输出重定向选项，指定后续输出文件路径。</li>
-<li><code>"${fileDirname}/${fileBasenameNoExtension}"</code>：将可执行文件输出到源文件同目录，文件名与源文件同名但无扩展名（如输出 <code>/home/user/main</code>）。</li>
+<li><code>&quot;-g&quot;</code>：生成调试符号，便于 GDB 等调试器进行源码级调试。</li>
+<li><code>&quot;$&#123;file&#125;&quot;</code>：当前活动编辑器中打开的文件的完整路径（如 <code>/home/user/main.c</code>）。</li>
+<li><code>&quot;-o&quot;</code>：GCC 的输出重定向选项，指定后续输出文件路径。</li>
+<li><code>&quot;$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;&quot;</code>：将可执行文件输出到源文件同目录，文件名与源文件同名但无扩展名（如输出 <code>/home/user/main</code>）。</li>
 </ul>
 </li>
-<li><p><strong>group</strong>：将任务归类（如 <code>build</code>、<code>test</code>），并可标记为默认组内任务。</p>
+<li>
+<p><strong>group</strong>：将任务归类（如 <code>build</code>、<code>test</code>），并可标记为默认组内任务。</p>
 </li>
-<li><p><strong>problemMatcher</strong>：指定如何解析命令输出，将编译器错误/警告映射到“问题”面板。</p>
+<li>
+<p><strong>problemMatcher</strong>：指定如何解析命令输出，将编译器错误/警告映射到“问题”面板。</p>
 </li>
 </ul>
 <p><code>launch.json</code> 如下：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">{</span><br>    <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"0.2.0"</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">"configurations"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-punctuation">{</span><br>            <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"WSL Debug C"</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"cppdbg"</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"request"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"launch"</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"program"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"${fileDirname}/${fileBasenameNoExtension}"</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"args"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"stopAtEntry"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"cwd"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"${workspaceFolder}"</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"environment"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"externalConsole"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"MIMode"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"gdb"</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"miDebuggerPath"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"/usr/bin/gdb"</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"miDebuggerArgs"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"--nx"</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">"preLaunchTask"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Build C Program"</span><br>        <span class="hljs-punctuation">}</span><br>    <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">}</span><br></code></pre></td></tr></table></figure>
-<h1 id="2-C-语言作用域"><a href="#2-C-语言作用域" class="headerlink" title="2 C 语言作用域"></a>2 C 语言作用域</h1><p>作用域是程序中定义的变量所存在的区域，超出该区域后变量就不能被访问。C 语言的变量有三种：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0.2.0&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;configurations&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;WSL Debug C&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cppdbg&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;request&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;launch&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;program&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;stopAtEntry&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;cwd&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;environment&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;externalConsole&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;MIMode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;gdb&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;miDebuggerPath&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/usr/bin/gdb&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;miDebuggerArgs&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;--nx&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;preLaunchTask&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Build C Program&quot;</span><br>        <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<h1>2 C 语言作用域</h1>
+<p>作用域是程序中定义的变量所存在的区域，超出该区域后变量就不能被访问。C 语言的变量有三种：</p>
 <ol>
 <li>在函数内部的<strong>局部变量</strong></li>
 <li>在所有函数外部的<strong>全局变量</strong></li>
 <li>在<strong>形式参数</strong>的函数参数定义</li>
 </ol>
-<h2 id="2-1-局部变量"><a href="#2-1-局部变量" class="headerlink" title="2.1 局部变量"></a>2.1 局部变量</h2><p>在某个函数或者块内部声明的变量称为局部变量。他们只能被该函数或代码块内部的语句访问，在函数或块外部是不可知的。</p>
-<h2 id="2-2-全局变量"><a href="#2-2-全局变量" class="headerlink" title="2.2 全局变量"></a>2.2 全局变量</h2><p>全局变量是定义在函数外部，通常是在程序的顶部。全局变量在整个程序生命周期内都是有效的，在任意的函数内部能访问全局变量。全局变量可以被任何函数访问。也就是说，全局变量在声明后整个程序中都是可用的。</p>
+<h2 id="2-1-局部变量">2.1 局部变量</h2>
+<p>在某个函数或者块内部声明的变量称为局部变量。他们只能被该函数或代码块内部的语句访问，在函数或块外部是不可知的。</p>
+<h2 id="2-2-全局变量">2.2 全局变量</h2>
+<p>全局变量是定义在函数外部，通常是在程序的顶部。全局变量在整个程序生命周期内都是有效的，在任意的函数内部能访问全局变量。全局变量可以被任何函数访问。也就是说，全局变量在声明后整个程序中都是可用的。</p>
 <blockquote>
-<p> 如果局部变量和全局变量的名字相同的话，在函数内优先使用局部变量。</p>
+<p>如果局部变量和全局变量的名字相同的话，在函数内优先使用局部变量。</p>
 </blockquote>
-<h2 id="2-3-形式参数"><a href="#2-3-形式参数" class="headerlink" title="2.3 形式参数"></a>2.3 形式参数</h2><p>函数的参数，形式参数，被当作该函数内的局部变量，如果与全局变量同名它们会优先使用。</p>
-<h1 id="3-指针"><a href="#3-指针" class="headerlink" title="3 指针"></a>3 指针</h1><p>指针即为内存地址，指针变量是用来存放内存地址的变量，使用前必须声明。</p>
+<h2 id="2-3-形式参数">2.3 形式参数</h2>
+<p>函数的参数，形式参数，被当作该函数内的局部变量，如果与全局变量同名它们会优先使用。</p>
+<h1>3 指针</h1>
+<p>指针即为内存地址，指针变量是用来存放内存地址的变量，使用前必须声明。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">type *var_name;<br></code></pre></td></tr></table></figure>
 <p><code>type</code> 为指针的基类型，<code>var_name</code> 为指针变量的名称，以下是有效的指针声明：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span>    *ip;    <span class="hljs-comment">/* 一个整型的指针 */</span><br><span class="hljs-type">double</span> *dp;    <span class="hljs-comment">/* 一个 double 型的指针 */</span><br><span class="hljs-type">float</span>  *fp;    <span class="hljs-comment">/* 一个浮点型的指针 */</span><br><span class="hljs-type">char</span>   *ch;    <span class="hljs-comment">/* 一个字符型的指针 */</span><br></code></pre></td></tr></table></figure>
 <p>不同类型的指针对应的指针的值的类型是一样的，都为<strong>代表内存地址的十六进制数</strong>。不同类型的指针的区别为指针指向的变量或常数的数据类型不同。</p>
-<h2 id="3-1-指针使用方法"><a href="#3-1-指针使用方法" class="headerlink" title="3.1 指针使用方法"></a>3.1 指针使用方法</h2><p>定义一个指针变量，把变量的地址赋给指针，访问指针变量中的地址。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br> <br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span> <span class="hljs-params">()</span><br>{<br>   <span class="hljs-type">int</span>  var = <span class="hljs-number">20</span>;   <span class="hljs-comment">/* 实际变量的声明 */</span><br>   <span class="hljs-type">int</span>  *ip;        <span class="hljs-comment">/* 指针变量的声明 */</span><br> <br>   ip = &amp;var;  <span class="hljs-comment">/* 在指针变量中存储 var 的地址 */</span><br> <br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">"var 变量的地址: %p\n"</span>, &amp;var  );<br> <br>   <span class="hljs-comment">/* 在指针变量中存储的地址 */</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">"ip 变量存储的地址: %p\n"</span>, ip );<br> <br>   <span class="hljs-comment">/* 使用指针访问值 */</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">"*ip 变量的值: %d\n"</span>, *ip );<br> <br>   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><span class="hljs-comment">//参考菜鸟教程</span><br></code></pre></td></tr></table></figure>
-<h2 id="3-2-NULL-指针"><a href="#3-2-NULL-指针" class="headerlink" title="3.2 NULL 指针"></a>3.2 NULL 指针</h2><p>指针变量声明的时候，如果没有确切的地址幅值，则可为指针变量赋一个 NULL，此时该指针被称为空指针。</p>
+<h2 id="3-1-指针使用方法">3.1 指针使用方法</h2>
+<p>定义一个指针变量，把变量的地址赋给指针，访问指针变量中的地址。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br> <br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span> <span class="hljs-params">()</span><br>&#123;<br>   <span class="hljs-type">int</span>  var = <span class="hljs-number">20</span>;   <span class="hljs-comment">/* 实际变量的声明 */</span><br>   <span class="hljs-type">int</span>  *ip;        <span class="hljs-comment">/* 指针变量的声明 */</span><br> <br>   ip = &amp;var;  <span class="hljs-comment">/* 在指针变量中存储 var 的地址 */</span><br> <br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;var 变量的地址: %p\n&quot;</span>, &amp;var  );<br> <br>   <span class="hljs-comment">/* 在指针变量中存储的地址 */</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;ip 变量存储的地址: %p\n&quot;</span>, ip );<br> <br>   <span class="hljs-comment">/* 使用指针访问值 */</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*ip 变量的值: %d\n&quot;</span>, *ip );<br> <br>   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">//参考菜鸟教程</span><br></code></pre></td></tr></table></figure>
+<h2 id="3-2-NULL-指针">3.2 NULL 指针</h2>
+<p>指针变量声明的时候，如果没有确切的地址幅值，则可为指针变量赋一个 NULL，此时该指针被称为空指针。</p>
 
                 
               </div>
@@ -702,6 +607,12 @@ mjx-container[display="true"] + br {
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -922,6 +833,49 @@ mjx-container[display="true"] + br {
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 
