@@ -1141,9 +1141,9 @@
     
     <tags>
       
-      <tag>数字通信</tag>
-      
       <tag>FPGA</tag>
+      
+      <tag>数字通信</tag>
       
     </tags>
     
@@ -1552,9 +1552,9 @@
     
     <tags>
       
-      <tag>数字通信</tag>
-      
       <tag>FPGA</tag>
+      
+      <tag>数字通信</tag>
       
     </tags>
     
@@ -1807,11 +1807,11 @@
   
   
   <entry>
-    <title>多速率信号处理</title>
-    <link href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/"/>
-    <url>/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/</url>
+    <title>多速率信号处理-插值和插值滤波器</title>
+    <link href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E6%8F%92%E5%80%BC%E5%92%8C%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/"/>
+    <url>/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E6%8F%92%E5%80%BC%E5%92%8C%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/</url>
     
-    <content type="html"><![CDATA[<p>随着芯片技术的发展，ADC的采样率越来越高，导致数字化越来越靠近系统前端。目前，工程上采用较多的是中频采样技术，即在中频时就对模拟信号数字化，此时ADC的采样率低于奈奎斯特采样定律的最低采样率（2倍的信号带宽），为过采样。过采样可以将采样过程的固有的量化噪声均匀地分散在更大的带宽上，降低目标信号带宽上的噪声功率，随后通过滤波器滤除带外噪声，即可产生比临界采样信号更优的信噪比。</p><p>当信号被ADC采样并传输到FPGA时，信号就进入了数字域。然而过高的采样率会对后续的信号处理带来较大压力，为了缓解压力，就需要降低信号的采样率，即为抽取。抽取后的信号数据率相对较低，因而有效地降低了对FPGA资源的占用，同时有助于简化系统的时序收敛。</p><p>当驱动高速率DAC时，需要提高信号的采样率，即为内插。因为DAC的采样率越高，输出端的频谱的频域分离度就越高，可以简化DAC后的模拟滤波器的工作，从而提高信噪比。</p><p>多速率信号处理的典型应用即为数字上变频DUC（Digital Up Conversion）和数字下变频DDC（Digital Down Conversion）。</p>]]></content>
+    <content type="html"><![CDATA[<p>插值意味着提高采样率，故而被称为上采样（Up Sample）。设原始序列为$x(n)$，采样率为$f_x$，插值因子为$L$，则插值的过程为原始序列每相邻两个样点之间插入$L-1$个$0$构成一个新序列，数学表达式为</p><p>$$y(m)=\begin{cases}x(m/L)&amp;m=0,\pm L,\pm2L,\cdots\0&amp;\text{其他}\end{cases}$$</p><p>以$f_y$表示$y(m)$的采样率，则采样率之间的关系为</p><p>$$f_y=L\times f_x$$</p><p>图示如下：</p><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409012121424.png" srcset="/img/banner.png" lazyload alt="2024after4202409012121424.png" /></p><p>从频域角度看， 原始序列的频谱以$f_x$为周期做周期延拓。</p><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1725447693456.png" srcset="/img/banner.png" lazyload alt="1725447693456.png" /></p><p>插值后的新序列以新的采样率$f_y$做周期延拓。</p><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1725447757213.png" srcset="/img/banner.png" lazyload alt="1725447757213.png" /></p><p>可以看到插值前后频谱成分不变，但是在$f_x$的整数倍频点处的频谱称为镜像成分。所以插值后要加入一个低通滤波器滤除镜频。典型的插值器就是由上采样器和抗镜像滤波器共同完成的。</p><p>由于插值是在原始序列中插入零值，即某些采样点处的信号幅度为0，会改变信号的幅度，因此插值会造成信号幅度的损失。要保证插值前后信号幅度的统一，可在插值滤波器后设置一个增益因子L。</p><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1725448598642.png" srcset="/img/banner.png" lazyload alt="1725448598642.png" /></p>]]></content>
     
     
     
@@ -1826,11 +1826,11 @@
   
   
   <entry>
-    <title>多速率信号处理-插值和插值滤波器</title>
-    <link href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E6%8F%92%E5%80%BC%E5%92%8C%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/"/>
-    <url>/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E6%8F%92%E5%80%BC%E5%92%8C%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/</url>
+    <title>多速率信号处理</title>
+    <link href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/"/>
+    <url>/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/</url>
     
-    <content type="html"><![CDATA[<p>插值意味着提高采样率，故而被称为上采样（Up Sample）。设原始序列为$x(n)$，采样率为$f_x$，插值因子为$L$，则插值的过程为原始序列每相邻两个样点之间插入$L-1$个$0$构成一个新序列，数学表达式为</p><p>$$y(m)=\begin{cases}x(m/L)&amp;m=0,\pm L,\pm2L,\cdots\0&amp;\text{其他}\end{cases}$$</p><p>以$f_y$表示$y(m)$的采样率，则采样率之间的关系为</p><p>$$f_y=L\times f_x$$</p><p>图示如下：</p><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409012121424.png" srcset="/img/banner.png" lazyload alt="2024after4202409012121424.png" /></p><p>从频域角度看， 原始序列的频谱以$f_x$为周期做周期延拓。</p><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1725447693456.png" srcset="/img/banner.png" lazyload alt="1725447693456.png" /></p><p>插值后的新序列以新的采样率$f_y$做周期延拓。</p><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1725447757213.png" srcset="/img/banner.png" lazyload alt="1725447757213.png" /></p><p>可以看到插值前后频谱成分不变，但是在$f_x$的整数倍频点处的频谱称为镜像成分。所以插值后要加入一个低通滤波器滤除镜频。典型的插值器就是由上采样器和抗镜像滤波器共同完成的。</p><p>由于插值是在原始序列中插入零值，即某些采样点处的信号幅度为0，会改变信号的幅度，因此插值会造成信号幅度的损失。要保证插值前后信号幅度的统一，可在插值滤波器后设置一个增益因子L。</p><p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1725448598642.png" srcset="/img/banner.png" lazyload alt="1725448598642.png" /></p>]]></content>
+    <content type="html"><![CDATA[<p>随着芯片技术的发展，ADC的采样率越来越高，导致数字化越来越靠近系统前端。目前，工程上采用较多的是中频采样技术，即在中频时就对模拟信号数字化，此时ADC的采样率低于奈奎斯特采样定律的最低采样率（2倍的信号带宽），为过采样。过采样可以将采样过程的固有的量化噪声均匀地分散在更大的带宽上，降低目标信号带宽上的噪声功率，随后通过滤波器滤除带外噪声，即可产生比临界采样信号更优的信噪比。</p><p>当信号被ADC采样并传输到FPGA时，信号就进入了数字域。然而过高的采样率会对后续的信号处理带来较大压力，为了缓解压力，就需要降低信号的采样率，即为抽取。抽取后的信号数据率相对较低，因而有效地降低了对FPGA资源的占用，同时有助于简化系统的时序收敛。</p><p>当驱动高速率DAC时，需要提高信号的采样率，即为内插。因为DAC的采样率越高，输出端的频谱的频域分离度就越高，可以简化DAC后的模拟滤波器的工作，从而提高信噪比。</p><p>多速率信号处理的典型应用即为数字上变频DUC（Digital Up Conversion）和数字下变频DDC（Digital Down Conversion）。</p>]]></content>
     
     
     
@@ -1907,9 +1907,9 @@
     
     <tags>
       
-      <tag>电路</tag>
-      
       <tag>FPGA</tag>
+      
+      <tag>电路</tag>
       
     </tags>
     
