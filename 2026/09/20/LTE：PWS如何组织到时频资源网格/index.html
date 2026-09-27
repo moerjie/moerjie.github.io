@@ -1,0 +1,1393 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Sawen Moerjie">
+  <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
+  
+    <meta name="description" content="1 RE、PRB、资源网格 1.1 网格坐标 一个 RE 对应某天线端口上“一个子载波、一个 OFDM 符号”的交点，填入一个复数值。 约定子载波索引为 k，OFDM 符号索引为 l，在一个子帧中计数。 设下行带宽包含 $N_{RB}$ 个 PRB，每个 PRB 在频域包含 12 个子载波： $$ N_{sc}&#x3D;12 \cdot N_{RB} $$ 普通 CP 下每个时隙有 7 个 OFDM 符号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LTE：PWS如何组织到时频资源网格">
+<meta property="og:url" content="https://moerjie.github.io/2026/09/20/LTE%EF%BC%9APWS%E5%A6%82%E4%BD%95%E7%BB%84%E7%BB%87%E5%88%B0%E6%97%B6%E9%A2%91%E8%B5%84%E6%BA%90%E7%BD%91%E6%A0%BC/index.html">
+<meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:description" content="1 RE、PRB、资源网格 1.1 网格坐标 一个 RE 对应某天线端口上“一个子载波、一个 OFDM 符号”的交点，填入一个复数值。 约定子载波索引为 k，OFDM 符号索引为 l，在一个子帧中计数。 设下行带宽包含 $N_{RB}$ 个 PRB，每个 PRB 在频域包含 12 个子载波： $$ N_{sc}&#x3D;12 \cdot N_{RB} $$ 普通 CP 下每个时隙有 7 个 OFDM 符号">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-27T08:19:03.218Z">
+<meta property="article:author" content="Sawen Moerjie">
+<meta property="article:tag" content="数字通信">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>LTE：PWS如何组织到时频资源网格 - Sawen_Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_3846514_kabxni94auf.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"moerjie.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"s1VuBxXCcgtXqVI9HAQm9qPr-gzGzoHsz","app_key":"ZRUva62YyRxmXoylVSg3mBBq","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Sawen_Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives" target="_self">
+                <i class="iconfont icon-books"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories" target="_self">
+                <i class="iconfont icon-th-large"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-book"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LTE：PWS如何组织到时频资源网格"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Sawen Moerjie
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-09-20 00:00" pubdate>
+           2026 年 09 月 20 日 , 凌晨 12:00 , 星期日
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          42 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LTE：PWS如何组织到时频资源网格</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>1 RE、PRB、资源网格</h1>
+<h2 id="1-1-网格坐标">1.1 网格坐标</h2>
+<p>一个 RE 对应某天线端口上“一个子载波、一个 OFDM 符号”的交点，填入一个复数值。</p>
+<p>约定子载波索引为 k，OFDM 符号索引为 l，在一个子帧中计数。</p>
+<p>设下行带宽包含 $N_{RB}$ 个 PRB，每个 PRB 在频域包含 12 个子载波：</p>
+<p>$$
+N_{sc}=12 \cdot N_{RB}
+$$</p>
+<p>普通 CP 下每个时隙有 7 个 OFDM 符号，每个子帧有 14 个 OFDM 符号，因此每个天线端口每子帧的有效网格为：</p>
+<p>$$
+N_{grid}=14 \cdot N_{sc}=168 \cdot N_{RB}
+$$</p>
+<h2 id="1-2-PRB-坐标">1.2 PRB 坐标</h2>
+<p>一个 PRB 在时间上覆盖一个时隙，频域宽度为：</p>
+<p>$$</p>
+<p>BW_{\mathrm{PRB}}=12\times15\ \mathrm{kHz}=180\ \mathrm{kHz}<br />
+$$</p>
+<p>同一频率位置跨两个时隙称为 PRB 对。本文在讨论整个子帧时，“分配若干 PRB”指每时隙的频域 PRB 数量，实际 RE 统计覆盖两个时隙。</p>
+<p>子载波到 PRB 的换算为：</p>
+<p>$$</p>
+<p>r=\left\lfloor\frac{k}{12}\right\rfloor,\qquad q=k\bmod12<br />
+$$</p>
+<p>r 是 PRB 编号，q 是 PRB 内子载波位置。</p>
+<h1>2 时间规划</h1>
+<h2 id="2-1-根据-SIB1-确定-SI-窗口">2.1 根据 SIB1 确定 SI 窗口</h2>
+<p>SIB1 中的 SI 调度列表说明 SIB12 属于哪条 SI 信息，并给出周期和窗口长度，有如下定义：</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n</td>
+<td>目标SI消息在调度列表中的序号，从1开始；不是SIB编号12</td>
+</tr>
+<tr>
+<td>w</td>
+<td>SI窗口长度的毫秒数</td>
+</tr>
+<tr>
+<td>T</td>
+<td>SI周期的无线帧数，每无线帧10 ms</td>
+</tr>
+<tr>
+<td>a</td>
+<td>窗口起始子帧号</td>
+</tr>
+</tbody>
+</table>
+<p>计算规则为：</p>
+<p>$$
+\begin{aligned}
+x &amp; = (n-1)\cdot w \
+a &amp; = x\mod{10} \
+SFN \mod{T}  &amp; = \left\lfloor\frac{x}{10}\right\rfloor
+\end{aligned}
+$$</p>
+<h2 id="2-2-SI-窗口不等于实际发送位置">2.2 SI 窗口不等于实际发送位置</h2>
+<p>窗口限定目标 SI 消息的接收时间范围，基站在合法机会中选择实际发送子帧，不要求每个子帧都发送。SIB12 没有固定在子帧 9 发送的通用规定。</p>
+<p>例如第二条 SI 消息、窗口 10 ms、周期 8 个无线帧，对应：</p>
+<p>$$
+x=10,\qquad a=0,\qquad \mathrm{SFN}\bmod8=1
+$$</p>
+<p>窗口覆盖 SFN 1、9、17 等帧的子帧 0～9。后文假设选择其中的子帧 9，仅用于教学计算。子帧号决定哪一毫秒发送，OFDM 符号号决定该毫秒内的位置。</p>
+<h1>3 时频网格规划的步骤</h1>
+<h2 id="3-1-控制区域">3.1 控制区域</h2>
+<p>以下以传统 LTE FDD、普通 CP、普通下行子帧和单天线端口 0 为讨论范围；多端口和其他帧结构需重新核对参考信号及映射规则。PWS 没有永久专属的 PRB，其 SIB12 正文通过 PDSCH 承载，对应调度信息由 PDCCH 提供。</p>
+<p>设控制区包含 $L_{\mathrm{ctrl}}$ 个 OFDM 符号，则控制区为：</p>
+<p>$$
+\mathcal{C}={(l,k)\mid0\leq l&lt;L_{\mathrm{ctrl}},\ 0\leq k&lt;N_{\mathrm{sc}}}
+$$</p>
+<p>控制区覆盖整个有效带宽的前若干列。传统 PCFICH 发送 CFI，UE 结合带宽解释实际控制符号数，不能对所有带宽都简单写成“控制符号数等于 CFI”。</p>
+<p>如果控制区为 3 个符号，则符号 0～2 属于控制区，PDSCH 从符号 3 开始。控制区内部还包括 CRS、PCFICH、PDCCH、可能的 PHICH 及未使用位置，不能把整个控制区都标为“PWS PDCCH”。</p>
+<h2 id="3-2-公共信号和保留位置">3.2 公共信号和保留位置</h2>
+<h3 id="3-2-1-CRS">3.2.1 CRS</h3>
+<p>在普通 CP，端口 0 的情况下，CRS 位于每个时隙内的 OFDM 符号 0、4，对应整个子帧内的符号 0、4、7、11。频域位置依 PCI 而定：</p>
+<p>$$
+v_{shift}=N_{ID}^{Cell} \mod{6}
+$$</p>
+<p>频域的位置为：</p>
+<p>$$
+k\bmod6=\begin{cases}
+v_{\mathrm{shift}},&amp;l\in{0,7},\
+(v_{\mathrm{shift}}+3)\bmod6,&amp;l\in{4,11}.
+\end{cases}
+$$</p>
+<h3 id="3-2-2-从分布规律计算每个-CRS-坐标">3.2.2 从分布规律计算每个 CRS 坐标</h3>
+<p>设子帧内时隙号为 $s\in{0,1}$，普通 CP、端口 0 的 CRS 时间坐标为：</p>
+<p>$$
+l=7s+u,\qquad u\in{0,4}
+$$</p>
+<p>因此子帧内共有符号 0、4、7、11 四组参考位置。定义频域偏移：</p>
+<p>$$
+v(l)=\begin{cases}0,&amp;l\in{0,7},\3,&amp;l\in{4,11}.\end{cases}
+$$</p>
+<p>则每一个 CRS 的有效子载波索引可以直接枚举为：</p>
+<p>$$
+k=6m+\bigl(v(l)+v_{\mathrm{shift}}\bigr)\bmod6,
+\qquad m=0,1,\ldots,2N_{\mathrm{RB}}-1
+$$</p>
+<p>$m$ 是沿频率排列的 CRS 序号。每个含 CRS 的符号上共有 $2N_{\mathrm{RB}}$ 个 CRS RE，即每 PRB 两个；配合时间坐标 $l$ 即可获得完整二维位置 $(l,k)$。</p>
+<p>对后文的 PCI 59、25 PRB 算例，$v_{\mathrm{shift}}=5$：</p>
+<table>
+<thead>
+<tr>
+<th>OFDM 符号</th>
+<th>全带宽内的 CRS 子载波索引</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0、7</td>
+<td>5、11、17、23、……、299</td>
+</tr>
+<tr>
+<td>4、11</td>
+<td>2、8、14、20、……、296</td>
+</tr>
+</tbody>
+</table>
+<p>也可以按 PRB 号 $r$ 直接写出位置：</p>
+<p>$$
+k_{\mathrm{CRS}}=\begin{cases}
+12r+5,\ 12r+11,&amp;l\in{0,7},\
+12r+2,\ 12r+8,&amp;l\in{4,11}.
+\end{cases}
+$$</p>
+<p>这组公式仅描述位置，不描述 CRS 的复数序列值。后者还需要按参考序列生成规则计算。依据：<a target="_blank" rel="noopener" href="https://www.etsi.org/deliver/etsi_ts/136200_136299/136211/15.02.00_60/ts_136211v150200p.pdf">TS 36.211 V15.2.0 §6.10.1.2</a>。</p>
+<h2 id="3-3-根据业务长度确定传输块">3.3 根据业务长度确定传输块</h2>
+<h3 id="3-3-1-先确定需要容纳的长度">3.3.1 先确定需要容纳的长度</h3>
+<p>输入应是待承载的完整消息长度，而不仅是告警文字或 warningMessageSegment 的长度。ASN.1 封装增加的标识、分段及消息结构同样占用容量。若待承载消息为 $L_{\mathrm{message}}$ 字节：</p>
+<p>$$</p>
+<p>B_{\mathrm{message}}=8L_{\mathrm{message}},\qquad B_{\mathrm{TB}}\geq B_{\mathrm{message}}<br />
+$$</p>
+<p>TBS 表示附加物理层 TB CRC 之前的传输块比特数。选择 TBS 时不把后续 24 bit TB CRC 算入消息长度；检查编码负载时再计入 CRC。教学例假设完整待承载消息为 96 字节，则需求为 768 bit。</p>
+<h3 id="3-3-2-SI-RNTI、DCI-Format-1A-如何查表">3.3.2 SI-RNTI、DCI Format 1A 如何查表</h3>
+<p>本节限定传统 SI-RNTI 寻址的 DCI Format 1A。查表行是 $I_{\mathrm{TBS}}$，列使用专用参数 $N_{\mathrm{PRB}}^{1A}$：</p>
+<p>$$</p>
+<p>I_{\mathrm{TBS}}=I_{\mathrm{MCS}},\qquad 0\leq I_{\mathrm{TBS}}\leq26<br />
+$$</p>
+<p>$$</p>
+<p>N_{\mathrm{PRB}}^{1A}\in{2,3}<br />
+$$</p>
+<p>$$</p>
+<p>B_{\mathrm{TB}}=\operatorname{TBS_table}\left(I_{\mathrm{TBS}},N_{\mathrm{PRB}}^{1A}\right)<br />
+$$</p>
+<p>此时 MCS 字段按上述规则直接给出 TBS 索引，调制为 QPSK，不能按普通用户 MCS 表将索引 14 解释为更高阶调制。依据：<a target="_blank" rel="noopener" href="https://www.etsi.org/deliver/etsi_ts/136200_136299/136213/12.08.00_60/ts_136213v120800p.pdf">TS 36.213 V12.8.0 §7.1.7、§7.1.7.1、§7.1.7.2及表7.1.7.2.1-1</a>。</p>
+<p>专用列参数通过 DCI 中名为“TPC command for PUCCH”的字段最低位指示：0 对应 2，1 对应 3；在此寻址情形下最高位保留。该字段此时不能按普通 PUCCH 功率控制命令理解。依据：<a target="_blank" rel="noopener" href="https://www.etsi.org/deliver/etsi_ts/136200_136299/136212/13.03.00_60/ts_136212v130300p.pdf">TS 36.212 V13.3.0 §5.3.3.1.3</a>。</p>
+<h3 id="3-3-3-由需求筛选候选-TBS">3.3.3 由需求筛选候选 TBS</h3>
+<p>先枚举合法索引和列参数，保留容量不小于消息长度的候选：</p>
+<p>$$</p>
+<p>\mathcal{S}=\left{(i,n)\mid 0\leq i\leq26,\ n\in{2,3},\ \operatorname{TBS_table}(i,n)\geq B_{\mathrm{message}}\right}<br />
+$$</p>
+<p>标准规定合法值及 UE 如何解释，未要求所有调度器采用同一种候选搜索顺序。一种节约容量的教学策略，是在候选集合中选最小 TBS：</p>
+<p>$$</p>
+<p>B_{\mathrm{TB}}^{*}=\min_{(i,n)\in\mathcal{S}}\operatorname{TBS_table}(i,n)<br />
+$$</p>
+<p>$\mathcal{S}$ 是所有“查表容量能够装下消息”的参数组合集合，元素 $(i,n)$ 分别表示行索引和专用列参数。它是数学记号，不是空口字段；此处的 $n$ 也不是第 2 节中的 SI 消息顺序。</p>
+<p>例如消息为 96 字节，即 768 bit，相关候选如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">行索引</th>
+<th style="text-align:right">专用列参数</th>
+<th style="text-align:right">TBS</th>
+<th>能否容纳消息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">13</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">744 bit</td>
+<td>否</td>
+</tr>
+<tr>
+<td style="text-align:right">14</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">840 bit</td>
+<td>是</td>
+</tr>
+<tr>
+<td style="text-align:right">18</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">776 bit</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<p>按最小可容纳容量选择可得到 776 bit；若按索引递增寻找第一个满足项，则可能选择 840 bit。标准规定合法容量和解释方法，具体搜索策略由调度器选择。下文采用 840 bit 作为教学参数，不表示 96 字节必然对应这一容量。</p>
+<h2 id="3-4-选择实际分配的-PRB">3.4 选择实际分配的 PRB</h2>
+<p>TBS 回答“译码后恢复多少数据比特”，实际 PRB 分配回答“调制符号放到哪些频率位置”。专用查表参数 2 或 3，不表示实际只能分配 2 或 3 个 PRB。</p>
+<p>对于连续 localized 分配，设起始 PRB 为 $S$，分配长度为 $L$，频域候选范围为：</p>
+<p>$$
+12S\leq k&lt;12(S+L)
+$$</p>
+<p>以控制区之后的符号和这些子载波组成候选矩形，扣除 CRS 等保留位置后，才能得到实际 PDSCH RE 集合：</p>
+<p>$$
+\mathcal{P}=\mathcal{D}<em>{\mathrm{candidate}}\setminus\mathcal{R}</em>{\mathrm{reserved}}
+$$</p>
+<p>候选 PRB 必须可用，不能覆盖其他授权。保留位置要取并集，避免重复扣除；也不能随意改变标准映射来绕过其他用户的数据。</p>
+<h3 id="3-4-1-从-PRB-授权列出全部数据坐标">3.4.1 从 PRB 授权列出全部数据坐标</h3>
+<p>对连续 localized 分配，两个时隙使用相同 PRB 时：</p>
+<p>$$
+r\in{S,S+1,\ldots,S+L-1}
+$$</p>
+<p>普通 CP 子帧的数据候选集合为：</p>
+<p>$$
+\mathcal{D}<em>{\mathrm{candidate}}=
+{(l,k)\mid L</em>{\mathrm{ctrl}}\leq l\leq13,\ 12S\leq k&lt;12(S+L)}
+$$</p>
+<p>枚举该矩形，再按具体子帧和传输模式删除全部保留坐标，就得到目标 PDSCH 集合。例如后文条件 $S=0$、$L=10$、$L_{\mathrm{ctrl}}=3$，候选范围是符号 3～13与子载波 0～119；符号 4、11中删除子载波 2、8、……、116，符号 7中删除子载波 5、11、……、119。</p>
+<p>若起点改为 $S=5$、长度仍为10，则PRB变为5～14，子载波变为60～179。在保留资源条件相同的情况下，区域平移不改变数据RE数量；若平移后与同步/PBCH等中心资源相交，则必须重新计算。</p>
+<p>PRB起点和长度来自调度授权，不能由“SIB12”这一消息类型单独推导。分配长度也需通过第3.5节容量检查，不是所有SIB12固定使用10 PRB。</p>
+<h2 id="3-5-计算-RE-容量并检查编码负载">3.5 计算 RE 容量并检查编码负载</h2>
+<p>通用计算方法是逐时隙、逐符号、逐 PRB 统计：</p>
+<p>$$
+N_{\mathrm{RE,PDSCH}}=
+\sum_{s=0}^{1}\sum_{l\in\mathcal{L}<em>s}\sum</em>{r\in\mathcal{A}_s}
+\left[12-\left|\mathcal{R}(s,l,r)\right|\right]
+$$</p>
+<p>其中 $\mathcal{A}_s$ 是分配 PRB 集合，$\mathcal{L}_s$ 是允许 PDSCH 的符号集合，$\mathcal{R}$ 是对应位置内需排除的子载波集合。</p>
+<p>对于普通 CP、单端口、FDD 非子帧 0/5、无其他保留资源且两个时隙频域分配相同的情况，若控制区为 1～4 个符号，数据区域中仍有符号 4、7、11 三组 CRS，因此：</p>
+<p>$$
+N_{\mathrm{RE,PDSCH}}=N_{\mathrm{alloc}}\left[12(14-L_{\mathrm{ctrl}})-6\right]
+$$</p>
+<p>式中每 PRB 对扣除的 6 RE，来自三个 CRS 符号各 2 RE。多端口、其他 CP 和存在额外保留资源时，应回到通用公式。</p>
+<p>单层 QPSK 每 RE 对应 2 个编码比特，因此：</p>
+<p>$$
+G=2N_{\mathrm{RE,PDSCH}},\qquad R_{\mathrm{eff}}=\frac{B_{\mathrm{TB}}+24}{G}
+$$</p>
+<p>后一式用于单码块情况下含 TB CRC 的负载估计。如果可用 RE 不足以满足保护目标，就需要重新分配资源或调整允许的传输参数；目标码率不是统一固定值。</p>
+<h2 id="3-6-安排对应的-PDCCH">3.6 安排对应的 PDCCH</h2>
+<p>PDCCH 承载 DCI 调度授权，其 CRC 采用 SI-RNTI 掩码；SI-RNTI 表示系统信息，不专属于 SIB12。UE 得到授权并解码 PDSCH，解析 SI 消息后才知道是否包含 SIB12。</p>
+<p>DCI Format 1A 描述频域分配、TBS 选择和 RV 等。目标 PDCCH 需要在公共搜索空间中选择合法 CCE 候选。传统 PDCCH 每 CCE 包含 9 个 REG，每 REG 有 4 个承载控制符号的 RE：</p>
+<p>$$
+N_{\mathrm{RE,PDCCH}}=36L_{\mathrm{CCE}},\qquad E_{\mathrm{PDCCH}}=72L_{\mathrm{CCE}}
+$$</p>
+<p>$L_{\mathrm{CCE}}$ 为聚合的 CCE 数。CCE 起点和聚合级别属于物理放置与盲检参数，并非再次作为字段写入 DCI。</p>
+<p>PDCCH 的 REG 映射会考虑 CRS、PCFICH、PHICH 等资源，并经过交织。因此目标 PDCCH 可以分散在控制区各处，不要求与目标 PDSCH 使用相同的频域范围。PRB 足够但没有合法 CCE 候选时，调度同样不能完成。</p>
+<h3 id="3-6-1-数量：一条-DCI-占用多少-RE">3.6.1 数量：一条 DCI 占用多少 RE</h3>
+<p>目标授权聚合 $L_{\mathrm{CCE}}$ 个 CCE，对应：</p>
+<p>$$
+N_{\mathrm{REG,target}}=9L_{\mathrm{CCE}},\qquad
+N_{\mathrm{RE,target}}=4N_{\mathrm{REG,target}}
+$$</p>
+<p>例如聚合级别4对应36个REG、144个RE。数量由聚合级别确定，但不能据此直接画出这144个RE的坐标。</p>
+<h3 id="3-6-2-逻辑位置：从-CCE-起点计算-REG-编号">3.6.2 逻辑位置：从 CCE 起点计算 REG 编号</h3>
+<p>令起始CCE为 $c_0$，目标占用的逻辑CCE为：</p>
+<p>$$
+c=c_0,\ldots,c_0+L_{\mathrm{CCE}}-1
+$$</p>
+<p>对应逻辑REG编号：</p>
+<p>$$
+j=9c_0,\ldots,9(c_0+L_{\mathrm{CCE}})-1
+$$</p>
+<p>例如起始CCE为0、聚合级别4，逻辑CCE为0～3，逻辑REG为0～35。这些编号不是PRB号，也不是子载波号；连续逻辑CCE并不意味着网格中形成连续矩形。起点必须属于适用搜索空间的合法候选。</p>
+<h3 id="3-6-3-物理位置：交织后展开为-RE-坐标">3.6.3 物理位置：交织后展开为 RE 坐标</h3>
+<p>计算物理坐标需要依次完成：</p>
+<ol>
+<li>根据控制符号数和天线端口配置构造控制区物理REG，避开相应参考信号位置。</li>
+<li>排除分配给PCFICH、PHICH的REG，建立可供PDCCH使用的资源列表。</li>
+<li>按标准执行REG交织和与PCI有关的循环移位。</li>
+<li>将目标逻辑REG对应到物理REG，再展开每个物理REG的4个RE坐标。</li>
+</ol>
+<p>可将完整映射记为 $F(j)$，则目标控制RE集合为：</p>
+<p>$$
+\mathcal{Q}=\bigcup_{j=9c_0}^{9(c_0+L_{\mathrm{CCE}})-1}
+\operatorname{RE}\bigl(F(j)\bigr)
+$$</p>
+<p>这里 $F$ 是按给定参数执行的标准映射，$\operatorname{RE}(F(j))$ 是相应物理REG内的四个坐标；这一表达式说明集合关系，不代替交织算法。映射依据见<a target="_blank" rel="noopener" href="https://www.etsi.org/deliver/etsi_ts/136200_136299/136211/15.02.00_60/ts_136211v150200p.pdf">TS 36.211 V15.2.0 §6.8.5</a>。</p>
+<p>因此要列出精确控制坐标，需要总带宽、控制区长度、CP、天线端口、PCI、PHICH资源及持续时间配置、合法CCE起点和聚合级别等完整条件。仅凭“25 PRB、前三个符号、4 CCE”，只能得到144个RE的数量，不能唯一确定每个位置。</p>
+<p>CRS和PDSCH在前述教学条件下可用简洁坐标公式直接枚举；PDCCH需要继续执行REG构造与交织。它们共处同一网格，但分配规则不同。</p>
+<h1>4 SIB12 在网格中的具体分布：教学算例</h1>
+<h2 id="4-1-固定算例条件">4.1 固定算例条件</h2>
+<p>以下参数仅用于原理演示，不是设备实测，也不是所有 PWS 必须采用的配置。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>假设</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>帧结构、CP、天线端口</td>
+<td>FDD、普通 CP、端口 0</td>
+</tr>
+<tr>
+<td>小区带宽</td>
+<td>25 PRB，即 300 个有效子载波</td>
+</tr>
+<tr>
+<td>PCI</td>
+<td>59</td>
+</tr>
+<tr>
+<td>发送时刻</td>
+<td>合法 SI 窗口内的子帧 9</td>
+</tr>
+<tr>
+<td>控制区</td>
+<td>OFDM 符号 0～2</td>
+</tr>
+<tr>
+<td>目标 PDSCH</td>
+<td>两时隙均为 PRB 0～9</td>
+</tr>
+<tr>
+<td>数据传输</td>
+<td>TBS 840 bit、QPSK</td>
+</tr>
+<tr>
+<td>对应 PDCCH</td>
+<td>合法候选、聚合级别 4</td>
+</tr>
+</tbody>
+</table>
+<p>整个子帧网格为：</p>
+<p>$$
+N_{\mathrm{grid}}=25\times12\times14=4200
+$$</p>
+<p>其中横轴 $l=0,\ldots,13$，纵轴 $k=0,\ldots,299$。频域索引从低频向高频排列，不包含 DC。</p>
+<h2 id="4-2-先看整体功能分区">4.2 先看整体功能分区</h2>
+<table>
+<thead>
+<tr>
+<th>频域范围</th>
+<th>符号 0～2</th>
+<th>符号 3/5/6/8/9/10/12/13</th>
+<th>符号 4/7/11</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PRB 0～9</td>
+<td>控制、CRS 和空位</td>
+<td>SIB12 对应 PDSCH</td>
+<td>SIB12 对应 PDSCH 与 CRS 交错</td>
+</tr>
+<tr>
+<td>PRB 10～24</td>
+<td>控制、CRS 和空位</td>
+<td>其他业务或空位</td>
+<td>CRS 与其他业务或空位</td>
+</tr>
+</tbody>
+</table>
+<p>PWS 数据区域看起来是一块矩形，但内部存在必须留给参考信号的孔洞。PWS 控制区域则是前三列中的一组分散 RE，不能把前三列全部视作该条告警的控制信息。</p>
+<p>FDD 子帧 9 不含子帧 0/5 的 PSS、SSS，也不含子帧 0 的 PBCH。若改在其他合法子帧发送，应重新排除这些信号及相应保留位置。</p>
+<h2 id="4-3-CRS-为什么形成孔洞">4.3 CRS 为什么形成孔洞</h2>
+<p>普通 CP 每时隙 7 个符号，端口 0 CRS 位于每时隙内的符号 0 和 4。换算为子帧内编号，分布在：</p>
+<p>$$
+l\in{0,4,7,11}
+$$</p>
+<p>对 PCI 59：</p>
+<p>$$
+v_{\mathrm{shift}}=59\bmod6=5
+$$</p>
+<p>每个 PRB 内的具体位置如下，子载波编号从 0 开始：</p>
+<table>
+<thead>
+<tr>
+<th>子帧内符号</th>
+<th>PRB 内 CRS 子载波位置</th>
+<th>在本例数据候选区内吗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>5、11</td>
+<td>否，已整体排除控制区</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2、8</td>
+<td>是</td>
+</tr>
+<tr>
+<td>7</td>
+<td>5、11</td>
+<td>是</td>
+</tr>
+<tr>
+<td>11</td>
+<td>2、8</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<p>用一个 PRB 的频率位置表示，R 为 CRS，点为其他位置：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">PRB内子载波：0 1 2 3 4 5 6 7 8 9 10 11<br>符号0、7：   . . . . . R . . . .  .  R<br>符号4、11：  . . R . . . . . R .  .  .<br></code></pre></td></tr></table></figure>
+<p>每个含 CRS 的符号中，CRS 沿频域每 6 个子载波出现一次，12 个子载波中有 2 个 CRS。不同符号的频率位置交错，帮助接收端估计随时间和频率变化的信道。</p>
+<p>CRS 数量由端口、CP 和映射规则决定，不由告警文字长度决定。PCI 改变频率偏移，在本例条件下不改变每 PRB 每个 CRS 符号的 2 RE 数量。依据：<a target="_blank" rel="noopener" href="https://www.etsi.org/deliver/etsi_ts/136200_136299/136211/15.02.00_60/ts_136211v150200p.pdf">TS 36.211 V15.2.0 §6.10.1.2</a>。</p>
+<h2 id="4-4-计算实际数据-RE-数量">4.4 计算实际数据 RE 数量</h2>
+<p>PRB 0～9 是 120 个子载波，符号 3～13 是 11 个 OFDM 符号，所以候选区域为：</p>
+<p>$$
+N_{\mathrm{candidate}}=120\times11=1320
+$$</p>
+<p>候选区域内只有符号 4、7、11 含 CRS：</p>
+<p>$$
+N_{\mathrm{CRS,in\ candidate}}=
+\underbrace{10}<em>{\text{分配PRB数}}\times
+\underbrace{3}</em>{\text{数据区CRS符号数}}\times
+\underbrace{2}_{\text{每PRB每个CRS符号的RE数}}=60
+$$</p>
+<p>因此：</p>
+<p>$$
+N_{\mathrm{RE,PDSCH}}=1320-60=1260
+$$</p>
+<p>符号 0 的 CRS 已随前三个控制符号排除，不再次扣除。全小区 CRS 有 25×4×2=200 RE，但目标候选区只与其中 60 RE 相交，不能直接从候选区扣除全部 200 RE。</p>
+<h2 id="4-5-数据符号按什么顺序填入">4.5 数据符号按什么顺序填入</h2>
+<p>在本例中，先沿一个 OFDM 符号内的分配子载波按频率顺序映射，跳过 CRS，再进入下一 OFDM 符号。令 $i$ 为映射前复数符号序号，则：</p>
+<table>
+<thead>
+<tr>
+<th>OFDM 符号</th>
+<th style="text-align:right">数据 RE 数</th>
+<th>符号序号范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0～2</td>
+<td style="text-align:right">0</td>
+<td>控制区</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:right">120</td>
+<td>0～119</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:right">100</td>
+<td>120～219</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:right">120</td>
+<td>220～339</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:right">120</td>
+<td>340～459</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align:right">100</td>
+<td>460～559</td>
+</tr>
+<tr>
+<td>8</td>
+<td style="text-align:right">120</td>
+<td>560～679</td>
+</tr>
+<tr>
+<td>9</td>
+<td style="text-align:right">120</td>
+<td>680～799</td>
+</tr>
+<tr>
+<td>10</td>
+<td style="text-align:right">120</td>
+<td>800～919</td>
+</tr>
+<tr>
+<td>11</td>
+<td style="text-align:right">100</td>
+<td>920～1019</td>
+</tr>
+<tr>
+<td>12</td>
+<td style="text-align:right">120</td>
+<td>1020～1139</td>
+</tr>
+<tr>
+<td>13</td>
+<td style="text-align:right">120</td>
+<td>1140～1259</td>
+</tr>
+</tbody>
+</table>
+<p>例如符号 4 内：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">k=0：数据符号120<br>k=1：数据符号121<br>k=2：CRS，跳过<br>k=3：数据符号122<br></code></pre></td></tr></table></figure>
+<p>序号只是说明符号数组到 RE 的映射，不是空口额外发送的字段，也不是消息字节号。</p>
+<h2 id="4-6-控制和数据分别占多少位置">4.6 控制和数据分别占多少位置</h2>
+<p>目标 PDCCH 聚合 4 CCE：</p>
+<p>$$
+N_{\mathrm{RE,PDCCH}}=4\times36=144
+$$</p>
+<p>目标 PDSCH 使用 1260 RE，单层 QPSK 对应：</p>
+<p>$$
+G=1260\times2=2520\ \mathrm{bit}
+$$</p>
+<p>对假设的 840 bit TB，含 TB CRC 的单码块负载为：</p>
+<p>$$
+R_{\mathrm{eff}}=\frac{840+24}{2520}\approx0.3429
+$$</p>
+<p>网格的分区账目为：</p>
+<table>
+<thead>
+<tr>
+<th>区域</th>
+<th style="text-align:right">位置数</th>
+<th>组成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>符号 0～2、全部 PRB</td>
+<td style="text-align:right">900</td>
+<td>144 目标 PDCCH、50 CRS、706 其他控制或空位</td>
+</tr>
+<tr>
+<td>符号 3～13、PRB 0～9</td>
+<td style="text-align:right">1320</td>
+<td>1260 目标 PDSCH、60 CRS</td>
+</tr>
+<tr>
+<td>符号 3～13、PRB 10～24</td>
+<td style="text-align:right">1980</td>
+<td>90 CRS、1890 其他业务或空位</td>
+</tr>
+<tr>
+<td>合计</td>
+<td style="text-align:right">4200</td>
+<td>三个区域互不重叠</td>
+</tr>
+</tbody>
+</table>
+<p>“其他业务或空位”并不表示全部实际发射非零信号。直接关联本次 SIB12 的控制和数据共 1404 RE，而支持接收的公共信号另行统计。</p>
+<h1>5 每个数据 RE 中实际是什么</h1>
+<p>SIB12 经 ASN.1 封装后装入传输块，再经过 CRC、必要的码块分段、Turbo 编码、速率匹配、加扰、调制及端口映射，才得到网格中的复数值。PDCCH 的 DCI 使用另一条包含尾咬卷积编码的控制编码链。</p>
+<p>对单端口单层 QPSK，设 $b[i]$ 为扰码后的比特：</p>
+<p>$$
+d(i)=\frac{(1-2b[2i])+j(1-2b[2i+1])}{\sqrt{2}}
+$$</p>
+<p>每个目标 RE 放置一个 $d(i)$，承载两个编码比特。例如数据符号 120 对应比特 240、241，按本例映射放到符号 4、子载波 0。</p>
+<p>由于经历编码和速率匹配，一个 RE 不能直接命名为“消息标识”或“某个汉字”。UE 需要先恢复 TB，再解析消息标识、序列号、分段及告警正文。</p>
+<h1>6 从网格到发射，以及接收端怎样找到 SIB12</h1>
+<p>发射端将每个 OFDM 符号的频域复数值安排到 IFFT 输入，包含相应 DC 和保护带布局；经过 IFFT、添加 CP 后，组成连续时域样本。同一 OFDM 符号内的各子载波同时存在，不是按表格逐格发送。</p>
+<p>接收端先通过同步与基础系统信息获得小区参数，读取 SIB1 的 SI 安排；在相应接收机会检测 SI-RNTI 的控制授权，根据授权位置提取 PDSCH，利用参考信号估计信道并译码，最后解析其中的 SIB12。CMAS Paging 是通知，SIB12 是正文，不必位于同一子帧。</p>
+<p>阅读或绘制网格时，检查四件事即可建立完整对应：</p>
+<ol>
+<li>发送子帧是否处于合法 SI 机会。</li>
+<li>目标数据是否落在授权 PRB 内，并避开控制区和公共信号。</li>
+<li>PDCCH 是否使用合法控制候选，其参数能否正确描述 PDSCH。</li>
+<li>RE 数量、调制比特数和选定 TBS 是否一致。</li>
+</ol>
+<p>上述例子的子帧、PRB 数和聚合级别都是假设。更换带宽、端口数、CP、控制区或发送子帧后，要重新计算保留资源与数据容量。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="print-no-link">#数字通信</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LTE：PWS如何组织到时频资源网格</div>
+      <div>https://moerjie.github.io/2026/09/20/LTE：PWS如何组织到时频资源网格/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Sawen Moerjie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年9月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/09/27/LTE%EF%BC%9AUE%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81%E5%8F%8A%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2/" title="LTE：UE工作状态及状态转换">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LTE：UE工作状态及状态转换</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/09/18/LTE%EF%BC%9AUE%E5%BE%85%E6%9C%BA%E7%8A%B6%E6%80%81%E7%9A%84%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6/" title="LTE ：UE待机状态的处理机制">
+                        <span class="hidden-mobile">LTE ：UE待机状态的处理机制</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"你的appId","appKey":"你的appKey","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"你的serverURLs","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

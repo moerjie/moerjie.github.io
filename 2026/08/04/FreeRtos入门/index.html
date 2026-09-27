@@ -1,0 +1,1497 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Sawen Moerjie">
+  <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
+  
+    <meta name="description" content="1 配置文件说明 FreeRTOS 通过 FreeRTOSConfig.h 进行 RTOS 模块配置，具体内容如下。 1.1 硬件时钟与 Tick    宏名 建议值&#x2F;形式 说明     configCPU_CLOCK_HZ SystemCoreClock Tick 定时器的实际输入频率（Hz）。通常是 CPU&#x2F;HCLK，但必须按硬件时钟树确认。   configSYSTICK_CLOCK_HZ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FreeRtos入门">
+<meta property="og:url" content="https://moerjie.github.io/2026/08/04/FreeRtos%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:description" content="1 配置文件说明 FreeRTOS 通过 FreeRTOSConfig.h 进行 RTOS 模块配置，具体内容如下。 1.1 硬件时钟与 Tick    宏名 建议值&#x2F;形式 说明     configCPU_CLOCK_HZ SystemCoreClock Tick 定时器的实际输入频率（Hz）。通常是 CPU&#x2F;HCLK，但必须按硬件时钟树确认。   configSYSTICK_CLOCK_HZ">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-96ded37dd35ce7ed0db69d07a905cf7d_1440w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-4139c6dc6b902594bdb31e576482461e_1440w.jpg">
+<meta property="article:published_time" content="2026-08-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-11T03:44:51.040Z">
+<meta property="article:author" content="Sawen Moerjie">
+<meta property="article:tag" content="coding">
+<meta property="article:tag" content="MCU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic2.zhimg.com/v2-96ded37dd35ce7ed0db69d07a905cf7d_1440w.jpg">
+  
+  
+  
+  <title>FreeRtos入门 - Sawen_Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_3846514_kabxni94auf.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"moerjie.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"s1VuBxXCcgtXqVI9HAQm9qPr-gzGzoHsz","app_key":"ZRUva62YyRxmXoylVSg3mBBq","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Sawen_Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives" target="_self">
+                <i class="iconfont icon-books"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories" target="_self">
+                <i class="iconfont icon-th-large"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-book"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="FreeRtos入门"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Sawen Moerjie
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-08-04 00:00" pubdate>
+           2026 年 08 月 04 日 , 凌晨 12:00 , 星期二
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          3.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          26 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">FreeRtos入门</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>1 配置文件说明</h1>
+<p>FreeRTOS 通过 <code>FreeRTOSConfig.h</code> 进行 RTOS 模块配置，具体内容如下。</p>
+<h2 id="1-1-硬件时钟与-Tick">1.1 硬件时钟与 Tick</h2>
+<table>
+<thead>
+<tr>
+<th>宏名</th>
+<th>建议值/形式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>configCPU_CLOCK_HZ</code></td>
+<td><code>SystemCoreClock</code></td>
+<td>Tick 定时器的实际输入频率（Hz）。通常是 <strong>CPU/HCLK</strong>，但必须按硬件时钟树确认。</td>
+</tr>
+<tr>
+<td><code>configSYSTICK_CLOCK_HZ</code></td>
+<td>实际 SysTick 时钟</td>
+<td>Cortex-M 专用。仅 SysTick 时钟不同于 CPU 时钟时定义；相同时通常不定义。</td>
+</tr>
+<tr>
+<td><code>configTICK_RATE_HZ</code></td>
+<td><code>100</code>、<code>1000</code></td>
+<td><strong>Tick 中断频率（Hz）</strong>。1000 约为 1 ms 粒度但中断开销更高；100 常用于一般控制任务。</td>
+</tr>
+<tr>
+<td><code>configTICK_TYPE_WIDTH_IN_BITS</code></td>
+<td><code>TICK_TYPE_WIDTH_32_BITS</code></td>
+<td><code>TickType_t</code> 宽度，可选 16、32、64 位；常用 32 位。旧内核使用 <code>configUSE_16_BIT_TICKS</code>。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-2-调度和任务基本参数">1.2 调度和任务基本参数</h2>
+<table>
+<thead>
+<tr>
+<th>宏名</th>
+<th>建议值/形式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>configUSE_PREEMPTION</code></td>
+<td><code>1</code></td>
+<td><strong>1 为抢占式调度，常规推荐</strong>；0 为协作式调度，任务需主动阻塞或让出 CPU。</td>
+</tr>
+<tr>
+<td><code>configUSE_TIME_SLICING</code></td>
+<td><code>1</code></td>
+<td><code>1</code> 时同优先级就绪任务按 Tick 轮转；<code>0</code> 时 Tick 到来不强制轮转。</td>
+</tr>
+<tr>
+<td><code>configUSE_PORT_OPTIMISED_TASK_SELECTION</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>使用移植层提供的最高优先级任务选择优化。仅端口明确支持时启用。</td>
+</tr>
+<tr>
+<td><code>configUSE_TICKLESS_IDLE</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>空闲期抑制周期 Tick 以降低功耗。须由端口支持并验证唤醒时间补偿。</td>
+</tr>
+<tr>
+<td><code>configMAX_PRIORITIES</code></td>
+<td><code>5</code>～<code>8</code></td>
+<td>任务优先级总数；合法范围为 0 至该值减 1，0 最低。</td>
+</tr>
+<tr>
+<td><code>configMINIMAL_STACK_SIZE</code></td>
+<td>端口示例值起步</td>
+<td>Idle 任务栈深度，单位 word；不代表其他任务的合适栈深度。</td>
+</tr>
+<tr>
+<td><code>configMAX_TASK_NAME_LEN</code></td>
+<td><code>16</code></td>
+<td>任务名最大字符数，含结尾 <code>\0</code>；会影响每个 TCB 的 RAM。</td>
+</tr>
+<tr>
+<td><code>configIDLE_SHOULD_YIELD</code></td>
+<td><code>1</code></td>
+<td>Idle 任务是否让出给同为优先级 0 的应用任务；通常保持 1。</td>
+</tr>
+<tr>
+<td><code>configTASK_NOTIFICATION_ARRAY_ENTRIES</code></td>
+<td><code>1</code></td>
+<td>每任务的通知槽位数；增大可用索引通知 API，但增加 TCB RAM。</td>
+</tr>
+<tr>
+<td><code>configNUM_THREAD_LOCAL_STORAGE_POINTERS</code></td>
+<td><code>0</code></td>
+<td>每个任务的线程本地存储指针数量；不使用则为 0。</td>
+</tr>
+<tr>
+<td><code>configSTACK_DEPTH_TYPE</code></td>
+<td><code>size_t</code></td>
+<td>任务栈深度参数和栈余量返回值的类型。</td>
+</tr>
+<tr>
+<td><code>configENABLE_BACKWARD_COMPATIBILITY</code></td>
+<td><code>0</code></td>
+<td>是否映射旧版 API 名称/类型；新工程建议关闭。</td>
+</tr>
+<tr>
+<td><code>configUSE_MINI_LIST_ITEM</code></td>
+<td>端口默认值</td>
+<td>可节省部分 RAM，但可能影响依赖严格别名优化的编译器。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-3-内存分配与对象-RAM">1.3 内存分配与对象 RAM</h2>
+<table>
+<thead>
+<tr>
+<th>宏名</th>
+<th>建议值/形式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>configSUPPORT_STATIC_ALLOCATION</code></td>
+<td><code>1</code></td>
+<td>编入 <code>xTaskCreateStatic()</code> 等静态创建 API；纯静态系统建议开启。</td>
+</tr>
+<tr>
+<td><code>configSUPPORT_DYNAMIC_ALLOCATION</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>编入 <code>xTaskCreate()</code> 等动态创建 API；启用时需编入合适的 <code>heap_x.c</code>。</td>
+</tr>
+<tr>
+<td><code>configTOTAL_HEAP_SIZE</code></td>
+<td>按峰值核算</td>
+<td>FreeRTOS 堆大小（字节）。适用于 <code>heap_1.c</code>、<code>heap_2.c</code>、<code>heap_4.c</code>，不适用于 <code>heap_3.c</code>。</td>
+</tr>
+<tr>
+<td><code>configAPPLICATION_ALLOCATED_HEAP</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td><code>1</code> 时应用定义 <code>ucHeap[]</code>，可把堆置入指定 RAM 段。</td>
+</tr>
+<tr>
+<td><code>configSTACK_ALLOCATION_FROM_SEPARATE_HEAP</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td><code>1</code> 时任务栈使用独立堆，须实现 <code>pvPortMallocStack()</code> 和 <code>vPortFreeStack()</code>。</td>
+</tr>
+<tr>
+<td><code>configHEAP_CLEAR_MEMORY_ON_FREE</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>释放 FreeRTOS 堆块时是否清零；有信息清理价值，但增加释放时间。</td>
+</tr>
+<tr>
+<td><code>configENABLE_HEAP_PROTECTOR</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>为 <code>heap_4.c</code>/<code>heap_5.c</code> 启用内部指针保护，帮助发现堆损坏。</td>
+</tr>
+<tr>
+<td><code>configUSE_NEWLIB_REENTRANT</code></td>
+<td><code>0</code></td>
+<td>为每任务配置 newlib 重入结构；RAM 开销较大，仍需处理 newlib 的 malloc 锁。</td>
+</tr>
+<tr>
+<td><code>configMESSAGE_BUFFER_LENGTH_TYPE</code></td>
+<td><code>size_t</code></td>
+<td>消息缓冲区中每条消息长度字段类型；消息很小时可改小以节省空间。</td>
+</tr>
+</tbody>
+</table>
+<p>静态分配开启后，通常还需实现 <code>vApplicationGetIdleTaskMemory()</code>；若启用软件定时器，通常还需实现 <code>vApplicationGetTimerTaskMemory()</code>。</p>
+<h2 id="1-4-软件定时器、事件组和流缓冲区">1.4 软件定时器、事件组和流缓冲区</h2>
+<table>
+<thead>
+<tr>
+<th>宏名</th>
+<th>建议值/形式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>configUSE_TIMERS</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>启用软件定时器和 Timer Service 任务；启用时工程必须编译 <code>timers.c</code>。</td>
+</tr>
+<tr>
+<td><code>configTIMER_TASK_PRIORITY</code></td>
+<td>较高优先级</td>
+<td>定时器服务任务优先级。回调在该任务内运行，不要在回调中长时间阻塞。</td>
+</tr>
+<tr>
+<td><code>configTIMER_TASK_STACK_DEPTH</code></td>
+<td>按回调调用链核算</td>
+<td>定时器服务任务栈深度，单位 word。</td>
+</tr>
+<tr>
+<td><code>configTIMER_QUEUE_LENGTH</code></td>
+<td>按峰值核算</td>
+<td>Timer Service 命令队列长度；频繁启停定时器或 ISR 操作时需增加。</td>
+</tr>
+<tr>
+<td><code>configUSE_DAEMON_TASK_STARTUP_HOOK</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>启用后实现 <code>vApplicationDaemonTaskStartupHook()</code>，在调度器启动后初始化。</td>
+</tr>
+<tr>
+<td><code>configUSE_EVENT_GROUPS</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>启用事件组；启用时工程必须编译 <code>event_groups.c</code>。</td>
+</tr>
+<tr>
+<td><code>configUSE_STREAM_BUFFERS</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>启用流缓冲区和消息缓冲区；启用时工程必须编译 <code>stream_buffer.c</code>。</td>
+</tr>
+<tr>
+<td><code>configUSE_SB_COMPLETED_CALLBACK</code></td>
+<td><code>0</code></td>
+<td>为每个流/消息缓冲区指定完成回调的高级功能；MPU 端口可能不支持。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-5-同步、通知与可选功能">1.5 同步、通知与可选功能</h2>
+<table>
+<thead>
+<tr>
+<th>宏名</th>
+<th>建议值/形式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>configUSE_TASK_NOTIFICATIONS</code></td>
+<td><code>1</code></td>
+<td>启用任务通知。它通常比二值信号量更轻量。</td>
+</tr>
+<tr>
+<td><code>configUSE_MUTEXES</code></td>
+<td><code>1</code></td>
+<td>启用互斥锁和优先级继承。</td>
+</tr>
+<tr>
+<td><code>configUSE_RECURSIVE_MUTEXES</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>启用递归互斥锁；依赖 <code>configUSE_MUTEXES=1</code>。</td>
+</tr>
+<tr>
+<td><code>configUSE_COUNTING_SEMAPHORES</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>启用计数信号量。</td>
+</tr>
+<tr>
+<td><code>configUSE_QUEUE_SETS</code></td>
+<td><code>0</code></td>
+<td>启用队列集；只有一个任务必须等待多个队列/信号量时才考虑，RAM 开销较高。</td>
+</tr>
+<tr>
+<td><code>configUSE_APPLICATION_TASK_TAG</code></td>
+<td><code>0</code></td>
+<td>为任务附加应用 Tag；会增加 TCB 存储。</td>
+</tr>
+<tr>
+<td><code>configUSE_POSIX_ERRNO</code></td>
+<td><code>0</code></td>
+<td>启用每任务 <code>FreeRTOS_errno</code>；仅 POSIX/相关适配层需要时开启。</td>
+</tr>
+<tr>
+<td><code>configUSE_CO_ROUTINES</code></td>
+<td><code>0</code></td>
+<td>启用协程并要求编译 <code>croutine.c</code>；新设计通常优先使用任务通知或状态机。</td>
+</tr>
+<tr>
+<td><code>configMAX_CO_ROUTINE_PRIORITIES</code></td>
+<td><code>1</code></td>
+<td>协程优先级总数；仅启用协程时有效。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-6-Hook、断言、栈与运行时诊断">1.6 Hook、断言、栈与运行时诊断</h2>
+<table>
+<thead>
+<tr>
+<th>宏名</th>
+<th>建议值/形式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>configUSE_IDLE_HOOK</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>启用后必须实现 <code>vApplicationIdleHook()</code>；不得阻塞。</td>
+</tr>
+<tr>
+<td><code>configUSE_TICK_HOOK</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>启用后必须实现 <code>vApplicationTickHook()</code>；它在 Tick ISR 中运行，必须极短。</td>
+</tr>
+<tr>
+<td><code>configUSE_MALLOC_FAILED_HOOK</code></td>
+<td>调试期 <code>1</code></td>
+<td>启用后实现 <code>vApplicationMallocFailedHook()</code>；动态分配工程调试阶段建议开启。</td>
+</tr>
+<tr>
+<td><code>configCHECK_FOR_STACK_OVERFLOW</code></td>
+<td>调试期 <code>2</code></td>
+<td><code>0</code> 关闭；<code>1</code> 检查栈指针越界；<code>2</code> 额外检查边界填充值。非 0 时实现栈溢出 Hook。</td>
+</tr>
+<tr>
+<td><code>configGENERATE_RUN_TIME_STATS</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>启用任务累计运行时间统计；需要高分辨率单调计数器及端口对应的统计宏。</td>
+</tr>
+<tr>
+<td><code>configUSE_TRACE_FACILITY</code></td>
+<td>调试期 <code>1</code></td>
+<td>为跟踪/可视化工具增加对象字段；增加对象 RAM。</td>
+</tr>
+<tr>
+<td><code>configUSE_STATS_FORMATTING_FUNCTIONS</code></td>
+<td><code>0</code></td>
+<td>编入旧的格式化统计 API；会引入字符串格式化代码。</td>
+</tr>
+<tr>
+<td><code>configSTATS_BUFFER_MAX_LENGTH</code></td>
+<td>匹配实际缓冲区</td>
+<td>旧格式化统计 API 假定的最大输出缓冲区长度。</td>
+</tr>
+<tr>
+<td><code>configQUEUE_REGISTRY_SIZE</code></td>
+<td><code>0</code></td>
+<td>内核感知调试器可登记的队列/信号量数量；不使用时为 0。</td>
+</tr>
+<tr>
+<td><code>configASSERT(x)</code></td>
+<td>应用自定义</td>
+<td>断言失败动作。调试期建议记录文件/行号后停机或复位。</td>
+</tr>
+<tr>
+<td><code>configCHECK_HANDLER_INSTALLATION</code></td>
+<td><code>1</code></td>
+<td>ARMv7-M/ARMv8-M 端口检查 SVC/PendSV 是否按直接路由方式正确安装；自定义间接路由时一般为 0。</td>
+</tr>
+</tbody>
+</table>
+<p><code>configCHECK_FOR_STACK_OVERFLOW=2</code> 不能代替栈余量检查、静态分析和真实负载测试。开发期间建议同时开启 <code>INCLUDE_uxTaskGetStackHighWaterMark</code>。</p>
+<h2 id="1-7-Cortex-M-中断优先级">1.7 Cortex-M 中断优先级</h2>
+<table>
+<thead>
+<tr>
+<th>宏名</th>
+<th>建议值/形式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>configPRIO_BITS</code></td>
+<td><code>__NVIC_PRIO_BITS</code></td>
+<td>NVIC 实现的优先级位数。CMSIS 未提供时按芯片数据手册填写。</td>
+</tr>
+<tr>
+<td><code>configLIBRARY_LOWEST_INTERRUPT_PRIORITY</code></td>
+<td>芯片允许的最低逻辑优先级</td>
+<td>常用于推导内核中断优先级。</td>
+</tr>
+<tr>
+<td><code>configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY</code></td>
+<td>按系统中断设计填写</td>
+<td>可调用 <code>FromISR</code> API 的最高逻辑优先级；数值更小的更高优先级 ISR 不得调用 FreeRTOS API。</td>
+</tr>
+<tr>
+<td><code>configKERNEL_INTERRUPT_PRIORITY</code></td>
+<td>左移后的寄存器值</td>
+<td>Tick 和 PendSV 的优先级，通常为最低优先级。</td>
+</tr>
+<tr>
+<td><code>configMAX_SYSCALL_INTERRUPT_PRIORITY</code></td>
+<td>左移后的寄存器值</td>
+<td>调用 FreeRTOS ISR API 的阈值。不得设为 0。</td>
+</tr>
+<tr>
+<td><code>configMAX_API_CALL_INTERRUPT_PRIORITY</code></td>
+<td>端口别名</td>
+<td>某些端口采用此名代替上一项；遵循当前 port 的要求，通常无需两者都定义。</td>
+</tr>
+</tbody>
+</table>
+<p>典型写法中的移位量是 <code>(8 - configPRIO_BITS)</code>，但 <code>configPRIO_BITS</code>、库优先级值和最终寄存器编码都必须与芯片匹配。</p>
+<h2 id="1-8-MPU、TrustZone-与-ARMv8-M-专用项">1.8 MPU、TrustZone 与 ARMv8-M 专用项</h2>
+<table>
+<thead>
+<tr>
+<th>宏名</th>
+<th>建议值/形式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>configINCLUDE_APPLICATION_DEFINED_PRIVILEGED_FUNCTIONS</code></td>
+<td><code>0</code></td>
+<td>Cortex-M MPU 端口中允许应用定义特权函数；完成安全架构设计后才考虑启用。</td>
+</tr>
+<tr>
+<td><code>configTOTAL_MPU_REGIONS</code></td>
+<td>芯片实际值</td>
+<td>实际 MPU 区域数量，常见 8 或 16，必须查芯片数据手册。</td>
+</tr>
+<tr>
+<td><code>configTEX_S_C_B_FLASH</code></td>
+<td>端口默认或存储器设计值</td>
+<td>Flash MPU 区域的 TEX、S、C、B 属性。</td>
+</tr>
+<tr>
+<td><code>configTEX_S_C_B_SRAM</code></td>
+<td>端口默认或存储器设计值</td>
+<td>SRAM MPU 区域的 TEX、S、C、B 属性。</td>
+</tr>
+<tr>
+<td><code>configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY</code></td>
+<td>按安全设计</td>
+<td>MPU 端口中应用特权提升和系统调用策略。</td>
+</tr>
+<tr>
+<td><code>configALLOW_UNPRIVILEGED_CRITICAL_SECTIONS</code></td>
+<td>安全系统通常 <code>0</code></td>
+<td>是否允许非特权任务进入临界区。</td>
+</tr>
+<tr>
+<td><code>configUSE_MPU_WRAPPERS_V1</code></td>
+<td>新工程 <code>0</code></td>
+<td><code>0</code> 使用 MPU wrapper v2；仅为兼容旧工程设为 1。</td>
+</tr>
+<tr>
+<td><code>configPROTECTED_KERNEL_OBJECT_POOL_SIZE</code></td>
+<td>最大对象并存数</td>
+<td>MPU wrapper v2 的受保护内核对象池容量。</td>
+</tr>
+<tr>
+<td><code>configSYSTEM_CALL_STACK_SIZE</code></td>
+<td>按任务系统调用链核算</td>
+<td>MPU wrapper v2 的每任务系统调用栈深度，单位 word。</td>
+</tr>
+<tr>
+<td><code>configENABLE_ACCESS_CONTROL_LIST</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>MPU wrapper v2 的 ACL；启用后非特权任务需显式获授对象访问权。</td>
+</tr>
+<tr>
+<td><code>secureconfigMAX_SECURE_CONTEXTS</code></td>
+<td>最大安全上下文数</td>
+<td>ARMv8-M 安全侧最多可由任务使用的安全上下文数。</td>
+</tr>
+<tr>
+<td><code>configKERNEL_PROVIDED_STATIC_MEMORY</code></td>
+<td>端口相关</td>
+<td>ARMv8-M 端口中由内核提供 Idle/Timer 静态内存实现的开关。</td>
+</tr>
+<tr>
+<td><code>configENABLE_TRUSTZONE</code></td>
+<td>硬件/架构相关</td>
+<td>ARMv8-M 非安全侧调用安全侧服务时启用。</td>
+</tr>
+<tr>
+<td><code>configRUN_FREERTOS_SECURE_ONLY</code></td>
+<td>架构相关</td>
+<td>整个应用仅在安全侧运行时使用。</td>
+</tr>
+<tr>
+<td><code>configENABLE_MPU</code></td>
+<td>硬件/架构相关</td>
+<td>ARMv8-M 端口是否启用 MPU。</td>
+</tr>
+<tr>
+<td><code>configENABLE_FPU</code></td>
+<td>硬件/编译选项相关</td>
+<td>ARMv8-M 端口是否启用 FPU。</td>
+</tr>
+<tr>
+<td><code>configENABLE_MVE</code></td>
+<td>硬件/编译选项相关</td>
+<td>仅支持 MVE 的 Cortex-M 内核可启用。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-9-SMP-多核专用项">1.9 SMP 多核专用项</h2>
+<table>
+<thead>
+<tr>
+<th>宏名</th>
+<th>建议值/形式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>configNUMBER_OF_CORES</code></td>
+<td>实际核心数</td>
+<td>参与 SMP 调度的核心数。单核项目不应设为大于 1。</td>
+</tr>
+<tr>
+<td><code>configRUN_MULTIPLE_PRIORITIES</code></td>
+<td>通常 <code>0</code></td>
+<td><code>0</code> 尽量保持传统优先级语义；<code>1</code> 允许不同优先级任务跨核同时运行。</td>
+</tr>
+<tr>
+<td><code>configUSE_CORE_AFFINITY</code></td>
+<td><code>0</code> 或 <code>1</code></td>
+<td>是否启用任务核心亲和性 API。</td>
+</tr>
+<tr>
+<td><code>configTASK_DEFAULT_CORE_AFFINITY</code></td>
+<td><code>tskNO_AFFINITY</code></td>
+<td>未指定亲和性任务的默认核心掩码。</td>
+</tr>
+<tr>
+<td><code>configUSE_TASK_PREEMPTION_DISABLE</code></td>
+<td><code>0</code></td>
+<td>允许逐任务选择抢占/协作模式；仅 SMP。</td>
+</tr>
+<tr>
+<td><code>configUSE_PASSIVE_IDLE_HOOK</code></td>
+<td><code>0</code></td>
+<td>被动 Idle Hook；不得阻塞。</td>
+</tr>
+<tr>
+<td><code>configTIMER_SERVICE_TASK_CORE_AFFINITY</code></td>
+<td><code>tskNO_AFFINITY</code></td>
+<td>Timer Service 任务的核心亲和掩码。</td>
+</tr>
+<tr>
+<td><code>configIDLE_AFFINITY</code></td>
+<td><code>0</code></td>
+<td>是否把每个 Idle 任务固定在对应核心。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-10-INCLUDE-API-裁剪项">1.10 INCLUDE API 裁剪项</h2>
+<table>
+<thead>
+<tr>
+<th>宏名</th>
+<th>控制的 API 与用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INCLUDE_vTaskPrioritySet</code></td>
+<td><code>vTaskPrioritySet()</code>：运行时修改任务优先级。</td>
+</tr>
+<tr>
+<td><code>INCLUDE_uxTaskPriorityGet</code></td>
+<td><code>uxTaskPriorityGet()</code>：读取任务优先级。</td>
+</tr>
+<tr>
+<td><code>INCLUDE_vTaskDelete</code></td>
+<td><code>vTaskDelete()</code>：删除任务；动态任务资源通常由 Idle 任务回收。</td>
+</tr>
+<tr>
+<td><code>INCLUDE_vTaskSuspend</code></td>
+<td><code>vTaskSuspend()</code> 和 <code>vTaskResume()</code>。</td>
+</tr>
+<tr>
+<td><code>INCLUDE_xTaskDelayUntil</code></td>
+<td><code>xTaskDelayUntil()</code>：固定周期任务的常用延时 API；旧内核可能使用 <code>INCLUDE_vTaskDelayUntil</code>。</td>
+</tr>
+<tr>
+<td><code>INCLUDE_vTaskDelay</code></td>
+<td><code>vTaskDelay()</code>：相对延时。</td>
+</tr>
+<tr>
+<td><code>INCLUDE_xTaskGetSchedulerState</code></td>
+<td><code>xTaskGetSchedulerState()</code>。</td>
+</tr>
+<tr>
+<td><code>INCLUDE_xTaskGetCurrentTaskHandle</code></td>
+<td><code>xTaskGetCurrentTaskHandle()</code>。</td>
+</tr>
+<tr>
+<td><code>INCLUDE_uxTaskGetStackHighWaterMark</code></td>
+<td>栈历史最小余量查询；开发和栈调优阶段建议开启。</td>
+</tr>
+<tr>
+<td><code>INCLUDE_xTaskGetIdleTaskHandle</code></td>
+<td><code>xTaskGetIdleTaskHandle()</code>。</td>
+</tr>
+<tr>
+<td><code>INCLUDE_eTaskGetState</code></td>
+<td><code>eTaskGetState()</code>。</td>
+</tr>
+<tr>
+<td><code>INCLUDE_xTimerPendFunctionCall</code></td>
+<td><code>xTimerPendFunctionCall()</code>：将函数提交至 Timer Service 任务执行。</td>
+</tr>
+<tr>
+<td><code>INCLUDE_xTaskAbortDelay</code></td>
+<td><code>xTaskAbortDelay()</code>：取消任务阻塞。</td>
+</tr>
+<tr>
+<td><code>INCLUDE_xTaskGetHandle</code></td>
+<td><code>xTaskGetHandle()</code>：按名称查找任务句柄。</td>
+</tr>
+<tr>
+<td><code>INCLUDE_xTaskResumeFromISR</code></td>
+<td><code>xTaskResumeFromISR()</code>；事件同步通常优先考虑任务通知或信号量。</td>
+</tr>
+</tbody>
+</table>
+<h1>2 堆栈</h1>
+<blockquote>
+<p>堆（stack）：由编译器自动分配和释放，比如存放函数参数、局部变量等
+栈（heap）：一般手动分配和释放，类似数据结构中的链表</p>
+</blockquote>
+<p>示例如下，参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/115276865">知乎</a></p>
+<p><img src="https://pic2.zhimg.com/v2-96ded37dd35ce7ed0db69d07a905cf7d_1440w.jpg" srcset="/img/banner.png" lazyload alt="" /></p>
+<ol>
+<li>全局变量和常量属于静态区(Static)，由编译器分配，生命周期贯穿整个程序</li>
+<li>函数的参数、局部变量值属于栈(Stack)，由编译器自动分配和释放</li>
+<li>手动用 malloc 函数请求分配的内存空间属于堆(heap)，如果动态分配的内存用完后没有释放内存，会导致内存泄露</li>
+</ol>
+<h2 id="2-1-任务如何分配空间">2.1 任务如何分配空间</h2>
+<p><img src="https://pic1.zhimg.com/v2-4139c6dc6b902594bdb31e576482461e_1440w.jpg" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>当调用 FreeRTOS 的创建任务函数 <code>xTaskCreate()</code> 时，FreeRTOS 会在堆中开辟一块空间，用于存放任务的控制信息 TCB 块和栈区 Stack用于储存任务相关的变量</p>
+<h3 id="2-1-1-TCB-块">2.1.1 TCB 块</h3>
+<p>TCB 定义如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">tskTaskControlBlock</span> &#123;</span><br>  <span class="hljs-keyword">volatile</span> StackType_t    *pxTopOfStack;    <span class="hljs-comment">// 栈顶指针</span><br>  ListItem_t              xStateListItem;   <span class="hljs-comment">// 状态链表项</span><br>  ListItem_t              xEventListItem;   <span class="hljs-comment">// 事件链表项</span><br>  UBaseType_t             uxPriority;       <span class="hljs-comment">// 任务优先级</span><br>  StackType_t             *pxStack;         <span class="hljs-comment">// 栈起始地址</span><br>  <span class="hljs-type">char</span>                    pcTaskName[<span class="hljs-number">16</span>];   <span class="hljs-comment">// 任务名称</span><br>  <span class="hljs-comment">// ... 其他成员(优先级继承、通知、栈溢出检测等)</span><br>&#125; TCB_t;<br><br></code></pre></td></tr></table></figure>
+<p>TCB 块的大小取决于 <code>FreeRTOSConfig.h</code> 头文件中的配置</p>
+<ul>
+<li>最小 TCB 大小为 96 字节</li>
+<li>如果<strong>configUSE_TASK_NOTIFICATIONS</strong>是 1 的话再增加 8 个字节</li>
+<li>如果<strong>configUSE_TRACE_FACILITY</strong>是 1 的话再增加 8 个字节</li>
+<li>如果<strong>configUSE_MUTEXES</strong>是 1 的话再增加 8 个字节</li>
+</ul>
+<h2 id="2-2-内存分配方案">2.2 内存分配方案</h2>
+<h3 id="2-2-1-heap-1">2.2.1 heap-1</h3>
+<p>适用于小型嵌入式系统。此时系统只能在调度器启动之前创建任务和其他内核对象。如果系统运行后不需要删除任务或内核对象以及不需要动态分配内存的系统可采用这个方案</p>
+<h3 id="2-2-2-heap-2">2.2.2 heap-2</h3>
+<p>保持 FreeRTOS 的向下兼容</p>
+<h3 id="2-2-3-heap-3">2.2.3 heap-3</h3>
+<p>使用标准库中的 <code>malloc</code>、<code>free</code> 函数，所以堆的大小由链接器配置决定，与 <code>configTOTAL_HEAP_SIZE</code> 无关</p>
+<p>heap-3 调用 <code>malloc</code>、<code>free</code> 时会临时挂起 FreeRTOS 调度器以保证线程安全</p>
+<h3 id="2-2-4-heap-4">2.2.4 heap-4</h3>
+<p>此方案同第一个和第二个方案一样，由一个数组表示堆，并把数组分割成小的内存块。堆的大小由FreeRTOSConfig.h文件中configTOTAL_HEAP_SIZE定义。</p>
+<p>Heap_4采用的first fit算法可以把相邻的空闲的内存块合并成更大的内存块，减少了内存碎片化的风险。<strong>所以这个方案适用于通用的应用（系统会添加和删除不同大小的任务）</strong>，cubemx 生成的 FreeRTOS 默认采用此方案</p>
+<h3 id="2-2-5-heap-5">2.2.5 heap-5</h3>
+<p>类似heap-4, 不同于 Heap_4 只用一个连续的数组表示堆，Heap_5 可以用不同的数组空间对内存进行分配</p>
+<h2 id="2-3-相关函数">2.3 相关函数</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-type">size_t</span> <span class="hljs-title function_">xPortGetFreeHeapSize</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br></code></pre></td></tr></table></figure>
+<p>返回当前堆中的空闲空间大小，单位为字节</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">size_t</span> <span class="hljs-title function_">xPortGetMinimumEverFreeHeapSize</span><span class="hljs-params">( <span class="hljs-type">void</span> )</span>;<br></code></pre></td></tr></table></figure>
+<p>返回系统运行过程中堆空间的最小空闲空间，只能在 heap-4 或 5 下使用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">vApplicationMallocFailedHook</span><span class="hljs-params">( <span class="hljs-type">void</span> )</span>;<br></code></pre></td></tr></table></figure>
+<p>如果配置文件中 configUSE_MALLOC_FAILED_HOOK 设置为 1 的话，当堆分配内存失败时会调用此函数。可以在此函数中进行错误处理</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%94%B5%E8%B7%AF/" class="category-chain-item">电路</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/coding/" class="print-no-link">#coding</a>
+      
+        <a href="/tags/MCU/" class="print-no-link">#MCU</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>FreeRtos入门</div>
+      <div>https://moerjie.github.io/2026/08/04/FreeRtos入门/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Sawen Moerjie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年8月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/08/12/5G%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="5G相关知识学习记录">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">5G相关知识学习记录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/10/%E6%97%A0%E6%BA%90%E9%9B%B7%E8%BE%BE%E6%95%B0%E5%AD%97%E7%94%B5%E8%A7%86%E4%BF%A1%E5%8F%B7%E6%8E%A2%E6%B5%8B%E9%A3%9E%E8%A1%8C%E5%99%A8/" title="无源雷达数字电视信号探测飞行器">
+                        <span class="hidden-mobile">无源雷达数字电视信号探测飞行器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"你的appId","appKey":"你的appKey","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"你的serverURLs","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

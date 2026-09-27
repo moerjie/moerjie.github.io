@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined%E5%AF%B9%E6%95%B0%E6%AD%A3%E6%80%81%E9%98%B4%E5%BD%B1.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1758095499338.png">
 <meta property="article:published_time" content="2025-09-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-17T14:13:56.000Z">
+<meta property="article:modified_time" content="2026-08-25T13:45:26.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="数字通信">
 <meta property="article:tag" content="射频">
@@ -359,36 +359,40 @@
             
               <div class="markdown-body">
                 
-                <p>无线信道的一个典型特征是衰落现象：信号幅度在时间和频率上的波动。加性噪声是信号恶化的最普遍来源，衰落是另一种来源，其在无线信道中引起的是非加性的信号扰动。衰落也可由多径传播或障碍物遮蔽引起。
-衰落大致分为两种：大尺度衰落和小尺度衰落。当移动设备长距离移动时（小区大小距离）会产生大尺度衰落。它由信号的路径损耗（关于距离的 func）和大型障碍物形成的阴影所引起的。小尺度衰落是当移动设备在较短距离内移动时，由多条路径的相消或相长干涉引起的信号电平快速波动。
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined%E8%A1%B0%E8%90%BD%E4%BF%A1%E9%81%93.png" srcset="/img/banner.png" lazyload alt="衰落信道.png" /></p>
+                <p>无线信道的一个典型特征是衰落现象：信号幅度在时间和频率上的波动。加性噪声是信号恶化的最普遍来源，衰落是另一种来源，其在无线信道中引起的是非加性的信号扰动。衰落也可由多径传播或障碍物遮蔽引起。</p>
+<p>衰落大致分为两种：大尺度衰落和小尺度衰落。当移动设备长距离移动时（小区大小距离）会产生大尺度衰落。它由信号的路径损耗（关于距离的 func）和大型障碍物形成的阴影所引起的。小尺度衰落是当移动设备在较短距离内移动时，由多条路径的相消或相长干涉引起的信号电平快速波动。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined%E8%A1%B0%E8%90%BD%E4%BF%A1%E9%81%93.png" srcset="/img/banner.png" lazyload alt="衰落信道.png" /></p>
 <h1>1 大尺度衰落</h1>
 <h2 id="1-1-一般路径损耗模型">1.1 一般路径损耗模型</h2>
-<p>自由空间传播模型用于预测视距环境中信号接收的强度。常用于卫星通信系统。
-$$
+<p>自由空间传播模型用于预测视距环境中信号接收的强度。常用于卫星通信系统。</p>
+<p>$$
 P_r(d)=\frac{P_t G_t G_r \lambda^2}{(4\pi)^2d^2L}
-$$
-其中：
-$P_t$ 为发射功率，单位：W
+$$</p>
+<p>其中：</p>
+<pre><code class="hljs">$P_t$ 为发射功率，单位：W
+
 $d$ 表示发射机与接收机的距离，单位：m
+
 各向异性天线时，发射天线增益为 $G_t$，接收天线增益为 $G_t$
+
 $L$ 为与传播环境无关的系统损耗系统，表示实际硬件系统中的总体衰减
-假设系统硬件没有损耗，则自由空间路径损耗为：
-$$
+</code></pre>
+<p>假设系统硬件没有损耗，则自由空间路径损耗为：</p>
+<p>$$
 PL_F(d)[dB]=10\log_{10}(\frac{P_t}{P_r})=-10\log_{10}( \frac{G_t G_r \lambda^2}{(4\pi)^2d^2})
-$$
-根据距离和天线增益不同，自由空间路径损耗如图所示：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined%E8%87%AA%E7%94%B1%E7%A9%BA%E9%97%B4%E6%8D%9F%E8%80%97.png" srcset="/img/banner.png" lazyload alt="自由空间损耗" />
-若没有天线增益，则公式可以简化为：
-$$
+$$</p>
+<p>根据距离和天线增益不同，自由空间路径损耗如图所示：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined%E8%87%AA%E7%94%B1%E7%A9%BA%E9%97%B4%E6%8D%9F%E8%80%97.png" srcset="/img/banner.png" lazyload alt="自由空间损耗" /></p>
+<p>若没有天线增益，则公式可以简化为：</p>
+<p>$$
 PL_F(d)[dB]=10\log_{10}(\frac{P_t}{P_r})=20\log_{10}(\frac{4\pi d}{\lambda})
-$$
-<strong>对数距离路径损耗模型</strong>如下：
-$$
+$$</p>
+<p><strong>对数距离路径损耗模型</strong>如下：</p>
+<p>$$
 PL_{LD}(d)[dB]=PL_F(d_0)+10n\log_{10}(\frac{d}{d_0})
-$$
-其中，$d_0$ 是一个参考距离，不同的传播环境中参考距离不同。例如，大范围覆盖的蜂窝系统（半径大于 10km），通常设置 $d_0$ 为 $1km$；对于小区半径为 $1km$ 或具有极小半径的微蜂窝系统，可以分别设置为 $100m$ 或 $1m$。
-路径损耗指数 $n$ 由传播环境决定。</p>
+$$</p>
+<p>其中，$d_0$ 是一个参考距离，不同的传播环境中参考距离不同。例如，大范围覆盖的蜂窝系统（半径大于 10km），通常设置 $d_0$ 为 $1km$；对于小区半径为 $1km$ 或具有极小半径的微蜂窝系统，可以分别设置为 $100m$ 或 $1m$。</p>
+<p>路径损耗指数 $n$ 由传播环境决定。</p>
 <table>
 <thead>
 <tr>
@@ -423,78 +427,78 @@ $$
 </tr>
 </tbody>
 </table>
-<p>对数距离路径损耗模型图如下：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined%E5%AF%B9%E6%95%B0%E8%B7%9D%E7%A6%BB.png" srcset="/img/banner.png" lazyload alt="对数距离.png" />
-由于周围环境会随着接收机的实际位置不同而改变，即使发射机到接收机之间的距离相同，每条路径也有不同的路径损耗。在设计更真实的环境时，对数正态阴影模型更加实用。令 $X_{\sigma}$ 表示均值为 $0$，标准差为 $\sigma$ 的高斯随机变量，对数正态阴影衰落模型为：
-$$
+<p>对数距离路径损耗模型图如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined%E5%AF%B9%E6%95%B0%E8%B7%9D%E7%A6%BB.png" srcset="/img/banner.png" lazyload alt="对数距离.png" /></p>
+<p>由于周围环境会随着接收机的实际位置不同而改变，即使发射机到接收机之间的距离相同，每条路径也有不同的路径损耗。在设计更真实的环境时，对数正态阴影模型更加实用。令 $X_{\sigma}$ 表示均值为 $0$，标准差为 $\sigma$ 的高斯随机变量，对数正态阴影衰落模型为：</p>
+<p>$$
 PL(d)[dB]=\overline{PL}(d)+X_{\sigma}=PL_F(d_0)+10\log_{10}(\frac{d}{d_0})+X_{\sigma}
-$$
-此时示意图为：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined%E5%AF%B9%E6%95%B0%E6%AD%A3%E6%80%81%E9%98%B4%E5%BD%B1.png" srcset="/img/banner.png" lazyload alt="对数正态阴影.png" /></p>
+$$</p>
+<p>此时示意图为：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined%E5%AF%B9%E6%95%B0%E6%AD%A3%E6%80%81%E9%98%B4%E5%BD%B1.png" srcset="/img/banner.png" lazyload alt="对数正态阴影.png" /></p>
 <h2 id="1-2-Okumura-Hata-模型">1.2 Okumura/Hata 模型</h2>
 <p>在预测城市地区路径损耗的所有模型中，Okumura 模型是被采用最多的一种，主要适用于载波范围在 500-1500MHz，小区半径为 1-100km，天线高度为 30-1000m 的移动通信系统。Okumura 模型中路径损耗可以表示为：</p>
 <p>$$
 \mathrm{PL}<em>{\mathrm{Ok}}\left(d\right)\left[\mathrm{dB}\right]=\mathrm{PL}</em>{\mathrm{F}}+A_{\mathrm{MU}}\left(f,d\right)-G_{\mathrm{Rx}}-G_{\mathrm{Tx}}+G_{\mathrm{AREA}}
 $$</p>
-<p>其中，$A_{\mathrm{MU}}\left(f,d\right)$ 为频率为 $f$ 处的中等起伏衰减因子，$G_{AREA}$ 为具体地区的传播环境增益。
-HATA 模型将 Okumura 模型扩展到了各种传播环境，包括城市、郊区、开阔地，为当今最常用的路径损耗模型。对于发射天线高度为 $h_{Tx}[m]$, 载波频率为 $f_c[MHz]$，距离为 $d[m]$，在市区中 Hata 模型的路径损耗为：
-$$
+<p>其中，$A_{\mathrm{MU}}\left(f,d\right)$ 为频率为 $f$ 处的中等起伏衰减因子，$G_{AREA}$ 为具体地区的传播环境增益。</p>
+<p>HATA 模型将 Okumura 模型扩展到了各种传播环境，包括城市、郊区、开阔地，为当今最常用的路径损耗模型。对于发射天线高度为 $h_{Tx}[m]$, 载波频率为 $f_c[MHz]$，距离为 $d[m]$，在市区中 Hata 模型的路径损耗为：</p>
+<p>$$
 \mathrm{PL}<em>{\mathrm{Hata,U}}(d)[\mathrm{dB}] = 69.55 + 26.16\log</em>{10} f_{c} - 13.82\log_{10} h_{Tx}</p>
 <ul>
 <li>C_{Rx} + \left(44.9 - 6.55\log_{10} h_{Tx}\right)\log_{10} d
 $$</li>
 </ul>
-<p>其中，$C_{Rx}$ 为与接收天线相关的系数，取决于覆盖范围的大小。
-对于中等大小的覆盖范围，$C_{Rx}$ 取值为：
-$$
+<p>其中，$C_{Rx}$ 为与接收天线相关的系数，取决于覆盖范围的大小。</p>
+<p>对于中等大小的覆盖范围，$C_{Rx}$ 取值为：</p>
+<p>$$
 C_{Rx} = 0.8 + (1.1\log_{10} f_c - 0.7)\cdot h_{Rx} - 1.56\log_{10} f_c
-$$
-其中 $h_{Rx}[m]$ 为接收天线的高度。
-对于大的覆盖范围，$C_{Rx}$ 取决于载波频率：
-$$
+$$</p>
+<p>其中 $h_{Rx}[m]$ 为接收天线的高度。</p>
+<p>对于大的覆盖范围，$C_{Rx}$ 取决于载波频率：</p>
+<p>$$
 C_{Rx} =
 \begin{cases}
 8.29\big(\log_{10}(1.54 h_{Rx})\big)^2 - 1.1, &amp; 150 ,\text{MHz} \leqslant f_c \leqslant 200 ,\text{MHz} \
 3.2\big(\log_{10}(11.75 h_{Rx})\big)^2 - 4.97, &amp; 200 ,\text{MHz} \leqslant f_c \leqslant 1500 ,\text{MHz}
 \end{cases}
-$$
-对于郊区，Hata 模型为：
-$$
+$$</p>
+<p>对于郊区，Hata 模型为：</p>
+<p>$$
 \mathrm{PL}<em>{\mathrm{Hata,SU}}\left(d\right)\left[\mathrm{dB}\right]=\mathrm{PL}</em>{\mathrm{Hata,U}}\left(d\right)-2\left(\log_{10}\frac{f_{\mathrm{c}}}{28}\right)^{2}-5.4
-$$
-对于开阔地，模型为：
-$$
+$$</p>
+<p>对于开阔地，模型为：</p>
+<p>$$
 \mathrm{PL}<em>{\mathrm{Hata,O}}\left(d\right)\left[\mathrm{dB}\right]=\mathrm{PL}</em>{\mathrm{Hata,U}}\left(d\right)-4.78\left(\log f_{\mathrm{c}}\right)^{2}+18.33\log_{10}f_{\mathrm{c}}-40.97
 $$</p>
 <h1>2 小尺度衰落</h1>
 <h2 id="2-1-小尺度衰落参数">2.1 小尺度衰落参数</h2>
-<p>经常用==功率时延分布==（Power Delay Profile，PDP）描述多径衰落信道的特征。
-平均过量时延和均方根时延扩展是非常有用的信道参数。
-令 $\tau_k ,a_k , P(\tau_k)$ 分别表示第 $k$ 条路径的信道时延，幅度和功率。由 PDP 的一阶矩给出==平均过量时延== $\overline{\tau}$ ：
-$$
+<p>经常用==功率时延分布==（Power Delay Profile，PDP）描述多径衰落信道的特征。</p>
+<p>平均过量时延和均方根时延扩展是非常有用的信道参数。</p>
+<p>令 $\tau_k ,a_k , P(\tau_k)$ 分别表示第 $k$ 条路径的信道时延，幅度和功率。由 PDP 的一阶矩给出==平均过量时延== $\overline{\tau}$ ：</p>
+<p>$$
 \overline{\tau}=\frac{\sum_{k}a_{k}^{2}\tau_{k}}{\sum_{k}a_{k}^{2}}=\frac{\sum_{k}\tau_{k}P(\tau_{k})}{\sum_{k}P(\tau_{k})}
-$$
-由 PDP 的二阶中心距的平方根给出 RMS 时延扩展 $\sigma_{\tau}$：
-$$
+$$</p>
+<p>由 PDP 的二阶中心距的平方根给出 RMS 时延扩展 $\sigma_{\tau}$：</p>
+<p>$$
 \sigma_{\tau}=\sqrt{\overline{\tau^2}-(\overline{\tau})^2}
-$$
-其中
-$$
+$$</p>
+<p>其中</p>
+<p>$$
 \overline{\tau^2}=\frac{\sum_k a_k^2\tau_k^2}{\sum_k a^2_k}=\frac{\sum_{k}\tau_{k}^{2}P(\tau_{k})}{\sum_{k}P(\tau_{k})}
-$$
-相干带宽（记作 $B_c$）于 RMS 时延扩展成反比，当相关带宽定义为相关函数大于等于 0.9 所对应的带宽时，相干带宽和 RMS 时延扩展的关系为
-$$
+$$</p>
+<p>相干带宽（记作 $B_c$）于 RMS 时延扩展成反比，当相关带宽定义为相关函数大于等于 0.9 所对应的带宽时，相干带宽和 RMS 时延扩展的关系为</p>
+<p>$$
 B_c \approx \frac{1}{50\sigma_{\tau}}
-$$
-当相干带宽定义为相关函数大于等于 0.5 所对应的带宽时，关系为
-$$
+$$</p>
+<p>当相干带宽定义为相关函数大于等于 0.5 所对应的带宽时，关系为</p>
+<p>$$
 B_c\approx \frac{1}{5\sigma_{\tau}}
-$$
-相关函数为 PDP 的傅里叶变换：
-$$
+$$</p>
+<p>相关函数为 PDP 的傅里叶变换：</p>
+<p>$$
 R_H(\Delta f)=\int_{-\infty}^\infty P(\tau)e^{-j2\pi\Delta f\tau}:d\tau
-$$
-其中</p>
+$$</p>
+<p>其中</p>
 <ul>
 <li>$P(\tau)$ 为功率延迟分布</li>
 <li>$\Delta f$ 为频率间隔</li>
@@ -503,12 +507,12 @@ $$
 </ul>
 <h2 id="2-2-时间色散衰落-频率色散衰落">2.2 时间色散衰落/频率色散衰落</h2>
 <h3 id="2-2-1-时间色散引起的衰落-频率选择性衰落信道">2.2.1 时间色散引起的衰落-频率选择性衰落信道</h3>
-<p>当满足以下条件时为非频率选择性衰落
-$$
+<p>当满足以下条件时为非频率选择性衰落</p>
+<p>$$
 B_s\ll B_c\text{或者}\sigma_\tau\ll\frac1{B_s}
-$$
-其中 $B_s$ 为信号带宽。
-这种情况下：</p>
+$$</p>
+<p>其中 $B_s$ 为信号带宽。</p>
+<p>这种情况下：</p>
 <ol>
 <li>信道对于信号来说是平坦的</li>
 <li>各个频率分量受到的衰落几乎一致</li>
@@ -519,11 +523,11 @@ $$
 <li>不产生 ISI</li>
 <li>系统等效为乘性噪声信道</li>
 </ol>
-<p>当满足以下条件时为频率选择性衰落
-$$
+<p>当满足以下条件时为频率选择性衰落</p>
+<p>$$
 B_s\gtrsim B_c\quad\text{或者}\quad\sigma_\tau\gtrsim\frac1{B_s}
-$$
-这种情况下：</p>
+$$</p>
+<p>这种情况下：</p>
 <ol>
 <li>信号带宽超过了相干带宽，不同频率分量受到的衰落不同</li>
 <li>多径叠加会产生符号干扰</li>
@@ -541,11 +545,11 @@ $$
 <li>当发射机、接收机或周围散射体相对运动时，多径分量的频率会偏移。</li>
 <li>这些多普勒频移叠加，使得信道增益随时间变化。</li>
 <li><strong>多普勒扩展</strong>$f_d$：最大多普勒频移，反映信道频谱的扩展。</li>
-<li><strong>相干时间</strong>$T_c$ ​：信道在时间上保持相关的持续时间，近似
-$$
-T_c\approx\frac{1}{f_d}
-$$</li>
+<li><strong>相干时间</strong>$T_c$ ​：信道在时间上保持相关的持续时间，近似</li>
 </ul>
+<p>$$
+T_c\approx\frac{1}{f_d}
+$$</p>
 <h4 id="2-2-2-1-快衰落（时间选择性衰落显著）">2.2.2.1 快衰落（时间选择性衰落显著）</h4>
 <ul>
 <li>符号持续时间 $T_c&gt;&gt;T_c$</li>

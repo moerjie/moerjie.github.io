@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-01/260117173755737.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-01/1768642697177.png">
 <meta property="article:published_time" content="2026-01-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-17T14:13:56.000Z">
+<meta property="article:modified_time" content="2026-08-25T13:45:31.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="数字通信">
 <meta property="article:tag" content="射频">
@@ -361,68 +361,68 @@
               <div class="markdown-body">
                 
                 <h1>1 基本锁相环</h1>
-<p>基本锁相环结构如图所示。<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20260113204122.png" srcset="/img/banner.png" lazyload alt="|535" />
-其为一个闭环反馈控制系统，包括鉴相器、压控振荡器、环路滤波器。<br />
-输入为 $v_i(t)$ 的相位，用 $\theta_i$ 表示，单位为 $Rad$，VCO 的产生的本地信号的相位用 $\theta_1$ 表示，鉴相器的输出 $\hat{\theta}=\theta_i-\theta_1$，相位差经过环路滤波器滤除高频分量，控制 VCO，同时作为 PLL 的输出。<br />
-VCO 的输出频率和输入量成正比，假设输入量为 $u(t)$，可得<br />
-$$
+<p>基本锁相环结构如图所示。
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20260113204122.png" srcset="/img/banner.png" lazyload alt="|535" /></p>
+<p>其为一个闭环反馈控制系统，包括鉴相器、压控振荡器、环路滤波器。
+输入为 $v_i(t)$ 的相位，用 $\theta_i$ 表示，单位为 $Rad$，VCO 的产生的本地信号的相位用 $\theta_1$ 表示，鉴相器的输出 $\hat{\theta}=\theta_i-\theta_1$，相位差经过环路滤波器滤除高频分量，控制 VCO，同时作为 PLL 的输出。
+VCO 的输出频率和输入量成正比，假设输入量为 $u(t)$，可得</p>
+<p>$$
 \begin{align}
 f_{vco}(t)=k\cdot u(t)
 \end{align}
-$$
-等号左边为压控振荡器输出频率，$k$ 为 VCO 的压控增益，单位为 $Rad/V$。<br />
-由于 Phase 是 Freq 的积分，所以 VCO 输出信号的相位可表示为<br />
-$$
+$$</p>
+<p>等号左边为压控振荡器输出频率，$k$ 为 VCO 的压控增益，单位为 $Rad/V$。
+由于 Phase 是 Freq 的积分，所以 VCO 输出信号的相位可表示为</p>
+<p>$$
 \begin{align}
 \theta_{vco}(t)=\int^{t}<em>{0}f</em>{vco}(\tau) d\tau
 \end{align}
-$$
-对上式取拉普拉斯变换，可得 VCO 的频域模型<br />
-$$
+$$</p>
+<p>对上式取拉普拉斯变换，可得 VCO 的频域模型</p>
+<p>$$
 \begin{align}
 \theta_{vco}(s)=\frac{k}{s}\cdot U(s)
 \end{align}
 $$</p>
-<p>VCO 的输入量是环路滤波器的输出<br />
-$$
+<p>VCO 的输入量是环路滤波器的输出</p>
+<p>$$
 \begin{align}
 v_i(s) &amp; =\hat{\theta}(s) F(s) \
 &amp; =[\theta_i(s)-\theta_1(s)] F(s)
 \end{align}
-$$
-带入 VCO 频域模型可得<br />
-$$
+$$</p>
+<p>带入 VCO 频域模型可得</p>
+<p>$$
 \begin{align}
 \theta_1(s)=\frac{k}{s}[\theta_i(s)-\theta_1(s)] F(s)
 \end{align}
-$$
-化简后可得<br />
-$$
+$$</p>
+<p>化简后可得</p>
+<p>$$
 \begin{align}
 \theta_1(s) &amp; = \frac{kF(s)}{s+kF(s)}\theta_i(s) \\
 \hat{\theta}(s) &amp; = \frac{s}{s+kF(s)}\theta_i(s)
 \end{align}
-$$
-定义环路传递函数 $H(s)$ 和误差传递函数 $E(s)$ 为<br />
-$$
+$$</p>
+<p>定义环路传递函数 $H(s)$ 和误差传递函数 $E(s)$ 为</p>
+<p>$$
 \begin{align}
 H(s) &amp; = \frac{\theta_1(s)}{\theta_i(s)}=\frac{kF(s)}{s+kF(s)}\\
 E(s) &amp; = \frac{\hat{\theta}(s)}{\theta_i(s)}=\frac{s}{s+kF(s)}
 \end{align}
-$$
-$H(s)$ 反映了环路对输入信号相位的跟踪能力，通常表现为低通特性，意味着 PLL 可以跟踪慢速变化的相位，无法跟踪快速抖动。
-$E(s)$ 反映了环路对相位误差的抑制能力，表现为高通特性，意味着静态相位偏移或慢速飘移会被环路滤除，保留高频噪声在误差中。<br />
-对于 $n$ 阶环的闭环传递函数，PLL 的传递函数通用形式为<br />
-$$
+$$</p>
+<p>$H(s)$ 反映了环路对输入信号相位的跟踪能力，通常表现为低通特性，意味着 PLL 可以跟踪慢速变化的相位，无法跟踪快速抖动。</p>
+<p>$E(s)$ 反映了环路对相位误差的抑制能力，表现为高通特性，意味着静态相位偏移或慢速飘移会被环路滤除，保留高频噪声在误差中。
+对于 $n$ 阶环的闭环传递函数，PLL 的传递函数通用形式为</p>
+<p>$$
 \begin{align}
 H(s)=\frac{a_0+a_1s+a_2s^2+\cdots+a_{n-1}s^n}{b_0+b_1s+b_2s^2+\cdots+b_{n-1}s^n}
 \end{align}
-$$
-PLL 的阶数由分母中包含的 s 算子的最高次幂决定。<br />
+$$</p>
+<p>PLL 的阶数由分母中包含的 s 算子的最高次幂决定。
 <img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-01/260117165225403.png" srcset="/img/banner.png" lazyload alt="噪声带宽" /></p>
 <h2 id="1-1-锁相环输入类型">1.1 锁相环输入类型</h2>
-<p>PLL 常见的输入有 3 种，如图所示<br />
+<p>PLL 常见的输入有 3 种，如图所示
 <img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-01/260117165610504.png" srcset="/img/banner.png" lazyload alt="260117165610504.png" /></p>
 <ul>
 <li>相位阶跃输入是在原有相位的基础上突然增加了一个 $\theta_0$ 量</li>
@@ -431,46 +431,46 @@ PLL 的阶数由分母中包含的 s 算子的最高次幂决定。<br />
 </ul>
 <h2 id="1-2-常见锁相环分析">1.2 常见锁相环分析</h2>
 <h3 id="1-2-1-1阶环">1.2.1 1阶环</h3>
-<p>1 阶环对应的 LF 为全通滤波器，无电抗元件，滤波器函数为<br />
-$$
+<p>1 阶环对应的 LF 为全通滤波器，无电抗元件，滤波器函数为</p>
+<p>$$
 \begin{align}
 F(s)=1
 \end{align}
-$$
-噪声带宽可求<br />
-$$
+$$</p>
+<p>噪声带宽可求</p>
+<p>$$
 \begin{align}
 B_n=\frac{k}{4}
 \end{align}
-$$
-1 阶环不能很好的跟踪频率阶跃和频率斜升的相位输入信号。GPS 接收机接收到的信号受多普勒效应和本地用户动态的影响，或多或少都会有频率阶跃，在有外部信息辅助的情况下可以将频率阶跃扣除，可以使用 1 阶环进行跟踪，在没有外部辅助的情况下一般不使用 2 阶环</p>
+$$</p>
+<p>1 阶环不能很好的跟踪频率阶跃和频率斜升的相位输入信号。GPS 接收机接收到的信号受多普勒效应和本地用户动态的影响，或多或少都会有频率阶跃，在有外部信息辅助的情况下可以将频率阶跃扣除，可以使用 1 阶环进行跟踪，在没有外部辅助的情况下一般不使用 2 阶环</p>
 <h3 id="1-2-2-2阶环">1.2.2 2阶环</h3>
 <p>2 阶环能很好地跟踪相位阶跃和频率阶跃信号, 但不能很好地跟踪频率斜升信号, 但已经能够处理绝大多数时间内北斗和 GPS 接收机接收到的卫星信号, 同时 2 阶环在环路复杂性和环路稳定性方面也比较理想, 所以 2 阶环是目前民用接收机内较常使用的跟踪环路。由于无法处理无偏地跟踪频率斜升输入信号, 所以 2 阶环不太适合高动态运动的应用场合</p>
 <h3 id="1-2-3-3阶环">1.2.3 3阶环</h3>
-<p>北斗和 GPS 接收机中常用的 3 阶环的 LF 为<br />
-$$
+<p>北斗和 GPS 接收机中常用的 3 阶环的 LF 为</p>
+<p>$$
 \begin{align}
 F(s)=\tau_1+\frac{\tau_2}{s}+\frac{\tau_3}{s^2}
 \end{align}
-$$
-噪声带宽为<br />
-$$
+$$</p>
+<p>噪声带宽为</p>
+<p>$$
 \begin{align}
 B_n=\frac{k\tau_1}{4}+\frac{k\tau^2_2}{4(k\tau_1 \tau_2-\tau_3)}
 \end{align}
-$$
-3 阶环可以无偏地跟踪频率斜升输入信号, 所以比较适合高动态场合下的跟踪环路设计<br />
-3 阶环存在稳定性问题，1、2 阶环无条件稳定，3 阶环满足如下条件时稳定<br />
-$$
+$$</p>
+<p>3 阶环可以无偏地跟踪频率斜升输入信号, 所以比较适合高动态场合下的跟踪环路设计
+3 阶环存在稳定性问题，1、2 阶环无条件稳定，3 阶环满足如下条件时稳定</p>
+<p>$$
 \begin{align}
 k\tau_1&gt;0,k\tau_2&gt;0,k\tau_3&gt;0,\text{ 且 }k\tau_1\cdot k\tau_2&gt;k\tau_3
 \end{align}
 $$</p>
-<p>不同阶数的环路滤波器的实现框图如下<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-01/260117173212682.png" srcset="/img/banner.png" lazyload alt="260117173212682.png|550" />
-实际的接收机跟踪环路中，NCO 是通过数字逻辑实现的，所以可以将压控增益设置为 1，将 k 折算到其他系数中<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-01/260117173755737.png" srcset="/img/banner.png" lazyload alt="260117173755737.png" />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-01/1768642697177.png" srcset="/img/banner.png" lazyload alt="1768642697177.png" /></p>
+<p>不同阶数的环路滤波器的实现框图如下
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-01/260117173212682.png" srcset="/img/banner.png" lazyload alt="260117173212682.png|550" /></p>
+<p>实际的接收机跟踪环路中，NCO 是通过数字逻辑实现的，所以可以将压控增益设置为 1，将 k 折算到其他系数中
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-01/260117173755737.png" srcset="/img/banner.png" lazyload alt="260117173755737.png" /></p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-01/1768642697177.png" srcset="/img/banner.png" lazyload alt="1768642697177.png" /></p>
 
                 
               </div>

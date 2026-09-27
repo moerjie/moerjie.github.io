@@ -21,28 +21,25 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
   
-    <meta name="description" content="1 基本原理 级联积分梳状滤波器（Cascade Intergrator Comb）是多速率信号处理中一种十分高效的数字滤波器。CIC滤波器具有低通滤波器的特性，同时具有以下优势：  滤波器系数全为1，设计时不需要存储滤波器系数，节省存储单元，同时使得滤波时只需要加法器和累加器，不需要乘法器 结构规则，可灵活设置插值因子而不影响整体结构  1.1 积分器 积分器结构为  时域上可表示为 $$ y_">
+    <meta name="description" content="1 PWS概览 5G 公共预警系统（Public Warning System）是 3GPP 为移动通信系统定义的一种公共服务系统，旨在利用 5G 的低延迟、高可靠性和大容量特性，在自然灾害或公共安全事件等紧急条件下，向公众快速广泛的传播紧急警报和关键信息。 1.1 PWS 的预警类型和承载信息 5G 网络通过专用的系统信息块（SIB）承载不同的公共预警消息：  SIB6（ETWS 主要通知）：承">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多速率信号处理-CIC滤波器">
-<meta property="og:url" content="https://moerjie.github.io/2026/04/29/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-CIC%E6%BB%A4%E6%B3%A2%E5%99%A8/index.html">
+<meta property="og:title" content="5G相关知识学习记录">
+<meta property="og:url" content="https://moerjie.github.io/2026/08/12/5G%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="1 基本原理 级联积分梳状滤波器（Cascade Intergrator Comb）是多速率信号处理中一种十分高效的数字滤波器。CIC滤波器具有低通滤波器的特性，同时具有以下优势：  滤波器系数全为1，设计时不需要存储滤波器系数，节省存储单元，同时使得滤波时只需要加法器和累加器，不需要乘法器 结构规则，可灵活设置插值因子而不影响整体结构  1.1 积分器 积分器结构为  时域上可表示为 $$ y_">
+<meta property="og:description" content="1 PWS概览 5G 公共预警系统（Public Warning System）是 3GPP 为移动通信系统定义的一种公共服务系统，旨在利用 5G 的低延迟、高可靠性和大容量特性，在自然灾害或公共安全事件等紧急条件下，向公众快速广泛的传播紧急警报和关键信息。 1.1 PWS 的预警类型和承载信息 5G 网络通过专用的系统信息块（SIB）承载不同的公共预警消息：  SIB6（ETWS 主要通知）：承">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409052106726.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1725542139077.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1725542829180.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1725542752856.png">
-<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1725886131150.png">
-<meta property="article:published_time" content="2026-04-29T08:14:32.000Z">
-<meta property="article:modified_time" content="2026-04-29T08:14:32.000Z">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20260812155906939.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-08/260813141938648.png">
+<meta property="article:published_time" content="2026-08-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-14T06:15:46.377Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="数字通信">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409052106726.png">
+<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20260812155906939.png">
   
   
   
-  <title>多速率信号处理-CIC滤波器 - Sawen_Blog</title>
+  <title>5G相关知识学习记录 - Sawen_Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -266,7 +263,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="多速率信号处理-CIC滤波器"></span>
+            <span id="subtitle" data-typed-text="5G相关知识学习记录"></span>
           
         </div>
 
@@ -282,8 +279,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-04-29 16:14" pubdate>
-           2026 年 04 月 29 日 , 下午 04:14 , 星期三
+        <time datetime="2026-08-12 00:00" pubdate>
+           2026 年 08 月 12 日 , 凌晨 12:00 , 星期三
         </time>
       </span>
     
@@ -295,7 +292,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.3k 字
+          1.9k 字
         
       </span>
     
@@ -307,7 +304,7 @@
         
         
           <!-- compatible with older versions-->
-          11 分钟
+          16 分钟
         
       </span>
     
@@ -353,124 +350,387 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">多速率信号处理-CIC滤波器</h1>
+            <h1 id="seo-header">5G相关知识学习记录</h1>
             
             
               <div class="markdown-body">
                 
-                <h1>1 基本原理</h1>
-<p>级联积分梳状滤波器（Cascade Intergrator Comb）是多速率信号处理中一种十分高效的数字滤波器。CIC滤波器具有低通滤波器的特性，同时具有以下优势：</p>
+                <h1>1 PWS概览</h1>
+<p>5G 公共预警系统（Public Warning System）是 3GPP 为移动通信系统定义的一种公共服务系统，旨在利用 5G 的低延迟、高可靠性和大容量特性，在自然灾害或公共安全事件等紧急条件下，向公众快速广泛的传播紧急警报和关键信息。</p>
+<h2 id="1-1-PWS-的预警类型和承载信息">1.1 PWS 的预警类型和承载信息</h2>
+<p>5G 网络通过专用的系统信息块（SIB）承载不同的公共预警消息：</p>
+<ol>
+<li><strong>SIB6</strong>（ETWS 主要通知）：承载地震和海啸预警系统（ETWS）的主要通知，仅包含简单的灾难模式信息，如“地震”、“海啸”，数据量极小以确保能以最快的速度传输；</li>
+<li><strong>SIB7</strong>（ETWS 辅助通知）：承载 ETWS 的辅助通知，包含详细的信息，如震中、地震强度等具体灾情信息；</li>
+<li><strong>SIB8</strong>（CMAS 警告通知）：承载商业移动警报系统（CMAS）的警报。CMAS 支持更广泛的紧急事件类型，通常分为三类：<strong>总统或区域权力机构发布的警报</strong>、<strong>涉及生命安全迫在眉睫的威胁警报</strong>（极端/严重威胁）、以及琥珀色警报（儿童绑架紧急情况）等。
+3GPP 还定义了其他区域的 PWS 子系统，利用与 CMAS 相同的底层接入机制进行工作。</li>
+</ol>
+<h2 id="1-2-PWS-网络架构和核心组件">1.2 PWS 网络架构和核心组件</h2>
+<p>5G PWS 引入了基于服务的架构（SBA），大幅提升预警消息的传递效率。系统核心组件如下：</p>
+<ol>
+<li><strong>CBE（小区广播实体）</strong>：负责预警消息的格式化，包括将长消息拆分成多个页面。属于第三方网元（如气象局、地震局）；</li>
+<li><strong>CBCF（小区广播中心功能）</strong>：位于 5G 核心网，负责管理 CBS 信息，包括分配序列号、确定广播的小区集合、设定广播的开始与停止时间、分配紧急指示等，通过基于服务的接口与 AMF 进行通信；</li>
+<li><strong>AMF（接入和移动性管理功能）</strong>：作为 CBCF 与无线接入网（NG-RAN）之间的桥梁，负责处理地域定向广播请求，并根据跟踪区域码（TA）将消息下发至目标基站；</li>
+<li><strong>NEF（网络开发功能）</strong>：对外提供标准化 API，允许第三方权威机构直接触发预警请求；</li>
+<li><strong>NG-RAN（5G 基站）</strong>：调度无线资源，广播 SIB6、7、8 消息，并通过寻呼功能通知终端接受预警信息。</li>
+</ol>
+<h2 id="1-3-端到端消息传递机制">1.3 端到端消息传递机制</h2>
+<p>一个完整的 5G PWS 预警流程通常在 ms-s 级完成，具体步骤如下：</p>
+<ol>
+<li><strong>触发与生成</strong>：权威机构监测到灾害，通过 NEF 或直接向 CBCF 发送预警请求；</li>
+<li><strong>核心网处理</strong>：CBCF 将预警内容进行封装，通过 N50 接口想目标区域的 AMF 发送“Write-Repalce Warning Request”（写入-替换警告请求）；</li>
+<li><strong>无线侧广播</strong>：AMF 通过 N2 接口将请求转发给目标 gNodeB，gNodeB 接收到请求后，立即调度 SIB 资源，更新 SIB1 中的调度信息，并高频词广播 SIB6、7、8 预警内容；</li>
+<li><strong>终端接收与告警</strong>：处于空闲（RRC_IDLE）、非激活（RRC_INACTIVE）或连接（RRC_CONNECTED）状态的 UE 在寻呼时机监听 SIB1。当发现紧急指示标志置位时，立即接收 SIB6/7/8，验证通过后触发本地声、光、震动等多模态警报。</li>
+</ol>
+<h2 id="1-4-优势">1.4 优势</h2>
 <ul>
-<li>滤波器系数全为1，设计时不需要存储滤波器系数，节省存储单元，同时使得滤波时只需要加法器和累加器，不需要乘法器</li>
-<li>结构规则，可灵活设置插值因子而不影响整体结构</li>
+<li><strong>极速响应</strong>：5G 超低时延特性使地震预警从震中到手机仅需 0.3 秒，比 4G CBS 快数倍。ETWS 主通知要求在 4 秒内送达。</li>
+<li><strong>精准地理定向</strong>：支持“地理定位”功能，允许系统向特定地理区域发送警报，确保只有受影响地区的个人收到信息，避免全城恐慌。</li>
+<li><strong>强制推模式</strong>：采用小区广播技术，无需接收确认。即使终端处于空闲状态，甚至在无 SIM 卡或欠费状态下也能被强制唤醒接收预警，到达率极高。</li>
+<li><strong>免鉴权接入</strong>：5G 网络对紧急情况下的用户接入进行了免鉴权和认证的特殊规定，开机的终端均可接收预警消息。</li>
+<li><strong>多模态提醒</strong>：支持文字、特殊铃声（如 ETWS 专属警报音）、震动等特殊指示，且不允许用户转发或复制粘贴预警内容.</li>
 </ul>
-<h2 id="1-1-积分器">1.1 积分器</h2>
-<p>积分器结构为</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202409052106726.png" srcset="/img/banner.png" lazyload alt="2024after4202409052106726.png" /></p>
-<p>时域上可表示为</p>
-<p>$$
-y_1(n)=x(n)+y_1(n-1)
-$$</p>
-<p>频域上可表示为</p>
-<p>$$
-H_1(\mathrm{e}^{\mathrm{j}w})=\frac{1}{1-\mathrm{e}^{-\mathrm{j}w}}
-$$</p>
-<p>可得积分器的幅度谱为</p>
-<p>$$
-\left|H_1(\mathrm{e}^{jw})\right|=\left|\frac{1}{1-\mathrm{e}^{-jw}}\right|=\left|\frac{1}{\mathrm{e}^{-jw/2}(\mathrm{e}^{jw/2}-\mathrm{e}^{-jw/2})}\right|=\left|\frac{1}{2\sin\left(\frac{w}{2}\right)}\right|
-$$</p>
-<p>从公式可以得出积分器只有极点$(\omega = 2k \pi，k为整数)$而无零点，且对直流信号具有无限大的增益。</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1725542139077.png" srcset="/img/banner.png" lazyload alt="1725542139077.png" /></p>
-<h2 id="1-2-梳状滤波器">1.2 梳状滤波器</h2>
-<p>时域上可表示为</p>
-<p>$$
-y_C(n)=x(n)-x(n-RM)
-$$</p>
-<p>其中</p>
+<h1>2 5G 网络架构</h1>
+<p>5G 系统包括核心网、接入网和终端部分。核心网和接入网之间需要进行用户平面和控制平面的接口连接；接入网和终端间通过无线空口协议进行连接。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20260812155906939.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<h2 id="2-1-UE">2.1 UE</h2>
+<p>5G 网络的终端设备，通过 Uu 接口与基站通信。</p>
+<p>Uu 是 5G NR 的无线接口，负责：</p>
+<ol>
+<li>无线信号传输</li>
+<li>调制解调</li>
+<li>MIMO 空间复用</li>
+<li>OFDM 传输</li>
+<li>上下行数据传输</li>
+</ol>
+<h2 id="2-2-RAN（Radio-Access-Network，无线接入网）">2.2 RAN（Radio Access Network，无线接入网）</h2>
+<p>RAN（Radio Access Network）负责无线信号接入和空口资源管理，核心设备为 <strong>gNB（5G 基站）</strong>。</p>
+<p>5G 采用 <strong>CU/DU 分离架构</strong>：</p>
 <ul>
-<li>R 是插值因子或抽取因子</li>
-<li>M 是微分时延</li>
+<li><strong>DU（Distributed Unit）</strong>：负责低层实时处理，如物理层、MAC 层等，通常靠近基站部署。</li>
+<li><strong>CU（Centralized Unit）</strong>：负责高层协议处理，如 RRC、PDCP 等，可集中部署。
+主要接口：</li>
+<li><strong>Uu 接口</strong>：UE 与 gNB 之间的无线接口。</li>
+<li><strong>Xn 接口</strong>：不同 gNB 之间的互连接口，用于切换和协同。</li>
+<li><strong>F1 接口</strong>：CU 与 DU 之间的接口。</li>
+<li><strong>NG 接口</strong>：RAN 与 5GC 之间的接口。</li>
 </ul>
-<p>频域上可表示为</p>
-<p>$$
-H_\mathrm{C}(z)=1-z^{-RM}
-$$</p>
-<p>幅度谱为</p>
-<p>$$
-\left|H_{\mathrm{C}}(\mathrm{e}^{\mathrm{j}w})\right|=\left|1-\mathrm{e}^{-\mathrm{j}RMw}\right|=\left|\mathrm{e}^{-\mathrm{j}RMw/2}(\mathrm{e}^{\mathrm{j}RMw/2}-\mathrm{e}^{-\mathrm{j}RMw/2})\right|=2\left|\sin\left(\frac{RM}{2}w\right)\right|
-$$</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1725542829180.png" srcset="/img/banner.png" lazyload alt="1725542829180.png" /></p>
-<p>可知梳状滤波器只有零点，没有极点</p>
-<p>若R=8、M=1，则结构为</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1725542752856.png" srcset="/img/banner.png" lazyload alt="1725542752856.png" /></p>
-<p>由此可知单级CIC滤波器的幅度谱为</p>
-<p>$$
-\left|H_{\mathrm{CIC}}(\mathrm{e}^{\mathrm{j}w})\right|=\left|H_{1}(\mathrm{e}^{\mathrm{j}w})\right|\cdot\left|H_{\mathrm{C}}(\mathrm{e}^{\mathrm{j}w})\right|=\left|\frac{\sin\left(\frac{RM}{2}w\right)}{\sin\left(\frac{w}{2}\right)}\right|
-$$</p>
-<p>当$\mathrm{RM\omega}/2=\mathrm{k}:\pi $时，即$w=\frac{2k\pi}{RM}\quad(k=\pm1,\pm2,\cdots,\pm(RM-1))$时可以确定零点</p>
-<p>当$\omega /2 =k\pi，即\omega = 2k\pi$时，可得此时的幅频响应为</p>
-<p>$$
-\left|H_{\mathrm{CIC}}(\mathrm{e}^{\mathrm{j}\omega})\right|_{\omega=2k\pi}=RM
-$$</p>
-<p>从而实现了零极点相消</p>
-<p>单级CIC滤波器在$\omega =0时 \left| H_{CIC}(e^{j\omega}) \right|=RM$，所以主瓣区间为$\begin{bmatrix}0,\frac{2\pi}{RM}\end{bmatrix}$，其余都为旁瓣，第一旁瓣电平为</p>
-<p>$$
-A_1=\left|H_{\mathrm{CIC}}(\mathrm{e}^{\mathrm{j}w})\right|_{w=\frac{3\pi}{RM}}=\left|\frac{\sin\left(\frac{RM}{2}\times\frac{3\pi}{RM}\right)}{\sin\left(\frac{1}{2}\times\frac{3\pi}{RM}\right)}\right|=\left|\frac{1}{\sin\left(\frac{3\pi}{2RM}\right)}\right|
-$$</p>
-<p>因此旁瓣抑制为</p>
-<p>$$
-A=\left|RM\sin\left(\frac{3\pi}{2RM}\right)\right|
-$$</p>
-<p>当$\mathrm{R}\rightarrow\infty $时，旁瓣抑制为</p>
-<p>$$
-A=20lg(\lim_{R\to\infty}A)=20lg(\frac{3\pi}{2})=13.46dB
-$$</p>
-<p>单级CIC滤波器的阻带衰减为</p>
-<p>$$
-\alpha =-20lgb
-$$</p>
-<p>带内容差（通带波纹）为</p>
-<p>$$
-\delta = 20lg\left|\frac{b\pi}{\sin(b\pi)}\right|
-$$</p>
-<p>其中b为带宽比例因子</p>
-<p>$$
-b=\frac{B}{f_s/(RM)}
-$$</p>
-<p>单级CIC滤波器的旁瓣电平较高，可通过多级CIC级联改善。</p>
-<p>$$
-\left|H(\mathrm{e}^{\mathrm{j}w})\right|=\left|\frac{\sin\left(\frac{RM}{2}w\right)}{\sin\left(\frac{w}{2}\right)}\right|^N
-$$</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1725886131150.png" srcset="/img/banner.png" lazyload alt="1725886131150.png" /></p>
-<p>对于N级CIC级联滤波器，旁瓣抑制、阻带衰减、带内容差可表示为</p>
-<p>$$
-\begin{cases}A_\mathrm{N}=13.46N:\mathrm{dB}\\alpha_\mathrm{N}=-20N\lg b\\delta_\mathrm{N}=20N\lg\left|\frac{b\pi}{\sin(b\pi)}\right|\end{cases}
-$$</p>
-<p>增大CIC滤波器阶数的话，可以增加旁瓣抑制和阻带衰减，但是会导致带内容差变大。因此考虑到通带性能，通常选择$N\leq5$。在N不变的情况下，带宽比例因子b越小，CIC滤波器的通带和阻带特性也越好，因此CIC一般位于插值系统的最后一级（输入速率最高）</p>
-<h1>2 位增长问题</h1>
-<p>由多级滤波器的幅频响应可知，当$\omega \rightarrow 0$时</p>
-<p>$$
-\lim\limits_{w\to0}\Bigl|H(\mathrm{e}^{\mathrm{j}w})\Bigr|=\lim\limits_{w\to0}\Biggl|\frac{\frac{RM}{2}\cdot\cos(RMw/2)}{\frac{1}{2}\cdot\cos(w/2)}\Biggr|^N=(RM)^N
-$$</p>
-<p>由此可知多级CIC滤波器可以引起的幅度增益的最大值为</p>
-<p>$$
-G_{max}=(RM)^N
-$$</p>
-<p>假设输入的数据$x(n)$为有符号数，位宽为$B_{in}$，取值范围为$[-2^{B_{in}-1},2^{B_{in}-1}-1]$，则输出$y(n)$的最大值为</p>
-<p>$$
-y_{max}=-2^{B_{\mathrm{m}}-1}\cdot\left(RM\right)^N
-$$</p>
-<p>因此输出的最大位宽为</p>
-<p>$$
-B_{\mathrm{out}}=\text{ceil}[\log_2|y_{\mathrm{max}}|]+1=N\cdot\text{ceil}[\log_2(RM)]+B_{\mathrm{in}}
-$$</p>
-<p>在FPGA设计时，要合理地设置输出信号的位宽，防止数据的溢出，为了节省资源，也可以在每一级适当的进行截位</p>
-<h1>3 Matlab设计CIC补偿滤波器</h1>
-<p>由于CIC滤波器通带内不平坦，因此需要在前级加入CIC补偿滤波器。Matlab中的对应函数为**fdesign.ciccomp，**语法如下</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs matlab">d = fdesign.ciccomp<br>d = fdesign.ciccomp(d,nsections,rcic)<br>d = fdesign.ciccomp(...,spec)<br>h = fdesign.ciccomp(...,spec,specvalue1,specvalue2,...)<br></code></pre></td></tr></table></figure>
-<p>其中梳状滤波器的延时长度为d，滤波器阶数为nsections，CIC速率转化因子为rcic。</p>
-<h2 id="3-1-example">3.1 example</h2>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs matlab">h = fdesign.ciccomp;<br>set(h,NumberOfSections=<span class="hljs-number">5</span>,DifferentialDelay=<span class="hljs-number">1</span>);<br>cicComp = design(h,<span class="hljs-string">&#x27;equiripple&#x27;</span>,SystemObject=<span class="hljs-built_in">true</span>);<br>filterAnalyzer(cicComp)<br></code></pre></td></tr></table></figure>
+<h2 id="2-3-5GC（5G-Core-Network）">2.3 5GC（5G Core Network）</h2>
+<p>5GC（5G Core Network）采用 <strong>服务化架构（SBA，Service Based Architecture）</strong>，并实现控制面与用户面分离（CUPS）。</p>
+<h3 id="2-3-1-控制面功能">2.3.1 控制面功能</h3>
+<p>负责用户注册、认证、移动管理和会话控制：</p>
+<ul>
+<li><strong>AMF</strong>：接入与移动性管理，负责 UE 注册和移动管理。</li>
+<li><strong>SMF</strong>：会话管理，负责 PDU 会话建立和 UPF 选择。</li>
+<li><strong>UDM</strong>：用户数据管理，保存用户签约信息。</li>
+<li><strong>AUSF</strong>：用户认证。</li>
+<li><strong>PCF</strong>：策略控制和 QoS 管理。</li>
+<li><strong>NEF</strong>：网络能力开放。</li>
+</ul>
+<h3 id="2-3-2-用户面功能">2.3.2 用户面功能</h3>
+<ul>
+<li><strong>UPF（User Plane Function）</strong>：负责用户数据转发，是 5G 网络连接外部数据网络的核心节点。</li>
+</ul>
+<h1>3 5G 频谱和信道安排</h1>
+<p>频谱是无线通信最重要的资源，其有两个重要特征，即频率的高低和可用带宽的大小。频率高低与覆盖范围密切相关，频率越低覆盖距离越远。可用带宽与容量密切相关，基站/UE 最大发射带宽通常为中心频率的 5%左右，因此频率越高，可用带宽越大。</p>
+<h2 id="3-1-工作频段">3.1 工作频段</h2>
+<p>5G NR 工作频段 FR1 见下表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">NR 工作频段</th>
+<th style="text-align:center">上行工作频段（BS 接收 / UE 发射）<br>F<sub>UL_low</sub> ～ F<sub>UL_high</sub></th>
+<th style="text-align:center">下行工作频段（BS 发射 / UE 接收）<br>F<sub>DL_low</sub> ～ F<sub>DL_high</sub></th>
+<th style="text-align:center">双工模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">n1</td>
+<td style="text-align:center">1920 MHz ～ 1980 MHz</td>
+<td style="text-align:center">2110 MHz ～ 2170 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n2</td>
+<td style="text-align:center">1850 MHz ～ 1910 MHz</td>
+<td style="text-align:center">1930 MHz ～ 1990 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n3</td>
+<td style="text-align:center">1710 MHz ～ 1785 MHz</td>
+<td style="text-align:center">1805 MHz ～ 1880 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n5</td>
+<td style="text-align:center">824 MHz ～ 849 MHz</td>
+<td style="text-align:center">869 MHz ～ 894 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n7</td>
+<td style="text-align:center">2500 MHz ～ 2570 MHz</td>
+<td style="text-align:center">2620 MHz ～ 2690 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n8</td>
+<td style="text-align:center">880 MHz ～ 915 MHz</td>
+<td style="text-align:center">925 MHz ～ 960 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n12</td>
+<td style="text-align:center">699 MHz ～ 716 MHz</td>
+<td style="text-align:center">729 MHz ～ 746 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n20</td>
+<td style="text-align:center">832 MHz ～ 862 MHz</td>
+<td style="text-align:center">791 MHz ～ 821 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n25</td>
+<td style="text-align:center">1850 MHz ～ 1915 MHz</td>
+<td style="text-align:center">1930 MHz ～ 1995 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n28</td>
+<td style="text-align:center">703 MHz ～ 748 MHz</td>
+<td style="text-align:center">758 MHz ～ 803 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n34</td>
+<td style="text-align:center">2010 MHz ～ 2025 MHz</td>
+<td style="text-align:center">2010 MHz ～ 2025 MHz</td>
+<td style="text-align:center">TDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n38</td>
+<td style="text-align:center">2570 MHz ～ 2620 MHz</td>
+<td style="text-align:center">2570 MHz ～ 2620 MHz</td>
+<td style="text-align:center">TDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n39</td>
+<td style="text-align:center">1880 MHz ～ 1920 MHz</td>
+<td style="text-align:center">1880 MHz ～ 1920 MHz</td>
+<td style="text-align:center">TDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n40</td>
+<td style="text-align:center">2300 MHz ～ 2400 MHz</td>
+<td style="text-align:center">2300 MHz ～ 2400 MHz</td>
+<td style="text-align:center">TDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n41</td>
+<td style="text-align:center">2496 MHz ～ 2690 MHz</td>
+<td style="text-align:center">2496 MHz ～ 2690 MHz</td>
+<td style="text-align:center">TDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n50</td>
+<td style="text-align:center">1432 MHz ～ 1517 MHz</td>
+<td style="text-align:center">1432 MHz ～ 1517 MHz</td>
+<td style="text-align:center">TDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n51</td>
+<td style="text-align:center">1427 MHz ～ 1432 MHz</td>
+<td style="text-align:center">1427 MHz ～ 1432 MHz</td>
+<td style="text-align:center">TDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n65</td>
+<td style="text-align:center">1920 MHz ～ 2010 MHz</td>
+<td style="text-align:center">2110 MHz ～ 2200 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n66</td>
+<td style="text-align:center">1710 MHz ～ 1780 MHz</td>
+<td style="text-align:center">2110 MHz ～ 2200 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n70</td>
+<td style="text-align:center">1695 MHz ～ 1710 MHz</td>
+<td style="text-align:center">1995 MHz ～ 2020 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n71</td>
+<td style="text-align:center">663 MHz ～ 698 MHz</td>
+<td style="text-align:center">617 MHz ～ 652 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n74</td>
+<td style="text-align:center">1427 MHz ～ 1470 MHz</td>
+<td style="text-align:center">1475 MHz ～ 1518 MHz</td>
+<td style="text-align:center">FDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n75</td>
+<td style="text-align:center">N/A</td>
+<td style="text-align:center">1432 MHz ～ 1517 MHz</td>
+<td style="text-align:center">SDL</td>
+</tr>
+<tr>
+<td style="text-align:center">n76</td>
+<td style="text-align:center">N/A</td>
+<td style="text-align:center">1427 MHz ～ 1432 MHz</td>
+<td style="text-align:center">SDL</td>
+</tr>
+<tr>
+<td style="text-align:center">n77</td>
+<td style="text-align:center">3300 MHz ～ 4200 MHz</td>
+<td style="text-align:center">3300 MHz ～ 4200 MHz</td>
+<td style="text-align:center">TDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n78</td>
+<td style="text-align:center">3300 MHz ～ 3800 MHz</td>
+<td style="text-align:center">3300 MHz ～ 3800 MHz</td>
+<td style="text-align:center">TDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n79</td>
+<td style="text-align:center">4400 MHz ～ 5000 MHz</td>
+<td style="text-align:center">4400 MHz ～ 5000 MHz</td>
+<td style="text-align:center">TDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n80</td>
+<td style="text-align:center">1710 MHz ～ 1785 MHz</td>
+<td style="text-align:center">N/A</td>
+<td style="text-align:center">SUL</td>
+</tr>
+<tr>
+<td style="text-align:center">n81</td>
+<td style="text-align:center">880 MHz ～ 915 MHz</td>
+<td style="text-align:center">N/A</td>
+<td style="text-align:center">SUL</td>
+</tr>
+<tr>
+<td style="text-align:center">n82</td>
+<td style="text-align:center">832 MHz ～ 862 MHz</td>
+<td style="text-align:center">N/A</td>
+<td style="text-align:center">SUL</td>
+</tr>
+<tr>
+<td style="text-align:center">n83</td>
+<td style="text-align:center">703 MHz ～ 748 MHz</td>
+<td style="text-align:center">N/A</td>
+<td style="text-align:center">SUL</td>
+</tr>
+<tr>
+<td style="text-align:center">n84</td>
+<td style="text-align:center">1920 MHz ～ 1980 MHz</td>
+<td style="text-align:center">N/A</td>
+<td style="text-align:center">SUL</td>
+</tr>
+<tr>
+<td style="text-align:center">n86</td>
+<td style="text-align:center">1710 MHz ～ 1780 MHz</td>
+<td style="text-align:center">N/A</td>
+<td style="text-align:center">SUL</td>
+</tr>
+</tbody>
+</table>
+<p>FR2 工作频段如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">NR 工作频段</th>
+<th style="text-align:center">上行和下行的工作频段（BS 接收/UE 发射）<br>F<sub>UL_low</sub> ～ F<sub>UL_high</sub></th>
+<th style="text-align:center">双工模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">n257</td>
+<td style="text-align:center">26500 MHz ～ 29500 MHz</td>
+<td style="text-align:center">TDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n258</td>
+<td style="text-align:center">24250 MHz ～ 27500 MHz</td>
+<td style="text-align:center">TDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n260</td>
+<td style="text-align:center">37000 MHz ～ 40000 MHz</td>
+<td style="text-align:center">TDD</td>
+</tr>
+<tr>
+<td style="text-align:center">n261</td>
+<td style="text-align:center">27500 MHz ～ 28350 MHz</td>
+<td style="text-align:center">TDD</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-2-信道带宽">3.2 信道带宽</h2>
+<p>NR 信道带宽、传输带宽配置、保护带的定义如图所示：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-08/260813141938648.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<h1>4 名词记录</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">缩写</th>
+<th>全称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PSS</td>
+<td>主同步信号(Primary Synchronization Signal)</td>
+</tr>
+<tr>
+<td style="text-align:center">SSS</td>
+<td>辅同步信号(Secondary Synchronization Signal)</td>
+</tr>
+<tr>
+<td style="text-align:center">SCS</td>
+<td>子载波间隔 （Sub-Carrier Spacing）</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">PBCH</td>
+<td>物理广播信道（Physical Broadcast Channel）</td>
+</tr>
+<tr>
+<td style="text-align:center">PDCCH</td>
+<td>物理下行控制信道（Physical Downlink Control Channel）</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">AMF</td>
+<td>接入和移动性管理功能（Access and Mobility Management Function）</td>
+</tr>
+<tr>
+<td style="text-align:center">UPF</td>
+<td>用户面功能（User Plane Function）</td>
+</tr>
+<tr>
+<td style="text-align:center">SMF</td>
+<td>会话管理功能（Session Management Function）</td>
+</tr>
+</tbody>
+</table>
 
                 
               </div>
@@ -516,8 +776,8 @@ $$</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>多速率信号处理-CIC滤波器</div>
-      <div>https://moerjie.github.io/2026/04/29/多速率信号处理-CIC滤波器/</div>
+      <div>5G相关知识学习记录</div>
+      <div>https://moerjie.github.io/2026/08/12/5G相关知识学习记录/</div>
     </div>
     <div class="license-meta">
       
@@ -529,7 +789,7 @@ $$</p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年4月29日</div>
+          <div>2026年8月12日</div>
         </div>
       
       
@@ -561,9 +821,9 @@ $$</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/04/30/GPShdl%20Simulink%E5%B7%A5%E7%A8%8B%E8%BD%AC%E8%87%B3Vivado%E5%B7%A5%E7%A8%8B/" title="GPShdl Simulink工程转至Vivado工程">
+                      <a href="/2026/08/14/LTE%EF%BC%9A%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" title="LTE：相关知识">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">GPShdl Simulink工程转至Vivado工程</span>
+                        <span class="hidden-mobile">LTE：相关知识</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -571,8 +831,8 @@ $$</p>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/04/29/Vivado%E5%AF%B9%E5%BA%94%E4%B8%8D%E5%90%8C%E7%AC%AC%E4%B8%89%E6%96%B9%E8%BD%AF%E4%BB%B6/" title="Vivado对应不同第三方软件">
-                        <span class="hidden-mobile">Vivado对应不同第三方软件</span>
+                      <a href="/2026/08/04/FreeRtos%E5%85%A5%E9%97%A8/" title="FreeRtos入门">
+                        <span class="hidden-mobile">FreeRtos入门</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

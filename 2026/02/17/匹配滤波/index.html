@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260220160908222.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260220162321065.png">
 <meta property="article:published_time" content="2026-02-16T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-17T14:13:56.000Z">
+<meta property="article:modified_time" content="2026-08-25T13:45:31.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="数字通信">
 <meta name="twitter:card" content="summary_large_image">
@@ -362,15 +362,15 @@
 <li>通过限制有效带宽来使得信号适合在信道中传输</li>
 <li>增加接收端的 SNR</li>
 <li>减少多径和非线性造成的码间串扰
-通过对符号进行滤波，可减少尖锐的相位和频率变换，获得一个频谱效率更高的信号，使用发射滤波器滤波前后的频谱图如下：<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260217181342933.png" srcset="/img/banner.png" lazyload alt="260217181342933.png" /><br />
-可以看到滤波后信号的有效带宽减小了，主要是在发射器上进行了升采样和插值。因为时域和频域成反比，所以信号带宽会减少。<br />
-实际使用时，匹配滤波器的位置有两种：<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260220155858344.png" srcset="/img/banner.png" lazyload alt="260220155858344.png" /><br />
-两种方式都可以对信号进行奈奎斯特排列，减少或消除 ISI。<br />
-不同滚降系数对应的脉冲响应如下：<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260220160908222.png" srcset="/img/banner.png" lazyload alt="260220160908222.png" /><br />
-可以看到在 Ts 间隔下根升余弦滚降滤波器脉冲响应不为 0，如果两个 SRRC 滤波器响应组合的话就为 0 了。<br />
+通过对符号进行滤波，可减少尖锐的相位和频率变换，获得一个频谱效率更高的信号，使用发射滤波器滤波前后的频谱图如下：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260217181342933.png" srcset="/img/banner.png" lazyload alt="260217181342933.png" />
+可以看到滤波后信号的有效带宽减小了，主要是在发射器上进行了升采样和插值。因为时域和频域成反比，所以信号带宽会减少。
+实际使用时，匹配滤波器的位置有两种：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260220155858344.png" srcset="/img/banner.png" lazyload alt="260220155858344.png" />
+两种方式都可以对信号进行奈奎斯特排列，减少或消除 ISI。
+不同滚降系数对应的脉冲响应如下：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260220160908222.png" srcset="/img/banner.png" lazyload alt="260220160908222.png" />
+可以看到在 Ts 间隔下根升余弦滚降滤波器脉冲响应不为 0，如果两个 SRRC 滤波器响应组合的话就为 0 了。
 匹配滤波器可使 SNR 最大化，因为成型滤波后的信号与成型滤波器相关，而不是噪声，可在接收脉冲的中心产生相关峰，在下图 b 中，可以看到即使在较高的噪声下，信号仍然紧密与原始发送序列相关，然而在图 c 中，没有时间偏移的情况话会发生解调错误。</li>
 </ol>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/260220162321065.png" srcset="/img/banner.png" lazyload alt="" /></p>
@@ -381,27 +381,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
     <div class="post-meta">

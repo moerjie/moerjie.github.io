@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501212020215.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501212021357.png">
 <meta property="article:published_time" content="2025-01-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-17T14:13:54.000Z">
+<meta property="article:modified_time" content="2026-07-04T05:47:28.034Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta name="twitter:card" content="summary_large_image">
@@ -355,11 +355,11 @@
             
               <div class="markdown-body">
                 
-                <p>区别是 <code>if else</code> 的逻辑判断有优先级，最内层的 <code>if</code> 的优先级最高，<code>case</code> 的逻辑判断是并列的。
-每个 <code>if else</code> 综合出来的电路是一个 2 选 1 选通器。当信号有明显优先级时使用该语句，但是 <code>if</code> 嵌套太多的话会导致路径延时过大，降低运行速度。所以在判定条件较少的时候使用。<code>if else</code> 综合出的电路面积较小。
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501212020215.png" srcset="/img/banner.png" lazyload alt="|395" />
-case语句适用于无明显优先级的逻辑判断，这些逻辑条件都处于同一个优先级且互斥，比如实现对速度要求较高的编解码；case结构电路速度较快，但占用面积较大，综合为 n 选 1 mux电路。
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501212021357.png" srcset="/img/banner.png" lazyload alt="|400" /></p>
+                <p>区别是 <code>if else</code> 的逻辑判断有优先级，最内层的 <code>if</code> 的优先级最高，<code>case</code> 的逻辑判断是并列的。</p>
+<p>每个 <code>if else</code> 综合出来的电路是一个 2 选 1 选通器。当信号有明显优先级时使用该语句，但是 <code>if</code> 嵌套太多的话会导致路径延时过大，降低运行速度。所以在判定条件较少的时候使用。<code>if else</code> 综合出的电路面积较小。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501212020215.png" srcset="/img/banner.png" lazyload alt="|395" /></p>
+<p>case语句适用于无明显优先级的逻辑判断，这些逻辑条件都处于同一个优先级且互斥，比如实现对速度要求较高的编解码；case结构电路速度较快，但占用面积较大，综合为 n 选 1 mux电路。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501212021357.png" srcset="/img/banner.png" lazyload alt="|400" /></p>
 
                 
               </div>

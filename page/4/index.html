@@ -288,15 +288,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" target="_self">
-          Quartus报错记录
+        <a href="/2025/02/01/FPGA%E5%BC%80%E5%8F%91%E6%97%B6%E5%BA%8F%E5%9B%BE%E7%BB%98%E5%88%B6/" target="_self">
+          FPGA开发时序图绘制
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/02/01/FPGA%E5%BC%80%E5%8F%91%E6%97%B6%E5%BA%8F%E5%9B%BE%E7%BB%98%E5%88%B6/" target="_self">
         <div>
-          1 Error (176310): Can't place multiple pins assigned to pin location Pin_F 16 (IOPAD_X 34_Y 18_N 21) 报错如下  可以看到 Pin_F 16 既被用于 DAC_DATA，又被用于 nCEO 引脚，因此才会报错不能将多个引脚赋到 Pin_F 16 上。 1.1 Solution  将nCEO 的 va
+          开始的时候画时序图都是拿 visio 硬连，但是那个线宽太难统一了，丑不拉几的，遂学习 waveform 语法使用代码来画时序图。 1 开始 Vscode 中安装 waveform render 或者在 GitHub 搜索 wavedrom 安装即可。由于 vscode 是我常用的编辑器，所以选择在 vscode 安装插件的方式来学习使用 waveform。 在 vscode 中创建一个 json
         </div>
       </a>
 
@@ -304,8 +304,193 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-12-28 00:00" pubdate>
-              2024-12-28
+            <time datetime="2025-02-01 00:00" pubdate>
+              2025-02-01
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/27/ZYNQ-PS%20GPIO%E4%B8%AD%E6%96%AD%E8%BF%87%E7%A8%8B/" target="_self">
+          ZYNQ-PS GPIO中断过程
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/27/ZYNQ-PS%20GPIO%E4%B8%AD%E6%96%AD%E8%BF%87%E7%A8%8B/" target="_self">
+        <div>
+          1 中断初始化设置过程  查找中断控制器配置信息并初始化中断控制器驱动（XScuGic_LookupConfig、XScuGic_CfgInitialize） 设置中断类型（XScuGic_SetPriorityTriggerType） 为中断设置中断处理函数（XScuGic_Connect） 使能中断 (XScuGic_Enable) 设置并使能中断异常（Xil_ExceptionInit、Xi
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-27 00:00" pubdate>
+              2025-01-27
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+              <a href="/tags/ZYNQ/">#ZYNQ</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/25/ZYNQ-AXI%20DMA+AXI-S%20FIFO%E5%9B%9E%E7%8E%AF%E5%AD%A6%E4%B9%A0/" target="_self">
+          AXI DMA+AXI-S FIFO回环学习
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/25/ZYNQ-AXI%20DMA+AXI-S%20FIFO%E5%9B%9E%E7%8E%AF%E5%AD%A6%E4%B9%A0/" target="_self">
+        <div>
+          1 DMA 简介 DMA 是现代计算机的特色之一，是硬件实现存储器与存储器、存储器与 I/O 设备之间直接进行高速数据传输的内存技术，它允许不同速率的设备进行沟通，而不需要依靠 CPU 的中断负载。 如果不使用 DMA，那么 CPU 需要从数据源把每一个片段的数据复制到寄存器中，这个过程会一直占用 CPU 的资源。当使用 DMA 时，CPU 向 DMA 发送一个存储传输请求，当 DMA 控制器收到
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-25 00:00" pubdate>
+              2025-01-25
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+              <a href="/tags/ZYNQ/">#ZYNQ</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/24/hexo%E9%83%A8%E7%BD%B2%E5%88%B0github%20page%E6%97%B6%EF%BC%8Chexo%20d%E5%90%8Epage%E9%87%8C%E9%9D%A2%E7%BB%91%E5%AE%9A%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D%E6%B6%88%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/" target="_self">
+          hexo部署到github page时，hexo d后page里面绑定的个人域名消失的问题
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/24/hexo%E9%83%A8%E7%BD%B2%E5%88%B0github%20page%E6%97%B6%EF%BC%8Chexo%20d%E5%90%8Epage%E9%87%8C%E9%9D%A2%E7%BB%91%E5%AE%9A%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D%E6%B6%88%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/" target="_self">
+        <div>
+          Hexo 部署博客到 GitHub page 后，可以在 setting 中的 page 中绑定自己的域名，但是我发现更新博客后绑定的域名消失，恢复原始的 githubio 的域名。 后面搜索发现需要在 repo 里面添加 CNAME 文件，内容为 page 里面绑定的域名：  但是这样的话每次 deploy 后 CNAME 文件会消失。 然后我将这个文件放到本地 hexo 文件夹内的 publi
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-24 00:00" pubdate>
+              2025-01-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9D%82%E7%B1%BB/" class="category-chain-item">杂类</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/bug/">#bug</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/21/Verilog%E4%B8%ADif%E8%AF%AD%E5%8F%A5%E5%92%8Ccase%E8%AF%AD%E5%8F%A5%E7%BB%BC%E5%90%88%E5%87%BA%E7%9A%84%E7%94%B5%E8%B7%AF%E5%8C%BA%E5%88%AB/" target="_self">
+          Verilog中if语句和case语句综合出的电路区别
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/21/Verilog%E4%B8%ADif%E8%AF%AD%E5%8F%A5%E5%92%8Ccase%E8%AF%AD%E5%8F%A5%E7%BB%BC%E5%90%88%E5%87%BA%E7%9A%84%E7%94%B5%E8%B7%AF%E5%8C%BA%E5%88%AB/" target="_self">
+        <div>
+          区别是 if else 的逻辑判断有优先级，最内层的 if 的优先级最高，case 的逻辑判断是并列的。 每个 if else 综合出来的电路是一个 2 选 1 选通器。当信号有明显优先级时使用该语句，但是 if 嵌套太多的话会导致路径延时过大，降低运行速度。所以在判定条件较少的时候使用。if else 综合出的电路面积较小。  case语句适用于无明显优先级的逻辑判断，这些逻辑条件都处于同一个优
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-21 00:00" pubdate>
+              2025-01-21
             </time>
           </div>
         
@@ -330,6 +515,235 @@
 </span>
 
           </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/20/ZYNQ-IP-AXI-GPIO/" target="_self">
+          ZYNQ-IP-AXI-GPIO
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/20/ZYNQ-IP-AXI-GPIO/" target="_self">
+        <div>
+          AXI GPIO 可以将 PS 端的一个 AXI 4-Lite 接口转化为 GPIO 接口，并且可以被配置为单端口或双端口，每个通道的位宽可以独立配置。 通过使能三态门可以将端口动态地配置为输入或输出。  AXIGPIO 是 ZYNQ PL 端的一个 IP 核，可以将 AXI-Lite Master 转为 GPIO，并且一个 AXI-Lite 接口可以通过 AXI interconnect 模块控
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-20 00:00" pubdate>
+              2025-01-20
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+              <a href="/tags/ZYNQ/">#ZYNQ</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/20/ZYNQ%E4%B8%AD%E7%9A%84IO/" target="_self">
+          ZYNQ中的GPIO
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/20/ZYNQ%E4%B8%AD%E7%9A%84IO/" target="_self">
+        <div>
+          GPIO 原理 GPIO 通过 MIO 提供 54 路接口，其中 16 路位于 bank 500，剩余位于 bank 501。还通过 EMIO 接口提供从 PL 来的 64 路输入和 128 路输出。GPIO 控制和状态寄存器内存映射在基址 $0xE000_A000$。  ZYNQ 的 GPIO 引脚分为 4 个 bank，共有 118 个 GPIO。 $$ 118个GPIO=32个MIO（ban
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-20 00:00" pubdate>
+              2025-01-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+              <a href="/tags/ZYNQ/">#ZYNQ</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/15/Vitis%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" target="_self">
+          Vitis开发过程中遇到的错误
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/15/Vitis%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" target="_self">
+        <div>
+          1 Error while launching program: Memory write error at 0 x 105000. MMU section translation fault 没找到具体原因。 先生成 boot. Bin 文件烧录到内存卡后再启动 zynq 就不会出现这个报错。 1.1 解决方案 将开发板的 boot 选项从 SD 切换到 jtag 即可 2 Unresolved
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-15 00:00" pubdate>
+              2025-01-15
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+              <a href="/tags/bug/">#bug</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/12/29/FIR%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E6%9E%B6%E6%9E%84/" target="_self">
+          FIR滤波器的架构
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/12/29/FIR%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E6%9E%B6%E6%9E%84/" target="_self">
+        <div>
+          1 数学基础 有限脉冲响应滤波器，其突出特点为单位取样响应 $h(n)$ 是一个 N 点长的有限序列，滤波器的输出 $y(n)$ 表示为输入序列 $x(n)$ 和 $h(n)$ 的线性卷积 $$ y(n)=\sum_{k=0}^{N-1}x(k)h(n-k)=x(n)*h(n) $$ 系统函数为 $$ H(z)=\sum_{n=0}^{N-1}h(n)z^{-n}=h(0)+h(1)z^{-1}+
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-12-29 00:00" pubdate>
+              2024-12-29
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
+            
+              <a href="/tags/FPGA/">#FPGA</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" target="_self">
+          Quartus报错记录
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/12/28/Quartus%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" target="_self">
+        <div>
+          1 Error (176310): Can't place multiple pins assigned to pin location Pin_F 16 (IOPAD_X 34_Y 18_N 21) 报错如下  可以看到 Pin_F 16 既被用于 DAC_DATA，又被用于 nCEO 引脚，因此才会报错不能将多个引脚赋到 Pin_F 16 上。 1.1 Solution  将nCEO 的 va
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-12-28 00:00" pubdate>
+              2024-12-28
+            </time>
+          </div>
+        
         
         
           <div class="post-meta">
@@ -437,7 +851,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/11/16/FPGA%E4%B8%AD%E7%9A%84%E7%94%B5%E5%B9%B3%E6%A0%87%E5%87%86/" target="_self">
         <div>
-          FPGA 在与外界进行信息交换时，为了确保信息的正确性，发送和接收信息都要对信息有认定的标准。在数字电路中，我们常用电压高低来表示“0”和“1”，那么多高的电压才会被当作“1”呢，这个时候就需要一个标准，这个标准就是电平标准。 常见电平标准  TTL TTL (Transistor - Transistor Logic，三极管 - 三极管逻辑电平) 是电平标准中的元老级成员。 在早期的数字电路中有
+          FPGA 在与外界进行信息交换时，为了确保信息的正确性，发送和接收信息都要对信息有认定的标准。在数字电路中，我们常用电压高低来表示“0”和“1”，那么多高的电压才会被当作“1”呢，这个时候就需要一个标准，这个标准就是电平标准。 1 常见电平标准  1.1 TTL TTL (Transistor - Transistor Logic，三极管 - 三极管逻辑电平) 是电平标准中的元老级成员。 在早期的
         </div>
       </a>
 
@@ -653,27 +1067,6 @@
           </div>
         
         
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
@@ -776,168 +1169,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E5%8D%8A%E5%B8%A6%E6%BB%A4%E6%B3%A2%E5%99%A8/" target="_self">
-          多速率信号处理-半带滤波器
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E5%8D%8A%E5%B8%A6%E6%BB%A4%E6%B3%A2%E5%99%A8/" target="_self">
-        <div>
-          半带滤波器本质上是FIR滤波器，但是有近一半的系数为0，因此运算量降至普通FIR滤波器运算量的一半。 半带滤波器具有如下特性：   半带滤波器的通带宽度$w_p（通带截止频率）$与阻带宽度$\pi-w_s（w_s为阻带起始频率）$相等，通带纹波和阻带纹波页相等   半带滤波器的频率响应满足 $$ H(\mathrm{e}^{\mathrm{j}w})+H(\mathrm{e}^{\mathrm{j
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-10 00:00" pubdate>
-              2024-09-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/" target="_self">
-          多速率信号处理
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/" target="_self">
-        <div>
-          随着芯片技术的发展，ADC的采样率越来越高，导致数字化越来越靠近系统前端。目前，工程上采用较多的是中频采样技术，即在中频时就对模拟信号数字化，此时ADC的采样率低于奈奎斯特采样定律的最低采样率（2倍的信号带宽），为过采样。过采样可以将采样过程的固有的量化噪声均匀地分散在更大的带宽上，降低目标信号带宽上的噪声功率，随后通过滤波器滤除带外噪声，即可产生比临界采样信号更优的信噪比。 当信号被ADC采样并
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-10 00:00" pubdate>
-              2024-09-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E6%8F%92%E5%80%BC%E5%92%8C%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/" target="_self">
-          多速率信号处理-插值和插值滤波器
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E6%8F%92%E5%80%BC%E5%92%8C%E6%8F%92%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/" target="_self">
-        <div>
-          插值意味着提高采样率，故而被称为上采样（Up Sample）。设原始序列为$x(n)$，采样率为$f_x$，插值因子为$L$，则插值的过程为原始序列每相邻两个样点之间插入$L-1$个$0$构成一个新序列，数学表达式为 $$ y(m)=\begin{cases}x(m/L)&amp;m=0,\pm L,\pm2L,\cdots\ 0&amp;\text{其他}\end{cases} $$ 以$f_y
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-10 00:00" pubdate>
-              2024-09-10
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
         <a href="/2024/09/10/%E5%A4%9A%E9%80%9F%E7%8E%87%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-Nobel%E6%81%92%E7%AD%89%E5%BC%8F/" target="_self">
           多速率信号处理-Nobel恒等式
         </a>
@@ -965,378 +1196,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/">#数字通信</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/09/03/Matlab%E7%9A%844%E4%B8%AA%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0/" target="_self">
-          Matlab的4个取整函数
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/03/Matlab%E7%9A%844%E4%B8%AA%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0/" target="_self">
-        <div>
-          1 Round 舍入至最近的小数或整数 Y = round(X) 将 X 的每个元素四舍五入为最近的整数。在舍入机会均等的情况下，即有元素的十进制小数部分为 0.5（在舍入误差内）时，round 函数会偏离零四舍五入到最接近的具有更大幅值的整数。 Y = round(X,N) 四舍五入到 N 位数：  N &gt; 0：舍入到小数点_右侧_的第 N 位数。 N = 0：四舍五入到最接近的整数。 N
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-09-03 00:00" pubdate>
-              2024-09-03
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%9D%82%E7%B1%BB/" class="category-chain-item">杂类</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/MATLAB/">#MATLAB</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/08/19/2023%E5%B9%B4%E5%85%A8%E5%9B%BD%E8%B5%9BC%E9%A2%98%E3%80%8A%E7%94%B5%E5%AE%B9%E7%94%B5%E6%84%9F%E6%B5%8B%E9%87%8F%E8%A3%85%E7%BD%AE%E3%80%8B%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A/" target="_self">
-          2023年全国赛C题《 电容电感测量装置》设计报告
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/19/2023%E5%B9%B4%E5%85%A8%E5%9B%BD%E8%B5%9BC%E9%A2%98%E3%80%8A%E7%94%B5%E5%AE%B9%E7%94%B5%E6%84%9F%E6%B5%8B%E9%87%8F%E8%A3%85%E7%BD%AE%E3%80%8B%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A/" target="_self">
-        <div>
-          1 测量原理 参考下面网站的方案 bookmark 参考LCR测试仪，基本工作原理为给DUT加上正弦激励信号，然后测得该DUT两端的电压和流过DUT的电流，即可通过计算得到DUT的性质和参数。  对于一个理想电容，电流相位应该超前电容两端电压90°。然而实际的电容存在损耗，可以等效为一个理想电容$C_p$和一个理想电阻$R_p$的并联，因此电流超前电压的相位将小于90°，这个角度差即为损耗角。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-08-19 00:00" pubdate>
-              2024-08-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%94%B5%E8%B7%AF/" class="category-chain-item">电路</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%94%B5%E8%B7%AF/">#电路</a>
-            
-              <a href="/tags/Report/">#Report</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/07/23/%E9%BB%91%E9%87%91Alinx%20xc7z020%20%E5%8E%9F%E7%90%86%E5%9B%BE/" target="_self">
-          黑金Alinx xc7z020 原理图
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/23/%E9%BB%91%E9%87%91Alinx%20xc7z020%20%E5%8E%9F%E7%90%86%E5%9B%BE/" target="_self">
-        <div>
-          1 时钟引脚 1.1 CLK：U18 2 复位 2.1 RST：N15 3 扩展接口 3.1 J10    3.2 J11    4 PL LED   5 PL KEY
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-23 00:00" pubdate>
-              2024-07-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%94%B5%E8%B7%AF/">#电路</a>
-            
-              <a href="/tags/FPGA/">#FPGA</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/06/20/C%E6%A0%87%E5%87%86%E5%BA%93%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" target="_self">
-          C标准库读写文件
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/20/C%E6%A0%87%E5%87%86%E5%BA%93%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" target="_self">
-        <div>
-          1 函数介绍 1.1 库变量    变量 描述     size_t 无符号整数类型，是sizeof关键字的结果，表示对象大小   FILE 文件流类型，适合存储文件流信息的对象类型    1.2 库宏    宏 描述     NULL 空指针常量   EOF 表示已经到达文件结束的负整数   stderr、stdin、stdout 指向FILE类型的指针，分别对应标准错误、标准输入和标准输出流
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-20 00:00" pubdate>
-              2024-06-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%9D%82%E7%B1%BB/" class="category-chain-item">杂类</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/coding/">#coding</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/06/13/MATLAB%E4%B8%AD%E4%BD%BF%E7%94%A8HDL%20Coder%E7%94%9F%E6%88%90HDL%E4%BB%A3%E7%A0%81%E6%97%B6%E7%9A%84%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" target="_self">
-          MATLAB中使用HDL Coder生成HDL代码时的报错集合
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/13/MATLAB%E4%B8%AD%E4%BD%BF%E7%94%A8HDL%20Coder%E7%94%9F%E6%88%90HDL%E4%BB%A3%E7%A0%81%E6%97%B6%E7%9A%84%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" target="_self">
-        <div>
-          1 Delay balancing unsuccessful because an extra 4 cycles of latency introduced by optimizations in the feedback loop cannot be offset using design delays for the loop latency budget. 1.1 产生原因  由于时序考虑，
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-13 00:00" pubdate>
-              2024-06-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/FPGA/">#FPGA</a>
-            
-              <a href="/tags/MATLAB/">#MATLAB</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/06/09/Modelsim%E4%B8%AD%E4%BD%BF%E7%94%A8tcl%E5%91%BD%E4%BB%A4%E5%AF%BC%E5%87%BA%E4%BB%BF%E7%9C%9F%E6%95%B0%E6%8D%AE%E5%88%B0txt%E6%96%87%E4%BB%B6/" target="_self">
-          Modelsim中使用tcl命令导出仿真数据到txt文件
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/09/Modelsim%E4%B8%AD%E4%BD%BF%E7%94%A8tcl%E5%91%BD%E4%BB%A4%E5%AF%BC%E5%87%BA%E4%BB%BF%E7%9C%9F%E6%95%B0%E6%8D%AE%E5%88%B0txt%E6%96%87%E4%BB%B6/" target="_self">
-        <div>
-          参考下面的CSDN博客 bookmark 1 Tcl命令 12345678910proc write_sim_data &#123;env name radix cycle file&#125; &#123;    set fid [open $file w]    for &#123;set i 0&#125; &#123;$i &lt;= $::now&#125; &#123;incr i [
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-09 00:00" pubdate>
-              2024-06-09
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/FPGA/">#FPGA</a>
             
           </div>
         

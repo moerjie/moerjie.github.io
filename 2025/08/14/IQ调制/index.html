@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1763460888842.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1763460931206.png">
 <meta property="article:published_time" content="2025-08-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-17T14:13:56.000Z">
+<meta property="article:modified_time" content="2026-08-25T13:45:30.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="数字通信">
 <meta name="twitter:card" content="summary_large_image">
@@ -369,38 +369,38 @@
 </ul>
 <h1>2 调制解调过程</h1>
 <h2 id="2-1-调制过程">2.1 调制过程</h2>
-<p>从射频信号出发，围绕载波频率振荡，幅度和相位随时间 t 变化：<br />
-$$
+<p>从射频信号出发，围绕载波频率振荡，幅度和相位随时间 t 变化：</p>
+<p>$$
 s(t)=A(t)\cdot \cos(\omega_c t+\phi(t))
-$$
-将上式使用三角恒等式展开可得：<br />
-$$
+$$</p>
+<p>将上式使用三角恒等式展开可得：</p>
+<p>$$
 \begin{align}
 s(t) &amp; = A(t)\cdot[\cos(\omega_c t)\cos(\phi(t))-\sin(\omega_c t)\sin(\phi(t))] \\
 &amp; =[A(t)\cos(\phi(t))]\cos(\omega_c t)-[A(t)\sin(\phi(t))]\sin(\phi(t))
 \end{align}
-$$
-其中中括号内的随时间慢速变化，中括号外的为高频振荡的载波。<br />
-定义两个慢速变化的基带信号：<br />
-$$
+$$</p>
+<p>其中中括号内的随时间慢速变化，中括号外的为高频振荡的载波。
+定义两个慢速变化的基带信号：</p>
+<p>$$
 \begin{align}
 I(t) &amp; = A(t)\cos(\phi(t))（同相分量）\\
 Q(t) &amp; = A(t)\sin(\phi(t))（正交分量）
 \end{align}
-$$
-将 $I(t)和Q(t)$ 两个基带信号调制到正交载波上，即可组成射频信号：<br />
-$$
+$$</p>
+<p>将 $I(t)和Q(t)$ 两个基带信号调制到正交载波上，即可组成射频信号：</p>
+<p>$$
 s(t)=I(t)\cos(\omega_c t)-Q(t)\sin(\omega_c t)
 $$</p>
 <h2 id="2-2-解调过程">2.2 解调过程</h2>
 <h3 id="2-2-1-恢复-I-t">2.2.1 恢复 $I(t)$</h3>
-<p>将收到的信号乘以同相的本地载波 $\cos(\omega_c t)$：<br />
-$$
+<p>将收到的信号乘以同相的本地载波 $\cos(\omega_c t)$：</p>
+<p>$$
 v_I(t)=I(t)\cos^2(\omega_c t)-Q(t)\sin(\omega_c t)\cos(\omega_c t)
-$$
-使用三角恒等式变换 $2\cos^2(A)=1+\cos(2A)$，$2\sin(A)\cos(A)=\sin(2A)$：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1763460888842.png" srcset="/img/banner.png" lazyload alt="" />
-$$
+$$</p>
+<p>使用三角恒等式变换 $2\cos^2(A)=1+\cos(2A)$，$2\sin(A)\cos(A)=\sin(2A)$：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1763460888842.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>$$
 \begin{align}
 v_I(t) &amp; = \frac{1}{2}I(t)[1+\cos(2\omega_c t)] \\
 &amp; =\underbrace{\frac{1}{2}I(t)}<em>{\text{基带信号}}+\underbrace{\frac{1}{2}I(t)\cos(2\omega_ct)-\frac{1}{2}Q(t)\sin(2\omega_ct)}</em>{\text{高频信号 }(2f_c)}
@@ -408,13 +408,13 @@ v_I(t) &amp; = \frac{1}{2}I(t)[1+\cos(2\omega_c t)] \\
 $$</p>
 <p>最后通过一个低通滤波器，即可滤除高频分量，只留下基带信号。</p>
 <h3 id="2-2-2-恢复-Q-t">2.2.2 恢复 $Q(t)$</h3>
-<p>将收到的信号乘以正交的本地载波 $-\sin(\omega_c t)$：<br />
-$$
+<p>将收到的信号乘以正交的本地载波 $-\sin(\omega_c t)$：</p>
+<p>$$
 v_Q(t)=-I(t)\cos(\omega_ct)\sin(\omega_ct)+Q(t)\sin^2(\omega_ct)
-$$
-使用三角恒等式变换 $2\sin(A)\cos(A)=\sin(2A)$，$2\sin^2(A)=1-\cos(2A)$：<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1763460931206.png" srcset="/img/banner.png" lazyload alt="" />
-$$
+$$</p>
+<p>使用三角恒等式变换 $2\sin(A)\cos(A)=\sin(2A)$，$2\sin^2(A)=1-\cos(2A)$：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1763460931206.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>$$
 \begin{align}
 v_Q(t) &amp; = -\frac{1}{2}I(t)[\sin(2\omega_c t)]+\frac{1}{2}Q(t)[1-\cos(2\omega_c t)]\\
 &amp; =\underbrace{\frac{1}{2}Q(t)}<em>{基带信号}-\underbrace{\frac{1}{2}I(t)\sin(2\omega_ct)-\frac12Q(t)\cos(2\omega_ct)}</em>{\text{高频信号}(2f_c)}
@@ -422,16 +422,16 @@ v_Q(t) &amp; = -\frac{1}{2}I(t)[\sin(2\omega_c t)]+\frac{1}{2}Q(t)[1-\cos(2\omeg
 $$</p>
 <p>同样的，通过一个低通滤波器，即可滤除高频分量，保留基带信号。</p>
 <h2 id="2-3-IQ-的复数域理解">2.3 IQ 的复数域理解</h2>
-<p>欧拉公式：$e^{j\theta}=\cos(\theta)+j\sin(\theta)$。<br />
-将基带信号组合成一个复数信号：$b(t)=I(t)+jQ(t)$。<br />
-调制过程如下：
-$$
+<p>欧拉公式：$e^{j\theta}=\cos(\theta)+j\sin(\theta)$。
+将基带信号组合成一个复数信号：$b(t)=I(t)+jQ(t)$。
+调制过程如下：</p>
+<p>$$
 \begin{align}
 s_{complex}(t) &amp; = (I(t)+jQ(t))\cdot(\cos(\omega_ct)+j\sin(\omega_ct))\\
 &amp; = [I(t)\cos(\omega_ct)-Q(t)\sin(\omega_ct)]+j[I(t)\sin(\omega_ct)+Q(t)\cos(\omega_ct)]
 \end{align}
-$$
-观察上式可以看到真实时间的射频信号就是上面的 $s_{complex}(t)$ 取实部。<br />
+$$</p>
+<p>观察上式可以看到真实时间的射频信号就是上面的 $s_{complex}(t)$ 取实部。
 在复数域中理解，一个 RF 信号，是由一个复数基带信号 $b(t)=I(t)+jQ(t)$ 调制到一个复数载波 $e^{j\omega_c t}$，然后取实部所得。</p>
 <h2 id="2-4-IQ-信号读取幅度和相位">2.4 IQ 信号读取幅度和相位</h2>
 <h3 id="2-4-1-幅度">2.4.1 幅度</h3>
@@ -439,8 +439,8 @@ $$
 A(t)=|b(t)|=\sqrt{I^2(t)+Q^2(t)}
 $$</p>
 <h3 id="2-4-2-相位">2.4.2 相位</h3>
-<p>瞬时相位 $\phi(t)$ 就是向量在复平面上与实轴的夹角
-$$
+<p>瞬时相位 $\phi(t)$ 就是向量在复平面上与实轴的夹角</p>
+<p>$$
 \phi(t)=\arg(b(t))=atan2(Q(t),I(t))
 $$</p>
 

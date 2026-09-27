@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251215202016.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251218102228.png">
 <meta property="article:published_time" content="2025-10-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-29T08:14:33.000Z">
+<meta property="article:modified_time" content="2026-08-25T13:45:27.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="数字通信">
 <meta property="article:tag" content="TD">
@@ -374,160 +374,160 @@
               <div class="markdown-body">
                 
                 <h1>1 GPS 信号格式</h1>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1760081495604.png" srcset="/img/banner.png" lazyload alt="GPS L1和L2频点信号产生" />
-L2 频点上调制的 BPSK 信号的基带数据有三种，目前 L2 信号一般选择 P (Y) 码和导航电文的模二加。GPS 卫星上的 10.23MHz 时钟驱动 P 码发生器，P 码码片宽度约 $0.1\mu s$，C/A 码的码片宽度约 $1\mu s$。由 P 码调制的导航信号提供高精度定位服务（PPS），C/A 码调制的导航信号提供标准定位服务（SPS）。<br />
-P 码发生器首先在 10.23 MHz时钟驱动下产生 P 码，P 码周期很长（约为 $10^{14}$ 个码片），每 7 天重复一次，美国政府通过“反欺骗”（AS）政策将 P 码加密，这种加密的主要目的是保护授权用户不受虚假的 GPS 信号影响，同时限制非授权用户使用 PPS 服务。加密过程通过一种特殊的 Y 码完成，Y 码码片速率和 P 码一样，用户必须使用密钥才能使用 Y 码信号，一般把这种加密后的信号叫作 P (Y) 码信号。
-由于 P 码周期很长，直接捕获困难，C/A 码周期短，因此一般先进行 C/A 码的捕获，得到其码相位和发射时间等初步信息后，再进行 P 码的捕获。目前较新的 L1M 和 L2M 信号无需 C/A 码的介入就能直接捕获 P 码。
-对于 P 码来说，一个码片内有 154 个 L1 载波周期，120 个 L2 载波周期。对于 C/A 码来说，一个码片内有 1540 个 L1 载波周期，1200 个 L2 载波周期。
-L1、L2 的导航电文速率均为 50bps，每个比特宽度为 20ms，每个导航电文比特内包含 20460 个 C/A 码片或 204600 个 P 码片。受严格的星载时钟保证，导航电文比特跳变和伪码码片的跳变时刻严格同步。更进一步，由于 GPS 控制段对所有 GPS卫星星载时钟的监控和修正，可以认为所有 GPS 卫星产生的各自导航电文跳变时钟和各自伪码发生器的时钟也是同步的，而这也是 GPS 系统实现定位的一个基本前提。</p>
-<p>GPS 导航信号包含载波、伪码和导航电文，数学表达式如下：
-$$
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1760081495604.png" srcset="/img/banner.png" lazyload alt="GPS L1和L2频点信号产生" /></p>
+<p>L2 频点上调制的 BPSK 信号的基带数据有三种，目前 L2 信号一般选择 P (Y) 码和导航电文的模二加。GPS 卫星上的 10.23MHz 时钟驱动 P 码发生器，P 码码片宽度约 $0.1\mu s$，C/A 码的码片宽度约 $1\mu s$。由 P 码调制的导航信号提供高精度定位服务（PPS），C/A 码调制的导航信号提供标准定位服务（SPS）。</p>
+<p>P 码发生器首先在 10.23 MHz时钟驱动下产生 P 码，P 码周期很长（约为 $10^{14}$ 个码片），每 7 天重复一次，美国政府通过“反欺骗”（AS）政策将 P 码加密，这种加密的主要目的是保护授权用户不受虚假的 GPS 信号影响，同时限制非授权用户使用 PPS 服务。加密过程通过一种特殊的 Y 码完成，Y 码码片速率和 P 码一样，用户必须使用密钥才能使用 Y 码信号，一般把这种加密后的信号叫作 P (Y) 码信号。</p>
+<p>由于 P 码周期很长，直接捕获困难，C/A 码周期短，因此一般先进行 C/A 码的捕获，得到其码相位和发射时间等初步信息后，再进行 P 码的捕获。目前较新的 L1M 和 L2M 信号无需 C/A 码的介入就能直接捕获 P 码。</p>
+<p>对于 P 码来说，一个码片内有 154 个 L1 载波周期，120 个 L2 载波周期。对于 C/A 码来说，一个码片内有 1540 个 L1 载波周期，1200 个 L2 载波周期。</p>
+<p>L1、L2 的导航电文速率均为 50bps，每个比特宽度为 20ms，每个导航电文比特内包含 20460 个 C/A 码片或 204600 个 P 码片。受严格的星载时钟保证，导航电文比特跳变和伪码码片的跳变时刻严格同步。更进一步，由于 GPS 控制段对所有 GPS卫星星载时钟的监控和修正，可以认为所有 GPS 卫星产生的各自导航电文跳变时钟和各自伪码发生器的时钟也是同步的，而这也是 GPS 系统实现定位的一个基本前提。</p>
+<p>GPS 导航信号包含载波、伪码和导航电文，数学表达式如下：</p>
+<p>$$
 s_{L1}(t)=\sqrt{2 P_C}D(t)c(t)\cos [\omega_{L1}t+\theta_{L1}]+\sqrt{2 P_{Y1}}D(t)y(t)\sin [\omega_{L1}t+\theta_{L1}]
-$$
-$$
+$$</p>
+<p>$$
 s_{L2}(t)=\sqrt{2 P_{Y2}}D(t)y(t)\cos [\omega_{L2}t+\theta_{L2}]
-$$
-其中 $D（t）$ 表示导航电文数据比特，$c(t)和y(t)$ 分别表示 C/A 码和 P (Y) 码，P 不同下标表示不同信号的功率。</p>
-<p>导航电文与伪随机码相乘后，信号带宽从 100Hz 扩展至 2MHz 左右（C/A），20MHz 左右（P），频谱图如下：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1760086604013.png" srcset="/img/banner.png" lazyload alt="基带信号频谱|555" />
-GPS 信号采用扩频通信的目的有以下几点：</p>
+$$</p>
+<p>其中 $D（t）$ 表示导航电文数据比特，$c(t)和y(t)$ 分别表示 C/A 码和 P (Y) 码，P 不同下标表示不同信号的功率。</p>
+<p>导航电文与伪随机码相乘后，信号带宽从 100Hz 扩展至 2MHz 左右（C/A），20MHz 左右（P），频谱图如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1760086604013.png" srcset="/img/banner.png" lazyload alt="基带信号频谱|555" /></p>
+<p>GPS 信号采用扩频通信的目的有以下几点：</p>
 <ol>
 <li>伪随机码是不同卫星的标识，码分多址</li>
 <li>扩展频带可让接收信号的信噪比不需要很高，$C=B \lg\left( 1+\frac{S}{N} \right)$，B 展宽后，信噪比就可以很小，接收信号的功率可以很低，甚至可以低于噪声功率。</li>
 <li>在 GPS 接收端，伪随机码的码片相位为定位提供了必要的测距信号。码片相位直接和卫星信号传输的距离有关，接收机通过检测相关峰的位置得到伪码相位，进而得到伪距观测量，实现定位。</li>
 </ol>
 <h2 id="1-1-GPS-电文">1.1 GPS 电文</h2>
-<p>导航电文分为 5 个不同层次，最基本的结构是长度为 20ms 的数据位（bit），第二级的结构是字（word），由 30 个数据位组成 1 个字；第三级的结构是子帧（Subframe），由 10 个字组成一个子帧，一个子帧包含 300 个数据位；第四级的结构是主帧/页面（page），由 5 个子帧构成一个主帧，1 个主帧包含 1500 个数据位；第五级的结构由 25 个主帧/页面组成一个整周期的导航电文。
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251028102943.png" srcset="/img/banner.png" lazyload alt="" />
-GPS 导航电文每隔 12.5min 发送一套完整的导航电文结构，包含了 25 主帧、125 子帧、3750 字、75000bit。
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251028103129.png" srcset="/img/banner.png" lazyload alt="|555" /></p>
+<p>导航电文分为 5 个不同层次，最基本的结构是长度为 20ms 的数据位（bit），第二级的结构是字（word），由 30 个数据位组成 1 个字；第三级的结构是子帧（Subframe），由 10 个字组成一个子帧，一个子帧包含 300 个数据位；第四级的结构是主帧/页面（page），由 5 个子帧构成一个主帧，1 个主帧包含 1500 个数据位；第五级的结构由 25 个主帧/页面组成一个整周期的导航电文。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251028102943.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>GPS 导航电文每隔 12.5min 发送一套完整的导航电文结构，包含了 25 主帧、125 子帧、3750 字、75000bit。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251028103129.png" srcset="/img/banner.png" lazyload alt="|555" /></p>
 <h1>2 GPS 接收原理</h1>
 <h2 id="2-1-GPS-卫星信号捕获">2.1 GPS 卫星信号捕获</h2>
 <h3 id="2-1-1-基础">2.1.1 基础</h3>
-<p>GPS 卫星是中轨道卫星，近似将其运行轨道看作圆形，平均角速度为 $\omega \approx 1.4585\times 10^{-4}  rad / s$，平均速度为 $V_s \approx 3.87 km / s$。
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1761895563302.png" srcset="/img/banner.png" lazyload alt="|450" />
-根据计算，当 AP 和 OA 成直角时，$V_d$ 可以取到最大值：
-$$
+<p>GPS 卫星是中轨道卫星，近似将其运行轨道看作圆形，平均角速度为 $\omega \approx 1.4585\times 10^{-4}  rad / s$，平均速度为 $V_s \approx 3.87 km / s$。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1761895563302.png" srcset="/img/banner.png" lazyload alt="|450" /></p>
+<p>根据计算，当 AP 和 OA 成直角时，$V_d$ 可以取到最大值：</p>
+<p>$$
 V_{dM}=\frac{V_s R_e}{R_s}\approx \frac{3870 \times 6378}{26560}\approx929.3m /s
-$$
-此时的最大多普勒频移为：
-$$
+$$</p>
+<p>此时的最大多普勒频移为：</p>
+<p>$$
 f_{dM}=V_{dM} \frac{f_{L1}}{c}\approx \frac{929.3\times 1575.42\times 10^6}{3\times 10^8}\approx4880.3Hz
-$$
-晶振的偏差导致的频移，理论计算表明，1ppm 晶振偏差在 L1 载频上能引起 $1.57kHz$ 的载频偏差。
-综合考虑，可以认为 GPS 接收机接收到的信号不仅在伪码相位上存在模糊现象，并且在载频上也会具有一些模糊度。所以 GPS 信号捕获可以认为是一个三维的搜索：</p>
+$$</p>
+<p>晶振的偏差导致的频移，理论计算表明，1ppm 晶振偏差在 L1 载频上能引起 $1.57kHz$ 的载频偏差。</p>
+<p>综合考虑，可以认为 GPS 接收机接收到的信号不仅在伪码相位上存在模糊现象，并且在载频上也会具有一些模糊度。所以 GPS 信号捕获可以认为是一个三维的搜索：</p>
 <ol>
 <li>PRN 码</li>
 <li>伪码相位</li>
 <li>多普勒频移</li>
 </ol>
 <h3 id="2-1-2-基于时域相关器的信号捕获">2.1.2 基于时域相关器的信号捕获</h3>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251102200948.png" srcset="/img/banner.png" lazyload alt="|580" />
-下面使用数学公式说明信号捕获的处理过程。
-输入信号为 RF 中频采样，数学表达式如下：
-$$
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251102200948.png" srcset="/img/banner.png" lazyload alt="|580" /></p>
+<p>下面使用数学公式说明信号捕获的处理过程。</p>
+<p>输入信号为 RF 中频采样，数学表达式如下：</p>
+<p>$$
 s_{IF}(t)=\sqrt{2P_s}\cdot C(t-\tau)\cdot D(t-\tau) \cos [\omega_{IF}t+\phi(t)]+n(t)
-$$
-其中，$P_s$ 是信号功率，$C(t)$ 是 C/A 码，取值范围是 $\pm 1$，$\tau$ 是传输过程中的时间延迟，$D(t)$ 是导航电文比特，$\omega_{IF}$ 是中频载波频率，其值由 RF 电路和多普勒频移决定，$\phi(t)$ 是初始载波相位，$n(t)$ 是白噪声。
-接收机载波发生器输出两路信号，分别为：
-$$
-I_{ca}(t)=\sqrt{2}\cos [(\omega_{IF}+\Delta\hat{\omega})t+\hat{\phi_0}]
-$$
-$$
-Q_{ca}(t)=\sqrt{2}\sin [(\omega_{IF}+\Delta\hat{\omega})t+\hat{\phi_0}]
-$$
-信号捕获的目的之一即为调节本地载波频率使得 $\Delta \hat{\omega}$ 尽可能的小。当捕获成功时，频率差已经很小，当开始稳定跟踪信号时，可认为该频率差接近 0。
-本地载波的 I、Q 信号与输入信号相乘，可得：
-$$
-I(t)=\sqrt{2P_s}\cdot C(t-\tau)\cdot D(t-\tau) \cos [\omega_{IF}t+\phi(t)]\times \sqrt{2}\cos [(\omega_{IF}+\Delta\hat{\omega})t+\hat{\phi_0}]
-$$
-$$
-Q(t)=\sqrt{2P_s}\cdot C(t-\tau)\cdot D(t-\tau) \cos [\omega_{IF}t+\phi(t)]\times \sqrt{2}\sin [(\omega_{IF}+\Delta\hat{\omega})t+\hat{\phi_0}]
-$$
-相乘后经过积分器，积分器可看作一个低通滤波，因此可忽略上式中的高频成分，获得以下结果：<br />
-$$
-I(t)  = \sqrt{P_{s}}C(t-\tau)D(t-\tau)\cos[\phi(t)-\Delta\hat{\omega}t-\hat{\phi}<em>{0}]
-$$<br />
-$$
-Q(t)  = \sqrt{P</em>{s}}C(t-\tau)D(t-\tau)\sin[\phi(t)-\Delta\hat{\omega}t-\hat{\phi}_{0}]
 $$</p>
-<p>上面两式只表示乘法器输出的信号分量，噪声分量如下：
-$$
+<p>其中，$P_s$ 是信号功率，$C(t)$ 是 C/A 码，取值范围是 $\pm 1$，$\tau$ 是传输过程中的时间延迟，$D(t)$ 是导航电文比特，$\omega_{IF}$ 是中频载波频率，其值由 RF 电路和多普勒频移决定，$\phi(t)$ 是初始载波相位，$n(t)$ 是白噪声。</p>
+<p>接收机载波发生器输出两路信号，分别为：</p>
+<p>$$
+I_{ca}(t)=\sqrt{2}\cos [(\omega_{IF}+\Delta\hat{\omega})t+\hat{\phi_0}]
+$$</p>
+<p>$$
+Q_{ca}(t)=\sqrt{2}\sin [(\omega_{IF}+\Delta\hat{\omega})t+\hat{\phi_0}]
+$$</p>
+<p>信号捕获的目的之一即为调节本地载波频率使得 $\Delta \hat{\omega}$ 尽可能的小。当捕获成功时，频率差已经很小，当开始稳定跟踪信号时，可认为该频率差接近 0。</p>
+<p>本地载波的 I、Q 信号与输入信号相乘，可得：</p>
+<p>$$
+I(t)=\sqrt{2P_s}\cdot C(t-\tau)\cdot D(t-\tau) \cos [\omega_{IF}t+\phi(t)]\times \sqrt{2}\cos [(\omega_{IF}+\Delta\hat{\omega})t+\hat{\phi_0}]
+$$</p>
+<p>$$
+Q(t)=\sqrt{2P_s}\cdot C(t-\tau)\cdot D(t-\tau) \cos [\omega_{IF}t+\phi(t)]\times \sqrt{2}\sin [(\omega_{IF}+\Delta\hat{\omega})t+\hat{\phi_0}]
+$$</p>
+<p>相乘后经过积分器，积分器可看作一个低通滤波，因此可忽略上式中的高频成分，获得以下结果：</p>
+<p>$$
+I(t)  = \sqrt{P_{s}}C(t-\tau)D(t-\tau)\cos[\phi(t)-\Delta\hat{\omega}t-\hat{\phi}_{0}]
+$$</p>
+<p>$$
+Q(t)  = \sqrt{P_{s}}C(t-\tau)D(t-\tau)\sin[\phi(t)-\Delta\hat{\omega}t-\hat{\phi}_{0}]
+$$</p>
+<p>上面两式只表示乘法器输出的信号分量，噪声分量如下：</p>
+<p>$$
 n_I(t)=n(t)\times\sqrt{2}\cos[\hat{\phi}(t)]
-$$
-$$
+$$</p>
+<p>$$
 n_Q(t)=n(t)\times\sqrt{2}\sin[\hat{\phi}(t)]
-$$
-与原噪声相比只是发生了相位的旋转，即白噪声与 $e^{j\hat{\phi}(t)}$ 相乘在频域上相当于频谱的平移，对频谱形状和分布没有影响。
-假设本地伪码发生器生成的本 6地伪码为 $C(t-\hat{\tau})$，本地伪码与信号的伪码相位的偏差为 $\Delta \tau=\tau-\hat{\tau}$。<br />
-假设积分时间为 $T_1$，则两路积分器的输出分别为：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251103155423.png" srcset="/img/banner.png" lazyload alt="|500" /></p>
-<p>其中，$\delta \phi_0=\hat{\phi}-\phi(t)$，$T_1$ 是积分时间，一般为 C/A 码周期，且小于 $20ms$，所以 $D(t)$ 可以提到积分号外。<br />
-在上面两个公式中，有两个变量 $\hat{\tau}、\Delta \hat{\omega}$，分别固定一个变量，分析另一个变量的变化对积分器的影响。<br />
-首先，假设本地载频与接收到的载频频率一致，则上面的式子可以写为：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251103155340.png" srcset="/img/banner.png" lazyload alt="|500" /><br />
-其中，$R(\Delta \tau)$ 是伪随机序列的自相关函数，当滑动本地伪码相位与输入信号的伪码相位一致时，积分器输出可达到最大值，当相位差大于 1 个 C/A 码片时，积分器输出结果类似噪声。<br />
-然后假设本地伪码和输入信号伪码相位差为 0，此时载频变化对积分器输出产生影响，即：<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251102214417.png" srcset="/img/banner.png" lazyload alt="|500" />
-信号的功率为：<br />
-$$
+$$</p>
+<p>与原噪声相比只是发生了相位的旋转，即白噪声与 $e^{j\hat{\phi}(t)}$ 相乘在频域上相当于频谱的平移，对频谱形状和分布没有影响。</p>
+<p>假设本地伪码发生器生成的本 6地伪码为 $C(t-\hat{\tau})$，本地伪码与信号的伪码相位的偏差为 $\Delta \tau=\tau-\hat{\tau}$。</p>
+<p>假设积分时间为 $T_1$，则两路积分器的输出分别为：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251103155423.png" srcset="/img/banner.png" lazyload alt="|500" /></p>
+<p>其中，$\delta \phi_0=\hat{\phi}-\phi(t)$，$T_1$ 是积分时间，一般为 C/A 码周期，且小于 $20ms$，所以 $D(t)$ 可以提到积分号外。</p>
+<p>在上面两个公式中，有两个变量 $\hat{\tau}、\Delta \hat{\omega}$，分别固定一个变量，分析另一个变量的变化对积分器的影响。</p>
+<p>首先，假设本地载频与接收到的载频频率一致，则上面的式子可以写为：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251103155340.png" srcset="/img/banner.png" lazyload alt="|500" /></p>
+<p>其中，$R(\Delta \tau)$ 是伪随机序列的自相关函数，当滑动本地伪码相位与输入信号的伪码相位一致时，积分器输出可达到最大值，当相位差大于 1 个 C/A 码片时，积分器输出结果类似噪声。</p>
+<p>然后假设本地伪码和输入信号伪码相位差为 0，此时载频变化对积分器输出产生影响，即：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251102214417.png" srcset="/img/banner.png" lazyload alt="|500" /></p>
+<p>信号的功率为：</p>
+<p>$$
 \overline{P}=P_s T^2_1 sinc^2(\Delta\hat{\omega}T_1/2)
-$$
-不同的相干时间会影响功率谱的分布：<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251102214650.png" srcset="/img/banner.png" lazyload alt="|500" />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1762152140601.png" srcset="/img/banner.png" lazyload alt="|500" />
-积分时间越长，则对载频误差越敏感，意味着同样的载频误差在长时间积分的情况下更容易丢失信号功率。所以积分时间越长，则载频搜索的步长越小，一般载频步长为积分时长的倒数。</p>
+$$</p>
+<p>不同的相干时间会影响功率谱的分布：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251102214650.png" srcset="/img/banner.png" lazyload alt="|500" /></p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1762152140601.png" srcset="/img/banner.png" lazyload alt="|500" /></p>
+<p>积分时间越长，则对载频误差越敏感，意味着同样的载频误差在长时间积分的情况下更容易丢失信号功率。所以积分时间越长，则载频搜索的步长越小，一般载频步长为积分时长的倒数。</p>
 <h3 id="2-1-3-基于-FFT-的信号捕获">2.1.3 基于 FFT 的信号捕获</h3>
-<p>基于 DFT 和信号卷积的关系：<br />
-$$
+<p>基于 DFT 和信号卷积的关系：</p>
+<p>$$
 \begin{align}
 s(t) \otimes h(t) &amp; \Leftrightarrow S(f)\cdot H(f) \
 S(f)\otimes H(f) &amp; \Leftrightarrow s(t)\cdot h(t)
 \end{align}
-$$
-把 ADC 采集后的中频信号 $s(t)$ 与本地 NCO 的同相分量与正交分量相乘的结果看作两个中间变量：<br />
-$$
+$$</p>
+<p>把 ADC 采集后的中频信号 $s(t)$ 与本地 NCO 的同相分量与正交分量相乘的结果看作两个中间变量：</p>
+<p>$$
 \begin{align}
 s_I(t) &amp; =s(t)\cdot \sqrt{2}\cos[(\omega_{IF}+\Delta\hat{\omega})t] \
 s_Q(t) &amp; =s(t)\cdot \sqrt{2}\sin[(\omega_{IF}+\Delta\hat{\omega})t]
 \end{align}
-$$
-把本地伪码发射器的输出记作一个本地信号 $s_L(t)=C(t)$，则 I 路和 Q 路的积分器输出的相关结果为：<br />
-$$
+$$</p>
+<p>把本地伪码发射器的输出记作一个本地信号 $s_L(t)=C(t)$，则 I 路和 Q 路的积分器输出的相关结果为：</p>
+<p>$$
 \begin{align}
 I(\tau)  &amp; = \int^{T_1}<em>{0}s_I(t)\cdot s_L(t+\tau)dt \
 Q(\tau)  &amp; = \int^{T_1}</em>{0}s_Q(t)\cdot s_L(t+\tau)dt
 \end{align}
-$$
-卷积表达式为：<br />
-$$
-z(t)=\int^{T_1}<em>{0}x(\tau)\cdot y(t-\tau)d\tau
-$$
-与积分器的输出比较，发现 $\tau$ 的符号相反，根据傅里叶变换的性质，可得积分器输出的傅里叶变换为：<br />
-$$
-DFT({I})=S_L(f)\cdot S^*<em>I(f)
-$$
-对上式 1 进行傅里叶变换：<br />
-$$
+$$</p>
+<p>卷积表达式为：</p>
+<p>$$
+z(t)=\int^{T_1}_{0}x(\tau)\cdot y(t-\tau)d\tau
+$$</p>
+<p>与积分器的输出比较，发现 $\tau$ 的符号相反，根据傅里叶变换的性质，可得积分器输出的傅里叶变换为：</p>
+<p>$$
+DFT({I})=S_L(f)\cdot S^*_I(f)
+$$</p>
+<p>对上式 1 进行傅里叶变换：</p>
+<p>$$
 \begin{aligned}
-\text{DFT}{I(\tau)} &amp;= \int</em>{0}^{T_I} \int</em>{0}^{T_I} s_{\text{I}}(t)s_{\text{L}}(t + \tau)\text{d}t ;\rfloor e^{-\text{j}2\pi f \tau}\text{d}\tau \
+\text{DFT}{I(\tau)} &amp;= \int_{0}^{T_I} \int_{0}^{T_I} s_{\text{I}}(t)s_{\text{L}}(t + \tau)\text{d}t ;\rfloor e^{-\text{j}2\pi f \tau}\text{d}\tau \
 &amp;= \int_{0}^{T_I} s_{\text{I}}(t) \left\lfloor \int_{0}^{T_I} s_{\text{L}}(t + \tau)e^{-\text{j}2\pi f (t+\tau)}\text{d}\tau \right\rfloor e^{\text{j}2\pi f t}\text{d}t \
 &amp;= S_{\text{L}}(f)\int_{0}^{T_I} s_{\text{I}}(t)e^{\text{j}2\pi f t}\text{d}t \
-&amp;= S_{\text{L}}(f)S_{\text{I}}^<em>(f)
+&amp;= S_{\text{L}}(f)S_{\text{I}}^*(f)
 \end{aligned}
-$$
-同理可得 Q 路的傅里叶变换为：<br />
-$$
-DFT{Q}=S_L(f)\cdot S_Q^</em>(f)
-$$
-因此积分器的输出可以重写为：<br />
-$$
+$$</p>
+<p>同理可得 Q 路的傅里叶变换为：</p>
+<p>$$
+DFT{Q}=S_L(f)\cdot S_Q^*(f)
+$$</p>
+<p>因此积分器的输出可以重写为：</p>
+<p>$$
 \begin{align}
 I(\tau) &amp; = IDFT[DFT(s_L)\cdot DFT^<em>(s_I)] \
 Q(\tau) &amp; = IDFT[DFT(s_L)\cdot DFT^</em>(s_Q)]
 \end{align}
-$$
-由上可得，FFT 实现信号捕获的流程如下：</p>
+$$</p>
+<p>由上可得，FFT 实现信号捕获的流程如下：</p>
 <ol>
 <li>将输入中频信号和本地载波发生器输出的同相和正交信号相乘，获取基带复信号</li>
 <li>对第一步获取到的复信号做 FFT 处理</li>
@@ -538,41 +538,41 @@ $$
 <p>参与 FFT 运算的信号序列长度决定了结果的多普勒频移精度，信号长度为 $T_1$ ，则相关峰的频率分辨率为 $1/T_1$，因此搜索频率步进值要小于等于相关峰的频率分辨率。FFT 运算的信号长度相对于时域相关器的积分长度，信号长度越长，相关峰形状越尖锐，峰值越高，对频率误差越敏感。</p>
 <h2 id="2-2-跟踪">2.2 跟踪</h2>
 <h3 id="2-2-1-载波跟踪">2.2.1 载波跟踪</h3>
-<p>普通 PLL 对 180°相移敏感，由于 GPS 信号中存在导航比特跳变，因此 GPS 接收机使用的 PLL 必须对 180°相移不敏感 0o。<br />
-下图为 costas 环，特点就是对 180°相位不敏感，但是可能会引起相位模糊。Costas 环的目标是将所有能量保留在 I 路，为此需要提供振荡器反馈。
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1765632249346.png" srcset="/img/banner.png" lazyload alt="|480" /><br />
-假设 PRN 码的码相位精准对齐，则 I 路的相乘结果为：<br />
-$$
+<p>普通 PLL 对 180°相移敏感，由于 GPS 信号中存在导航比特跳变，因此 GPS 接收机使用的 PLL 必须对 180°相移不敏感 0o。</p>
+<p>下图为 costas 环，特点就是对 180°相位不敏感，但是可能会引起相位模糊。Costas 环的目标是将所有能量保留在 I 路，为此需要提供振荡器反馈。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/1765632249346.png" srcset="/img/banner.png" lazyload alt="|480" /></p>
+<p>假设 PRN 码的码相位精准对齐，则 I 路的相乘结果为：</p>
+<p>$$
 D^{k}(:n:)\cos\boldsymbol{\omega}<em>{\mathrm{IF}}n\cos(:\omega</em>{\mathrm{IF}}n:+:\varphi):=:\frac{1}{2}D^{k}(:n:):\mathrm{cos}\boldsymbol{\varphi}:+:\frac{1}{2}D^{k}:(:n:)\cos(:2\omega_{\mathrm{IF}}n:+:\varphi)
-$$
-其中，$\varphi$ 为输入信号与本地载波的相位差。<br />
-Q 路的相乘结果为：<br />
-$$
+$$</p>
+<p>其中，$\varphi$ 为输入信号与本地载波的相位差。</p>
+<p>Q 路的相乘结果为：</p>
+<p>$$
 D^k(n)\cos\omega_\text{IF}n\sin(\omega_\text{IF}n+\varphi):=\frac{1}{2}D^k(n):\mathrm{sin}\varphi+\frac{1}{2}D^k(n)\sin(2\omega_\text{IF}n+\varphi)
-$$
-其中低通滤波器为一个积分器，公式为：<br />
-$$
+$$</p>
+<p>其中低通滤波器为一个积分器，公式为：</p>
+<p>$$
 \begin{align}
 I(t) &amp; = \int^{t}<em>{t-T_I} \epsilon_I(\tau) d \tau \
 Q(t) &amp; = \int^{t}</em>{t-T_I} \epsilon_I(\tau) d \tau
 \end{align}
-$$
-积分后乘法器输出轴的高频项趋近于 0，只保留差频项。<br />
-将信号进行低通滤波后，两倍频信号会被滤除，信号为：<br />
-$$
+$$</p>
+<p>积分后乘法器输出轴的高频项趋近于 0，只保留差频项。</p>
+<p>将信号进行低通滤波后，两倍频信号会被滤除，信号为：</p>
+<p>$$
 \begin{align}
 I^k &amp; =\frac{1}{2}D^k(n)\cos \varphi \\
 Q^k &amp; =\frac{1}{2}D^k(n)\sin \varphi
 \end{align}
-$$
-本地载波的相位误差为：<br />
-$$
+$$</p>
+<p>本地载波的相位误差为：</p>
+<p>$$
 \begin{align}
 \frac{Q^k}{I^k} &amp; =\frac{\sin \varphi}{\cos \varphi}=\tan \varphi  \
 \varphi &amp; = \arctan \frac{Q^k}{I^k}
 \end{align}
-$$
-costas 环的鉴相器有多种，常用的为</p>
+$$</p>
+<p>costas 环的鉴相器有多种，常用的为</p>
 <table>
 <thead>
 <tr>
@@ -604,72 +604,72 @@ costas 环的鉴相器有多种，常用的为</p>
 </tr>
 </tbody>
 </table>
-<p>不同鉴相器的相位差输出对比如下：<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-03/260302110610829.png" srcset="/img/banner.png" lazyload alt="260302110610829.png" /><br />
-其中 atan 的线性度最好，但是计算量最大；sign 的线性度次之，但计算量较小；Q/I 和 atan 可能会出现除 0 的问题，但是无需归一化，I×Q 和 sign 运算量小，但需做归一化处理，否则随着信号幅度的变化导致输出的相位差信号发生较大幅度的变化。
-<strong>2.2.1.1 环路滤波器</strong><br />
-对于一个标准的二阶锁相环，其环路滤波器 $F(s)$ 的传递函数通常为：<br />
-$$
+<p>不同鉴相器的相位差输出对比如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-03/260302110610829.png" srcset="/img/banner.png" lazyload alt="260302110610829.png" /></p>
+<p>其中 atan 的线性度最好，但是计算量最大；sign 的线性度次之，但计算量较小；Q/I 和 atan 可能会出现除 0 的问题，但是无需归一化，I×Q 和 sign 运算量小，但需做归一化处理，否则随着信号幅度的变化导致输出的相位差信号发生较大幅度的变化。</p>
+<p><strong>2.2.1.1 环路滤波器</strong>
+对于一个标准的二阶锁相环，其环路滤波器 $F(s)$ 的传递函数通常为：</p>
+<p>$$
 F(s)=\frac{\tau_2 s+1}{\tau_1 s}=\frac{\tau_2}{\tau_1}+\frac{1}{\tau_1 s}
-$$
-公式前半部分为<strong>比例项</strong>（Proportional），后半部分为<strong>积分项</strong>（Integral）, 其中的 $\tau_1$ 和 $\tau_2$ 由环路自然频率和阻尼系数决定。<br />
-<strong>离散化</strong><br />
-在数字通信过程中，需要将连续方程离散化，假设积分时间为 $T$。<br />
-比例项的离散化：<br />
-直接相乘<br />
-$$
+$$</p>
+<p>公式前半部分为<strong>比例项</strong>（Proportional），后半部分为<strong>积分项</strong>（Integral）, 其中的 $\tau_1$ 和 $\tau_2$ 由环路自然频率和阻尼系数决定。</p>
+<p><strong>离散化</strong></p>
+<p>在数字通信过程中，需要将连续方程离散化，假设积分时间为 $T$。</p>
+<p>比例项的离散化：</p>
+<p>直接相乘</p>
+<p>$$
 P[n]=\frac{\tau_2}{\tau_1}\cdot e[n]
-$$
-其中的 $e[n]$ 为鉴相器的输出。<br />
-积分项的离散化：<br />
-积分 $\frac{1}{s}$ 在离散域可近似等价为累加。<br />
-$$
+$$</p>
+<p>其中的 $e[n]$ 为鉴相器的输出。</p>
+<p>积分项的离散化：</p>
+<p>积分 $\frac{1}{s}$ 在离散域可近似等价为累加。</p>
+<p>$$
 I[n]=I[n-1]+\frac{T}{\tau_1}\cdot e[n]
-$$
-环路滤波器输出：<br />
-$$
+$$</p>
+<p>环路滤波器输出：</p>
+<p>$$
 y[n]=P[n]+I[n]=\frac{\tau_2}{\tau_1}\cdot e[n]+(I[n-1]+\frac{T}{\tau_1}\cdot e[n])
-$$
-<strong>代码实现：</strong><br />
-在 Soft-Gnss matlab 代码 tracking.m 中，使用增量更新的方式计算 $y[n]$。<br />
-$$
+$$</p>
+<p><strong>代码实现：</strong>
+在 Soft-Gnss matlab 代码 tracking.m 中，使用增量更新的方式计算 $y[n]$。</p>
+<p>$$
 \begin{align}
 y[n]-y[n-1] &amp; =(P[n]+I[n])-(P[n-1]+I[n-1]) \
 &amp; =\left(\frac{\tau_2}{\tau_1}e[n]+I[n]\right)-\left(\frac{\tau_2}{\tau_1}e[n-1]+I[n-1]\right) \
 &amp; = \frac{\tau_2}{\tau_1}(e[n]-e[n-1])+(I[n]-I[n-1]) \
 &amp; = \frac{\tau_2}{\tau_1}(e[n]-e[n-1])+\frac{T}{\tau_1}\cdot e[n]
 \end{align}
-$$
-移项后可得<br />
-$$
+$$</p>
+<p>移项后可得</p>
+<p>$$
 \begin{align}
 y[n]=y[n-1]+\frac{\tau_2}{\tau_1}(e[n]-e[n-1])+\frac{T}{\tau_1}\cdot e[n]
 \end{align}
-$$
-数学公式与代码对应关系如下：</p>
+$$</p>
+<p>数学公式与代码对应关系如下：</p>
 <ul>
 <li>$y[n]$ =&gt; <code>carrNco</code>，当前的 NCO 频率调整量</li>
 <li>$y[n-1]$ =&gt; <code>oldCarrNco</code>，上一刻的 NCO 调整量</li>
 <li>$e[n]$ =&gt; <code>carrError</code>，当前相位误差</li>
 <li>$e[n-1]$ =&gt; <code>oldCarrError</code>，上一刻的相位误差</li>
 <li>$T$ =&gt; <code>PDIcarr</code>
-<strong>比例项的变化量</strong>：对相位的快速变化做出反应，帮助环路快速锁定相位。<br />
+<strong>比例项的变化量</strong>：对相位的快速变化做出反应，帮助环路快速锁定相位。
 <strong>积分项的增量</strong>：将相位误差累加到频率上，如果存在恒定的多普勒频移，相位误差会产生一个非零的平均值，调整 NCO 频率。</li>
 </ul>
 <h3 id="2-2-2-码跟踪">2.2.2 码跟踪</h3>
-<p>码跟踪环的目标是保持对信号中特定码相位的跟踪，其输出是对信号中码的精确复制。<br />
-GPS 接收机中的码跟踪环被称为超前-滞后跟踪环（DLL，延迟锁定环）。思想是将输入信号与三个本地码进行相关，如图所示。<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251215174729.png" srcset="/img/banner.png" lazyload alt="|345" /></p>
+<p>码跟踪环的目标是保持对信号中特定码相位的跟踪，其输出是对信号中码的精确复制。</p>
+<p>GPS 接收机中的码跟踪环被称为超前-滞后跟踪环（DLL，延迟锁定环）。思想是将输入信号与三个本地码进行相关，如图所示。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251215174729.png" srcset="/img/banner.png" lazyload alt="|345" /></p>
 <ol>
 <li>输入信号与严格对齐的本地载波相乘，将 C/A 码转到基带信号</li>
 <li>与三路本地 PRN 码相乘，通常三路本地码的间距为 $\pm \frac{1}{2}$ 个码片</li>
 <li>经过第二次相乘后对三路输出进行积分累加，输出的积分值代表本地码与输入码的相关程度
-当本地载波存在相位误差时，DLL 环难以锁定码相位，因此接收机中一般采用改进 DLL 环。<br />
+当本地载波存在相位误差时，DLL 环难以锁定码相位，因此接收机中一般采用改进 DLL 环。
 <img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251215195717.png" srcset="/img/banner.png" lazyload alt="|505" />
-如果本地载波相位与输入信号相位一致的话，能量会集中在同相支路。如果相位有偏差，则信号能量会在同相与正交支路之间来换切换。<br />
+如果本地载波相位与输入信号相位一致的话，能量会集中在同相支路。如果相位有偏差，则信号能量会在同相与正交支路之间来换切换。
 <img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251215201023.png" srcset="/img/banner.png" lazyload alt="|455" />
 如果锁定的话，DLL 输出如下。
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251215201845.png" srcset="/img/banner.png" lazyload alt="|455" /><br />
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251215201845.png" srcset="/img/banner.png" lazyload alt="|455" />
 如果码相位需要调整，则需要鉴别器输出反馈至 PRN 码发生器，常见的用于反馈的 DLL 鉴别器为：
 <img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251215202016.png" srcset="/img/banner.png" lazyload alt="" /></li>
 </ol>
@@ -740,18 +740,28 @@ DLL 负责对齐 C/A 码，它的带宽通常可以设得很低。</p>
 <p>通常选择 $\zeta = 0.707$ ($1/\sqrt{2}$)。这是控制理论中的“最佳阻尼点”，在响应速度和过冲之间取得平衡。</p>
 <p>第二步：计算自然频率 ($\omega_n$)</p>
 <p>噪声带宽 $B_L$ 与自然频率 $\omega_n$ 的关系（对于二阶环）：</p>
-<p>$$B_L = \frac{\omega_n (1 + 4\zeta^2)}{8\zeta}$$</p>
+<p>$$
+B_L = \frac{\omega_n (1 + 4\zeta^2)}{8\zeta}
+$$</p>
 <p>反推 $\omega_n$：</p>
-<p>$$\omega_n = \frac{8 \zeta B_L}{4 \zeta^2 + 1}$$</p>
+<p>$$
+\omega_n = \frac{8 \zeta B_L}{4 \zeta^2 + 1}
+$$</p>
 <p>第三步：计算滤波器系数 ($\tau_1, \tau_2$)</p>
 <p>这是基于传递函数 $F(s) = \frac{1 + \tau_2 s}{\tau_1 s}$ 推导出来的：</p>
-<p>$$\tau_1 = \frac{1}{\omega_n^2}$$</p>
-<p>$$\tau_2 = \frac{2\zeta}{\omega_n}$$</p>
+<p>$$
+\tau_1 = \frac{1}{\omega_n^2}
+$$</p>
+<p>$$
+\tau_2 = \frac{2\zeta}{\omega_n}
+$$</p>
 <p><strong>2.2.4.1 代码中的实现映射</strong></p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># 1. 设定参数</span><br><span class="hljs-attribute">zeta</span> = <span class="hljs-number">0</span>.<span class="hljs-number">707</span><br><br><span class="hljs-comment"># 2. 计算自然频率 wn (这里公式就是上面的变形)</span><br><span class="hljs-comment"># wn = B_L * (8*zeta) / (4*zeta^2 + 1)</span><br><span class="hljs-attribute">wn_pll</span> = pll_bw * <span class="hljs-number">8</span>.<span class="hljs-number">0</span> * zeta / (<span class="hljs-number">4</span>.<span class="hljs-number">0</span> * zeta**<span class="hljs-number">2</span> + <span class="hljs-number">1</span>.<span class="hljs-number">0</span>)<br><br><span class="hljs-comment"># 3. 计算 Tau 参数</span><br><span class="hljs-attribute">self</span>.tau1_carr = <span class="hljs-number">1</span>.<span class="hljs-number">0</span> / (wn_pll**<span class="hljs-number">2</span>)<br><span class="hljs-attribute">self</span>.tau2_carr = <span class="hljs-number">2</span>.<span class="hljs-number">0</span> * zeta / wn_pll<br></code></pre></td></tr></table></figure>
 <p>第四步：数字滤波器应用 (离散化)</p>
 <p>在 general_work 中，这些参数被用来更新 NCO。这实际上是一个数字 PI 控制器：</p>
-<p>$$\text{NCO}<em>{cmd} = \text{NCO}</em>{old} + P \cdot (\text{Error} - \text{OldError}) + I \cdot \text{Error}$$</p>
+<p>$$
+\text{NCO}<em>{cmd} = \text{NCO}</em>{old} + P \cdot (\text{Error} - \text{OldError}) + I \cdot \text{Error}
+$$</p>
 <p>对应代码：</p>
 <p>Python</p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs crystal">carr_nco = <span class="hljs-keyword">self</span>.old_carr_nco + \<br>           (<span class="hljs-keyword">self</span>.tau2_carr / <span class="hljs-keyword">self</span>.tau1_carr) * (carr_err - <span class="hljs-keyword">self</span>.old_carr_error) + \<br>           carr_err * (<span class="hljs-keyword">self</span>.pdi_carr / <span class="hljs-keyword">self</span>.tau1_carr)<br></code></pre></td></tr></table></figure>
@@ -799,28 +809,28 @@ DLL 负责对齐 C/A 码，它的带宽通常可以设得很低。</p>
 </ol>
 <p>将这些值代入你的代码，环路对噪声的过滤能力将大大增强。</p>
 <h3 id="2-2-6-BOC-调制">2.2.6 BOC 调制</h3>
-<p>BOC 调制的核心原理是在传统的 BPSK 调制基础上，增加了一个方波副载波对扩频码进行二次调制。<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251218102228.png" srcset="/img/banner.png" lazyload alt="" />
-<strong>2.2.6.1 表示方法</strong><br />
+<p>BOC 调制的核心原理是在传统的 BPSK 调制基础上，增加了一个方波副载波对扩频码进行二次调制。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20251218102228.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p><strong>2.2.6.1 表示方法</strong>
 BOC 调制通常为 BOC (m, n)。</p>
 <ul>
 <li>m：表示副载波频率 $f_{sc}$ 与参考频率 $f_0$（通常为 1.023M）的比值，$m=f_{sc}/f_0$</li>
 <li>n：表示扩频码速率与参考频率的比值
-<strong>2.2.6.1 数学推导</strong><br />
-副载波表示为：<br />
-$$
-sc(t)=sign[\sin(2\pi f_{sc}t)]
-$$
-方波展开为傅里叶级数为：<br />
-$$
-sc(t)=\frac{4}{\pi}\sum^{\infty}<em>{k=0}\frac{1}{2k+1}\sin[2\pi(2k+1)f</em>{sc}t]
-$$
-进行傅里叶变换：<br />
-$$
-S_{sc}(f)=\sum^{\infty}<em>{k=0}(\frac{2}{(2k+1)\pi})^2[\delta(f-(2k+1)f</em>{sc})+\delta(f+(2k+1)f_{sc})]
-$$
-可以看出 BOC 副载波的频谱是一个一个谱线。</li>
+<strong>2.2.6.1 数学推导</strong>
+副载波表示为：</li>
 </ul>
+<p>$$
+sc(t)=sign[\sin(2\pi f_{sc}t)]
+$$</p>
+<p>方波展开为傅里叶级数为：</p>
+<p>$$
+sc(t)=\frac{4}{\pi}\sum^{\infty}<em>{k=0}\frac{1}{2k+1}\sin[2\pi(2k+1)f</em>{sc}t]
+$$</p>
+<p>进行傅里叶变换：</p>
+<p>$$
+S_{sc}(f)=\sum^{\infty}<em>{k=0}(\frac{2}{(2k+1)\pi})^2[\delta(f-(2k+1)f</em>{sc})+\delta(f+(2k+1)f_{sc})]
+$$</p>
+<p>可以看出 BOC 副载波的频谱是一个一个谱线。</p>
 
                 
               </div>
@@ -828,27 +838,6 @@ $$
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/TD/" class="category-chain-item">TD</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
     <div class="post-meta">

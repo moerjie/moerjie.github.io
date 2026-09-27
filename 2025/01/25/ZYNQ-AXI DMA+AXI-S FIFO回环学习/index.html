@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501251031208.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501252113134.png">
 <meta property="article:published_time" content="2025-01-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-17T14:13:54.000Z">
+<meta property="article:modified_time" content="2026-07-05T03:53:11.649Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta property="article:tag" content="ZYNQ">
@@ -359,9 +359,9 @@
               <div class="markdown-body">
                 
                 <h1>1 DMA 简介</h1>
-<p>DMA 是现代计算机的特色之一，是硬件实现存储器与存储器、存储器与 I/O 设备之间直接进行高速数据传输的内存技术，它允许不同速率的设备进行沟通，而不需要依靠 CPU 的中断负载。
-如果不使用 DMA，那么 CPU 需要从数据源把每一个片段的数据复制到寄存器中，这个过程会一直占用 CPU 的资源。当使用 DMA 时，CPU 向 DMA 发送一个存储传输请求，当 DMA 控制器收到请求时就会将数据从源地址搬运到目的地址，搬运过程中不消化 CPU 的资源，当传输完成后 DMA 控制器以中断的方式通知 CPU。
-为了发起传输事务，DMA 控制器必须有：</p>
+<p>DMA 是现代计算机的特色之一，是硬件实现存储器与存储器、存储器与 I/O 设备之间直接进行高速数据传输的内存技术，它允许不同速率的设备进行沟通，而不需要依靠 CPU 的中断负载。</p>
+<p>如果不使用 DMA，那么 CPU 需要从数据源把每一个片段的数据复制到寄存器中，这个过程会一直占用 CPU 的资源。当使用 DMA 时，CPU 向 DMA 发送一个存储传输请求，当 DMA 控制器收到请求时就会将数据从源地址搬运到目的地址，搬运过程中不消化 CPU 的资源，当传输完成后 DMA 控制器以中断的方式通知 CPU。</p>
+<p>为了发起传输事务，DMA 控制器必须有：</p>
 <ol>
 <li>源地址</li>
 <li>目的地址</li>
@@ -371,17 +371,17 @@ DMA 存储传输的过程如下：</li>
 <li>DMA 控制器把数据从外设传输到存储器或从存储器搬运到存储器，而让 CPU 腾出手来做其它操作</li>
 <li>数据传输完成后，DMA 控制器向 CPU 发出一个中断，来通知处理器 DMA 传输完成</li>
 </ol>
-<p>ZYNQ 提供两种 DMA，一种是集成在 PS 中的硬核 DMA，一种是 PL 中的软核 AXI DMA IP。
-各种接口方式的比较如下：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501251640116.png" srcset="/img/banner.png" lazyload alt="|500" />
-PL 的 DMA 和 AXI_HP 接口的传输适用于大量数据的高性能传输，带宽高，传输方式的拓扑图如下：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501251637054.png" srcset="/img/banner.png" lazyload alt="|500" /></p>
+<p>ZYNQ 提供两种 DMA，一种是集成在 PS 中的硬核 DMA，一种是 PL 中的软核 AXI DMA IP。</p>
+<p>各种接口方式的比较如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501251640116.png" srcset="/img/banner.png" lazyload alt="|500" /></p>
+<p>PL 的 DMA 和 AXI_HP 接口的传输适用于大量数据的高性能传输，带宽高，传输方式的拓扑图如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501251637054.png" srcset="/img/banner.png" lazyload alt="|500" /></p>
 <h2 id="1-1-AXI-DMA-IP">1.1 AXI DMA IP</h2>
 <p>AXI Direct Memory Access（AXI DMA）IP 核在 AXI 4 内存映射和 AXI 4-Stream IP 接口之间提供高带宽直接储存访问。</p>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501251031208.png" srcset="/img/banner.png" lazyload alt="|500" />
-AXI DMA 用到了三种总线。AXI 4-Lite 用于对寄存器进行配置，AXI 4 Memory Map 总线用于读写 DDR 中的数据，AXI 4 Stream 总线用于 AXI DMA 对外设数据的读写，其中 AXI 4 Stream Master（MM 2 S，Memory Map to Stream）接口用于向 PL写入数据，AXI 4-Stream Slave (S 2 MM，Stream to Memory Map) 接口用于从 PL读取数据。
-AXI DMA 提供 3 种模式，分别是 Direct Register 模式、Scatter/Gather 模式和 Cyclic DMA（循环 DMA）模式，常用的是 Direct Register 模式。
-Direct Register DMA 模式即 Simple DMA 模式。Direct Register 模式提供了一种配置，用于在 MM 2 S 和 S 2 MM 通道上执行简单的 DMA 传输。Simple DMA（简单 DMA）允许应用程序在 DMA 和 Device 之间定义单个事务。它有两个通道：一个从 DMA 到 Device，另一个从 Device 到 DMA。这里有个地方需要大家注意下，在编写 Simple DMA（简单 DMA）代码时必须设置缓冲区地址和长度字段以启动相应通道中的传输。（其中 PL 对应 Device）</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501251031208.png" srcset="/img/banner.png" lazyload alt="|500" /></p>
+<p>AXI DMA 用到了三种总线。AXI 4-Lite 用于对寄存器进行配置，AXI 4 Memory Map 总线用于读写 DDR 中的数据，AXI 4 Stream 总线用于 AXI DMA 对外设数据的读写，其中 AXI 4 Stream Master（MM 2 S，Memory Map to Stream）接口用于向 PL写入数据，AXI 4-Stream Slave (S 2 MM，Stream to Memory Map) 接口用于从 PL读取数据。</p>
+<p>AXI DMA 提供 3 种模式，分别是 Direct Register 模式、Scatter/Gather 模式和 Cyclic DMA（循环 DMA）模式，常用的是 Direct Register 模式。</p>
+<p>Direct Register DMA 模式即 Simple DMA 模式。Direct Register 模式提供了一种配置，用于在 MM 2 S 和 S 2 MM 通道上执行简单的 DMA 传输。Simple DMA（简单 DMA）允许应用程序在 DMA 和 Device 之间定义单个事务。它有两个通道：一个从 DMA 到 Device，另一个从 Device 到 DMA。这里有个地方需要大家注意下，在编写 Simple DMA（简单 DMA）代码时必须设置缓冲区地址和长度字段以启动相应通道中的传输。（其中 PL 对应 Device）</p>
 <h3 id="1-1-1-Vivado-中的-IP-配置">1.1.1 Vivado 中的 IP 配置</h3>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501252113134.png" srcset="/img/banner.png" lazyload alt="" /></p>
 <p><strong>Enable Scatter Gather Engine</strong>
@@ -421,27 +421,6 @@ Direct Register DMA 模式即 Simple DMA 模式。Direct Register 模式提供�
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
     <div class="post-meta">

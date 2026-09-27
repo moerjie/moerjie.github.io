@@ -43,7 +43,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250509213425.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250509214620.png">
 <meta property="article:published_time" content="2025-05-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-29T08:14:32.000Z">
+<meta property="article:modified_time" content="2026-07-05T03:50:30.011Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="MCU">
 <meta name="twitter:card" content="summary_large_image">
@@ -379,16 +379,16 @@
 </ul>
 <h3 id="1-1-1-寄存器">1.1.1 寄存器</h3>
 <h4 id="1-1-1-1-GPIO-端口模式寄存器（GPIOx-MODER）-x-A-I">1.1.1.1 GPIO 端口模式寄存器（GPIOx_MODER）(x=A.. I)</h4>
-<p>用于控制 GPIO 的工作模式
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250520102550965.png" srcset="/img/banner.png" lazyload alt="" />
-每组 GPIO 下有 16 个 IO 口，两个寄存器位控制 1 个 IO。PortA 的复位值是 0 xA 800 0000，对应的二进制为 1010 1000 0000 0000 0000 0000 0000 0000，可知 PA 15/14/13 都为复用功能模式，其余端口为输入模式。</p>
+<p>用于控制 GPIO 的工作模式</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250520102550965.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>每组 GPIO 下有 16 个 IO 口，两个寄存器位控制 1 个 IO。PortA 的复位值是 0 xA 800 0000，对应的二进制为 1010 1000 0000 0000 0000 0000 0000 0000，可知 PA 15/14/13 都为复用功能模式，其余端口为输入模式。</p>
 <h4 id="1-1-1-2-GPIO-端口输出类型控制器（GPIOx-OTYPER）">1.1.1.2 GPIO 端口输出类型控制器（GPIOx_OTYPER）</h4>
-<p>用于控制 GPIO 的输出类型。
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250520103512267.png" srcset="/img/banner.png" lazyload alt="" />
-在输入模式下不起作用。低 16 位有效。默认输出模式下 IO 口为推挽输出。</p>
+<p>用于控制 GPIO 的输出类型。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250520103512267.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>在输入模式下不起作用。低 16 位有效。默认输出模式下 IO 口为推挽输出。</p>
 <h4 id="1-1-1-3-GPIO-端口输出速度寄存器（GPIOx-OSPEEDR）">1.1.1.3 GPIO 端口输出速度寄存器（GPIOx_OSPEEDR）</h4>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250520104008751.png" srcset="/img/banner.png" lazyload alt="" />
-也只用于输出模式。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250520104008751.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>也只用于输出模式。</p>
 <h4 id="1-1-1-4-GPIO-端口上拉-下拉寄存器（GPIOx-PUPDR）">1.1.1.4 GPIO 端口上拉/下拉寄存器（GPIOx_PUPDR）</h4>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250520104200478.png" srcset="/img/banner.png" lazyload alt="" /></p>
 <ul>
@@ -422,12 +422,12 @@
 <h4 id="1-2-2-1-规则组">1.2.2.1 规则组</h4>
 <p>按照一定的顺序成组转换，常用。</p>
 <h4 id="1-2-2-2-注入组">1.2.2.2 注入组</h4>
-<p>“注入”即为打破原来的状态，相当于中断。如果在规则组转换的过程中，注入组启动，则注入组转换完成后规则组才继续转换。
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250521101511156.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>“注入”即为打破原来的状态，相当于中断。如果在规则组转换的过程中，注入组启动，则注入组转换完成后规则组才继续转换。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250521101511156.png" srcset="/img/banner.png" lazyload alt="" /></p>
 <h4 id="1-2-2-3-转换速率">1.2.2.3 转换速率</h4>
-<p>ADC 转换时间计算公式为$$
-T_{CONV}=Sample_Time+TSAR\times ADC_CLK
-$$
+<p>ADC 转换时间计算公式为$$</p>
+<p>T_{CONV}=Sample_Time+TSAR\times ADC_CLK</p>
+<p>$$
 采样时间由 ADC_SMPR 寄存器进行控制。
 ADC_CLK 由 APB 2 分配产生，分频系数由 RCC_CFGR 寄存器中的 PPRE 2 进行设置，2/4/6/8/16 分频选项。</p>
 <h3 id="寄存器">寄存器</h3>
@@ -531,27 +531,6 @@ SPI 支持全双工、半双工、单工传输方式。</li>
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/MCU/" class="category-chain-item">MCU</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
     <div class="post-meta">

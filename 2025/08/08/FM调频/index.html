@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedfigure_6.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedfigure_7.png">
 <meta property="article:published_time" content="2025-08-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-17T14:13:56.000Z">
+<meta property="article:modified_time" content="2026-08-25T13:45:29.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="数字通信">
 <meta property="article:tag" content="MATLAB">
@@ -364,75 +364,75 @@
                 
                 <h1>1 调制算法</h1>
 <h2 id="1-1-FM-信号描述">1.1 FM 信号描述</h2>
-<p>用基带调制信号去控制载波信号的瞬时频率，使其按照调制信号的规律变化，当调制信号是模拟信号时，这个过程即为调频。调频信号的时域表达式如下：
-$$
+<p>用基带调制信号去控制载波信号的瞬时频率，使其按照调制信号的规律变化，当调制信号是模拟信号时，这个过程即为调频。调频信号的时域表达式如下：</p>
+<p>$$
 S_{FM}(t)=A_m\times \cos[\omega_ct+K_f \int^{t}_{0}m(\tau)d\tau]\tag{1}
 $$</p>
-<p>其中，$A_m$ 为载波振幅，$K_f$ 为调频灵敏度（单位为 $rad/(s\cdot V)$），$m(t)$ 是调制信号，$cos\omega_c t$ 为载波，$\omega_c$ 为载波角频率。
-根据(1) 式，可算出 FM 信号相对于载波频率的瞬时频偏为：
-$$
+<p>其中，$A_m$ 为载波振幅，$K_f$ 为调频灵敏度（单位为 $rad/(s\cdot V)$），$m(t)$ 是调制信号，$cos\omega_c t$ 为载波，$\omega_c$ 为载波角频率。</p>
+<p>根据(1) 式，可算出 FM 信号相对于载波频率的瞬时频偏为：</p>
+<p>$$
 \frac{d\left[K_f\int_0^tm(\tau)d\tau\right]}{dt}=K_fm(t)\tag{2}
-$$
-由（1）式可知，FM 信号相对于载波相位的瞬时相位偏移随 $m(t)$ 的积分呈线性变化，由（2）式可知，FM 信号相对于载频的瞬时频率频移随 $m(t)$ 呈线性变化，比例系数都为 $K_f$。用 $k_f$ 表示调频灵敏度（单位 Hz/V），关系为 $K_f=2\pi k_f$。
-FM 的调频指数 $\beta$ 为：
-$$
+$$</p>
+<p>由（1）式可知，FM 信号相对于载波相位的瞬时相位偏移随 $m(t)$ 的积分呈线性变化，由（2）式可知，FM 信号相对于载频的瞬时频率频移随 $m(t)$ 呈线性变化，比例系数都为 $K_f$。用 $k_f$ 表示调频灵敏度（单位 Hz/V），关系为 $K_f=2\pi k_f$。</p>
+<p>FM 的调频指数 $\beta$ 为：</p>
+<p>$$
 \beta=\frac{k_f |m(t)|_{max}}{W}\tag{3}
-$$
-其中 $W$ 是基带信号 $m(t)$ 的带宽或最高频率。</p>
+$$</p>
+<p>其中 $W$ 是基带信号 $m(t)$ 的带宽或最高频率。</p>
 <h3 id="1-1-1-窄带调频（NBFM）">1.1.1 窄带调频（NBFM）</h3>
-<p>将由 $m(t)$ 引起的最大瞬时相位偏移远小于 30°的情况称为窄带调频。窄带调频的带宽较窄，传输数据量有限，主要应用于无线语言的传输。
-$$
+<p>将由 $m(t)$ 引起的最大瞬时相位偏移远小于 30°的情况称为窄带调频。窄带调频的带宽较窄，传输数据量有限，主要应用于无线语言的传输。</p>
+<p>$$
 |K_f\int_0^tm(\tau)d\tau|\ll\frac\pi6 \tag{4}
-$$
-此时，式（1）可以近似为：
-$$
+$$</p>
+<p>此时，式（1）可以近似为：</p>
+<p>$$
 \begin{aligned}s_{NBFM}(t)&amp;=Acos\left[\omega_ct+K_f\int_0^tm(\tau)d\tau\right]\\&amp;=Acos(\omega_ct)cos{\left[K_f\int_0^tm(\tau)d\tau\right]}-Asin(\omega_ct)sin{\left[K_f\int_0^tm(\tau)d\tau\right]}\\&amp;\approx Acos(\omega_ct)\cdot1-Asin(\omega_ct)\cdot K_f\int_0^tm(\tau)d\tau\\&amp;=Acos(\omega_ct)-\left[AK_f\int_0^tm(\tau)d\tau\right]sin(\omega_ct)\end{aligned}\tag{5}
-$$
-对其做 FFT 变换，得到窄带调频信号的频谱为：
-$$
+$$</p>
+<p>对其做 FFT 变换，得到窄带调频信号的频谱为：</p>
+<p>$$
 S_{NBFM}(\omega)=\pi A\left[\delta(\omega+\omega_c)+\delta(\omega-\omega_c)\right]+\frac{AK_f}{2}\left[\frac{M(\omega-\omega_c)}{\omega-\omega_c}-\frac{M(\omega+\omega_c)}{\omega+\omega_c}\right]\tag{6}
-$$
-其中 $M(\omega)$ 是调制信号 $m(t)$ 的频谱。与 AM 信号不同的是，NBFM 信号的两个边带分别乘了因式 $1/(\omega-\omega_c)\text{ 和 }1/(\omega+\omega_c)$，由于因式是与频率有关的函数，所以其加权是频率加权，加权的结果引起了调制信号频谱失真，而且 NBFM 的一个边带与 AM 反相。</p>
+$$</p>
+<p>其中 $M(\omega)$ 是调制信号 $m(t)$ 的频谱。与 AM 信号不同的是，NBFM 信号的两个边带分别乘了因式 $1/(\omega-\omega_c)\text{ 和 }1/(\omega+\omega_c)$，由于因式是与频率有关的函数，所以其加权是频率加权，加权的结果引起了调制信号频谱失真，而且 NBFM 的一个边带与 AM 反相。</p>
 <h3 id="1-1-2-宽带调频（WBFM）">1.1.2 宽带调频（WBFM）</h3>
-<p>当不满足式（4）的条件时，称为宽带调频。宽带调频占用的频带较宽，传输数据量大，主要用于调频立体声广播。WBFM 的时域表达式无法简化，当 $m(t)=A_m \cos(\omega_m t)$ 时，带入式（1）可得：
-$$
+<p>当不满足式（4）的条件时，称为宽带调频。宽带调频占用的频带较宽，传输数据量大，主要用于调频立体声广播。WBFM 的时域表达式无法简化，当 $m(t)=A_m \cos(\omega_m t)$ 时，带入式（1）可得：</p>
+<p>$$
 \begin{aligned}s_{WBFM}(t)&amp;=Acos\left[\omega_ct+K_f\int_0^tA_mcos(\omega_m\tau)d\tau\right]\\&amp;
 =Acos\left[\omega_ct+\frac{K_fA_m}{\omega_m}sin(\omega_mt)\right]\\&amp;
 =Acos[\omega_ct+\beta sin(\omega_mt)]\\&amp;
 =A\sum_{n=-\infty}^\infty J_n(\beta)cos[(\omega_c+n\omega_m)t]\end{aligned}\tag{7}
-$$
-式中 $J_n(\beta)$ 为第一类 n 阶贝塞尔函数，是调频指数 $\beta$ 的函数。
-频谱为：
-$$
+$$</p>
+<p>式中 $J_n(\beta)$ 为第一类 n 阶贝塞尔函数，是调频指数 $\beta$ 的函数。</p>
+<p>频谱为：</p>
+<p>$$
 S_{WBFM}(\omega)=\pi A\sum_{n=-\infty}^\infty J_n(\beta)\left[\delta(\omega-\omega_c-n\omega_m)+\delta(\omega+\omega_c+n\omega_m)\right]\tag{8}
 $$</p>
 <h2 id="1-2-FM-信号的带宽">1.2 FM 信号的带宽</h2>
-<p>宽带调频信号的频谱包含无穷多个频率分量，因此理论上调频信号的频带宽度为无限宽。但是，实际上边频幅度 $J_n(\beta)$ 随着 n 的增大而减小，因此取适当的 n 值使边频分量小到可以忽略的程度即可近似认为 FM 信号具有有限带宽。通常原则为<strong>信号的频带宽度应包括幅度大于未调载波的 10%以上的边频分量</strong>。根据经验，当 $\beta \geq 1$ 时，选取边频数 $n=\beta +1$ 即可，因为大于 $\beta+1$ 的边频幅度均小于 0.1。
-根据这个经验，FM 信号的有效带宽为：
-$$
+<p>宽带调频信号的频谱包含无穷多个频率分量，因此理论上调频信号的频带宽度为无限宽。但是，实际上边频幅度 $J_n(\beta)$ 随着 n 的增大而减小，因此取适当的 n 值使边频分量小到可以忽略的程度即可近似认为 FM 信号具有有限带宽。通常原则为<strong>信号的频带宽度应包括幅度大于未调载波的 10%以上的边频分量</strong>。根据经验，当 $\beta \geq 1$ 时，选取边频数 $n=\beta +1$ 即可，因为大于 $\beta+1$ 的边频幅度均小于 0.1。</p>
+<p>根据这个经验，FM 信号的有效带宽为：</p>
+<p>$$
 BW_{FM}=2(\beta+1)W\tag{9}
-$$
-这个公式即为卡森公式。</p>
+$$</p>
+<p>这个公式即为卡森公式。</p>
 <h1>2 FM 调制方法</h1>
 <h2 id="2-1-直接调频法">2.1 直接调频法</h2>
 <p>直接调频法是用调制信号 $m(t)$ 直接控制高频振荡器，让回路元件的参数发生改变，使其输出频率按调制信号的规律线性地变化，常用的元件是变容二极管。直接调频法的主要优点是在实现线性调频的要求下，可以获得较大的频偏，且实现电路简单；主要缺点是频率稳定度不高，往往需要采用自动频率控制系统来稳定中心频率。</p>
 <h2 id="2-2-间接调频法">2.2 间接调频法</h2>
 <p>间接调频法又被称为倍频法。先将调制信号积分，然后对载波进行调相，产生一个 NBFM 信号，再经过 $n$ 次倍频器得到 WBFM 信号。优点是频率稳定性高，缺点是需要多次倍频和混频，电路复杂。</p>
 <h2 id="2-3-正交调制法">2.3 正交调制法</h2>
-<p>将式（1）进行三角展开，可得：
-$$
+<p>将式（1）进行三角展开，可得：</p>
+<p>$$
 \begin{aligned}s_{FM}(t)&amp;=Acos\left[\omega_ct+K_f\int_0^tm(\tau)d\tau\right]\\&amp;=Acos(\omega_ct)cos\left[K_f\int_0^tm(\tau)d\tau\right]-Asin(\omega_ct)sin{\left[K_f\int_0^tm(\tau)d\tau\right]}\end{aligned}\tag{10}
-$$
-流程如下：</p>
+$$</p>
+<p>流程如下：</p>
 <ol>
 <li>对调制信号 $m(t)$ 进行积分，得到 $\Phi=K_f\int^{t}_{0}m(\tau)d\tau$</li>
 <li>对积分后的信号分别取余弦和正弦，得到 I 路数据 $I(t)=\cos(\Phi)$ 与 Q 路数据 $Q(t)=\sin(\Phi)$</li>
 <li>分别乘上载波 $A\cos(\omega_c t)$ 与 $-A\sin(\omega_ct)$ 后相加，即可得到 FM 信号 $s_{FM}(t)=I(t)Acos(\omega_ct)-Q(t)Asin(\omega_ct)$</li>
 </ol>
 <h1>3 FM 信号格式</h1>
-<p>我国的 FM 系统的调制频偏为 150kHz，分布在 87MHz-107.9MHz 频段。
-其中基带信号为 MPX 信号，包含了单声道（0-15kHz），导频（19kHz），立体声副载波（中心频率 38kHz），RDS 数据（中心频率 58kHz）。其频谱成分如下：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2025-08/250809181807188.png" srcset="/img/banner.png" lazyload alt="MPX信号的频谱成分" /></p>
+<p>我国的 FM 系统的调制频偏为 150kHz，分布在 87MHz-107.9MHz 频段。</p>
+<p>其中基带信号为 MPX 信号，包含了单声道（0-15kHz），导频（19kHz），立体声副载波（中心频率 38kHz），RDS 数据（中心频率 58kHz）。其频谱成分如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2025-08/250809181807188.png" srcset="/img/banner.png" lazyload alt="MPX信号的频谱成分" /></p>
 <h1>4 Matlab 仿真</h1>
 <p>基带信号的频率为 10kHz，采样率 1MHz，载波频率 100MHz，采样率 400MHz，最大频偏为 75kHz。</p>
 <h2 id="4-1-基带信号生成">4.1 基带信号生成</h2>
@@ -441,15 +441,14 @@ $$
 <h2 id="4-2-FM正交调制">4.2 FM正交调制</h2>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-attribute">fs_rf</span>=400e6;<br><span class="hljs-attribute">fc</span>=100e6;<br><span class="hljs-attribute">f_dev</span>=75e3;<br><span class="hljs-attribute">kf</span>=f_dev/1;<br><br><span class="hljs-attribute">phase_fm_bb</span>=2*pi*kf*cumsum(signal_bb)/fs_bb;<br><span class="hljs-attribute">I</span>=cos(phase_fm_bb);<br><span class="hljs-attribute">Q</span>=sin(phase_fm_bb);<br>plot(t_bb,I);<br>title(<span class="hljs-string">&#x27;I路信号&#x27;</span>);<br></code></pre></td></tr></table></figure>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedfigure_1.png" srcset="/img/banner.png" lazyload alt="figure_1.png" /></p>
-<p>plot(t_bb,Q);<br />
+<p>plot(t_bb,Q);
  title('Q路信号');</p>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedfigure_2.png" srcset="/img/banner.png" lazyload alt="figure_2.png" /></p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs routeros">% 对基带信号重采样<br><span class="hljs-attribute">L</span>=fs_rf/fs_bb;<br><span class="hljs-attribute">I_up</span>=resample(I,fs_rf,fs_bb);<br><span class="hljs-attribute">Q_up</span>=resample(Q,fs_rf,fs_bb);<br>t_rf=(0:length(I_up)-1)/fs_rf;<br><br><span class="hljs-attribute">fc_I</span>=cos(2*pi*fc*t_rf);<br><span class="hljs-attribute">fc_Q</span>=-sin(2*pi*fc*t_rf);<br><br><span class="hljs-attribute">s_I</span>=I_up.*fc_I;<br>plot(t_rf,s_I);<br>title(<span class="hljs-string">&#x27;I路信号&#x27;</span>);<br></code></pre></td></tr></table></figure>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedfigure_3.png" srcset="/img/banner.png" lazyload alt="figure_3.png" /></p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-attribute">s_Q</span>=Q_up.*fc_Q;<br>plot(t_rf,s_Q);<br>title(<span class="hljs-string">&#x27;Q路信号&#x27;</span>);<br></code></pre></td></tr></table></figure>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedfigure_4.png" srcset="/img/banner.png" lazyload alt="figure_4.png" /></p>
-<p>​<br />
- s_fm=s_I+s_Q;<br />
+<p>s_fm=s_I+s_Q;
  plot(t_rf,s_fm);</p>
 <p>![figure_5.png](file:///D:/User/Onedrive/Project/MATLAB/01_FM/FMtest_media/figure_5.png?lastModify=1756026798)</p>
 <h2 id="4-3-FFT频谱分析">4.3 FFT频谱分析</h2>

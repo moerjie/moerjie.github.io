@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/Acquisition_and_Tracking_Tracking_Frequency_and_Phase_Discriminator.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20264Acquisition_and_Tracking_Tracking_Frequency_and_Phase_Discriminator_Frequency_and_Phase_Discriminators.png">
 <meta property="article:published_time" content="2026-04-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-30T02:54:40.289Z">
+<meta property="article:modified_time" content="2026-07-05T03:51:53.164Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta property="article:tag" content="MATLAB">
@@ -368,13 +368,13 @@
                 
                 <p>工程来源自 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/releases/R2023b/wireless-hdl/ug/gps-hdl-acquisition-and-tracking-using-cacode.html">GPS HDL Acquisition and Tracking Using C/A Code</a></p>
 <h1>1 整体结构</h1>
-<p>工程中，GPS 信号的采样率为 32.768MHz，多普勒频移的范围为 $\pm 10kHz$，搜索步长为 $1kHz$，捕获时 8 倍降采样，采样率为 4.096MHz，在捕获前，进行 6 倍升采样，以加速信号处理的速率。捕获模块和跟踪模块的输入输出接口如图所示。<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/260415224539994.png" srcset="/img/banner.png" lazyload alt="260415224539994.png" /></p>
+<p>工程中，GPS 信号的采样率为 32.768MHz，多普勒频移的范围为 $\pm 10kHz$，搜索步长为 $1kHz$，捕获时 8 倍降采样，采样率为 4.096MHz，在捕获前，进行 6 倍升采样，以加速信号处理的速率。捕获模块和跟踪模块的输入输出接口如图所示。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/260415224539994.png" srcset="/img/banner.png" lazyload alt="260415224539994.png" /></p>
 <h2 id="1-1-捕获">1.1 捕获</h2>
-<p>其中捕获模块的内部如图<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/260415230513880.png" srcset="/img/banner.png" lazyload alt="260415230513880.png" /><br />
-同时进行 4 个捕获进程。
-工作流程：</p>
+<p>其中捕获模块的内部如图</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/260415230513880.png" srcset="/img/banner.png" lazyload alt="260415230513880.png" /></p>
+<p>同时进行 4 个捕获进程。</p>
+<p>工作流程：</p>
 <ol>
 <li>Control Acquisition：生成 1ms 脉冲；生成开始捕获信号，通过 <code>Hold Acqusition</code> 模块进行保持，只有当前捕获结束或者 reset 信号到来才开始下一次捕获；生成 PRN ID，错位捕获</li>
 <li>Decimation：对采样率为 32.768MHz 的信号进行 8 倍抽取</li>
@@ -383,33 +383,33 @@
 <li>Correlation：对接收信号进行 fft 处理，然后与 C/A 码的共轭相乘，检测 ifft 结果，捕获信号的码相位</li>
 </ol>
 <h2 id="1-2-跟踪">1.2 跟踪</h2>
-<p>跟踪模块框图如下：<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/Tracking.png" srcset="/img/banner.png" lazyload alt="|625" /></p>
+<p>跟踪模块框图如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/Tracking.png" srcset="/img/banner.png" lazyload alt="|625" /></p>
 <h3 id="1-2-1-Tracking-Core">1.2.1 Tracking Core</h3>
-<p>其中 Track Core 模块内部框图如下：<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/Tracking_Core.png" srcset="/img/banner.png" lazyload alt="" /><br />
-同时进行 8 路信号的跟踪。
-输入为：码偏移、载波偏移、PRN、rxData、Valid、复位信号，Divide 模块输出的归一化数据，还有鉴频器、鉴相器的输出。<br />
-输出为：导航电文，PRN、粗多普勒频移、细多普勒频移、粗码相位偏移、细码相位偏移、
-首先对输入的信号进行载波剥离、码剥离（与 early、current、late 三路 C/A 码相乘）、积分、鉴别后输出对应信号。</p>
-<p>Carrier Wipeoff 模块内部为复数乘法。<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/Carrier_Wipeoff.png" srcset="/img/banner.png" lazyload alt="" />
-Code Wipeoff 模块剥离 rxData（已剥离载波）的 C/A 码，判断输入的 C/A 码是否为 1，输出 rxData或-rxData。<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/260427162549702.png" srcset="/img/banner.png" lazyload alt="" />
-CA Code Replica 模块生成 3 路相差 0.5 个码片的 C/A 码。<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/CA_Code_Replica.png" srcset="/img/banner.png" lazyload alt="" />
-NCO 模块通过 coarseDopplerOffset 和 fineDopplerOffset 调节输出频率，通过 Phase 调节输出相位。<br />
-Integrate and Dump 模块对分别用 3 路不同相位 C/A 码进行码剥离的数据进行积分，其中 current 路的积分输出分成了 2 路，同一个积分周期的前半部分和后半部分，用于 FLL 进行频率鉴别。<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/Integrate_and_Dump.png" srcset="/img/banner.png" lazyload alt="" /><br />
-Discriminators and Loop Filters 模块根据外部的鉴相器、鉴频器输出的 phaseErr、freqErr 计算载波 NCO 的调节量。同时根据 early、late 路数据进行非相干 DLL 码同步，输出 delay 调节 CA Code Replica 输出延迟。<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/Discriminators_and_Loop_Filters.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>其中 Track Core 模块内部框图如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/Tracking_Core.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>同时进行 8 路信号的跟踪。</p>
+<p>输入为：码偏移、载波偏移、PRN、rxData、Valid、复位信号，Divide 模块输出的归一化数据，还有鉴频器、鉴相器的输出。</p>
+<p>输出为：导航电文，PRN、粗多普勒频移、细多普勒频移、粗码相位偏移、细码相位偏移、</p>
+<p>首先对输入的信号进行载波剥离、码剥离（与 early、current、late 三路 C/A 码相乘）、积分、鉴别后输出对应信号。</p>
+<p>Carrier Wipeoff 模块内部为复数乘法。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/Carrier_Wipeoff.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>Code Wipeoff 模块剥离 rxData（已剥离载波）的 C/A 码，判断输入的 C/A 码是否为 1，输出 rxData或-rxData。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/260427162549702.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>CA Code Replica 模块生成 3 路相差 0.5 个码片的 C/A 码。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/CA_Code_Replica.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>NCO 模块通过 coarseDopplerOffset 和 fineDopplerOffset 调节输出频率，通过 Phase 调节输出相位。</p>
+<p>Integrate and Dump 模块对分别用 3 路不同相位 C/A 码进行码剥离的数据进行积分，其中 current 路的积分输出分成了 2 路，同一个积分周期的前半部分和后半部分，用于 FLL 进行频率鉴别。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/Integrate_and_Dump.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>Discriminators and Loop Filters 模块根据外部的鉴相器、鉴频器输出的 phaseErr、freqErr 计算载波 NCO 的调节量。同时根据 early、late 路数据进行非相干 DLL 码同步，输出 delay 调节 CA Code Replica 输出延迟。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/Discriminators_and_Loop_Filters.png" srcset="/img/banner.png" lazyload alt="" /></p>
 <h3 id="1-2-2-Devide">1.2.2 Devide</h3>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/260427172604920.png" srcset="/img/banner.png" lazyload alt="" /></p>
 <h3 id="1-2-3-Frequency-and-Phase-Discriminator">1.2.3 Frequency and Phase Discriminator</h3>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/Acquisition_and_Tracking_Tracking_Frequency_and_Phase_Discriminator.png" srcset="/img/banner.png" lazyload alt="" /><br />
-其中主要的模块为同名的 Frequency and Phase Discriminators，内部框图如下：<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20264Acquisition_and_Tracking_Tracking_Frequency_and_Phase_Discriminator_Frequency_and_Phase_Discriminators.png" srcset="/img/banner.png" lazyload alt="20264Acquisition_and_Tracking_Tracking_Frequency_and_Phase_Discriminator_Frequency_and_Phase_Discriminators.png" /><br />
-时分计算相位差和频率差。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/Acquisition_and_Tracking_Tracking_Frequency_and_Phase_Discriminator.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>其中主要的模块为同名的 Frequency and Phase Discriminators，内部框图如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20264Acquisition_and_Tracking_Tracking_Frequency_and_Phase_Discriminator_Frequency_and_Phase_Discriminators.png" srcset="/img/banner.png" lazyload alt="20264Acquisition_and_Tracking_Tracking_Frequency_and_Phase_Discriminator_Frequency_and_Phase_Discriminators.png" /></p>
+<p>时分计算相位差和频率差。</p>
 
                 
               </div>

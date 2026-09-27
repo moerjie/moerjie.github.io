@@ -29,7 +29,7 @@
 <meta property="og:description" content="1 硬件介绍 1.1 GPIO 选择 1.1.1 引脚选择 GPIO3_B0 GPIO 的命名规则为GPIOn_xy，x 有 4 种值，计算 GPIO 编号时，A 对应 1，B 对应 2，C 对应 3，D 对应 4 计算公式为： $$ \begin{align} GPIOn_xy&#x3D;n \times 32+(x-1)\times8+y \end{align} $$ 以 GPIO3_B0 为例： $$">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-02-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-17T14:13:56.000Z">
+<meta property="article:modified_time" content="2026-08-05T15:27:41.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="硬件">
@@ -356,16 +356,16 @@
                 <h1>1 硬件介绍</h1>
 <h2 id="1-1-GPIO-选择">1.1 GPIO 选择</h2>
 <h3 id="1-1-1-引脚选择">1.1.1 引脚选择</h3>
-<p>GPIO3_B0<br />
-GPIO 的命名规则为<strong>GPIOn_xy</strong>，x 有 4 种值，计算 GPIO 编号时，A 对应 1，B 对应 2，C 对应 3，D 对应 4<br />
-计算公式为：<br />
-$$
+<p>GPIO3_B0</p>
+<p>GPIO 的命名规则为<strong>GPIOn_xy</strong>，x 有 4 种值，计算 GPIO 编号时，A 对应 1，B 对应 2，C 对应 3，D 对应 4</p>
+<p>计算公式为：</p>
+<p>$$
 \begin{align}
 GPIOn_xy=n \times 32+(x-1)\times8+y
 \end{align}
-$$
-以 GPIO3_B0 为例：<br />
-$$
+$$</p>
+<p>以 GPIO3_B0 为例：</p>
+<p>$$
 \begin{align}
 GPIO3_B0=3\times 32 +(2-1)\times 8+0
 \end{align}

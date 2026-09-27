@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501201753826.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501201804605.png">
 <meta property="article:published_time" content="2025-01-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-17T14:13:56.000Z">
+<meta property="article:modified_time" content="2026-08-25T13:45:24.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta property="article:tag" content="ZYNQ">
@@ -360,17 +360,17 @@
               <div class="markdown-body">
                 
                 <h1>GPIO 原理</h1>
-<p>GPIO 通过 MIO 提供 54 路接口，其中 16 路位于 bank 500，剩余位于 bank 501。还通过 EMIO 接口提供从 PL 来的 64 路输入和 128 路输出。GPIO 控制和状态寄存器内存映射在基址 $0xE000_A000$。
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1736500884874.png" srcset="/img/banner.png" lazyload alt="500" />
-ZYNQ 的 GPIO 引脚分为 4 个 bank，共有 118 个 GPIO。
-$$
+<p>GPIO 通过 MIO 提供 54 路接口，其中 16 路位于 bank 500，剩余位于 bank 501。还通过 EMIO 接口提供从 PL 来的 64 路输入和 128 路输出。GPIO 控制和状态寄存器内存映射在基址 $0xE000_A000$。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1736500884874.png" srcset="/img/banner.png" lazyload alt="500" /></p>
+<p>ZYNQ 的 GPIO 引脚分为 4 个 bank，共有 118 个 GPIO。</p>
+<p>$$
 118个GPIO=32个MIO（bank0）+22个MIO（bank1）+32个EMIO（bank2）+32个EMIO（bank3）
 $$</p>
 <h2 id="GPIO-内部结构">GPIO 内部结构</h2>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501101733911.png" srcset="/img/banner.png" lazyload alt="|450" />
-从图中可以看到 GPIO 有三个功能：输入、输出、中断。
-其中 MIO 7 和 9 只能做输出。
-一组寄存器只能控制一个 GPIO bank 的所有引脚。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501101733911.png" srcset="/img/banner.png" lazyload alt="|450" /></p>
+<p>从图中可以看到 GPIO 有三个功能：输入、输出、中断。</p>
+<p>其中 MIO 7 和 9 只能做输出。</p>
+<p>一组寄存器只能控制一个 GPIO bank 的所有引脚。</p>
 <h3 id="器件引脚的-GPIO-控制">器件引脚的 GPIO 控制</h3>
 <h3 id="输入-输出寄存器">输入/输出寄存器</h3>
 <table>
@@ -448,11 +448,11 @@ $$</p>
 </table>
 <p>GPIO 的中断号为 ==52==，中断优先级是固定的，无需配置 GPIO 的中断优先级。GPIO 所有引脚共享同一个中断，即使能两个引脚的中断的话，软件无法判断中断来自哪个引脚。</p>
 <h1>EMIO 和 MIO</h1>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501201743362.png" srcset="/img/banner.png" lazyload alt="MIO EMIO|500" />
-MIO，Multiuse I/O，复用输入/输出，对应 PS 端的可配置的多功能引脚。
-EMIO，Extent MIO，对应 PL 端的可配置多功能引脚。
-MIO 是外设的基本引脚，由于 MIO 的引脚数量较少，ZYNQ 也提供 EMIO 接口作为 MIO 的扩展，外设通过 EMIO 接口连接到 PL 端的引脚，来实现和 MIO 几乎相同的功能。
-MIO 和 EMIO 的不同点如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501201743362.png" srcset="/img/banner.png" lazyload alt="MIO EMIO|500" /></p>
+<p>MIO，Multiuse I/O，复用输入/输出，对应 PS 端的可配置的多功能引脚。</p>
+<p>EMIO，Extent MIO，对应 PL 端的可配置多功能引脚。</p>
+<p>MIO 是外设的基本引脚，由于 MIO 的引脚数量较少，ZYNQ 也提供 EMIO 接口作为 MIO 的扩展，外设通过 EMIO 接口连接到 PL 端的引脚，来实现和 MIO 几乎相同的功能。</p>
+<p>MIO 和 EMIO 的不同点如下：</p>
 <ol>
 <li>MIO 对于 PL 端是透明的，PL 无法读取 MIO 引脚上的电平；PS 端可以通过 EMIO 与 PL 端通信。</li>
 <li>外设与 MIO 是固定搭配的，初始化时要根据开发板原理图来选择引脚约束。EMIO 相对灵活，引脚可以任意指定，通过 xdc 文件约束指定到 PL 端的某个引脚。</li>
@@ -460,9 +460,9 @@ MIO 和 EMIO 的不同点如下：</p>
 <img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501201753826.png" srcset="/img/banner.png" lazyload alt="|450" /></li>
 </ol>
 <h1>MIO bank 和封装的 bank 的区别与联系</h1>
-<p>MIO 分为 Bank 0 和 Bank 1，Bank 0 是封装 Bank 500 中的部分引脚，Bank 1 是封装的 bank 501 的部分引脚。
-Bank 0 包含 MIO 0~15 共 16 个 MIO，bank 1 包括 MIO 16~53 共 38 个 MIO，总共有 54 个 MIO。EMIO 一共有 64 个。
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501201804605.png" srcset="/img/banner.png" lazyload alt="|550" /></p>
+<p>MIO 分为 Bank 0 和 Bank 1，Bank 0 是封装 Bank 500 中的部分引脚，Bank 1 是封装的 bank 501 的部分引脚。</p>
+<p>Bank 0 包含 MIO 0~15 共 16 个 MIO，bank 1 包括 MIO 16~53 共 38 个 MIO，总共有 54 个 MIO。EMIO 一共有 64 个。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202501201804605.png" srcset="/img/banner.png" lazyload alt="|550" /></p>
 
                 
               </div>

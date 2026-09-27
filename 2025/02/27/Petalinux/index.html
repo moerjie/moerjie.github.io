@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250407203055.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250407203141.png">
 <meta property="article:published_time" content="2025-02-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-17T14:13:56.000Z">
+<meta property="article:modified_time" content="2026-08-25T13:45:23.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta name="twitter:card" content="summary_large_image">
@@ -357,15 +357,15 @@
               <div class="markdown-body">
                 
                 <h1>1 Petalinux 命令</h1>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1740648081850.png" srcset="/img/banner.png" lazyload alt="" />
-参考《UG 1157 PetaLinux Command Line Reference Guide》</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/utool_pic/1740648081850.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>参考《UG 1157 PetaLinux Command Line Reference Guide》</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//创建petalinux工程</span><br>petalinux-create -t project --template zynq -n &lt;name&gt; <br><br><span class="hljs-comment">//配置工程</span><br>cd 上一步的工程<br>petalinux-config --get-hw-description ../xsa_folder/<br><br><span class="hljs-comment">//配置Linux内核</span><br>petalinux-config -c kernel<br><br><span class="hljs-comment">//配置Linux根文件系统</span><br>petalinux-config -c rootfs<br><br><span class="hljs-comment">//编译</span><br>petalinux-build<br><br><span class="hljs-comment">//制作BOOT.Bin</span><br>petalinux-package --boot --fsbl --fpga --u-boot --force<br><br><span class="hljs-comment">//挂载NFS</span><br>mount -t nfs -o nolock <span class="hljs-number">192.168</span>.<span class="hljs-number">0.1</span>:/home/moerjie/work /mnt<br></code></pre></td></tr></table></figure>
 <h1>2 Petalinux 设置本地编译</h1>
-<p><a target="_blank" rel="noopener" href="https://china.xilinx.com/support/download/index.html/content/xilinx/zh/downloadNav/embedded-design-tools.html">Xilinx下载中心</a>
-首先在下载中心下载 petalinux 对应版本的&quot;arm sstate-cache&quot;和&quot;download&quot;包。
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250407203055.png" srcset="/img/banner.png" lazyload alt="" />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250407203141.png" srcset="/img/banner.png" lazyload alt="" />
-将下载好的文件解压到 <code>/opt/pkg/tools/</code> 文件路径下，使用 <code>petalinux-config</code> 配置工程。配置过程可见《领航者 ZYNQ 之嵌入式 Linux 开发指南 V 3.2》6.4 节。</p>
+<p><a target="_blank" rel="noopener" href="https://china.xilinx.com/support/download/index.html/content/xilinx/zh/downloadNav/embedded-design-tools.html">Xilinx下载中心</a></p>
+<p>首先在下载中心下载 petalinux 对应版本的&quot;arm sstate-cache&quot;和&quot;download&quot;包。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250407203055.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20250407203141.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>将下载好的文件解压到 <code>/opt/pkg/tools/</code> 文件路径下，使用 <code>petalinux-config</code> 配置工程。配置过程可见《领航者 ZYNQ 之嵌入式 Linux 开发指南 V 3.2》6.4 节。</p>
 <h2 id="2-1-与正点原子教程不同的地方">2.1 与正点原子教程不同的地方</h2>
 <p>正点原子的修改 project-spec/meta-user/conf/petalinuxbsp. Conf 的代码如下：</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vim">PREMIRRORS_prepend = <span class="hljs-comment">&quot; \</span><br>git://.*/.* <span class="hljs-keyword">file</span>:///mnt/hgfs/share18/downloads/downloads \n \<br>gitsm://.*/.* <span class="hljs-keyword">file</span>:///mnt/hgfs/share18/downloads/downloads \n \<br>ftp://.*/.* <span class="hljs-keyword">file</span>:///mnt/hgfs/share18/downloads/downloads \n \<br>http://.*/.* <span class="hljs-keyword">file</span>:///mnt/hgfs/share18/downloads/downloads \n \<br>https://.*/.* <span class="hljs-keyword">file</span>:///mnt/hgfs/share18/downloads/downloads \n<span class="hljs-comment">&quot;</span><br></code></pre></td></tr></table></figure>
@@ -469,9 +469,9 @@ Axis fifo 必须将中断信号连接到 zynq processing system 才能正确挂�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/02/27/Petalinux%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" title="Petalinux报错记录">
+                      <a href="/2025/02/27/Linux%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/" title="Linux用到的命令">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Petalinux报错记录</span>
+                        <span class="hidden-mobile">Linux用到的命令</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -479,8 +479,8 @@ Axis fifo 必须将中断信号连接到 zynq processing system 才能正确挂�
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/02/06/FIFO/" title="FIFO">
-                        <span class="hidden-mobile">FIFO</span>
+                      <a href="/2025/02/27/Petalinux%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" title="Petalinux报错记录">
+                        <span class="hidden-mobile">Petalinux报错记录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

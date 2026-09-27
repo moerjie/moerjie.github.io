@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412282018135.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412282020011.png">
 <meta property="article:published_time" content="2024-12-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-29T08:14:32.000Z">
+<meta property="article:modified_time" content="2026-07-05T03:50:21.560Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta name="twitter:card" content="summary_large_image">
@@ -356,12 +356,12 @@
               <div class="markdown-body">
                 
                 <h1>1 Error (176310): Can't place multiple pins assigned to pin location Pin_F 16 (IOPAD_X 34_Y 18_N 21)</h1>
-<p>报错如下
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412282018135.png" srcset="/img/banner.png" lazyload alt="" />
-可以看到 Pin_F 16 既被用于 DAC_DATA，又被用于 nCEO 引脚，因此才会报错不能将多个引脚赋到 Pin_F 16 上。</p>
+<p>报错如下</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412282018135.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>可以看到 Pin_F 16 既被用于 DAC_DATA，又被用于 nCEO 引脚，因此才会报错不能将多个引脚赋到 Pin_F 16 上。</p>
 <h2 id="1-1-Solution">1.1 Solution</h2>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412282020011.png" srcset="/img/banner.png" lazyload alt="" />
-将nCEO 的 value 设置为 Use as regual I/O 即可解决问题。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412282020011.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>将nCEO 的 value 设置为 Use as regual I/O 即可解决问题。</p>
 
                 
               </div>
@@ -369,27 +369,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
     <div class="post-meta">

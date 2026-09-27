@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/260405205756885.png">
 <meta property="article:published_time" content="2026-04-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-20T10:25:40.000Z">
+<meta property="article:modified_time" content="2026-08-25T13:45:20.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="coding">
 <meta name="twitter:card" content="summary_large_image">
@@ -291,7 +291,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          641 字
+          1.5k 字
         
       </span>
     
@@ -303,7 +303,7 @@
         
         
           <!-- compatible with older versions-->
-          6 分钟
+          13 分钟
         
       </span>
     
@@ -355,14 +355,14 @@
               <div class="markdown-body">
                 
                 <h1>1 Claude Code 安装使用</h1>
-<p>以下 Claude Code 全部以 CC 代替<br />
-最好在电脑配置 nodejs 环境</p>
+<p>以下 Claude Code 全部以 CC 代替</p>
+<p>最好在电脑配置 nodejs 环境</p>
 <h2 id="1-1-安装">1.1 安装</h2>
-<p>给出 win 终端安装 Native Claude Code 的步骤<br />
-<strong>PowerShell</strong>：<code>irm https://claude.ai/install.ps1 | iex</code><br />
-<strong>CMD</strong>：<code>curl -fsSL https://claude.ai/install.cmd -o install.cmd &amp;&amp; install.cmd &amp;&amp; del install.cmd</code><br />
-目前使用上面官方命令安装 Native 版本的 CC 会报错，可以先使用 <strong>npm</strong> 安装 CC，然后执行在终端执行 <code>claude install --force</code> 以安装 Native 版本的 CC。<br />
-<code>npm</code> 安装 CC：<code>npm install -g @anthropic-ai/claude-code</code></p>
+<p>给出 win 终端安装 Native Claude Code 的步骤</p>
+<p><strong>PowerShell</strong>：<code>irm https://claude.ai/install.ps1 | iex</code></p>
+<p><strong>CMD</strong>：<code>curl -fsSL https://claude.ai/install.cmd -o install.cmd &amp;&amp; install.cmd &amp;&amp; del install.cmd</code></p>
+<p>目前使用上面官方命令安装 Native 版本的 CC 会报错，可以先使用 <strong>npm</strong> 安装 CC，然后执行在终端执行 <code>claude install --force</code> 以安装 Native 版本的 CC。</p>
+<p><code>npm</code> 安装 CC：<code>npm install -g @anthropic-ai/claude-code</code></p>
 <blockquote>
 <p>[!note]+
 需 git 环境，推荐在 Windows 新版 <a target="_blank" rel="noopener" href="https://github.com/microsoft/terminal">terminal</a> (使用 GPU 渲染)使用 CC</p>
@@ -373,6 +373,7 @@
 <p>CC 的配置文件路径为 <code>~\.claude\settings.json</code>，若要配置个人的 Code Plan 的 API，需在配置文件中写入如下内容：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;ANTHROPIC_AUTH_TOKEN&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;sk-sp-xxxxxxxxxxxxxxxxxxxxx&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;ANTHROPIC_BASE_URL&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://coding.dashscope.aliyuncs.com/apps/anthropic&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;ANTHROPIC_MODEL&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;glm-5&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 <p>本人使用的 Code Plan 为百炼 Lite 基础套餐，上面代码片段中的 token、url、model 都需要根据自己购买的 api 进行配置（截止 2026 年 4 月 20 日，百炼的 lite 套餐已消失，pro 套餐据说也要消失了）。</p>
+<p>建议使用 CC-Switch 配置 API</p>
 <h3 id="1-2-2-常用命令">1.2.2 常用命令</h3>
 <p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/TfSo4mNS2y-hF7XtKPoDdA">常用命令</a></p>
 <h3 id="1-2-3-权限模式">1.2.3 权限模式</h3>
@@ -411,18 +412,21 @@
 <h1>2 CC Add On</h1>
 <h2 id="2-1-skills">2.1 skills</h2>
 <h3 id="2-1-1-planning-with-files-zh">2.1.1 planning-with-files-zh</h3>
-<p>安装命令：<code>npx skills add OthmanAdi/planning-with-files --skill planning-with-files-zh -g</code><br />
-该 skill 借鉴了 Manus 的设计思路，用持久化的 md 文件进行规划、进度跟踪、知识存储，核心做法是为复杂任务维护 3 个文件：</p>
+<p>安装命令：<code>npx skills add OthmanAdi/planning-with-files --skill planning-with-files-zh -g</code></p>
+<p>该 skill 借鉴了 Manus 的设计思路，用持久化的 md 文件进行规划、进度跟踪、知识存储，核心做法是为复杂任务维护 3 个文件：</p>
 <figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs subunit">task_plan.md -&gt; 拆分任务，规划阶段、追踪进度<br>findings.md -&gt; 记录调研结果、关键发现和设计决策<br><span class="hljs-keyword">progress</span>.md -&gt; 保存会话日志、试验记录和测试结果<br></code></pre></td></tr></table></figure>
 <h2 id="2-2-plugin">2.2 plugin</h2>
 <h3 id="2-2-1-claude-hud">2.2.1 claude-hud</h3>
 <p>安装步骤</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Bash">/plugin marketplace add jarrodwatts/claude-hud <span class="hljs-comment">#添加插件市场</span><br>/plugin install claude-hud <span class="hljs-comment">#安装插件</span><br>/claude-hud:setup <span class="hljs-comment"># 配置状态栏</span><br></code></pre></td></tr></table></figure>
-<p>安装后立即生效，无需重启 CC。<br />
-安装后可通过 <code>/claude-hud:configure</code> 调整显示内容。<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/260405205756885.png" srcset="/img/banner.png" lazyload alt="260405205756885.png" />
-配置文件保存在 <code>~/.claude/plugins/claude-hud/config.json</code> 路径，核心选项包含：</p>
+<p>安装后立即生效，无需重启 CC。</p>
+<p>安装后可通过 <code>/claude-hud:configure</code> 调整显示内容。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/260405205756885.png" srcset="/img/banner.png" lazyload alt="260405205756885.png" /></p>
+<p>配置文件保存在 <code>~/.claude/plugins/claude-hud/config.json</code> 路径，核心选项包含：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;lineLayout&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;expanded&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;display&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;showModel&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;showContextBar&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;contextValue&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;percent&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;showUsage&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;showTools&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;showAgents&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;showTodos&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;showDuration&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;showSpeed&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;sevenDayThreshold&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">80</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;gitStatus&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;enabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;showDirty&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;showAheadBehind&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;showFileStats&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<h1>3 <a target="_blank" rel="noopener" href="http://CLAUDE.md">CLAUDE.md</a></h1>
+<p>基于 claude 中文网给出的 <a target="_blank" rel="noopener" href="http://CLAUDE.md">CLAUDE.md</a> 示例，应根据自己需求进行修改。</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs md"><br><span class="hljs-section"># 任何项目都务必遵守的规则（极其重要！！！）</span><br><br><span class="hljs-section">## Communication</span><br><br><span class="hljs-bullet">-</span> 永远使用简体中文进行思考和对话<br><br><span class="hljs-section">## Documentation</span><br><br><span class="hljs-bullet">-</span> 编写 .md 文档时，也要用中文<br><span class="hljs-bullet">-</span> 正式文档写到项目的 docs/ 目录下<br><span class="hljs-bullet">-</span> 用于讨论和评审的计划、方案等文档，写到项目的 discuss/ 目录下<br><br><span class="hljs-section">## Code Architecture</span><br><br><span class="hljs-bullet">-</span> 编写代码的硬性指标，包括以下原则：<br> （1）对于 Python、JavaScript、TypeScript 等动态语言，尽可能确保每个代码文件不要超过 300 行<br> （2）对于 Java、Go、Rust 等静态语言，尽可能确保每个代码文件不要超过 400 行<br> （3）每层文件夹中的文件，尽可能不超过 8 个。如有超过，需要规划为多层子文件夹<br><span class="hljs-bullet">-</span> 除了硬性指标以外，还需要时刻关注优雅的架构设计，避免出现以下可能侵蚀我们代码质量的「坏味道」：<br> （1）僵化 (Rigidity): 系统难以变更，任何微小的改动都会引发一连串的连锁修改。<br> （2）冗余 (Redundancy): 同样的代码逻辑在多处重复出现，导致维护困难且容易产生不一致。<br> （3）循环依赖 (Circular Dependency): 两个或多个模块互相纠缠，形成无法解耦的“死结”，导致难以测试与复用。<br> （4）脆弱性 (Fragility): 对代码一处的修改，导致了系统中其他看似无关部分功能的意外损坏。<br> （5）晦涩性 (Obscurity): 代码意图不明，结构混乱，导致阅读者难以理解其功能和设计。<br> （6）数据泥团 (Data Clump): 多个数据项总是一起出现在不同方法的参数中，暗示着它们应该被组合成一个独立的对象。<br> （7）不必要的复杂性 (Needless Complexity): 用“杀牛刀”去解决“杀鸡”的问题，过度设计使系统变得臃肿且难以理解。<br><span class="hljs-bullet">-</span> 【非常重要！！】无论是你自己编写代码，还是阅读或审核他人代码时，都要严格遵守上述硬性指标，以及时刻关注优雅的架构设计。<br><span class="hljs-bullet">-</span> 【非常重要！！】无论何时，一旦你识别出那些可能侵蚀我们代码质量的「坏味道」，都应当立即询问用户是否需要优化，并给出合理的优化建议。<br><br><span class="hljs-section">## Run &amp; Debug</span><br><br><span class="hljs-bullet">-</span> 必须首先在项目的 scripts/ 目录下，维护好 Run &amp; Debug 需要用到的全部 .sh 脚本<br><span class="hljs-bullet">-</span> 对于所有 Run &amp; Debug 操作，一律使用 scripts/ 目录下的 .sh 脚本进行启停。永远不要直接使用 npm、pnpm、uv、python 等等命令<br><span class="hljs-bullet">-</span> 如果 .sh 脚本执行失败，无论是 .sh 本身的问题还是其他代码问题，需要先紧急修复。然后仍然坚持用 .sh 脚本进行启停<br><span class="hljs-bullet">-</span> Run &amp; Debug 之前，为所有项目配置 Logger with File Output，并统一输出到 logs/ 目录下<br><br><span class="hljs-section">## Python</span><br><br><span class="hljs-bullet">-</span> 数据结构尽可能全部定义成强类型。如果个别场景不得不使用未经结构化定义的 dict，需要先停下来征求用户的同意<br><span class="hljs-bullet">-</span> Python 虚拟环境永远使用 .venv 作为目录名<br><span class="hljs-bullet">-</span> 必须使用 uv，而不是 pip、poetry、conda、python3、python。包括依赖管理、构建、调试启动等所有环节<br><span class="hljs-bullet">-</span> 项目的根目录必须保持简洁，只保留必须存在的文件<br><span class="hljs-bullet">-</span> main.py 内容也要简洁。只保留必须存在的代码<br><br><span class="hljs-section">## FPGA</span><br><br><br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -430,27 +434,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%9D%82%E7%B1%BB/" class="category-chain-item">杂类</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
     <div class="post-meta">

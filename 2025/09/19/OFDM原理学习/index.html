@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250919210827.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250923092910.png">
 <meta property="article:published_time" content="2025-09-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-17T14:13:56.000Z">
+<meta property="article:modified_time" content="2026-08-25T13:45:23.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="数字通信">
 <meta name="twitter:card" content="summary_large_image">
@@ -359,37 +359,37 @@
               <div class="markdown-body">
                 
                 <h1>1 OFDM 基本原理</h1>
-<p>OFDM (Orthogonal Frequency Division Multiplexing) 正交频分复用是一种多载波调制技术, 基于FFT和IFFT实现, <strong>其核心思想是将宽频带载波划分成多个带宽较小的正交子载波</strong>, 具有较好的抗多径衰落的能力, 支持多用户接入, 频谱效率高等特点。假设一共有 $N$ 个子载波，每个子载波间隔为 $\Delta f=\frac{1}{T}$，其中 $T$ 是符号时间，数学表达式如下：
-$$
+<p>OFDM (Orthogonal Frequency Division Multiplexing) 正交频分复用是一种多载波调制技术, 基于FFT和IFFT实现, <strong>其核心思想是将宽频带载波划分成多个带宽较小的正交子载波</strong>, 具有较好的抗多径衰落的能力, 支持多用户接入, 频谱效率高等特点。假设一共有 $N$ 个子载波，每个子载波间隔为 $\Delta f=\frac{1}{T}$，其中 $T$ 是符号时间，数学表达式如下：</p>
+<p>$$
 s(t)=\sum_{k=0}^{N-1}X_k\cos\left[2\pi(f_c+ k\Delta f)t\right]-j\sum_{k=0}^{N-1}X_k\sin\left[2\pi(f_c+ k\Delta f)t\right],\quad0\leq t&lt;T \tag{1}
-$$
-复数表达式为：
-$$
+$$</p>
+<p>复数表达式为：</p>
+<p>$$
 s(t)=\sum^{N-1}_{k=0}X_k \cdot e^{j2\pi k\Delta f t},0\leq t&lt;T \tag{2}
 $$</p>
 <h2 id="1-1-时域频域波形">1.1 时域频域波形</h2>
-<p>时域信号不是无限长的，需要对基带信号进行截断处理，变为一个<strong>时域有限信号</strong>，截取的时间长度即为 OFDM 的符号持续时间，记为 $T$。这个处理相对于给基带信号乘以一个持续时间为 $T$ 的矩形窗函数。
-持续时间为 $T$ 的矩形窗函数为 $G_T(t)$，傅里叶变化为 $T\cdot sinc(2\pi f T)=\frac{sin(\pi f T)}{\pi f}$：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250919205037.png" srcset="/img/banner.png" lazyload alt="" />
-真实系统中没有负时间，需要将矩形窗右移到正时间轴：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250919205124.png" srcset="/img/banner.png" lazyload alt="" />
-如图所示，右移一段距离后，不影响频谱波形。OFDM 本质上式幅度调制，不管是频域或时域，数据本身的有效形式都是 $S_n$，因此时间窗移位到正时间轴上任意位置都可以。OFDM 的时域有限信号形式为：
-$$
+<p>时域信号不是无限长的，需要对基带信号进行截断处理，变为一个<strong>时域有限信号</strong>，截取的时间长度即为 OFDM 的符号持续时间，记为 $T$。这个处理相对于给基带信号乘以一个持续时间为 $T$ 的矩形窗函数。</p>
+<p>持续时间为 $T$ 的矩形窗函数为 $G_T(t)$，傅里叶变化为 $T\cdot sinc(2\pi f T)=\frac{sin(\pi f T)}{\pi f}$：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250919205037.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>真实系统中没有负时间，需要将矩形窗右移到正时间轴：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250919205124.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>如图所示，右移一段距离后，不影响频谱波形。OFDM 本质上式幅度调制，不管是频域或时域，数据本身的有效形式都是 $S_n$，因此时间窗移位到正时间轴上任意位置都可以。OFDM 的时域有限信号形式为：</p>
+<p>$$
 s (t)=\sum^{N-1}_{k=0}X_k \cdot e^{j2\pi k\Delta f t}, t_0\leq t&lt;t_0+T \tag{3}
 $$</p>
-<p>信号时域相乘等于频域卷积，$G_{T}(t)\cdot s(t)\leftrightarrow[T\cdot sinc(2\pi fT)]*S(w)$，单个子载波的频谱搬移过程如下：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250919210205.png" srcset="/img/banner.png" lazyload alt="" />
-OFDM 调制过程即为用不同频点的子载波信号的幅度表示 $X_k$ 序列。子载波时域上被窗函数截断变成时域有限信号，这个时间窗也被称为脉冲成型滤波器，此时频域上一个子载波的波形由 $sinc$ 函数表示。时频域波形如下：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250919210827.png" srcset="/img/banner.png" lazyload alt="" />
-频谱中每个子载波的峰值点正好在其余子载波的过零点。</p>
+<p>信号时域相乘等于频域卷积，$G_{T}(t)\cdot s(t)\leftrightarrow[T\cdot sinc(2\pi fT)]*S(w)$，单个子载波的频谱搬移过程如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250919210205.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>OFDM 调制过程即为用不同频点的子载波信号的幅度表示 $X_k$ 序列。子载波时域上被窗函数截断变成时域有限信号，这个时间窗也被称为脉冲成型滤波器，此时频域上一个子载波的波形由 $sinc$ 函数表示。时频域波形如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250919210827.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>频谱中每个子载波的峰值点正好在其余子载波的过零点。</p>
 <h2 id="1-2-正交性和子载波间隔">1.2 正交性和子载波间隔</h2>
 <p><strong>函数正交</strong>指任何两个相异的函数的乘积在 $[0,T]$ 上的内积为 0 。
-设一个 OFDM 符号持续时间 T 内任意两个子载波为 $\cos(2\pi f_k t+\varphi_k)、cos(2\pi f_i t+\varphi_i)$，满足正交性的话有：
-$$
+设一个 OFDM 符号持续时间 T 内任意两个子载波为 $\cos(2\pi f_k t+\varphi_k)、cos(2\pi f_i t+\varphi_i)$，满足正交性的话有：</p>
+<p>$$
 \int_{t_0}^{t_0-T}cos(2\pi f_kt+\varphi_k)\cdot cos(2\pi f_it+\varphi_i)dt=0 \tag{4}
-$$
-展开可得:
-$$
+$$</p>
+<p>展开可得:</p>
+<p>$$
 \begin{aligned}
 0
 &amp;=\int_{t_0}^{t_0+T}\cos!\bigl(2\pi f_k t+\varphi_k\bigr),\cos!\bigl(2\pi f_i t+\varphi_i\bigr),dt\
@@ -401,39 +401,39 @@ $$
 \Big[\sin!\bigl(2\pi(f_k+f_i)t+(\varphi_k+\varphi_i)\bigr)\Big]</em>{t_0}^{,t_0+T}.
 \end{aligned}\tag{5}
 $$</p>
-<p>上述等式要成立，则需满足：
-$$
+<p>上述等式要成立，则需满足：</p>
+<p>$$
 \begin{aligned}&amp;(f_k+f_i)\cdot T=m\&amp;(f_k-f_i)\cdot T=n\end{aligned} \tag{6}
-$$
-其中 m、n 为整数，相位参数可以取任意值，子载波频率要满足：
-$$
+$$</p>
+<p>其中 m、n 为整数，相位参数可以取任意值，子载波频率要满足：</p>
+<p>$$
 f_k=\frac{k}{2T}\tag{7}
-$$
-$k=m+n$ 为整数，同时子载波间隔满足：
-$$
+$$</p>
+<p>$k=m+n$ 为整数，同时子载波间隔满足：</p>
+<p>$$
 \Delta f =f_k-f_i=\frac{n}{T} \tag{8}
-$$
-n 为整数，因此 n=1 时可以取到最小子载波间隔。</p>
+$$</p>
+<p>n 为整数，因此 n=1 时可以取到最小子载波间隔。</p>
 <h3 id="1-2-1-子载波间隔计算">1.2.1 子载波间隔计算</h3>
 <p>$$
 \Delta f=\frac{f_s}{N_{FFT}}
-$$
-调制过程中，IFFT 输出长度为 $N_{FFT}$，每个采样点时长为 $\frac{1}{f_s}$，一个 OFDM 符号时长为$$
-T_{sym}=\frac{N_{FFT}}{f_s}
-$$
+$$</p>
+<p>调制过程中，IFFT 输出长度为 $N_{FFT}$，每个采样点时长为 $\frac{1}{f_s}$，一个 OFDM 符号时长为$$</p>
+<p>T_{sym}=\frac{N_{FFT}}{f_s}</p>
+<p>$$
 正好与最小子载波间隔成倒数，符合计算结果。</p>
 <h2 id="1-3-频带效率">1.3 频带效率</h2>
 <p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined20250923092910.png" srcset="/img/banner.png" lazyload alt="" />
 FDM 每个子载波都需要单独调制解调，系统复杂度高，并且由于频带保护间隔的存在，频谱效率较低。而 OFDM 的子载波频谱之间允许部分重叠，子载波信号依然保有正交性，节省传输带宽，并且 OFDM 只需进行一次调制解调，复杂度低。
 假设 OFDM 有 $N$ 个子载波，符号持续时间为 $T$，每个子载波采用 M 进制的调制方式，占用的频带宽度为：
-$$
-B_{OFDM}=(N+1)\Delta f =\frac{N+1}{T}(Hz) \tag{9}
-$$
-频带利用率为单位带宽传输的比特率：
-$$
-\eta_{b,OFDM}=\frac{N\cdot \log_2 M}{T}\cdot \frac{1}{B_{OFDM}}=\frac{N}{N+1}\log_2M \left( \frac{bit}{(s\cdot Hz)} \right)
-\tag{10}
 $$</p>
+<p>B_{OFDM}=(N+1)\Delta f =\frac{N+1}{T}(Hz) \tag{9}</p>
+<p>$$
+频带利用率为单位带宽传输的比特率：
+$$</p>
+<p>\eta_{b,OFDM}=\frac{N\cdot \log_2 M}{T}\cdot \frac{1}{B_{OFDM}}=\frac{N}{N+1}\log_2M \left( \frac{bit}{(s\cdot Hz)} \right)</p>
+<p>\tag{10}</p>
+<p>$$</p>
 <h1>OFDM 参数计算</h1>
 <h2 id="符号">符号</h2>
 <ol>
@@ -451,46 +451,46 @@ $$</p>
 </ol>
 <h2 id="频域正交条件">频域正交条件</h2>
 <p>在连续时间基带表示下，第 $k$ 个子载波的基函数为 $e^{j2\pi k \Delta f t}$，若要在区间 $t\in[0,T_u)$ 上相互正交，则要满足：
-$$
-\int_0^{T_u}e^{j2\pi(k-i)\Delta ft}dt=0\quad(k\neq i)
-$$
+$$</p>
+<p>\int_0^{T_u}e^{j2\pi(k-i)\Delta ft}dt=0\quad(k\neq i)</p>
+<p>$$
 满足上面的式子的条件为：
-$$
-\Delta f \cdot T_u=1 \rightarrow \Delta f=\frac{1}{T_u}
-$$
+$$</p>
+<p>\Delta f \cdot T_u=1 \rightarrow \Delta f=\frac{1}{T_u}</p>
+<p>$$
 子载波间隔等于有用符号时长的倒数</p>
 <h2 id="IFFT-FFT-与采样率之间的关系">IFFT/FFT 与采样率之间的关系</h2>
 <p>在使用 N 点 IFFT 实现 OFDM 的过程中，离散频率格点的间隔是 $\frac{f_s}{N}$，为了让离散实现的子载波间隔等于 $\Delta f$，则需要满足：
-$$
-\Delta f=\frac{f_s}{N}
-$$
-可以计算出：
-$$
-f_s=\frac{N}{T_u}
 $$</p>
+<p>\Delta f=\frac{f_s}{N}</p>
+<p>$$
+可以计算出：
+$$</p>
+<p>f_s=\frac{N}{T_u}</p>
+<p>$$</p>
 <h2 id="循环前缀与符号率">循环前缀与符号率</h2>
 <p>完整的 OFDM 符号时长为：
-$$
-T_{sym}=T_u+T_{cp}
-$$
+$$</p>
+<p>T_{sym}=T_u+T_{cp}</p>
+<p>$$
 循环前缀通常以有用符号时长的比例给出，$T_{cp}=\alpha T_u,\alpha可能为1/8，1/16等$。CP 的样本数为：
-$$
-N_{cp}=\lceil T_{cp}\cdot f_s \rceil
-$$
+$$</p>
+<p>N_{cp}=\lceil T_{cp}\cdot f_s \rceil</p>
+<p>$$
 为了把多径线性卷积转化为循环卷积，需要：
-$$
-N_{cp}\geq L_h-1
-$$
+$$</p>
+<p>N_{cp}\geq L_h-1</p>
+<p>$$
 其中的 $L_h$ 为离散时间信道脉冲响应的抽头数</p>
 <h2 id="有效数字速率">有效数字速率</h2>
 <p>每个 OFDM 符号在所有有效子载波上能承载的比特数量为：
-$$
-\frac{bits}{symbol}=N_{used}\cdot \log_2 M
-$$
-考虑编码率和导频等开销，单个符号的有效信息比特数为：
-$$
-info \frac{bits}{symbol}=N_{used}\cdot (1-\alpha_{ovh})\cdot \log_2 M\cdot R_c
 $$</p>
+<p>\frac{bits}{symbol}=N_{used}\cdot \log_2 M</p>
+<p>$$
+考虑编码率和导频等开销，单个符号的有效信息比特数为：
+$$</p>
+<p>info \frac{bits}{symbol}=N_{used}\cdot (1-\alpha_{ovh})\cdot \log_2 M\cdot R_c</p>
+<p>$$</p>
 
                 
               </div>
@@ -498,27 +498,6 @@ $$</p>
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="category-chain-item">数字通信</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
     <div class="post-meta">

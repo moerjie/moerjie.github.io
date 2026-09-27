@@ -1,0 +1,1101 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Sawen Moerjie">
+  <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
+  
+    <meta name="description" content="1 实验说明 1.1 实验目的  理解 GPS L1 C&#x2F;A 信号的捕获和跟踪的基本流程。 掌握基于 FFT 的频域相关捕获方法。 掌握 GPS 跟踪环路中的 FLL、PLL、DLL 的原理和作用。 结合 GPS HDL Acquisition and Tracking Using C&#x2F;A Code 修改为适合特有硬件的工程。 掌握适合 HDL 生成的 simulink 模型设计方法。  1.2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GPS HDL Acquisition and Tracking Using CA Code 实验报告">
+<meta property="og:url" content="https://moerjie.github.io/2026/06/17/GPS%20HDL%20Acquisition%20and%20Tracking%20Using%20CA%20Code%20%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:site_name" content="Sawen_Blog">
+<meta property="og:description" content="1 实验说明 1.1 实验目的  理解 GPS L1 C&#x2F;A 信号的捕获和跟踪的基本流程。 掌握基于 FFT 的频域相关捕获方法。 掌握 GPS 跟踪环路中的 FLL、PLL、DLL 的原理和作用。 结合 GPS HDL Acquisition and Tracking Using C&#x2F;A Code 修改为适合特有硬件的工程。 掌握适合 HDL 生成的 simulink 模型设计方法。  1.2">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-06/260618091326550.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-06/260618094043937.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-06/260618095648640.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-06/Acquisition_and_Tracking.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20266Acquisition_and_Tracking_Acquisition.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20266Acquisition_and_Tracking_Acquisition_Control_Acquisition.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/202661781752387604.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_RAM_Read_and_Write.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-06/260618140348743.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_RAM_Read_and_Write_RAM_Read_Logic.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Carrier_Wipeoff.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Carrier_Wipeoff_Complex_Multiplier.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation_Subsystem.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation_Subsystem2.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation_Generate_Code_Phase_and_Pop_Signal.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation_Satellite_Correlation.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation_Satellite_Correlation_Pop_PRNIDs_To_Search.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-06/260622153741149.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation_Satellite_Correlation_Frequency_Domain_Correlation.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined202606221646109.png">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation_Satellite_Correlation_Peak_Detector.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Sort_and_Prepare_Outputs.svg">
+<meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/202671785141768074.png">
+<meta property="article:published_time" content="2026-06-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-11T03:45:08.610Z">
+<meta property="article:author" content="Sawen Moerjie">
+<meta property="article:tag" content="Report">
+<meta property="article:tag" content="数字通信">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-06/260618091326550.png">
+  
+  
+  
+  <title>GPS HDL Acquisition and Tracking Using CA Code 实验报告 - Sawen_Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_3846514_kabxni94auf.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"moerjie.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/banner.png","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"s1VuBxXCcgtXqVI9HAQm9qPr-gzGzoHsz","app_key":"ZRUva62YyRxmXoylVSg3mBBq","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Sawen_Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives" target="_self">
+                <i class="iconfont icon-books"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories" target="_self">
+                <i class="iconfont icon-th-large"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-book"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hexo.fluid-dev.com/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GPS HDL Acquisition and Tracking Using CA Code 实验报告"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Sawen Moerjie
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-17 00:00" pubdate>
+           2026 年 06 月 17 日 , 凌晨 12:00 , 星期三
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GPS HDL Acquisition and Tracking Using CA Code 实验报告</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>1 实验说明</h1>
+<h2 id="1-1-实验目的">1.1 实验目的</h2>
+<ol>
+<li>理解 GPS L1 C/A 信号的捕获和跟踪的基本流程。</li>
+<li>掌握基于 FFT 的频域相关捕获方法。</li>
+<li>掌握 GPS 跟踪环路中的 FLL、PLL、DLL 的原理和作用。</li>
+<li>结合 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/releases/R2023b/wireless-hdl/ug/gps-hdl-acquisition-and-tracking-using-cacode.html">GPS HDL Acquisition and Tracking Using C/A Code</a> 修改为适合特有硬件的工程。</li>
+<li>掌握适合 HDL 生成的 simulink 模型设计方法。</li>
+</ol>
+<h2 id="1-2-实验原理">1.2 实验原理</h2>
+<p>GPS L1 C/A 码接收机通常包含捕获和跟踪两个部分。</p>
+<h3 id="1-2-1-捕获">1.2.1 捕获</h3>
+<p>该工程采用基于 FFT 的频域相关捕获方法，具体原理见 [[GPS捕获算法]]。</p>
+<h3 id="1-2-2-跟踪">1.2.2 跟踪</h3>
+<p>跟踪模块采用 FLL、PLL、DLL 进行 Track，原理见 [[GPS跟踪算法]]。</p>
+<h2 id="1-3-实验环境">1.3 实验环境</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Matlab/Simulink 版本</td>
+<td>R2024b</td>
+</tr>
+<tr>
+<td>操作系统版本</td>
+<td>win11</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-4-工程组成">1.4 工程组成</h2>
+<table>
+<thead>
+<tr>
+<th>文件/目录</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SawengpshdlAcquisitionTracking_R2024b.slx</td>
+<td>进行 GPS 接收的 slx 工程</td>
+</tr>
+<tr>
+<td>newGPSinit.m</td>
+<td>初始化脚本，生成 <code>rxData</code>、<code>rxValid</code>、<code>param</code> 等参数</td>
+</tr>
+<tr>
+<td>newIFpara.m</td>
+<td>param 参数配置文件</td>
+</tr>
+<tr>
+<td>gpshdlGenerateRxInput.m</td>
+<td>生成 GPS 接收输入数据，并加入 SNR、多普勒、码相位偏移等信道影响</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1>2 Simulink 工程解析</h1>
+<p>顶层模型如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-06/260618091326550.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>其中 EnableGen 模块生成中频采样使能信号，在 252MHz 系统时钟下生成 16.384MHz 的采样信号。模型如图所示：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-06/260618094043937.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>运行仿真结果如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-06/260618095648640.png" srcset="/img/banner.png" lazyload alt="EnableGen-scope" /></p>
+<p>生成的使能信号间隔分别为 59.5ns 和 63.5ns，对应 15 个 clk 周期和 16 个 clk 周期。</p>
+<p><strong>Acquisition and Tracking</strong> 模块如下所示：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-06/Acquisition_and_Tracking.svg" srcset="/img/banner.png" lazyload alt="Acquisition and Tracking" /></p>
+<h2 id="2-1-Acquisition">2.1 Acquisition</h2>
+<p>捕获模块的内部框图如下所示：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20266Acquisition_and_Tracking_Acquisition.svg" srcset="/img/banner.png" lazyload alt="20266Acquisition_and_Tracking_Acquisition.svg" /></p>
+<h3 id="2-1-1-Control-Acquisition">2.1.1 Control Acquisition</h3>
+<p>第一级为 Control Acquisition 模块，功能如下：</p>
+<ol>
+<li>生成 1ms 脉冲信号；</li>
+<li>收到 start 后输出与 1ms 脉冲对齐的 startAcq 信号，后续 start 信号不生效，收到 AcqDone 或 reset 后，拉低 startAcq 并输出复位跟踪信号；</li>
+<li>输出重新排序后的 PRN，顺序为 0	9	17	25，	1	10	18	26，	2	11	19	27，	3	12	20	28，	4	13	21	29，	5	14	22	30，	6	15	23	31，	7	16	24	32，	8。
+模块框图如下：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/20266Acquisition_and_Tracking_Acquisition_Control_Acquisition.svg" srcset="/img/banner.png" lazyload alt="20266Acquisition_and_Tracking_Acquisition_Control_Acquisition.svg" />
+<strong>Hold Acquisition</strong> 模块如下图：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/202661781752387604.png" srcset="/img/banner.png" lazyload alt="202661781752387604.png" /></li>
+</ol>
+<p>工作逻辑为：</p>
+<ol>
+<li>Delay 模块初始值为 0，取反后反馈至 AND2 输入 1，即 ready 为 1，当 <code>start</code> 拉高，AND2 输出 1，再经过 OR2、OR1 拉高 startAcq，输出到外部后通过 SR_startAcq 模块进行保持，并且此时 Delay 处于使能更新状态，由于 Switch 模块 port2 为 0，输出为 1，经过 Delay=&gt;NOT2 后，ready 信号为 0，AND2 的输入 1 始终为 0，此时再来 start 信号也无效。</li>
+<li>当捕获完成、AcqDone 为 1 并且没有复位时：AND1 输出 1，Switch 输出 0，Dealy 下一拍输出 0，ready 信号为 1，可以通过 start 信号重新启动捕获。</li>
+<li>当收到 reset 信号，通过 OR1 输出 startAcq 信号，并且通过 OR1 和 OR3 驱动 AND3，输出 resetTrackChannel 信号。</li>
+</ol>
+<h3 id="2-1-2-RAM-Read-and-Write">2.1.2 RAM Read and Write</h3>
+<p>RAM Read and Write 模块如图所示：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_RAM_Read_and_Write.svg" srcset="/img/banner.png" lazyload alt="Acquisition_and_Tracking_Acquisition_RAM_Read_and_Write.svg" /></p>
+<p>功能为：</p>
+<ol>
+<li>将 1ms 的 RxData 写入到 RAM 。</li>
+<li>以 252MHz 系统时钟循环读取 RAM 中的数据。
+关键节点的信号如下图所示：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-06/260618140348743.png" srcset="/img/banner.png" lazyload alt="" />
+RAM Read Logic 模块同时生成捕获时需要的频率索引信号等，框图如下：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_RAM_Read_and_Write_RAM_Read_Logic.svg" srcset="/img/banner.png" lazyload alt="Acquisition_and_Tracking_Acquisition_RAM_Read_and_Write_RAM_Read_Logic.svg" />
+当 RAM 写满后，ramWriteDone 拉高一次，通过锁存器驱动生成 RAM Read Address，直到所有频率、搜索轮次完成后，stopRAMRead 拉高，停止读取 RAM 中的信号。</li>
+</ol>
+<p>逻辑电路的逻辑大概为：</p>
+<ol>
+<li>reset 为 0，ramWriteDone 为 1 时，第一个 switch 输出 true，第二个 switch 输出 F 路的 true，同时 Delay 模块被使能，输出拉高；</li>
+<li>若有 reset 信号，第二个 switch 输出 false，同时 Delay 模块被使能，输出 0；</li>
+<li>stopRAMRead 被拉高，此时 ramWriteDone 和 reset 都为 0，Delay 模块同样输出 0，停止读取 RAM 信号。</li>
+</ol>
+<h3 id="2-1-3-Carrier-Wipeoff">2.1.3 Carrier Wipeoff</h3>
+<p>Carrier Wipeoff 模块如图所示：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Carrier_Wipeoff.svg" srcset="/img/banner.png" lazyload alt="Acquisition_and_Tracking_Acquisition_Carrier_Wipeoff.svg" /></p>
+<p>freqInd 范围换算成-10~+10，其中 NCO 累加器位宽 N为 14，因此可得：</p>
+<p>$$
+\begin{align}
+phinc=\frac{f}{f_s}\times2^N=f\times \frac{16384}{16384000}
+\end{align}
+$$</p>
+<p>$f$ 的范围是要搜索的多普勒频移的范围，为 $\pm 10kHz$，对应的 phinc 的范围正好为 $\pm 10$。</p>
+<p>NCO 输出取共轭进行负频率混频，消除载波中的多普勒频移。</p>
+<p>Complex Multiplier 的结构如图所示：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Carrier_Wipeoff_Complex_Multiplier.svg" srcset="/img/banner.png" lazyload alt="Acquisition_and_Tracking_Acquisition_Carrier_Wipeoff_Complex_Multiplier.svg" /></p>
+<p>这样设计可以节省一个乘法器，要注意定点化处理。</p>
+<h3 id="2-1-4-Correlation">2.1.4 Correlation</h3>
+<p>Correlation 模块如图所示：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation.svg" srcset="/img/banner.png" lazyload alt="Acquisition_and_Tracking_Acquisition_Correlation.svg" /></p>
+<p>如果有复位信号，通过 <strong>subsystem</strong> 延长 valid 的有效时间，保证 FFT block 中的数据能全部输出，subsystem 如图所示：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation_Subsystem.svg" srcset="/img/banner.png" lazyload alt="Acquisition_and_Tracking_Acquisition_Correlation_Subsystem.svg" /></p>
+<p>两个比较器的判定条件都为 <code>==param.fftLen-1</code>，工作流程为：</p>
+<ol>
+<li>当 validIn 输入，经过 OR 后驱动 validOut 输出；</li>
+<li>当 reset 拉高，前级的validIn 拉低，此时如果 count 的计数值不为 0，说明已经有数据送入 FFT 模块内，并且此时计数值也不为 fftLen-1 时，此时给使能触发器置 1，继续通过 OR 逻辑门驱动 validOut 输出高电平信号；</li>
+<li>当计数值== <code>param.fftLen-1</code> 后，与 OR 门输出相与后复位使能触发器，终止 validOut 输出。</li>
+</ol>
+<p><strong>subsystem2</strong>如下图所示：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation_Subsystem2.svg" srcset="/img/banner.png" lazyload alt="Acquisition_and_Tracking_Acquisition_Correlation_Subsystem2.svg" />
+工作流程为：</p>
+<ol>
+<li>当收到 reset 信号后，拉低 enb 信号输出；</li>
+<li>reset 信号通过使能触发器持续拉高，直到计数值等于33028 后，复位使能触发器，如果此时 reset 信号已拉低，则通过 OR 逻辑门输出 0，取反后重新使能 enb 信号输出。
+<strong>Generate Code Phase and Pop Signal</strong>内部框图如图所示：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation_Generate_Code_Phase_and_Pop_Signal.svg" srcset="/img/banner.png" lazyload alt="Acquisition_and_Tracking_Acquisition_Correlation_Generate_Code_Phase_and_Pop_Signal.svg" />
+搜索完 21 个多普勒频率后 POP 出下一个 PRN 进行捕获，搜索完整个码相位+所有频率后输出 POP 信号。其中输出码相位的范围为 0~param.fftLen。</li>
+</ol>
+<p><strong>Satellite Correlation</strong> 模块内部框图如下：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation_Satellite_Correlation.svg" srcset="/img/banner.png" lazyload alt="Acquisition_and_Tracking_Acquisition_Correlation_Satellite_Correlation.svg" />
+PRNIDsToSearch 信号通过 PRNIDsValid push 到 <strong>Pop PRNIDs To Search</strong>中，该模块内部是 2 个 FIFO，通过 <strong>For Each</strong> 模块实现4 路并行处理，FIFO 模块框图如下所示：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation_Satellite_Correlation_Pop_PRNIDs_To_Search.svg" srcset="/img/banner.png" lazyload alt="Acquisition_and_Tracking_Acquisition_Correlation_Satellite_Correlation_Pop_PRNIDs_To_Search.svg" />
+PRNIDsToSearch 和 PRNIDsValid 波形图如下所示：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-06/260622153741149.png" srcset="/img/banner.png" lazyload alt="" />
+Pop PRNIDs To Search 后的模块是 <strong>Frequency Domain Correlation</strong>，内部框图如下图所示：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation_Satellite_Correlation_Frequency_Domain_Correlation.svg" srcset="/img/banner.png" lazyload alt="Acquisition_and_Tracking_Acquisition_Correlation_Satellite_Correlation_Frequency_Domain_Correlation.svg" />
+FIFO 输出的 PRN 通过 Selector 模块分别输出给 4 个 FDC，FDC 内部如图所示：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefined202606221646109.png" srcset="/img/banner.png" lazyload alt="" />
+输入的信号与存储在 LUT 中的 C/A 码的 FFT 共轭相乘后 IFFT 处理，FDC 输出后 correlation、valid 等信号重新组合成4 位向量信号输出。
+IFFT 信号输出后，经过<strong>平方取模</strong>后送入 <strong>Peak Detector</strong> 进行峰值查找，其模块框图如图所示：
+<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Correlation_Satellite_Correlation_Peak_Detector.svg" srcset="/img/banner.png" lazyload alt="Acquisition_and_Tracking_Acquisition_Correlation_Satellite_Correlation_Peak_Detector.svg" />
+最上方是一个比较器，输入的 correlation 值大于上一个周期的值时，更新使能触发器中的值，同时更新当前的 codePhase 和多普勒频率。
+<strong>Peak Detector</strong> 输出后，通过 <strong>Selector</strong> 选取 PRN 为 0 时的最大相关值计算 threshold 用于捕获结果的判决。</p>
+<h3 id="2-1-5-Sort-and-Prepare-Outputs">2.1.5 Sort and Prepare Outputs</h3>
+<p>模块框图如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/undefinedAcquisition_and_Tracking_Acquisition_Sort_and_Prepare_Outputs.svg" srcset="/img/banner.png" lazyload alt="Acquisition_and_Tracking_Acquisition_Sort_and_Prepare_Outputs.svg" /></p>
+<p>上一个模块输出的捕获结果是 4 路并行，首先通过 Serializer 将输入串行处理，然后通过 Sort Function 进行排序输出。</p>
+<p>当有效项不超过 8 个时，它只保证前 <code>inpSize - 1</code> 或 <code>numSorts - 1</code> 项完成排序。这个设计通常是为了避开捕获里的 PRN=0 噪声参考项/最弱项；输出接口仍固定给 8 路，后级再根据 <code>PRNIDSort ~= 0</code> 判断哪些通道是真正有效卫星。并且计算卫星有效通道的总数，如果＜4 路就复位，重新进行捕获。</p>
+<h3 id="2-1-6-仿真结果">2.1.6 仿真结果</h3>
+<p>初始仿真数据设置如下表：</p>
+<table>
+<thead>
+<tr>
+<th>PRN</th>
+<th>codePhase</th>
+<th>Doppler</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>300.340000000000</td>
+<td>3289</td>
+</tr>
+<tr>
+<td>9</td>
+<td>587.210000000000</td>
+<td>5856</td>
+</tr>
+<tr>
+<td>18</td>
+<td>425.890000000000</td>
+<td>7796</td>
+</tr>
+<tr>
+<td>25</td>
+<td>312.880000000000</td>
+<td>1568</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/202671785141768074.png" srcset="/img/banner.png" lazyload alt="202671785141768074.png" /></p>
+<p>codePhase、Doppler 需要经过换算，换算后的值如下：</p>
+<table>
+<thead>
+<tr>
+<th>PRN</th>
+<th>输出 <code>codePh</code></th>
+<th>换算码相位</th>
+<th>输出 <code>doppler</code></th>
+<th>换算多普勒</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>4810</td>
+<td>300.625 chip</td>
+<td>13</td>
+<td>+3 kHz</td>
+</tr>
+<tr>
+<td>9</td>
+<td>9404</td>
+<td>587.750 chip</td>
+<td>16</td>
+<td>+6 kHz</td>
+</tr>
+<tr>
+<td>18</td>
+<td>6819</td>
+<td>426.188 chip</td>
+<td>18</td>
+<td>+8 kHz</td>
+</tr>
+<tr>
+<td>25</td>
+<td>5010</td>
+<td>313.125 chip</td>
+<td>12</td>
+<td>+2 kHz</td>
+</tr>
+</tbody>
+</table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Report/" class="print-no-link">#Report</a>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" class="print-no-link">#数字通信</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GPS HDL Acquisition and Tracking Using CA Code 实验报告</div>
+      <div>https://moerjie.github.io/2026/06/17/GPS HDL Acquisition and Tracking Using CA Code 实验报告/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Sawen Moerjie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/10/%E6%97%A0%E6%BA%90%E9%9B%B7%E8%BE%BE%E6%95%B0%E5%AD%97%E7%94%B5%E8%A7%86%E4%BF%A1%E5%8F%B7%E6%8E%A2%E6%B5%8B%E9%A3%9E%E8%A1%8C%E5%99%A8/" title="无源雷达数字电视信号探测飞行器">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">无源雷达数字电视信号探测飞行器</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/04/29/Vivado%E5%AF%B9%E5%BA%94%E4%B8%8D%E5%90%8C%E7%AC%AC%E4%B8%89%E6%96%B9%E8%BD%AF%E4%BB%B6/" title="Vivado对应不同第三方软件">
+                        <span class="hidden-mobile">Vivado对应不同第三方软件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"你的appId","appKey":"你的appKey","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"你的serverURLs","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

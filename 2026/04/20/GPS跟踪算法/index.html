@@ -21,16 +21,16 @@
   <meta name="author" content="Sawen Moerjie">
   <meta name="keywords" content="FPGA Verilog MATLAB Coding DSP">
   
-    <meta name="description" content="1 伪码跟踪环 1.1 非相干延迟锁定环 相干延迟锁定环要求本地载波相位和伪码相位都严格和输入信号的载波相位和伪码相位同步，在实际使用中会有很大困难。并且相干延迟锁定环很脆弱，在处理动态变化的信号时容易发生载波相位差不为零的情况，此时信号的能量会在 I、Q 方向上发生旋转，单靠 I 路积分的结果得到的伪码相差会不稳定，锁定环容易失锁。因此，更多采用的是非相干锁定环，如下图所示：  非相干延迟锁定环">
+    <meta name="description" content="1 载波跟踪环 2 伪码跟踪环 2.1 相干延迟锁定环 相干意味当前本地载波相位与输入信号载波相位已完全对齐。可将输入信号完全搬移到基带零频。 2.2 非相干延迟锁定环 相干延迟锁定环要求本地载波相位和伪码相位都严格和输入信号的载波相位和伪码相位同步，在实际使用中会有很大困难。并且相干延迟锁定环很脆弱，在处理动态变化的信号时容易发生载波相位差不为零的情况，此时信号的能量会在 I、Q 方向上发生旋转">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GPS跟踪算法">
 <meta property="og:url" content="https://moerjie.github.io/2026/04/20/GPS%E8%B7%9F%E8%B8%AA%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Sawen_Blog">
-<meta property="og:description" content="1 伪码跟踪环 1.1 非相干延迟锁定环 相干延迟锁定环要求本地载波相位和伪码相位都严格和输入信号的载波相位和伪码相位同步，在实际使用中会有很大困难。并且相干延迟锁定环很脆弱，在处理动态变化的信号时容易发生载波相位差不为零的情况，此时信号的能量会在 I、Q 方向上发生旋转，单靠 I 路积分的结果得到的伪码相差会不稳定，锁定环容易失锁。因此，更多采用的是非相干锁定环，如下图所示：  非相干延迟锁定环">
+<meta property="og:description" content="1 载波跟踪环 2 伪码跟踪环 2.1 相干延迟锁定环 相干意味当前本地载波相位与输入信号载波相位已完全对齐。可将输入信号完全搬移到基带零频。 2.2 非相干延迟锁定环 相干延迟锁定环要求本地载波相位和伪码相位都严格和输入信号的载波相位和伪码相位同步，在实际使用中会有很大困难。并且相干延迟锁定环很脆弱，在处理动态变化的信号时容易发生载波相位差不为零的情况，此时信号的能量会在 I、Q 方向上发生旋转">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/260420214917412.png">
 <meta property="article:published_time" content="2026-04-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-20T14:55:40.000Z">
+<meta property="article:modified_time" content="2026-08-25T13:45:25.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="数字通信">
 <meta property="article:tag" content="TD">
@@ -292,7 +292,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          568 字
+          785 字
         
       </span>
     
@@ -304,7 +304,7 @@
         
         
           <!-- compatible with older versions-->
-          5 分钟
+          7 分钟
         
       </span>
     
@@ -355,27 +355,46 @@
             
               <div class="markdown-body">
                 
-                <h1>1 伪码跟踪环</h1>
-<h2 id="1-1-非相干延迟锁定环">1.1 非相干延迟锁定环</h2>
-<p>相干延迟锁定环要求本地载波相位和伪码相位都严格和输入信号的载波相位和伪码相位同步，在实际使用中会有很大困难。并且相干延迟锁定环很脆弱，在处理动态变化的信号时容易发生载波相位差不为零的情况，此时信号的能量会在 I、Q 方向上发生旋转，单靠 I 路积分的结果得到的伪码相差会不稳定，锁定环容易失锁。因此，更多采用的是非相干锁定环，如下图所示：<br />
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/260420214917412.png" srcset="/img/banner.png" lazyload alt="" /><br />
-非相干延迟锁定环（NC-DLL）的输入信号为中频信号，包含载波和伪码分量以及噪声。NC-DLL 与相干延迟锁定环相比，增加了载波 NCO，用来产生 I 路和 Q 路本地载波信号，2 路本地载波信号分别与经过超前、滞后码解扩后的信号相乘，I 路和 Q 路分别进行积分。积分结果如下：<br />
-$$
+                <h1>1 载波跟踪环</h1>
+<h1>2 伪码跟踪环</h1>
+<h2 id="2-1-相干延迟锁定环">2.1 相干延迟锁定环</h2>
+<p>相干意味当前本地载波相位与输入信号载波相位已完全对齐。可将输入信号完全搬移到基带零频。</p>
+<h2 id="2-2-非相干延迟锁定环">2.2 非相干延迟锁定环</h2>
+<p>相干延迟锁定环要求本地载波相位和伪码相位都严格和输入信号的载波相位和伪码相位同步，在实际使用中会有很大困难。并且相干延迟锁定环很脆弱，在处理动态变化的信号时容易发生载波相位差不为零的情况，此时信号的能量会在 I、Q 方向上发生旋转，单靠 I 路积分的结果得到的伪码相差会不稳定，锁定环容易失锁。因此，更多采用的是非相干锁定环，如下图所示：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2026-04/260420214917412.png" srcset="/img/banner.png" lazyload alt="非相干DLL基本结构|非相干DLL" /></p>
+<p>非相干延迟锁定环（NC-DLL）的输入信号为中频信号，包含载波和伪码分量以及噪声。NC-DLL 与相干延迟锁定环相比，增加了载波 NCO，用来产生 I 路和 Q 路本地载波信号，2 路本地载波信号分别与经过超前、滞后码解扩后的信号相乘，I 路和 Q 路分别进行积分。积分结果如下：</p>
+<p>$$
 \begin{align}
 \overline{I_E} &amp; =A\cdot sinc(\frac{\Delta\hat{\omega}T_I}{2})\cdot R(\Delta \tau-\frac{d}{2})\cdot \cos(\frac{\Delta \hat{\omega}}{2}T_I+\delta\phi_0)+\overline{N_{E,I}} \</p>
 <p>\overline{Q_E} &amp; =A\cdot sinc(\frac{\Delta\hat{\omega}T_I}{2})\cdot R(\Delta \tau-\frac{d}{2})\cdot \sin(\frac{\Delta \hat{\omega}}{2}T_I+\delta\phi_0)+\overline{N_{E,Q}} \</p>
 <p>\overline{I_L} &amp; =A\cdot sinc(\frac{\Delta\hat{\omega}T_I}{2})\cdot R(\Delta \tau+\frac{d}{2})\cdot \cos(\frac{\Delta \hat{\omega}}{2}T_I+\delta\phi_0)+\overline{N_{L,I}} \</p>
 <p>\overline{Q_L} &amp; =A\cdot sinc(\frac{\Delta\hat{\omega}T_I}{2})\cdot R(\Delta \tau+\frac{d}{2})\cdot \sin(\frac{\Delta \hat{\omega}}{2}T_I+\delta\phi_0)+\overline{N_{L,Q}} \
 \end{align}
-$$
-非相干环与相干环的区别在于：非相干环通过对同相和正相支路积分结果取平方和并取模得到非相干结果，消除了 $cos/sin (\frac{\Delta \hat{\omega}}{2}T+\delta\phi_0)$ 的影响，超前和滞后的非相干结果通过 PD 得到伪码相差，非相干操作消除了载波相位差对结果的影响<br />
-平方和并取模后的输出如下：<br />
-$$
+$$</p>
+<p>非相干环与相干环的区别在于：非相干环通过对同相和正相支路积分结果取平方和并取模得到非相干结果，消除了 $cos/sin (\frac{\Delta \hat{\omega}}{2}T+\delta\phi_0)$ 的影响，超前和滞后的非相干结果通过 PD 得到伪码相差，非相干操作消除了载波相位差对结果的影响</p>
+<p>平方和并取模后的输出如下：</p>
+<p>$$
 \begin{align}
 S_E &amp; =\sqrt{\overline{I^2_E}+\overline{Q^2_E}}=A \cdot |sinc(\frac{\Delta\hat{\omega}T_I}{2})|\cdot R(\Delta \tau -\frac{d}{2}) \
 S_L &amp; =\sqrt{\overline{I^2_L}+\overline{Q^2_L}}=A \cdot |sinc(\frac{\Delta\hat{\omega}T_I}{2})|\cdot R(\Delta \tau +\frac{d}{2})
 \end{align}
 $$</p>
+<p>上面的积分器输出公式中的 $\Delta \hat{\omega}$ 和 $\delta \phi_0$ 是本地载波与输入信号载波之间的频率差和相位差，当相位差不等于 0 时，信号的能量会在 $\overline{I_E}$ 和 $\overline{Q_E}$ 之间旋转，但经过平方和取模运算后，会消除相位差对结果的影响。所以即使本地载波与输入信号的载波没有严格同步，$S_E$ 和 $S_L$ 依然可以稳定输出相关结果。</p>
+<p>上图中的鉴相器采用的是 $S_E-S_L$，下表给出常用的非相干 DLL 常用的鉴相器。</p>
+<table>
+<thead>
+<tr>
+<th>鉴相器类型</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
                 
               </div>
@@ -383,27 +402,6 @@ $$</p>
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/TD/" class="category-chain-item">TD</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
     <div class="post-meta">

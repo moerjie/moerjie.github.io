@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502162103701.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502162106705.png">
 <meta property="article:published_time" content="2025-02-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-17T14:13:56.000Z">
+<meta property="article:modified_time" content="2026-08-25T13:45:28.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="FPGA">
 <meta name="twitter:card" content="summary_large_image">
@@ -360,32 +360,32 @@
             
               <div class="markdown-body">
                 
-                <p>FIFO 本质是由 RAM 加上读写逻辑构成的先入先出的数据缓冲器。与 RAM 的区别是 FIFO 没有外部读写地址线，顺序写入顺序读出数据，其数据地址是由内部读写指针自增完成，因此 FIFO 在读写时不需要考虑读写冲突的问题。
-根据 FIFO 工作的时钟域，可以分为同步 FIFO 和异步 FIFO，同步 FIFO 的读时钟和写时钟是同一个时钟，常用于两边数据位宽不同的临时缓冲，异步 FIFO 的读时钟和写时钟不一致，常用于数据信号跨时钟域处理。</p>
+                <p>FIFO 本质是由 RAM 加上读写逻辑构成的先入先出的数据缓冲器。与 RAM 的区别是 FIFO 没有外部读写地址线，顺序写入顺序读出数据，其数据地址是由内部读写指针自增完成，因此 FIFO 在读写时不需要考虑读写冲突的问题。</p>
+<p>根据 FIFO 工作的时钟域，可以分为同步 FIFO 和异步 FIFO，同步 FIFO 的读时钟和写时钟是同一个时钟，常用于两边数据位宽不同的临时缓冲，异步 FIFO 的读时钟和写时钟不一致，常用于数据信号跨时钟域处理。</p>
 <h1>1 时序图</h1>
 <h2 id="1-1-同步-fifo">1.1 同步 fifo</h2>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502061533455.svg" srcset="/img/banner.png" lazyload alt="同步fifo读写时序" />
-初始状态 <code>empty</code> 信号是高电平，此时 fifo 为空，若此时对 fifo 发起读操作，则读取到的数据无效。当 <code>wr_en</code> 拉高后，开始向 fifo 内部写入数据，fifo 中有数据后，<code>empty</code> 信号就会拉低。后面同时发起读写操作后，因为是同步 fifo，所以标志位不会发生变化。
-只写不读时，fifo 中存在两个及以上的数据，此时 <code>almost empty</code> 也会拉低。当 fifo 处于写满状态时，当 fifo 只能接受一次只写不读操作时，<code>almost full</code> 将会拉高，最后，在没有进行读操作的情况下，再进行了一次写操作，<code>full</code> 信号就会被拉高，说明此时的 FIFO 已经写满了，在发出读请求之前将无法再写入任何数据，如果此时再写入数据，数据就会丢失。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502061533455.svg" srcset="/img/banner.png" lazyload alt="同步fifo读写时序" /></p>
+<p>初始状态 <code>empty</code> 信号是高电平，此时 fifo 为空，若此时对 fifo 发起读操作，则读取到的数据无效。当 <code>wr_en</code> 拉高后，开始向 fifo 内部写入数据，fifo 中有数据后，<code>empty</code> 信号就会拉低。后面同时发起读写操作后，因为是同步 fifo，所以标志位不会发生变化。</p>
+<p>只写不读时，fifo 中存在两个及以上的数据，此时 <code>almost empty</code> 也会拉低。当 fifo 处于写满状态时，当 fifo 只能接受一次只写不读操作时，<code>almost full</code> 将会拉高，最后，在没有进行读操作的情况下，再进行了一次写操作，<code>full</code> 信号就会被拉高，说明此时的 FIFO 已经写满了，在发出读请求之前将无法再写入任何数据，如果此时再写入数据，数据就会丢失。</p>
 <h2 id="1-2-AXIS-FIFO">1.2 AXIS FIFO</h2>
-<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502061605748.png" srcset="/img/banner.png" lazyload alt="" />
-时序图如下：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502061618142.svg" srcset="/img/banner.png" lazyload alt="axisfifo.svg" />
-写入数据时，<code>s_axis_tvalid</code> 为高电平，同时 <code>full</code> 为低电平，取反后为 <code>s_axis_tready</code> 为高电平，此时才能写入数据。
-读数据时同理，只有 <code>valid</code> 和 <code>ready</code> 信号同时拉高时才能读出数据。
-<code>m_axis_tvalid</code> 对应 <code>fifo</code> 的 <code>wr_en</code> 信号，<code>m_axis_tready</code> 对应 <code>fifo</code> 的 <code>full</code> 信号取反，<code>s_axis_tvalid</code> 对应 <code>fifo</code> 的 <code>empty</code> 信号取反，<code>s_axis_tready</code> 对应 <code>fifo</code> 的 <code>rd_en</code>。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502061605748.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>时序图如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502061618142.svg" srcset="/img/banner.png" lazyload alt="axisfifo.svg" /></p>
+<p>写入数据时，<code>s_axis_tvalid</code> 为高电平，同时 <code>full</code> 为低电平，取反后为 <code>s_axis_tready</code> 为高电平，此时才能写入数据。</p>
+<p>读数据时同理，只有 <code>valid</code> 和 <code>ready</code> 信号同时拉高时才能读出数据。</p>
+<p><code>m_axis_tvalid</code> 对应 <code>fifo</code> 的 <code>wr_en</code> 信号，<code>m_axis_tready</code> 对应 <code>fifo</code> 的 <code>full</code> 信号取反，<code>s_axis_tvalid</code> 对应 <code>fifo</code> 的 <code>empty</code> 信号取反，<code>s_axis_tready</code> 对应 <code>fifo</code> 的 <code>rd_en</code>。</p>
 <h1>2 AXIS fifo</h1>
-<p>Axis fifo 的 IP 核界面如下：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502162045065.png" srcset="/img/banner.png" lazyload alt="|500" />
-本次是学习 FIFO 的异步读写，因此将 <code>independent clock</code> 选为‘是’，并且不使能 packet 模式。Bd 框图如下：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502162056567.png" srcset="/img/banner.png" lazyload alt="" />
-其中 <code>clk_wiz</code> 的输出有两个，端口 1 的时钟速率为 $100MHz$，端口 2 的时钟速率为 $50MHz$，<code>axis_data_source</code> 和 <code>axis_dest</code> 的源代码如下：</p>
+<p>Axis fifo 的 IP 核界面如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502162045065.png" srcset="/img/banner.png" lazyload alt="|500" /></p>
+<p>本次是学习 FIFO 的异步读写，因此将 <code>independent clock</code> 选为‘是’，并且不使能 packet 模式。Bd 框图如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502162056567.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>其中 <code>clk_wiz</code> 的输出有两个，端口 1 的时钟速率为 $100MHz$，端口 2 的时钟速率为 $50MHz$，<code>axis_data_source</code> 和 <code>axis_dest</code> 的源代码如下：</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> axis_data_source (<br>    <span class="hljs-keyword">input</span> s_axis_clk,<br>    <span class="hljs-keyword">input</span> s_axis_rstn,<br>    <span class="hljs-keyword">input</span> m_axis_tready,<br>    <span class="hljs-keyword">output</span> [<span class="hljs-number">7</span>:<span class="hljs-number">0</span>] m_axis_tdata,<br>    <span class="hljs-keyword">output</span> m_axis_tvalid <br>);<br><br><span class="hljs-keyword">reg</span> [<span class="hljs-number">7</span>:<span class="hljs-number">0</span>] cnt;<br><br><span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> s_axis_clk <span class="hljs-keyword">or</span> <span class="hljs-keyword">negedge</span> s_axis_rstn) <span class="hljs-keyword">begin</span><br>    <span class="hljs-keyword">if</span>(!s_axis_rstn) <span class="hljs-keyword">begin</span><br>        cnt&lt;=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>        <span class="hljs-keyword">if</span>(m_axis_tready) <span class="hljs-keyword">begin</span><br>            <span class="hljs-keyword">if</span>(cnt==<span class="hljs-number">255</span>) <span class="hljs-keyword">begin</span><br>                cnt&lt;=<span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">end</span><br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>                cnt&lt;=cnt+<span class="hljs-number">1&#x27;b1</span>;<br>            <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br><span class="hljs-keyword">assign</span> m_axis_tdata=cnt;<br><span class="hljs-keyword">assign</span> m_axis_tvalid=<span class="hljs-number">1&#x27;b1</span>;<br>    <br><span class="hljs-keyword">endmodule</span><br><br><span class="hljs-comment">/*read fifo data*/</span><br><span class="hljs-keyword">module</span> axis_dest (<br>    <span class="hljs-keyword">input</span> s_axis_clk,<br>    <span class="hljs-keyword">input</span> s_axis_tvalid,<br>    <span class="hljs-keyword">input</span> [<span class="hljs-number">7</span>:<span class="hljs-number">0</span>] s_axis_tdata,<br>    <span class="hljs-keyword">output</span> s_axis_tready<br>);<br><br><span class="hljs-keyword">assign</span> s_axis_tready=<span class="hljs-number">1&#x27;b1</span>;<br><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
-<p>其中 <code>data_source</code> 以 $100MHz$ 的速率生成并输出 $0-0xFF$，<code>axis_dest</code> 一直以 $50MHz$ 的速率读取数据。时序图如下：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502162103701.png" srcset="/img/banner.png" lazyload alt="" />
-可以看到开始时 FIFO 未被写满，此时写入和读出互不干扰，随着数据不断写入而不能被马上读出，在一段时间后 FIFO 的 <code>full</code> 信号拉高，对应 <code>m_axis_tready</code> 信号拉低，<code>axis_data_source</code> 不在生成新的数据，仿真图如下：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502162106705.png" srcset="/img/banner.png" lazyload alt="" />
-可以看到此时写入和读出的速率经过 valid 和 ready 信号的使能而同步。</p>
+<p>其中 <code>data_source</code> 以 $100MHz$ 的速率生成并输出 $0-0xFF$，<code>axis_dest</code> 一直以 $50MHz$ 的速率读取数据。时序图如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502162103701.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>可以看到开始时 FIFO 未被写满，此时写入和读出互不干扰，随着数据不断写入而不能被马上读出，在一段时间后 FIFO 的 <code>full</code> 信号拉高，对应 <code>m_axis_tready</code> 信号拉低，<code>axis_data_source</code> 不在生成新的数据，仿真图如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202502162106705.png" srcset="/img/banner.png" lazyload alt="" /></p>
+<p>可以看到此时写入和读出的速率经过 valid 和 ready 信号的使能而同步。</p>
 
                 
               </div>
@@ -476,9 +476,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/02/27/Petalinux/" title="Petalinux">
+                      <a href="/2025/02/27/Petalinux%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/" title="Petalinux报错记录">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Petalinux</span>
+                        <span class="hidden-mobile">Petalinux报错记录</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

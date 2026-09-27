@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292149737.png">
 <meta property="og:image" content="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292156578.png">
 <meta property="article:published_time" content="2024-12-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-15T01:33:41.119Z">
+<meta property="article:modified_time" content="2026-08-25T13:45:22.000Z">
 <meta property="article:author" content="Sawen Moerjie">
 <meta property="article:tag" content="数字通信">
 <meta property="article:tag" content="FPGA">
@@ -359,16 +359,16 @@
               <div class="markdown-body">
                 
                 <h1>1 数学基础</h1>
-<p>有限脉冲响应滤波器，其突出特点为单位取样响应 $h(n)$ 是一个 N 点长的有限序列，滤波器的输出 $y(n)$ 表示为输入序列 $x(n)$ 和 $h(n)$ 的线性卷积
-$$
+<p>有限脉冲响应滤波器，其突出特点为单位取样响应 $h(n)$ 是一个 N 点长的有限序列，滤波器的输出 $y(n)$ 表示为输入序列 $x(n)$ 和 $h(n)$ 的线性卷积</p>
+<p>$$
 y(n)=\sum_{k=0}^{N-1}x(k)h(n-k)=x(n)*h(n)
-$$
-系统函数为
-$$
+$$</p>
+<p>系统函数为</p>
+<p>$$
 H(z)=\sum_{n=0}^{N-1}h(n)z^{-n}=h(0)+h(1)z^{-1}+\cdots+h(N-1)z^{-(N-1)}
-$$
-由此可见 FIR 只在原点上存在极点，具有全局稳定性
-不同阶数的 FIR 滤波器特性</p>
+$$</p>
+<p>由此可见 FIR 只在原点上存在极点，具有全局稳定性</p>
+<p>不同阶数的 FIR 滤波器特性</p>
 <table>
 <thead>
 <tr>
@@ -399,23 +399,23 @@ $$
 <p>将一组数据先进行归一化处理，再乘上一个整数因子，最后进行四舍五入截尾处理即可</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">h = <span class="hljs-built_in">round</span>(h/<span class="hljs-built_in">max</span>(<span class="hljs-built_in">abs</span>(h))*(<span class="hljs-number">2</span>^N<span class="hljs-number">-1</span>)) //N为量化位数<br></code></pre></td></tr></table></figure>
 <h1>2 Fully Parallel Systolic Architecture（全并行脉动结构）</h1>
-<p>全并行脉动滤波器对对称系数、反对称系数和零值系数进行了优化。滤波器的时延受到滤波器系数的对称性影响。
-当对称系数绝对相等时，它们共享同一个 DSP block。这种配对共享允许在实现的过程中使用 Xilinx 和 Altera 的 dsp block 中的 pre-adder。
-对称的滤波器如果不适用对称系数优化架构的话，结构如下图的上半部分，优化后为下半部分：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292142810.png" srcset="/img/banner.png" lazyload alt="fir_arch_systolic_sym.png|500" /></p>
+<p>全并行脉动滤波器对对称系数、反对称系数和零值系数进行了优化。滤波器的时延受到滤波器系数的对称性影响。</p>
+<p>当对称系数绝对相等时，它们共享同一个 DSP block。这种配对共享允许在实现的过程中使用 Xilinx 和 Altera 的 dsp block 中的 pre-adder。</p>
+<p>对称的滤波器如果不适用对称系数优化架构的话，结构如下图的上半部分，优化后为下半部分：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292142810.png" srcset="/img/banner.png" lazyload alt="fir_arch_systolic_sym.png|500" /></p>
 <h1>3 Fully Parallel Transposed Architecture（全并行转置结构）</h1>
-<p>Fully Parallel Transposed Architecture 通过为任意的绝对相等的系数共享乘法器，同时移除零值系数所需的乘法器。此结构的滤波器时延为固定的 6 个 clk。
-下图的上半部分是没有优化的部分对称滤波器，下半部分为优化后的结构：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292146523.png" srcset="/img/banner.png" lazyload alt="fir_arch_transposed_sym.png|500" /></p>
+<p>Fully Parallel Transposed Architecture 通过为任意的绝对相等的系数共享乘法器，同时移除零值系数所需的乘法器。此结构的滤波器时延为固定的 6 个 clk。</p>
+<p>下图的上半部分是没有优化的部分对称滤波器，下半部分为优化后的结构：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292146523.png" srcset="/img/banner.png" lazyload alt="fir_arch_transposed_sym.png|500" /></p>
 <h1>4 Partly Serial Systolic Architecture (1 &lt; N &lt; L)</h1>
-<p>其中 N 为延时长度，L 为滤波器阶数。
-部分串行滤波器需要 <code>M=ceil(L/N)</code> 个脉动单元，结构如下：
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292149737.png" srcset="/img/banner.png" lazyload alt="fir_arch_systolic_partly_serial.png|500" />
-滤波器的时延为 <code>M+ceil(L/M)+5</code>。
-如果一个乘法器对应的查找表里面的系数为 0 或者 2 的幂次，则实现过程不包含乘法器，通过移位来实现幂次的变化。</p>
+<p>其中 N 为延时长度，L 为滤波器阶数。</p>
+<p>部分串行滤波器需要 <code>M=ceil(L/N)</code> 个脉动单元，结构如下：</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292149737.png" srcset="/img/banner.png" lazyload alt="fir_arch_systolic_partly_serial.png|500" /></p>
+<p>滤波器的时延为 <code>M+ceil(L/M)+5</code>。</p>
+<p>如果一个乘法器对应的查找表里面的系数为 0 或者 2 的幂次，则实现过程不包含乘法器，通过移位来实现幂次的变化。</p>
 <h1>5 Fully Serial Systolic Architecture (N ≥ L)</h1>
-<p>如果延时的长度大于滤波器的阶数，此时滤波器为全串行结构。滤波器延时为 $L+5$。
-<img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292156578.png" srcset="/img/banner.png" lazyload alt="fir_arch_systolic_fully_serial.png|500" /></p>
+<p>如果延时的长度大于滤波器的阶数，此时滤波器为全串行结构。滤波器延时为 $L+5$。</p>
+<p><img src="https://sawen-pic-blog.oss-cn-beijing.aliyuncs.com/2024after4202412292156578.png" srcset="/img/banner.png" lazyload alt="fir_arch_systolic_fully_serial.png|500" /></p>
 
                 
               </div>
